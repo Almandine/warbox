@@ -1,0 +1,27 @@
+---
+import { getCollection } from 'astro:content';
+import { statSync } from 'node:fs';
+import { join } from 'node:path';
+import Base from '../../layouts/Base.astro';
+import DownloadButton from '../../components/DownloadButton.astro';
+import ScreenshotGallery from '../../components/ScreenshotGallery.astro';
+export async function getStaticPaths() { const games = await getCollection('games'); return games.map((game) => ({ params: { id: game.id }, props: { game } })); }
+const { game } = Astro.props;
+const series = (await getCollection('series')).find((entry) => entry.data.id === game.data.series);
+const filePath = game.data.excel ? join(process.cwd(), 'public', 'downloads', 'companions', game.data.excel) : undefined;
+const bytes = filePath ? statSync(filePath).size : undefined;
+const size = bytes === undefined ? undefined : bytes < 1024 ? `${bytes} B` : `${(bytes / 1024).toFixed(1)} KB`;
+---
+<Base title={game.data.title} description={game.data.description || `Companion for ${game.data.title}.`}>
+  <article class="shell prose game-page">
+    <p class="breadcrumb"><a href="/games/">Games</a> / <a href="/games/">{series?.data.name || game.data.series}</a></p>
+    <h1>{game.data.title}</h1>
+    {game.data.description && <p class="lead">{game.data.description}</p>}
+    <p class="draft-note">Draft example content — this fictional entry will be replaced with a real companion.</p>
+    <DownloadButton href={game.data.excel ? `/downloads/companions/${game.data.excel}` : undefined} size={size} />
+    <p class="meta">{game.data.version && <>Version {game.data.version} · </>}Added {game.data.date_added.toLocaleDateString('en', { year: 'numeric', month: 'long', day: 'numeric' })}{game.data.date_updated && <> · Updated {game.data.date_updated.toLocaleDateString('en', { year: 'numeric', month: 'long', day: 'numeric' })}</>}</p>
+    <p>New to the companion? <a href="/how-to-use/">Read the guide</a>.</p>
+    {game.data.wds_url && <p><a href={game.data.wds_url} target="_blank" rel="noopener">Official WDS game page</a></p>}
+    <ScreenshotGallery id={game.id} screenshots={game.data.screenshots} />
+  </article>
+</Base>

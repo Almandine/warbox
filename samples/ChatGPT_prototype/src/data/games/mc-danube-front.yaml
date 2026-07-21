@@ -1,0 +1,22 @@
+title: "Modern Campaigns: Danube Front '85"
+series: modern-campaigns
+status: available
+excel: mc-danube-front.xlsx
+version: "1.0"
+date_added: 2026-07-17
+date_updated: 2026-07-18
+description: This fictional example companion demonstrates the layout of a future Warbox download page. It is not a real WDS game or companion.
+screenshots:
+  - file: scenario-tracker.jpg
+    caption: The scenario tracker spreadsheet.
+  - file: scenario-description.jpg
+    caption: The scenario tracker spreadsheet.
+  - file: keyboard.jpg
+    caption: The Keyboard Shortcuts spreadsheet.
+  - file: menu-reference.jpg
+    caption: The game menu reference spreadsheet.
+  - file: game-reference.jpg
+    caption: The game reference spreadsheet.
+  - file: books-videos.jpg
+    caption: The recommended books and videos spreadsheet.
+  

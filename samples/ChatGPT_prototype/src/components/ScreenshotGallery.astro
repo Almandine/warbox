@@ -1,0 +1,28 @@
+---
+import { Image } from 'astro:assets';
+interface Props { id: string; screenshots: { file: string; caption?: string }[] }
+const { id, screenshots } = Astro.props;
+const images = import.meta.glob('../assets/screenshots/**/*.{png,jpg,jpeg,webp}', { eager: true, import: 'default' });
+---
+{screenshots.length > 0 && <section class="gallery" aria-label="Screenshots">
+  <h2>Screenshots</h2>
+  <div class="gallery-grid">
+    {screenshots.map((shot, index) => {
+      const image = images[`../assets/screenshots/${id}/${shot.file}`];
+      return image && <button class="gallery-thumb" data-dialog={`lightbox-${index}`} aria-label={`Open screenshot ${index + 1}`}>
+        <Image src={image} alt={shot.caption || `Screenshot ${index + 1}`} widths={[400, 800]} sizes="(max-width: 700px) 100vw, 400px" loading="lazy" />
+      </button>;
+    })}
+  </div>
+  {screenshots.map((shot, index) => {
+    const image = images[`../assets/screenshots/${id}/${shot.file}`];
+    return image && <dialog id={`lightbox-${index}`} class="lightbox"><button class="close" aria-label="Close screenshot">×</button><Image src={image} alt={shot.caption || `Screenshot ${index + 1}`} widths={[800, 1600]} sizes="90vw" /><p>{shot.caption}</p></dialog>;
+  })}
+</section>}
+<script>
+  document.querySelectorAll<HTMLButtonElement>('.gallery-thumb').forEach((button) => button.addEventListener('click', () => document.getElementById(button.dataset.dialog || '')?.showModal()));
+  document.querySelectorAll<HTMLDialogElement>('.lightbox').forEach((dialog) => {
+    dialog.querySelector('.close')?.addEventListener('click', () => dialog.close());
+    dialog.addEventListener('click', (event) => { if (event.target === dialog) dialog.close(); });
+  });
+</script>

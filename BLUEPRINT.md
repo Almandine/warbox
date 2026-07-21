@@ -101,18 +101,25 @@ Verify `node --version` (need ≥ 20) and `git --version`. GitHub CLI (`gh`) nee
 - **ScreenshotGallery**: thumbnails via `<Image>` (~400px wide, lazy); click opens `<dialog>` with full-size `<Image>` (1600px max) + caption + close on Esc/backdrop.
 - **contact.astro**: name (optional), email (optional but encouraged), message (required), hidden honeypot `_gotcha`; POST to Formspree; note that replies go via email. GDPR-light privacy sentence.
 
-## Design spec (dark, tactical / field-manual)
+## Design spec (light, tactical / field-manual)
 
-Direction (decided 2026-07-19, revised from the earlier light/doc look): **cool, understated military aesthetic** — a field manual or operations map, not a gaming brand. Dark, muted, confident. **No neon, no RGB-gamer glow, no marketing gloss.** Readability comes first; the tactical styling is a whisper, never a theme park. The screenshots remain the main visuals.
+Direction (**decided 2026-07-21** — light/paper, after a dark tactical build was reviewed and set aside): **cool, understated military aesthetic** — a printed staff manual or operations map, not a gaming brand. Warm paper, muted, confident. **No neon, no RGB-gamer glow, no marketing gloss.** Readability comes first; the tactical styling is a whisper, never a theme park. The screenshots remain the main visuals.
 
-**IMPORTANT — final palette/typography come from Norbi's chosen Claude Design mockup.** He is generating dark tactical mockups (Home / game page / article page) and will hand the selected one to the executing model as an *image*. Treat that mockup as the source of truth for exact colors, spacing, and any texture; discard its code. The tokens below are the fallback/default if no mockup is provided, and define the intended ballpark — keep values in this family.
+Decision history, so nobody flips it back by accident:
 
-- Layout: single column, `max-width: 72rem` list pages / `65ch` text pages, generous whitespace.
-- Type: system font stack (`system-ui, ...`) for body, base 16–17px, line-height 1.6; a monospace stack (`ui-monospace, ...`) for metadata labels (dates, tags, file sizes, version) to give the field-manual feel.
-- Colors (CSS custom properties in `:root`) — dark, muted defaults: background `#14171a` (deep charcoal/gunmetal), surface/card `#1c2126`, text `#e6e3da` (warm off-white, never pure white), muted text `#8a9099`, borders `#2c333a`, accent `#8a9a5b` (muted olive) with an alt accent `#c9a24a` (desaturated amber) for tags/highlights. Links/buttons/tags use the accents sparingly; no bright saturated fills, no glow.
-- Optional understated texture: a very faint topographic-contour or hex-grid background and thin map-like dividers are welcome if subtle; must not reduce text contrast. Skip entirely if it reads busy.
-- Buttons: accent bg or accent-bordered, dark/off-white text, subtle radius (6px). Cards/panels: 1px border, 8px radius, minimal or no shadow.
-- Contrast: verify body text meets WCAG AA on the dark background. This is a dark-only theme in v1 (no light-mode toggle needed).
+1. Original spec: light / documentation look.
+2. 2026-07-19: revised to dark tactical.
+3. 2026-07-21: built dark from `samples/sample_website.html`, then Norbi chose the palette of `samples/ChatGPT_prototype/` (white + muted forest green) — softened to a warm paper background. **Structure and detailing stay from the dark sample**: card grid, monospace metadata labels, grid textures, greyscale→colour image hover, horizontal snap gallery.
+
+**The live palette is `src/styles/global.css` `:root`, not this list.** That file is the source of truth; the values below record the intent.
+
+- Layout: single column, `max-width: 80rem` list pages / `65ch` text pages, generous whitespace.
+- Type: Inter (body) + Rajdhani (display headings), both self-hosted via `@fontsource`; a monospace stack for metadata labels (dates, tags, file sizes, version) to give the field-manual feel.
+- Colours: background `#faf8f4` (warm paper), surface/card `#f2eee5`, borders `#ddd6c7`, headings `#1c2228`, body `#2b3138`, muted `#5b6670`, accent `#2f6f4f` (muted forest green) with `#9a6b12` (dark ochre) for small highlights and `#8b2f22` (muted red) for rules and warnings. Accents used sparingly; no bright saturated fills, no glow.
+- Every colour derives from those tokens — translucent variants use `rgb(from var(--token) r g b / <alpha>)`, never literal `rgb()`. Recolouring the site must stay a one-file edit. Exceptions, documented in the file: `public/favicon.svg` and the per-series `accent:` values in `src/data/series.yaml`.
+- Understated texture: a faint hex/map grid behind the hero and page headers. Must not reduce text contrast; skip if it reads busy.
+- Buttons: accent fill with `--wg-on-accent` text, subtle radius. Cards/panels: 1px border, small radius, minimal shadow (a heavy dark shadow reads wrong on paper).
+- Contrast: verify body text meets WCAG AA on the paper background. Light-only theme in v1 (no dark-mode toggle needed).
 - No large hero photos or decorative illustrations; a restrained, calm hero block only.
 
 ## Deployment (do in this order, each step verifiable)

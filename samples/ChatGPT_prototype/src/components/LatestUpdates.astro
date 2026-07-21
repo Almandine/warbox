@@ -1,0 +1,13 @@
+---
+import { getCollection } from 'astro:content';
+const games = await getCollection('games');
+const articles = await getCollection('articles', ({ data }) => !data.draft);
+const updates = [
+  ...games.map((game) => ({ date: game.data.date_updated ?? game.data.date_added, label: game.data.date_updated ? 'Updated' : 'Added', title: game.data.title, href: `/games/${game.id}/` })),
+  ...articles.map((article) => ({ date: article.data.date, label: 'Article', title: article.data.title, href: `/articles/${article.id}/` })),
+].sort((a, b) => b.date.valueOf() - a.date.valueOf()).slice(0, 6);
+---
+<section class="updates" aria-labelledby="updates-title">
+  <h2 id="updates-title">Latest updates</h2>
+  <ul>{updates.map((item) => <li><span class="badge">{item.label}</span><a href={item.href}>{item.title}</a><time datetime={item.date.toISOString()}>{item.date.toLocaleDateString('en', { year: 'numeric', month: 'short', day: 'numeric' })}</time></li>)}</ul>
+</section>

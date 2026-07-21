@@ -39,7 +39,7 @@ Deferred (post-v1): curated WDS link collection (grouped articles from the WDS N
 
 ## Design
 
-Cool, understated **military / tactical aesthetic** — dark, muted, field-manual feel (revised 2026-07-19 from an earlier light/documentation direction). Confident, not garish: no neon, no RGB-gamer glow, no marketing gloss. Readability first; tactical styling stays subtle. Screenshots remain the main visuals. Final look comes from Norbi's chosen Claude Design mockup; see BLUEPRINT.md Design spec for default tokens.
+Cool, understated **military / tactical aesthetic** — a printed field manual: warm paper background, muted forest-green accent (**revised 2026-07-21**; a dark tactical version was built first, reviewed, and set aside in favour of the light palette from `samples/ChatGPT_prototype/`). Confident, not garish: no neon, no RGB-gamer glow, no marketing gloss. Readability first; tactical styling stays subtle — card grid, monospace metadata labels, faint map grid, greyscale→colour image hover. Screenshots remain the main visuals. Live palette: `src/styles/global.css` `:root`; rationale and history in BLUEPRINT.md Design spec.
 
 ## Analytics
 

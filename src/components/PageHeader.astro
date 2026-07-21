@@ -28,16 +28,16 @@ const { title, eyebrow, icon, lead } = Astro.props;
   .ph {
     position: relative;
     padding-block: 3.5rem 3rem;
-    border-bottom: 1px solid var(--wg-gunmetal);
-    background-color: var(--wg-charcoal);
+    border-bottom: 1px solid var(--wg-border);
+    background-color: var(--wg-surface);
     background-image:
-      linear-gradient(to right, rgb(from var(--wg-beige) r g b / 0.04) 1px, transparent 1px),
-      linear-gradient(to bottom, rgb(from var(--wg-beige) r g b / 0.04) 1px, transparent 1px);
+      linear-gradient(to right, rgb(from var(--wg-ink) r g b / 0.04) 1px, transparent 1px),
+      linear-gradient(to bottom, rgb(from var(--wg-ink) r g b / 0.04) 1px, transparent 1px);
     background-size: 40px 40px;
   }
 
   .ph__icon {
-    color: var(--wg-olive-light);
+    color: var(--wg-accent-strong);
   }
 
   .ph__lead {

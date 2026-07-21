@@ -1,0 +1,20 @@
+title: "Modern Campaigns: Middle East '67"
+series: modern-campaigns
+status: available
+excel: mc-middle-east-67.xlsx
+version: "1.0"
+date_added: 2026-07-17
+date_updated: 2026-07-18
+description: This fictional example companion demonstrates the layout of a future Warbox download page. It is not a real WDS game or companion.
+screenshots:
+  - file: scenario-tracker.jpg
+    caption: The scenario tracker spreadsheet.
+  - file: scenario-descriptions.jpg
+    caption: The scenario description spreadsheet.
+  - file: keyboard.jpg
+    caption: The Keyboard Shortcuts spreadsheet.
+  - file: wds-links-articles.jpg
+    caption: The WDS Links & Articles spreadsheet.
+  - file: game-reference.jpg
+    caption: The game reference spreadsheet.
+  

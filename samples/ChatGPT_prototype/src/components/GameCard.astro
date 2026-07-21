@@ -1,0 +1,17 @@
+---
+import { Image } from 'astro:assets';
+import type { CollectionEntry } from 'astro:content';
+const { game } = Astro.props as { game: CollectionEntry<'games'> };
+const images = import.meta.glob('../assets/screenshots/**/*.{png,jpg,jpeg,webp}', { eager: true, import: 'default' });
+const shot = game.data.screenshots[0];
+const image = shot ? images[`../assets/screenshots/${game.id}/${shot.file}`] : undefined;
+const date = game.data.date_updated ?? game.data.date_added;
+---
+<article class="game-card">
+  {image && <Image src={image} alt={shot?.caption || `Preview of ${game.data.title}`} widths={[400, 800]} sizes="(max-width: 700px) 100vw, 400px" loading="lazy" />}
+  <div class="card-body">
+    <h3><a href={`/games/${game.id}/`}>{game.data.title}</a></h3>
+    {game.data.status === 'planned' && <span class="badge">Companion coming soon</span>}
+    <p class="meta">{game.data.date_updated ? 'Updated' : 'Added'} {date.toLocaleDateString('en', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
+  </div>
+</article>

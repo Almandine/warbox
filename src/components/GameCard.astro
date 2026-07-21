@@ -70,8 +70,8 @@ const updated = game.data.date_updated ? 'Updated' : 'Added';
     position: relative;
     display: flex;
     flex-direction: column;
-    background: var(--wg-charcoal);
-    border: 1px solid var(--wg-gunmetal);
+    background: var(--wg-surface);
+    border: 1px solid var(--wg-border);
     border-radius: var(--radius);
     overflow: hidden;
     transition: border-color 0.2s ease;
@@ -91,7 +91,7 @@ const updated = game.data.date_updated ? 'Updated' : 'Added';
   .card__media {
     position: relative;
     aspect-ratio: 16 / 10;
-    background: var(--wg-gunmetal);
+    background: var(--wg-border);
     overflow: hidden;
   }
 
@@ -100,18 +100,15 @@ const updated = game.data.date_updated ? 'Updated' : 'Added';
     height: 100%;
     object-fit: cover;
     /* Muted until you look at it — colour is the reward for hovering. */
-    filter: grayscale(1) contrast(0.95);
-    opacity: 0.65;
+    filter: grayscale(1) contrast(0.92) brightness(1.04);
     transition:
       filter 0.45s ease,
-      opacity 0.45s ease,
       transform 0.6s ease;
   }
 
   .card:hover .card__media :global(img),
   .card:focus-within .card__media :global(img) {
-    filter: grayscale(0) contrast(1);
-    opacity: 1;
+    filter: grayscale(0) contrast(1) brightness(1);
     transform: scale(1.04);
   }
 
@@ -121,8 +118,8 @@ const updated = game.data.date_updated ? 'Updated' : 'Added';
     height: 100%;
     color: var(--wg-faint);
     background-image:
-      linear-gradient(to right, rgb(from var(--wg-beige) r g b / 0.06) 1px, transparent 1px),
-      linear-gradient(to bottom, rgb(from var(--wg-beige) r g b / 0.06) 1px, transparent 1px);
+      linear-gradient(to right, rgb(from var(--wg-ink) r g b / 0.06) 1px, transparent 1px),
+      linear-gradient(to bottom, rgb(from var(--wg-ink) r g b / 0.06) 1px, transparent 1px);
     background-size: 24px 24px;
   }
 
@@ -132,9 +129,9 @@ const updated = game.data.date_updated ? 'Updated' : 'Added';
     left: 0.75rem;
     padding: 0.2rem 0.5rem;
     border-radius: var(--radius);
-    background: rgb(from var(--wg-dark) r g b / 0.85);
+    background: rgb(from var(--wg-bg) r g b / 0.85);
     backdrop-filter: blur(4px);
-    color: var(--wg-amber);
+    color: var(--wg-highlight);
     font-family: var(--font-mono);
     font-size: 0.625rem;
     text-transform: uppercase;
@@ -157,14 +154,14 @@ const updated = game.data.date_updated ? 'Updated' : 'Added';
   .card__title {
     font-size: 1.125rem;
     text-transform: uppercase;
-    color: var(--wg-bright);
+    color: var(--wg-emphasis);
   }
 
   .card__tag {
     flex-shrink: 0;
     padding: 0.15rem 0.45rem;
     border-radius: var(--radius);
-    background: var(--wg-gunmetal);
+    background: var(--wg-border);
     color: var(--wg-text);
     font-family: var(--font-mono);
     font-size: 0.6875rem;
@@ -181,7 +178,7 @@ const updated = game.data.date_updated ? 'Updated' : 'Added';
     gap: 0.35rem;
     margin: 0;
     padding-left: 0.75rem;
-    border-left: 2px solid var(--wg-gunmetal);
+    border-left: 2px solid var(--wg-border);
     font-size: 0.8125rem;
   }
 
@@ -208,8 +205,8 @@ const updated = game.data.date_updated ? 'Updated' : 'Added';
 
   .card__foot {
     padding: 0.875rem 1.25rem;
-    border-top: 1px solid var(--wg-gunmetal);
-    background: rgb(from var(--wg-dark) r g b / 0.5);
+    border-top: 1px solid var(--wg-border);
+    background: rgb(from var(--wg-bg) r g b / 0.5);
   }
 
   .card__cta {
@@ -221,7 +218,7 @@ const updated = game.data.date_updated ? 'Updated' : 'Added';
     text-transform: uppercase;
     letter-spacing: 0.06em;
     text-decoration: none;
-    color: var(--wg-beige);
+    color: var(--wg-ink);
     transition: color 0.18s ease;
   }
 
@@ -233,6 +230,6 @@ const updated = game.data.date_updated ? 'Updated' : 'Added';
   }
 
   .card:hover .card__cta {
-    color: var(--wg-bright);
+    color: var(--wg-emphasis);
   }
 </style>

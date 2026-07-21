@@ -69,13 +69,13 @@ const stats = [
 <style>
   .hero {
     position: relative;
-    border-bottom: 1px solid var(--wg-gunmetal);
+    border-bottom: 1px solid var(--wg-border);
     padding-block: 6rem 7rem;
     overflow: hidden;
-    background-color: var(--wg-dark);
+    background-color: var(--wg-bg);
     background-image:
-      radial-gradient(ellipse 70% 90% at 15% 10%, rgb(from var(--wg-olive) r g b / 0.28), transparent 65%),
-      radial-gradient(ellipse 80% 70% at 90% 100%, rgb(from var(--wg-gunmetal) r g b / 0.55), transparent 60%);
+      radial-gradient(ellipse 70% 90% at 15% 10%, rgb(from var(--wg-accent) r g b / 0.1), transparent 65%),
+      radial-gradient(ellipse 80% 70% at 90% 100%, rgb(from var(--wg-border) r g b / 0.45), transparent 60%);
   }
 
   /* Operations-map grid, drawn over the tint so it stays legible. */
@@ -85,8 +85,8 @@ const stats = [
     inset: 0;
     pointer-events: none;
     background-image:
-      linear-gradient(to right, rgb(from var(--wg-beige) r g b / 0.055) 1px, transparent 1px),
-      linear-gradient(to bottom, rgb(from var(--wg-beige) r g b / 0.055) 1px, transparent 1px);
+      linear-gradient(to right, rgb(from var(--wg-ink) r g b / 0.055) 1px, transparent 1px),
+      linear-gradient(to bottom, rgb(from var(--wg-ink) r g b / 0.055) 1px, transparent 1px);
     background-size: 40px 40px;
     mask-image: linear-gradient(to bottom, #000 0%, #000 65%, transparent 100%);
   }
@@ -110,10 +110,10 @@ const stats = [
     gap: 0.5rem;
     padding: 0.25rem 0.75rem;
     margin-bottom: 1.5rem;
-    border: 1px solid rgb(from var(--wg-red-bright) r g b / 0.35);
+    border: 1px solid rgb(from var(--wg-alert) r g b / 0.35);
     border-radius: var(--radius);
-    background: rgb(from var(--wg-red) r g b / 0.15);
-    color: var(--wg-red-bright);
+    background: rgb(from var(--wg-alert) r g b / 0.15);
+    color: var(--wg-alert);
     font-size: 0.6875rem;
     font-weight: 700;
     text-transform: uppercase;
@@ -124,7 +124,7 @@ const stats = [
     width: 0.5rem;
     height: 0.5rem;
     border-radius: 50%;
-    background: var(--wg-red-bright);
+    background: var(--wg-alert);
     animation: pulse 2s ease-in-out infinite;
   }
 
@@ -169,7 +169,7 @@ const stats = [
     margin-top: -2.5rem;
     position: relative;
     z-index: 10;
-    box-shadow: 0 20px 40px -20px rgb(0 0 0 / 0.8);
+    box-shadow: 0 16px 32px -22px rgb(from var(--wg-emphasis) r g b / 0.45);
     overflow: hidden;
   }
 
@@ -186,8 +186,8 @@ const stats = [
     justify-content: center;
     text-align: center;
     padding: 1.5rem 1rem;
-    border-top: 1px solid var(--wg-gunmetal);
-    border-left: 1px solid var(--wg-gunmetal);
+    border-top: 1px solid var(--wg-border);
+    border-left: 1px solid var(--wg-border);
   }
 
   /* Two-column layout: no rule above the first row, none left of the first column. */
@@ -204,7 +204,7 @@ const stats = [
     .stats__cell,
     .stats__cell:nth-child(odd) {
       border-top: 0;
-      border-left: 1px solid var(--wg-gunmetal);
+      border-left: 1px solid var(--wg-border);
     }
 
     .stats__cell:first-child {
@@ -222,13 +222,13 @@ const stats = [
   }
 
   .stats__icon--olive {
-    color: var(--wg-olive-light);
+    color: var(--wg-accent-strong);
   }
   .stats__icon--amber {
-    color: var(--wg-amber);
+    color: var(--wg-highlight);
   }
   .stats__icon--red {
-    color: var(--wg-red-bright);
+    color: var(--wg-alert);
   }
 
   .stats__label {
@@ -243,7 +243,7 @@ const stats = [
     font-family: var(--font-display);
     font-weight: 700;
     font-size: 1.75rem;
-    color: var(--wg-beige);
+    color: var(--wg-ink);
     line-height: 1.1;
   }
 </style>

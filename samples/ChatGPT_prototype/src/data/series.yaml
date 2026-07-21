@@ -1,0 +1,10 @@
+- id: modern-campaigns
+  name: Modern Campaigns
+  blurb: Operational wargames from Wargame Design Studio.
+  wds_url: https://wargameds.com/collections/modern-campaigns
+  order: 1
+- id: squad-battles
+  name: Squad Battles
+  blurb: Tactical combat games from Wargame Design Studio.
+  wds_url: https://wargameds.com/collections/squad-battles
+  order: 2

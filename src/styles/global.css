@@ -1,6 +1,7 @@
 /*
  * Warbox.org — global design tokens and shared primitives.
- * Direction: dark, understated military / field-manual. See BLUEPRINT.md "Design spec".
+ * Direction: light, understated military / field-manual — a printed staff manual
+ * on warm paper, not a gaming brand. See BLUEPRINT.md "Design spec".
  * Component-specific rules live in the components themselves (Astro scoped styles).
  */
 
@@ -18,25 +19,24 @@
  */
 
 :root {
-  /* --- Surfaces (darkest → lightest) --- */
-  --wg-dark: #111827; /* page background */
-  --wg-charcoal: #1f2937; /* cards, panels, nav */
-  --wg-gunmetal: #2c3e50; /* borders, dividers, raised bands */
+  /* --- Surfaces (page → raised) --- */
+  --wg-bg: #faf8f4; /* warm paper, easier on the eye than pure white */
+  --wg-surface: #f2eee5; /* cards, panels, nav */
+  --wg-border: #ddd6c7; /* borders, dividers, raised bands */
 
   /* --- Accents --- */
-  --wg-olive: #4b5320; /* primary accent: buttons, rules */
-  --wg-olive-light: #6b705c; /* hover state of the above */
-  --wg-amber: #ffbf00; /* small labels and highlights only */
-  --wg-red: #8b0000; /* muted red fills */
-  --wg-red-bright: #d05a4e; /* readable red for text/icons on dark */
+  --wg-accent: #2f6f4f; /* primary accent: buttons, rules */
+  --wg-accent-strong: #23593e; /* hover state of the above */
+  --wg-on-accent: #f7f9f8; /* text sitting on an accent fill */
+  --wg-highlight: #9a6b12; /* small labels and highlights only */
+  --wg-alert: #8b2f22; /* muted red for rules, badges and warnings */
 
   /* --- Type --- */
-  --wg-bright: #ffffff; /* peak contrast, hover states only */
-  --wg-beige: #e3dac9; /* headings, warm off-white */
-  --wg-beige-dark: #d4c5b0;
-  --wg-text: #d1d5db; /* body */
-  --wg-muted: #9ca3af; /* secondary text */
-  --wg-faint: #6b7280; /* timestamps, fine print */
+  --wg-emphasis: #0f1418; /* peak contrast, hover states only */
+  --wg-ink: #1c2228; /* headings */
+  --wg-text: #2b3138; /* body */
+  --wg-muted: #5b6670; /* secondary text */
+  --wg-faint: #7f8791; /* timestamps, fine print */
 
   --font-sans: 'Inter Variable', Inter, system-ui, -apple-system, 'Segoe UI', sans-serif;
   --font-display: 'Rajdhani', 'Inter Variable', system-ui, sans-serif;
@@ -49,7 +49,7 @@
   --radius-lg: 8px;
   --nav-h: 4rem;
 
-  color-scheme: dark;
+  color-scheme: light;
 }
 
 *,
@@ -79,17 +79,16 @@ html {
 
 body {
   margin: 0;
-  background: var(--wg-dark);
+  background: var(--wg-bg);
   color: var(--wg-text);
   font-family: var(--font-sans);
   font-size: 1rem;
   line-height: 1.65;
-  -webkit-font-smoothing: antialiased;
 }
 
 ::selection {
-  background: var(--wg-red);
-  color: #fff;
+  background: var(--wg-accent);
+  color: var(--wg-on-accent);
 }
 
 h1,
@@ -98,7 +97,7 @@ h3,
 h4,
 h5 {
   font-family: var(--font-display);
-  color: var(--wg-beige);
+  color: var(--wg-ink);
   font-weight: 700;
   line-height: 1.15;
   letter-spacing: 0.01em;
@@ -119,7 +118,7 @@ img {
 }
 
 :focus-visible {
-  outline: 2px solid var(--wg-amber);
+  outline: 2px solid var(--wg-highlight);
   outline-offset: 2px;
 }
 
@@ -153,7 +152,7 @@ img {
 .section-rule {
   width: 6rem;
   height: 3px;
-  background: var(--wg-red);
+  background: var(--wg-alert);
   margin-top: 1rem;
 }
 
@@ -176,7 +175,7 @@ img {
 .lead {
   font-size: 1.125rem;
   color: var(--wg-text);
-  border-left: 4px solid var(--wg-olive);
+  border-left: 4px solid var(--wg-accent);
   padding-left: 1rem;
 }
 
@@ -190,8 +189,8 @@ img {
   padding: 0.9rem 2rem;
   border: 1px solid transparent;
   border-radius: var(--radius);
-  background: var(--wg-olive);
-  color: var(--wg-beige);
+  background: var(--wg-accent);
+  color: var(--wg-on-accent);
   font-family: var(--font-sans);
   font-size: 0.8125rem;
   font-weight: 700;
@@ -206,27 +205,27 @@ img {
 }
 
 .btn:hover {
-  background: var(--wg-olive-light);
-  color: var(--wg-bright);
+  background: var(--wg-accent-strong);
+  color: var(--wg-on-accent);
 }
 
 .btn--ghost {
-  background: rgb(from var(--wg-charcoal) r g b / 0.8);
-  border-color: var(--wg-gunmetal);
-  color: var(--wg-beige);
+  background: rgb(from var(--wg-surface) r g b / 0.8);
+  border-color: var(--wg-border);
+  color: var(--wg-ink);
   backdrop-filter: blur(4px);
 }
 
 .btn--ghost:hover {
-  background: var(--wg-gunmetal);
-  color: var(--wg-bright);
+  background: var(--wg-border);
+  color: var(--wg-emphasis);
 }
 
 /* --- Panels --- */
 
 .panel {
-  background: var(--wg-charcoal);
-  border: 1px solid var(--wg-gunmetal);
+  background: var(--wg-surface);
+  border: 1px solid var(--wg-border);
   border-radius: var(--radius-lg);
 }
 
@@ -236,15 +235,15 @@ img {
 .tex-grid {
   background-size: 40px 40px;
   background-image:
-    linear-gradient(to right, rgb(from var(--wg-beige) r g b / 0.05) 1px, transparent 1px),
-    linear-gradient(to bottom, rgb(from var(--wg-beige) r g b / 0.05) 1px, transparent 1px);
+    linear-gradient(to right, rgb(from var(--wg-ink) r g b / 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(from var(--wg-ink) r g b / 0.05) 1px, transparent 1px);
 }
 
-/* Faint dot field, used on wide dark sections. */
+/* Faint dot field, used on wide flat sections. */
 .tex-dots {
   background-image:
-    radial-gradient(rgb(from var(--wg-beige) r g b / 0.05) 1.5px, transparent 1.6px),
-    radial-gradient(rgb(from var(--wg-beige) r g b / 0.05) 1.5px, transparent 1.6px);
+    radial-gradient(rgb(from var(--wg-ink) r g b / 0.05) 1.5px, transparent 1.6px),
+    radial-gradient(rgb(from var(--wg-ink) r g b / 0.05) 1.5px, transparent 1.6px);
   background-position:
     0 0,
     10px 10px;
@@ -260,8 +259,8 @@ img {
   pointer-events: none;
   background-image: repeating-linear-gradient(
     45deg,
-    var(--wg-beige) 0,
-    var(--wg-beige) 1px,
+    var(--wg-ink) 0,
+    var(--wg-ink) 1px,
     transparent 0,
     transparent 50%
   );

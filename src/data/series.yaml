@@ -5,7 +5,7 @@
 - id: panzer-campaigns
   name: Panzer Campaigns
   order: 1
-  accent: '#6b7a3a'
+  accent: '#4a6b3c'
   blurb: >-
     Operational World War II battles at 1 km per hex and two-hour turns. The
     largest WDS series by far, and the one most companions are written for.
@@ -14,7 +14,7 @@
 - id: squad-battles
   name: Squad Battles
   order: 2
-  accent: '#a84a3f'
+  accent: '#8b4a2f'
   blurb: >-
     Tactical infantry combat down to the individual squad and vehicle, from the
     Second World War through Vietnam and modern conflicts.

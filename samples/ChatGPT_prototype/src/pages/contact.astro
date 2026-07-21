@@ -1,0 +1,8 @@
+---
+import Base from '../layouts/Base.astro';
+import { FORMSPREE_ID } from '../consts';
+const enabled = Boolean(FORMSPREE_ID);
+---
+<Base title="Contact" description="Contact the maker of Warbox.">
+  <article class="shell prose"><h1>Contact</h1>{!enabled && <p class="draft-note">Contact is coming soon. The form will be enabled once the site’s Formspree address is configured.</p>}<form method="POST" action={enabled ? `https://formspree.io/f/${FORMSPREE_ID}` : undefined}><label>Name <input name="name" autocomplete="name" disabled={!enabled} /></label><label>Email <input type="email" name="email" autocomplete="email" disabled={!enabled} /><small>Optional, but helpful if you would like a reply.</small></label><label>Message <textarea name="message" rows="7" required disabled={!enabled}></textarea></label><input class="honeypot" type="text" name="_gotcha" tabindex="-1" autocomplete="off" /><button class="button" type="submit" disabled={!enabled}>Send message</button></form><p class="privacy">Your message is sent through Formspree and used only to reply to you. Replies are sent by email; the site does not display an email address.</p></article>
+</Base>

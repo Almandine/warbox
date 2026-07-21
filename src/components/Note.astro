@@ -20,19 +20,19 @@ const { tone = 'info', label = tone === 'draft' ? 'Draft' : 'Note' } = Astro.pro
     align-items: baseline;
     gap: 0.75rem;
     padding: 1rem 1.25rem;
-    border: 1px solid var(--wg-gunmetal);
+    border: 1px solid var(--wg-border);
     border-left-width: 3px;
     border-radius: var(--radius);
-    background: rgb(from var(--wg-charcoal) r g b / 0.6);
+    background: rgb(from var(--wg-surface) r g b / 0.6);
     font-size: 0.9375rem;
   }
 
   .note--draft {
-    border-left-color: var(--wg-amber);
+    border-left-color: var(--wg-highlight);
   }
 
   .note--info {
-    border-left-color: var(--wg-olive-light);
+    border-left-color: var(--wg-accent-strong);
   }
 
   .note__label {
@@ -43,11 +43,11 @@ const { tone = 'info', label = tone === 'draft' ? 'Draft' : 'Note' } = Astro.pro
   }
 
   .note--draft .note__label {
-    color: var(--wg-amber);
+    color: var(--wg-highlight);
   }
 
   .note--info .note__label {
-    color: var(--wg-olive-light);
+    color: var(--wg-accent-strong);
   }
 
   .note__body {

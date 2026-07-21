@@ -1,0 +1,16 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import GameCard from '../../components/GameCard.astro';
+const [games, series] = await Promise.all([getCollection('games'), getCollection('series')]);
+const orderedSeries = [...series].sort((a, b) => a.data.order - b.data.order);
+---
+<Base title="Games" description="Browse Warbox fan-made companions, grouped by Wargame Design Studio series.">
+  <div class="shell page-intro"><h1>Games</h1><p class="lead">Browse companions by Wargame Design Studio series. The entries below are temporary, fictional examples while real material is prepared.</p></div>
+  <div class="shell series-list">
+    {orderedSeries.map((series) => {
+      const entries = games.filter((game) => game.data.series === series.data.id).sort((a, b) => a.data.title.localeCompare(b.data.title));
+      return entries.length > 0 && <section aria-labelledby={`series-${series.data.id}`}><h2 id={`series-${series.data.id}`}>{series.data.name}</h2>{series.data.blurb && <p class="muted">{series.data.blurb}</p>}<div class="card-grid">{entries.map((game) => <GameCard game={game} />)}</div></section>;
+    })}
+  </div>
+</Base>
