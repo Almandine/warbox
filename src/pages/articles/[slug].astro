@@ -1,0 +1,198 @@
+---
+import { getCollection, render } from 'astro:content';
+import { Image } from 'astro:assets';
+import Base from '../../layouts/Base.astro';
+import Icon from '../../components/Icon.astro';
+import { CATEGORIES, readingTime, type Article } from '../../lib/articles';
+import { formatDate } from '../../lib/games';
+
+export async function getStaticPaths() {
+  const articles = await getCollection('articles', ({ data }) => !data.draft);
+  const games = await getCollection('games');
+
+  return articles.map((article) => ({
+    params: { slug: article.id },
+    props: {
+      article,
+      game: games.find((candidate) => candidate.id === article.data.game),
+    },
+  }));
+}
+
+interface Props {
+  article: Article;
+  game?: { id: string; data: { title: string } };
+}
+
+const { article, game } = Astro.props;
+const { title, description, date, category, cover } = article.data;
+const { Content } = await render(article);
+---
+
+<Base title={title} description={description}>
+  <header class="head">
+    <div class="wrap">
+      <nav class="crumbs" aria-label="Breadcrumb">
+        <a href="/articles/">Articles</a>
+        <Icon name="caret-right" size="0.75em" />
+        <span>{CATEGORIES[category]}</span>
+      </nav>
+
+      <h1 class="head__title">{title}</h1>
+
+      <p class="head__meta">
+        <time datetime={date.toISOString()}>{formatDate(date)}</time>
+        <span aria-hidden="true">·</span>
+        <span><Icon name="clock" size="0.9em" /> {readingTime(article.body)}</span>
+      </p>
+    </div>
+  </header>
+
+  {
+    cover && (
+      <div class="wrap cover">
+        <Image src={cover} alt="" widths={[900, 1600]} sizes="(min-width: 1200px) 1100px, 100vw" />
+      </div>
+    )
+  }
+
+  <div class="wrap section">
+    <article class="prose article">
+      <p class="article__lead">{description}</p>
+      <Content />
+    </article>
+
+    <footer class="foot">
+      {
+        game && (
+          <a class="foot__link" href={`/games/${game.id}/`}>
+            <Icon name="layers" size="1em" />
+            Companion for {game.data.title}
+          </a>
+        )
+      }
+      <a class="foot__link" href="/articles/">
+        <Icon name="arrow-right" size="1em" />
+        All articles
+      </a>
+    </footer>
+  </div>
+</Base>
+
+<style>
+  .head {
+    position: relative;
+    padding-block: 3rem;
+    border-bottom: 1px solid var(--wg-border);
+    background-color: var(--wg-surface);
+    background-image:
+      linear-gradient(to right, rgb(from var(--wg-ink) r g b / 0.04) 1px, transparent 1px),
+      linear-gradient(to bottom, rgb(from var(--wg-ink) r g b / 0.04) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+
+  .crumbs {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--wg-faint);
+  }
+
+  .crumbs a {
+    text-decoration: none;
+    color: var(--wg-muted);
+  }
+
+  .crumbs a:hover {
+    color: var(--wg-accent);
+  }
+
+  .head__title {
+    max-width: 24ch;
+    font-size: clamp(1.875rem, 1.2rem + 3vw, 3rem);
+    text-transform: uppercase;
+    text-wrap: balance;
+  }
+
+  .head__meta {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 1.25rem;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--wg-faint);
+  }
+
+  .cover {
+    margin-top: 2.5rem;
+  }
+
+  .cover :global(img) {
+    width: 100%;
+    border: 1px solid var(--wg-border);
+    border-radius: var(--radius-lg);
+  }
+
+  .article__lead {
+    font-size: 1.125rem;
+    color: var(--wg-muted);
+    border-left: 4px solid var(--wg-accent);
+    padding-left: 1rem;
+    margin-bottom: 2.5rem;
+  }
+
+  /* AARs run long and image-heavy; images break out a little wider than the
+     text column so screenshots stay readable. */
+  .article :global(img) {
+    display: block;
+    width: 100%;
+    margin-block: 2rem;
+    border: 1px solid var(--wg-border);
+    border-radius: var(--radius);
+  }
+
+  @media (min-width: 1100px) {
+    .article :global(p > img) {
+      width: min(52rem, 130%);
+      margin-inline: calc((100% - min(52rem, 130%)) / 2);
+    }
+  }
+
+  .article :global(blockquote) {
+    margin-block: 2rem;
+    padding-left: 1.25rem;
+    border-left: 3px solid var(--wg-border);
+    color: var(--wg-muted);
+  }
+
+  .foot {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    margin-top: 4rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--wg-border);
+  }
+
+  .foot__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    text-decoration: none;
+    color: var(--wg-accent);
+  }
+
+  .foot__link:hover {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+</style>

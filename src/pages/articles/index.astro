@@ -1,0 +1,168 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import ArticleCard from '../../components/ArticleCard.astro';
+import Note from '../../components/Note.astro';
+import Icon from '../../components/Icon.astro';
+import { getArticles, usedCategories, CATEGORIES } from '../../lib/articles';
+
+const articles = await getArticles();
+const categories = usedCategories(articles);
+---
+
+<Base
+  title="Articles"
+  description="After action reports, notes on playing WDS games with AI help, and things worth writing down."
+>
+  <PageHeader
+    eyebrow={`${articles.length} published`}
+    title="Articles"
+    icon="file-text"
+    lead="After action reports, experiments, and the odd thing worth writing down."
+  />
+
+  <div class="wrap section">
+    {
+      articles.length === 0 ? (
+        <Note tone="info" label="Empty">
+          Nothing published yet. The section appears in the navigation as soon as the first article
+          goes up.
+        </Note>
+      ) : (
+        <div data-filter>
+          <Note tone="draft">
+            Seed articles — placeholder writing that demonstrates the layout. Delete the files in
+            <code>src/content/articles/</code> once real ones exist.
+          </Note>
+
+          {categories.length > 1 && (
+            <div class="chips" role="group" aria-label="Filter by category">
+              <button class="chip is-on" type="button" data-cat="all" aria-pressed="true">
+                All
+              </button>
+              {categories.map((cat) => (
+                <button class="chip" type="button" data-cat={cat} aria-pressed="false">
+                  {CATEGORIES[cat]}
+                </button>
+              ))}
+            </div>
+          )}
+
+          <div class="grid">
+            {articles.map((article) => (
+              <ArticleCard article={article} />
+            ))}
+          </div>
+
+          <p class="empty" data-empty hidden>
+            No articles in that category yet.
+          </p>
+        </div>
+      )
+    }
+
+    <p class="feed">
+      <a href="/rss.xml">
+        <Icon name="rss" size="1em" /> Subscribe by RSS
+      </a>
+    </p>
+  </div>
+</Base>
+
+<script>
+  // Progressive enhancement: without JS every article is simply shown.
+  for (const root of document.querySelectorAll<HTMLElement>('[data-filter]')) {
+    const chips = [...root.querySelectorAll<HTMLButtonElement>('.chip')];
+    const cards = [...root.querySelectorAll<HTMLElement>('[data-category]')];
+    const empty = root.querySelector<HTMLElement>('[data-empty]');
+
+    for (const chip of chips) {
+      chip.addEventListener('click', () => {
+        const wanted = chip.dataset.cat;
+
+        for (const other of chips) {
+          const on = other === chip;
+          other.classList.toggle('is-on', on);
+          other.setAttribute('aria-pressed', String(on));
+        }
+
+        let shown = 0;
+        for (const card of cards) {
+          const match = wanted === 'all' || card.dataset.category === wanted;
+          card.hidden = !match;
+          if (match) shown++;
+        }
+
+        if (empty) empty.hidden = shown > 0;
+      });
+    }
+  }
+</script>
+
+<style>
+  .chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-block: 2.5rem 2rem;
+  }
+
+  .chip {
+    padding: 0.35rem 0.875rem;
+    border: 1px solid var(--wg-border);
+    border-radius: 999px;
+    background: var(--wg-surface);
+    color: var(--wg-muted);
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    transition:
+      color 0.18s ease,
+      border-color 0.18s ease,
+      background-color 0.18s ease;
+  }
+
+  .chip:hover {
+    color: var(--wg-ink);
+    border-color: var(--wg-accent);
+  }
+
+  .chip.is-on {
+    background: var(--wg-accent);
+    border-color: var(--wg-accent);
+    color: var(--wg-on-accent);
+  }
+
+  .grid {
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fill, minmax(min(20rem, 100%), 1fr));
+  }
+
+  .empty {
+    padding: 2rem 0;
+    color: var(--wg-muted);
+  }
+
+  .feed {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--wg-border);
+    font-size: 0.875rem;
+  }
+
+  .feed a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--wg-accent);
+    text-decoration: none;
+  }
+
+  .feed a:hover {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+</style>

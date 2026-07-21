@@ -2,6 +2,7 @@
 import Base from '../layouts/Base.astro';
 import Icon from '../components/Icon.astro';
 import ScreenshotStrip, { type StripItem } from '../components/ScreenshotStrip.astro';
+import LatestUpdates from '../components/LatestUpdates.astro';
 import { getScreenshots } from '../lib/screenshots';
 import { getGamesByDate, getGamesBySeries, formatDate, lastTouched } from '../lib/games';
 
@@ -83,6 +84,7 @@ const stats = [
     </dl>
   </section>
 
+  <LatestUpdates />
   <ScreenshotStrip items={stripItems} />
 </Base>
 

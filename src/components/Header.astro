@@ -1,6 +1,14 @@
 ---
 import Icon from './Icon.astro';
 import { NAV, SITE_OWNER, SITE_NAME, SITE_TITLE } from '../consts';
+import { getArticles } from '../lib/articles';
+
+// Articles only enters the nav once something is published there — an empty
+// section in the menu is worse than no section.
+const hasArticles = (await getArticles()).length > 0;
+const items = hasArticles
+  ? [...NAV.slice(0, 1), { label: 'Articles', href: '/articles/' }, ...NAV.slice(1)]
+  : NAV;
 
 const path = Astro.url.pathname;
 const isActive = (href: string) => (href === '/' ? path === '/' : path.startsWith(href));
@@ -18,7 +26,7 @@ const isActive = (href: string) => (href === '/' ? path === '/' : path.startsWit
 
     <nav class="nav__links" aria-label="Main">
       {
-        NAV.map((item) => (
+        items.map((item) => (
           <a href={item.href} class:list={['nav__link', { 'is-active': isActive(item.href) }]}>
             {item.label}
           </a>
@@ -35,7 +43,7 @@ const isActive = (href: string) => (href === '/' ? path === '/' : path.startsWit
 
   <nav id="mobile-menu" class="mobile" aria-label="Main (mobile)" hidden>
     {
-      NAV.map((item) => (
+      items.map((item) => (
         <a href={item.href} class:list={['mobile__link', { 'is-active': isActive(item.href) }]}>
           {item.label}
           <Icon name="caret-right" size="1rem" />

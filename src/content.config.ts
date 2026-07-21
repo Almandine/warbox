@@ -49,4 +49,26 @@ const series = defineCollection({
   }),
 });
 
-export const collections = { games, series };
+/**
+ * Norbi's own writing: one markdown file per article in src/content/articles/.
+ * Images live next to it in src/assets/articles/<slug>/ and are referenced
+ * relatively from the markdown so Astro optimizes them.
+ */
+const articles = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/articles' }),
+  schema: ({ image }) =>
+    z.object({
+      title: z.string(),
+      date: z.coerce.date(),
+      /** Used for the article card and the meta description. */
+      description: z.string(),
+      category: z.enum(['aar', 'ai', 'tips', 'misc']),
+      /** Optional game id, linking the article back to its companion page. */
+      game: z.string().optional(),
+      /** Drafts are excluded from the build entirely. */
+      draft: z.boolean().default(false),
+      cover: image().optional(),
+    }),
+});
+
+export const collections = { games, series, articles };

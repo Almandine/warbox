@@ -1,0 +1,190 @@
+---
+import Icon from './Icon.astro';
+import { getGamesByDate, formatDate, lastTouched } from '../lib/games';
+import { getArticles } from '../lib/articles';
+
+interface Props {
+  limit?: number;
+}
+
+const { limit = 6 } = Astro.props;
+
+type Entry = {
+  kind: 'added' | 'updated' | 'article';
+  label: string;
+  title: string;
+  href: string;
+  date: Date;
+};
+
+const [games, articles] = await Promise.all([getGamesByDate(), getArticles()]);
+
+// Games and articles share one chronological feed, so the front page shows
+// activity of any kind rather than two half-empty lists.
+const entries: Entry[] = [
+  ...games
+    .filter((game) => game.data.status === 'available')
+    .map((game) => ({
+      kind: game.data.date_updated ? ('updated' as const) : ('added' as const),
+      label: game.data.date_updated ? 'Updated' : 'New companion',
+      title: game.data.title,
+      href: `/games/${game.id}/`,
+      date: lastTouched(game),
+    })),
+  ...articles.map((article) => ({
+    kind: 'article' as const,
+    label: 'Article',
+    title: article.data.title,
+    href: `/articles/${article.id}/`,
+    date: article.data.date,
+  })),
+]
+  .sort((a, b) => b.date.getTime() - a.date.getTime())
+  .slice(0, limit);
+---
+
+{
+  entries.length > 0 && (
+    <section class="updates">
+      <div class="wrap">
+        <div class="updates__head">
+          <h2 class="section-title">
+            <Icon name="clock" size="1em" class="updates__icon" /> Latest updates
+          </h2>
+          <a class="updates__all" href="/games/">
+            All companions <Icon name="caret-right" size="0.85em" />
+          </a>
+        </div>
+        <div class="section-rule" />
+
+        <ul class="updates__list">
+          {entries.map((entry) => (
+            <li class="row">
+              <span class:list={['row__tag', `row__tag--${entry.kind}`]}>{entry.label}</span>
+              <a class="row__title" href={entry.href}>
+                {entry.title}
+              </a>
+              <time class="row__date" datetime={entry.date.toISOString()}>
+                {formatDate(entry.date)}
+              </time>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  )
+}
+
+<style>
+  .updates {
+    padding-block: 5rem;
+    border-top: 1px solid var(--wg-border);
+  }
+
+  .updates__icon {
+    color: var(--wg-accent);
+  }
+
+  .updates__head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .updates__all {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    text-decoration: none;
+    color: var(--wg-accent);
+    white-space: nowrap;
+  }
+
+  .updates__all:hover {
+    color: var(--wg-accent-strong);
+  }
+
+  .updates__list {
+    list-style: none;
+    margin: 2.5rem 0 0;
+    padding: 0;
+  }
+
+  .row {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.5rem 1rem;
+    padding-block: 0.875rem;
+    border-bottom: 1px solid var(--wg-border);
+  }
+
+  .row:first-child {
+    border-top: 1px solid var(--wg-border);
+  }
+
+  .row:hover {
+    background: var(--wg-surface);
+  }
+
+  .row__tag {
+    flex-shrink: 0;
+    width: 9rem;
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+  }
+
+  .row__tag--added {
+    color: var(--wg-accent);
+  }
+
+  .row__tag--updated {
+    color: var(--wg-muted);
+  }
+
+  .row__tag--article {
+    color: var(--wg-alert);
+  }
+
+  .row__title {
+    flex: 1;
+    min-width: 12rem;
+    font-weight: 600;
+    text-decoration: none;
+    color: var(--wg-ink);
+  }
+
+  .row__title::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+  }
+
+  .row:hover .row__title {
+    color: var(--wg-accent-strong);
+  }
+
+  .row__date {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--wg-faint);
+    margin-left: auto;
+  }
+
+  @media (max-width: 640px) {
+    .row__tag {
+      width: auto;
+    }
+
+    .row__date {
+      margin-left: 0;
+      width: 100%;
+    }
+  }
+</style>
