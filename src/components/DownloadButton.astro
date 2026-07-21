@@ -3,16 +3,18 @@ import { statSync } from 'node:fs';
 import Icon from './Icon.astro';
 
 interface Props {
-  /** File name under public/downloads/companions/. */
-  file: string;
+  /** Site-absolute path of the file, e.g. "/downloads/companions/pc-normandy-44.xlsx". */
+  href: string;
   label?: string;
   /** Companion version, shown next to the size. */
   version?: string;
+  /** Renders as a quieter secondary button — for lists of alternative formats. */
+  variant?: 'primary' | 'subtle';
 }
 
-const { file, label = 'Download the companion', version } = Astro.props;
+const { href, label = 'Download the companion', version, variant = 'primary' } = Astro.props;
 
-const href = `/downloads/companions/${file}`;
+const file = href.split('/').pop() ?? href;
 
 /**
  * File size is read from disk at build time — no hand-maintained numbers that
@@ -45,12 +47,12 @@ const extension = file.split('.').pop()?.toUpperCase() ?? 'FILE';
     <div class="dl dl--missing">
       <Icon name="download" size="1.25rem" />
       <div>
-        <strong>Download not uploaded yet</strong>
-        <span class="dl__meta">{file}</span>
+        <strong>{label}</strong>
+        <span class="dl__meta">Not uploaded yet · {file}</span>
       </div>
     </div>
   ) : (
-    <a class="dl" href={href} download>
+    <a class:list={['dl', { 'dl--subtle': variant === 'subtle' }]} href={href} download>
       <Icon name="download" size="1.25rem" />
       <div>
         <strong>{label}</strong>
@@ -101,5 +103,16 @@ const extension = file.split('.').pop()?.toUpperCase() ?? 'FILE';
     border-color: var(--wg-border);
     color: var(--wg-muted);
     cursor: not-allowed;
+  }
+
+  .dl--subtle {
+    background: var(--wg-surface);
+    border-color: var(--wg-border);
+    color: var(--wg-ink);
+  }
+
+  .dl--subtle:hover {
+    background: var(--wg-bg);
+    border-color: var(--wg-accent);
   }
 </style>

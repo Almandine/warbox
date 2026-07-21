@@ -2,11 +2,143 @@
 import Base from '../layouts/Base.astro';
 import PageHeader from '../components/PageHeader.astro';
 import Note from '../components/Note.astro';
+import Icon from '../components/Icon.astro';
+
+const steps = [
+  {
+    title: 'Download the companion for your game',
+    body: 'Every game page has a single download button. The file is an ordinary .xlsx spreadsheet — nothing to install, nothing to register.',
+  },
+  {
+    title: 'Open it in any spreadsheet program',
+    body: 'Excel, LibreOffice Calc and Google Sheets all open the file. There are no macros, so you can ignore any prompt about enabling content.',
+  },
+  {
+    title: 'Pick your scenario',
+    body: 'The first sheet lists every scenario in the game. Find the one you are about to play — the other sheets are organised the same way.',
+  },
+  {
+    title: 'Keep it open beside the game',
+    body: 'The companion sits next to the game, it does not replace it. Alt-tabbing works, but a second monitor or a tablet is where these sheets earn their keep.',
+  },
+];
 ---
 
-<Base title="How to use" description="A single step-by-step guide — the companions work the same way for every game.">
-  <PageHeader eyebrow="Guide" title="How to use" icon="file-text" lead="A single step-by-step guide — the companions work the same way for every game." />
+<Base
+  title="How to use"
+  description="How to download, open and use the Warbox Game Companion spreadsheets. The same steps work for every WDS title."
+>
+  <PageHeader
+    eyebrow="Guide"
+    title="How to use"
+    icon="file-text"
+    lead="The companions all work the same way, so this one guide covers every game in the catalog."
+  />
+
   <div class="wrap section">
-    <Note tone="draft">This page is filled in during a later step.</Note>
+    <Note tone="draft">
+      Draft copy. The steps below are the intended shape of the guide — Norbi's own notes replace
+      them before launch.
+    </Note>
+
+    <div class="prose guide">
+      <section id="what-is-it">
+        <h2>What is a Game Companion?</h2>
+        <p>
+          A Game Companion is a spreadsheet that pulls the reference material out of a Wargame
+          Design Studio title and lays it out so you can read it: orders of battle, victory point
+          locations, scenario lengths, arrival turns — the things the game shows you a few rows at a
+          time, on one screen instead.
+        </p>
+        <p>
+          It is not a mod, a patch or a cheat. Nothing is installed and nothing touches your game
+          files. It is a reading aid, and it is free.
+        </p>
+      </section>
+
+      <section id="steps">
+        <h2>Four steps</h2>
+        <ol class="steps">
+          {
+            steps.map((step) => (
+              <li>
+                <h3>{step.title}</h3>
+                <p>{step.body}</p>
+              </li>
+            ))
+          }
+        </ol>
+      </section>
+
+      <section id="updates">
+        <h2>Updates</h2>
+        <p>
+          Companions get corrected and extended over time. Each game page shows the companion
+          version and the date it was last updated — if yours is older, download it again. There is
+          no update mechanism inside the file itself.
+        </p>
+      </section>
+
+      <section id="problems">
+        <h2>If something looks wrong</h2>
+        <p>
+          These are made by hand from the game data, so mistakes happen. If a value does not match
+          what you see in the game, that is worth reporting — say which game, which sheet and which
+          row, and it gets fixed in the next version.
+        </p>
+        <p>
+          <a href="/contact/">Send a correction.</a> Corrections are the most useful mail this site gets.
+        </p>
+      </section>
+    </div>
+
+    <div class="next">
+      <a class="btn" href="/games/">
+        Browse the catalog
+        <Icon name="arrow-right" size="1.1em" />
+      </a>
+    </div>
   </div>
 </Base>
+
+<style>
+  .guide section {
+    scroll-margin-top: calc(var(--nav-h) + 2rem);
+  }
+
+  .steps {
+    list-style: none;
+    padding: 0;
+    counter-reset: step;
+  }
+
+  .steps li {
+    position: relative;
+    padding-left: 3rem;
+    margin-top: 1.75rem;
+    counter-increment: step;
+  }
+
+  /* Numbered like a manual paragraph, not a bullet list. */
+  .steps li::before {
+    content: counter(step, decimal-leading-zero);
+    position: absolute;
+    left: 0;
+    top: 0.15em;
+    padding-right: 0.75rem;
+    border-right: 2px solid var(--wg-border);
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    color: var(--wg-accent);
+  }
+
+  .steps h3 {
+    margin: 0 0 0.25rem;
+  }
+
+  .next {
+    margin-top: 3.5rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--wg-border);
+  }
+</style>

@@ -2,11 +2,174 @@
 import Base from '../layouts/Base.astro';
 import PageHeader from '../components/PageHeader.astro';
 import Note from '../components/Note.astro';
+import Icon from '../components/Icon.astro';
+import { FORMSPREE_ID } from '../consts';
+
+// The form posts straight to Formspree. Until the account exists the fields are
+// rendered disabled rather than hidden, so the page still shows what it will do.
+const action = FORMSPREE_ID ? `https://formspree.io/f/${FORMSPREE_ID}` : undefined;
+const live = Boolean(action);
 ---
 
-<Base title="Contact" description="Corrections, requests and bug reports are all welcome.">
-  <PageHeader eyebrow="Get in touch" title="Contact" icon="mail" lead="Corrections, requests and bug reports are all welcome." />
-  <div class="wrap section">
-    <Note tone="draft">This page is filled in during a later step.</Note>
+<Base
+  title="Contact"
+  description="Send a correction, request a companion for a game, or report something that looks wrong."
+>
+  <PageHeader
+    eyebrow="Get in touch"
+    title="Contact"
+    icon="mail"
+    lead="Corrections, requests and anything that looks wrong in a companion."
+  />
+
+  <div class="wrap section layout">
+    <div class="prose">
+      {
+        !live && (
+          <Note tone="draft">
+            The form is not connected yet — the Formspree account is still to be set up. Once its
+            form id is filled in, this page starts working with no other change.
+          </Note>
+        )
+      }
+
+      <h2>What is worth writing about</h2>
+      <ul>
+        <li>
+          <strong>A value that does not match the game.</strong> The most useful message this site can
+          get. Say which game, which sheet and which row.
+        </li>
+        <li>
+          <strong>A game you would like a companion for.</strong> No promises about when, but it helps
+          to know what people actually want next.
+        </li>
+        <li><strong>Something broken on the site.</strong> A download that fails, a page that will not load.</li>
+      </ul>
+
+      <p>
+        Leave an email address if you would like an answer. Without one the message still arrives —
+        there is just no way to reply to it.
+      </p>
+
+      <h2>Privacy</h2>
+      <p>
+        The form is handled by Formspree, which forwards the message to a private mailbox. What you
+        type is all that gets sent; nothing is stored on this site, and nothing is used for anything
+        other than replying to you.
+      </p>
+    </div>
+
+    <form class="form" method="post" action={action} aria-describedby={live ? undefined : 'form-off'}>
+      {!live && <p id="form-off" class="form__off">Form not connected yet</p>}
+
+      <label>
+        <span class="form__label">Name <em>optional</em></span>
+        <input type="text" name="name" autocomplete="name" disabled={!live} />
+      </label>
+
+      <label>
+        <span class="form__label">Email <em>optional, but needed for a reply</em></span>
+        <input type="email" name="email" autocomplete="email" disabled={!live} />
+      </label>
+
+      <label>
+        <span class="form__label">Message <em>required</em></span>
+        <textarea name="message" rows="8" required disabled={!live}></textarea>
+      </label>
+
+      {/* Honeypot: bots fill it in, people never see it. */}
+      <input class="form__honeypot" type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" />
+
+      <button class="btn" type="submit" disabled={!live}>
+        <Icon name="mail" size="1.1em" />
+        Send message
+      </button>
+    </form>
   </div>
 </Base>
+
+<style>
+  .layout {
+    display: grid;
+    gap: 3rem;
+    align-items: start;
+  }
+
+  @media (min-width: 900px) {
+    .layout {
+      grid-template-columns: minmax(0, 1fr) 24rem;
+    }
+  }
+
+  .form {
+    display: grid;
+    gap: 1.25rem;
+    padding: 1.5rem;
+    border: 1px solid var(--wg-border);
+    border-radius: var(--radius-lg);
+    background: var(--wg-surface);
+  }
+
+  .form label {
+    display: grid;
+    gap: 0.375rem;
+  }
+
+  .form__label {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--wg-muted);
+  }
+
+  .form__label em {
+    font-style: normal;
+    text-transform: none;
+    letter-spacing: 0.02em;
+    color: var(--wg-faint);
+  }
+
+  .form input,
+  .form textarea {
+    width: 100%;
+    padding: 0.625rem 0.75rem;
+    border: 1px solid var(--wg-border);
+    border-radius: var(--radius);
+    background: var(--wg-bg);
+    color: var(--wg-text);
+    font: inherit;
+    font-size: 0.9375rem;
+  }
+
+  .form textarea {
+    resize: vertical;
+  }
+
+  .form input:focus-visible,
+  .form textarea:focus-visible {
+    border-color: var(--wg-accent);
+  }
+
+  .form :disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+  }
+
+  .form__off {
+    margin: 0;
+    padding: 0.5rem 0.75rem;
+    border-left: 3px solid var(--wg-highlight);
+    background: rgb(from var(--wg-highlight) r g b / 0.08);
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--wg-highlight);
+  }
+
+  .form__honeypot {
+    position: absolute;
+    left: -9999px;
+  }
+</style>

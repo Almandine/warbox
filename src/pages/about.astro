@@ -2,11 +2,60 @@
 import Base from '../layouts/Base.astro';
 import PageHeader from '../components/PageHeader.astro';
 import Note from '../components/Note.astro';
+import { WDS_URL } from '../consts';
 ---
 
-<Base title="About" description="Who makes these companions, and why.">
+<Base
+  title="About"
+  description="Who makes the Warbox Game Companions, and why they are free."
+>
   <PageHeader eyebrow="Site" title="About" icon="shield" lead="Who makes these companions, and why." />
+
   <div class="wrap section">
-    <Note tone="draft">This page is filled in during a later step.</Note>
+    <Note tone="draft">
+      Draft copy. The personal parts — who Norbi is, how he got into these games, which ones he
+      keeps coming back to — are his to write; this is scaffolding so the page exists and reads
+      sensibly in the meantime.
+    </Note>
+
+    <div class="prose">
+      <h2>The short version</h2>
+      <p>
+        I play Wargame Design Studio games, I make spreadsheets to help me read them, and I put the
+        spreadsheets here so other people can use them too. That is the whole site.
+      </p>
+
+      <h2>Why the companions exist</h2>
+      <p>
+        WDS games hold an enormous amount of detail, and most of it is genuinely useful once you can
+        see it. The problem is never that the information is missing — it is that you are reading it
+        through a small window, a few rows at a time, while trying to hold a plan in your head.
+      </p>
+      <p>
+        So I started pulling it out into spreadsheets: one scenario per row, orders of battle side by
+        side, victory points where you can compare them at a glance. They were for me first. It
+        turned out they were worth sharing.
+      </p>
+
+      <h2>What is here, and what is coming</h2>
+      <p>
+        I own around thirty WDS titles and I work through them steadily. New companions appear as
+        they are finished; games that are on the list but not done yet are marked as in progress, so
+        you can see what is coming rather than wonder.
+      </p>
+
+      <h2>Not official</h2>
+      <p>
+        This is a fan site. It is not affiliated with Wargame Design Studio, not endorsed by them,
+        and nothing here is official material. The games themselves are theirs, and they are worth
+        buying — <a href={WDS_URL} target="_blank" rel="noopener">wargameds.com</a>.
+      </p>
+
+      <h2>Free, and staying that way</h2>
+      <p>
+        No account, no email, no donation button. Download what is useful to you. If you find a
+        mistake, <a href="/contact/">tell me</a> — that is payment enough.
+      </p>
+    </div>
   </div>
 </Base>

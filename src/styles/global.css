@@ -140,6 +140,74 @@ img {
   padding-block: 5rem;
 }
 
+/* Reading column for text-heavy pages. Spacing is set on the flow itself rather
+   than on direct children, so wrapping content in <section> changes nothing. */
+.prose {
+  max-width: 68ch;
+}
+
+.prose :where(p, ul, ol, figure, table, .note) + :where(p, ul, ol, figure, table) {
+  margin-top: 1.25rem;
+}
+
+.prose section + section {
+  margin-top: 3rem;
+}
+
+/* A note sitting above the reading column still needs air under it. */
+.note + .prose {
+  margin-top: 2.5rem;
+}
+
+.prose h2 {
+  margin-top: 3rem;
+  font-size: 1.375rem;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.prose h3 {
+  margin-top: 2rem;
+  font-size: 1.0625rem;
+}
+
+/* A heading opening its own section already has the section's gap above it. */
+.prose section > :where(h2, h3):first-child,
+.prose > :first-child {
+  margin-top: 0;
+}
+
+.prose :where(h2, h3) + * {
+  margin-top: 0.75rem;
+}
+
+.prose ul,
+.prose ol {
+  padding-left: 1.25rem;
+}
+
+.prose li + li {
+  margin-top: 0.5rem;
+}
+
+.prose a {
+  color: var(--wg-accent);
+  text-underline-offset: 3px;
+}
+
+.prose a:hover {
+  color: var(--wg-accent-strong);
+}
+
+.prose code {
+  font-family: var(--font-mono);
+  font-size: 0.875em;
+  padding: 0.1em 0.35em;
+  border: 1px solid var(--wg-border);
+  border-radius: var(--radius);
+  background: var(--wg-surface);
+}
+
 /* Section heading: display title + short accent rule underneath. */
 .section-title {
   font-size: clamp(1.75rem, 1.2rem + 2vw, 2.25rem);

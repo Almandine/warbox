@@ -79,7 +79,7 @@ const facts = [
             This title is listed so you know it is coming. There is nothing to download yet.
           </Note>
         ) : (
-          <DownloadButton file={excel} version={version} />
+          <DownloadButton href={`/downloads/companions/${excel}`} version={version} />
         )
       }
 
