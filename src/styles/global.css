@@ -1,0 +1,276 @@
+/*
+ * Warbox.org — global design tokens and shared primitives.
+ * Direction: dark, understated military / field-manual. See BLUEPRINT.md "Design spec".
+ * Component-specific rules live in the components themselves (Astro scoped styles).
+ */
+
+:root {
+  /* --- Surfaces (darkest → lightest) --- */
+  --wg-dark: #111827; /* page background */
+  --wg-charcoal: #1f2937; /* cards, panels, nav */
+  --wg-gunmetal: #2c3e50; /* borders, dividers, raised bands */
+
+  /* --- Accents --- */
+  --wg-olive: #4b5320; /* primary accent: buttons, rules */
+  --wg-olive-light: #6b705c; /* hover state of the above */
+  --wg-amber: #ffbf00; /* small labels and highlights only */
+  --wg-red: #8b0000; /* muted red fills */
+  --wg-red-bright: #d05a4e; /* readable red for text/icons on dark */
+
+  /* --- Type --- */
+  --wg-beige: #e3dac9; /* headings, warm off-white */
+  --wg-beige-dark: #d4c5b0;
+  --wg-text: #d1d5db; /* body */
+  --wg-muted: #9ca3af; /* secondary text */
+  --wg-faint: #6b7280; /* timestamps, fine print */
+
+  --font-sans: 'Inter Variable', Inter, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-display: 'Rajdhani', 'Inter Variable', system-ui, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, 'Cascadia Mono', Consolas, monospace;
+
+  /* --- Metrics --- */
+  --wrap: 80rem; /* 1280px content width */
+  --wrap-narrow: 56rem;
+  --radius: 4px;
+  --radius-lg: 8px;
+  --nav-h: 4rem;
+
+  color-scheme: dark;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--nav-h) + 1rem);
+  -webkit-text-size-adjust: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+body {
+  margin: 0;
+  background: var(--wg-dark);
+  color: var(--wg-text);
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--wg-red);
+  color: #fff;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-family: var(--font-display);
+  color: var(--wg-beige);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: 0.01em;
+  margin: 0;
+}
+
+p {
+  margin: 0;
+}
+
+a {
+  color: inherit;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+:focus-visible {
+  outline: 2px solid var(--wg-amber);
+  outline-offset: 2px;
+}
+
+/* --- Layout primitives --- */
+
+.wrap {
+  max-width: var(--wrap);
+  margin-inline: auto;
+  padding-inline: 1rem;
+}
+
+@media (min-width: 640px) {
+  .wrap {
+    padding-inline: 2rem;
+  }
+}
+
+.section {
+  padding-block: 5rem;
+}
+
+/* Section heading: display title + short accent rule underneath. */
+.section-title {
+  font-size: clamp(1.75rem, 1.2rem + 2vw, 2.25rem);
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.section-rule {
+  width: 6rem;
+  height: 3px;
+  background: var(--wg-red);
+  margin-top: 1rem;
+}
+
+/* --- Text utilities --- */
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--wg-muted);
+}
+
+.meta {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--wg-faint);
+}
+
+.lead {
+  font-size: 1.125rem;
+  color: var(--wg-text);
+  border-left: 4px solid var(--wg-olive);
+  padding-left: 1rem;
+}
+
+/* --- Buttons --- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.9rem 2rem;
+  border: 1px solid transparent;
+  border-radius: var(--radius);
+  background: var(--wg-olive);
+  color: var(--wg-beige);
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    background-color 0.18s ease,
+    border-color 0.18s ease,
+    color 0.18s ease;
+}
+
+.btn:hover {
+  background: var(--wg-olive-light);
+  color: #fff;
+}
+
+.btn--ghost {
+  background: rgb(31 41 55 / 0.8);
+  border-color: var(--wg-gunmetal);
+  color: var(--wg-beige);
+  backdrop-filter: blur(4px);
+}
+
+.btn--ghost:hover {
+  background: var(--wg-gunmetal);
+  color: #fff;
+}
+
+/* --- Panels --- */
+
+.panel {
+  background: var(--wg-charcoal);
+  border: 1px solid var(--wg-gunmetal);
+  border-radius: var(--radius-lg);
+}
+
+/* --- Background textures (subtle; must never hurt contrast) --- */
+
+/* Operations-map grid. */
+.tex-grid {
+  background-size: 40px 40px;
+  background-image:
+    linear-gradient(to right, rgb(227 218 201 / 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(227 218 201 / 0.05) 1px, transparent 1px);
+}
+
+/* Faint dot field, used on wide dark sections. */
+.tex-dots {
+  background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%239c92ac' fill-opacity='0.05' fill-rule='evenodd'%3E%3Ccircle cx='3' cy='3' r='3'/%3E%3Ccircle cx='13' cy='13' r='3'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+/* Diagonal hatching, used behind narrow content sections. */
+.tex-hatch::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0.05;
+  pointer-events: none;
+  background-image: repeating-linear-gradient(
+    45deg,
+    var(--wg-beige) 0,
+    var(--wg-beige) 1px,
+    transparent 0,
+    transparent 50%
+  );
+  background-size: 30px 30px;
+}
+
+/* --- Misc --- */
+
+.hex {
+  clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+}
+
+/* Horizontal carousels keep the scrollbar out of the way. */
+.no-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}

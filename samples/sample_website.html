@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="hu" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Computer Hex & Counter Wargames | Operations Archive</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Technical header (Rajdhani) and highly readable UI body (Inter) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Phosphor Icons for military/tactical iconography -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <!-- Tailwind Configuration for Custom Theme -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Rajdhani', 'sans-serif'],
+                    },
+                    colors: {
+                        // Military / Tactical Palette
+                        'wg-gunmetal': '#2C3E50',
+                        'wg-charcoal': '#1F2937',
+                        'wg-dark': '#111827',
+                        'wg-olive': '#4B5320',
+                        'wg-olive-light': '#6B705C',
+                        'wg-beige': '#E3DAC9',
+                        'wg-beige-dark': '#D4C5B0',
+                        'wg-accent-red': '#8B0000',   // Muted red
+                        'wg-accent-amber': '#FFBF00', // Amber
+                    },
+                    backgroundImage: {
+                        // Desaturated map overlay simulation
+                        'hero-map': "linear-gradient(to right, rgba(17, 24, 39, 0.9), rgba(44, 62, 80, 0.8)), url('https://images.unsplash.com/photo-1524661135-423995f22d0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')",
+                        'texture-pattern': "url('data:image/svg+xml,%3Csvg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\"%3E%3Cg fill=\"%239C92AC\" fill-opacity=\"0.05\" fill-rule=\"evenodd\"%3E%3Ccircle cx=\"3\" cy=\"3\" r=\"3\"/%3E%3Ccircle cx=\"13\" cy=\"13\" r=\"3\"/%3E%3C/g%3E%3C/svg%3E')",
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom map-like grid background for specific sections */
+        .map-grid-bg {
+            background-size: 40px 40px;
+            background-image: 
+                linear-gradient(to right, rgba(227, 218, 201, 0.05) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(227, 218, 201, 0.05) 1px, transparent 1px);
+        }
+        
+        /* Hexagon shape utility for small decorations */
+        .hex-shape {
+            clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+        }
+
+        /* Hide scrollbar for clean carousels */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-wg-dark text-gray-300 font-sans selection:bg-wg-accent-red selection:text-white antialiased">
+
+    <nav class="fixed w-full z-50 bg-wg-charcoal/90 backdrop-blur-sm border-b border-wg-gunmetal/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0 flex items-center gap-2">
+                        <i class="ph ph-hexagon-fill text-wg-accent-amber text-2xl"></i>
+                        <span class="font-display font-bold text-xl text-wg-beige tracking-wider uppercase">OpArchive</span>
+                    </div>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#series" class="text-sm font-medium hover:text-wg-beige transition-colors uppercase tracking-wide">Sorozatok</a>
+                    <a href="#matrix" class="text-sm font-medium hover:text-wg-beige transition-colors uppercase tracking-wide">Útmutató</a>
+                    <a href="#aar" class="text-sm font-medium hover:text-wg-beige transition-colors uppercase tracking-wide">Elemzések</a>
+                    <a href="#engines" class="text-sm font-medium hover:text-wg-beige transition-colors uppercase tracking-wide">Engine-ek</a>
+                </div>
+                <!-- Mobile menu button -->
+                <div class="flex items-center md:hidden">
+                    <button type="button" class="text-gray-400 hover:text-white focus:outline-none" aria-controls="mobile-menu" aria-expanded="false">
+                        <i class="ph ph-list text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <section class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 bg-hero-map bg-cover bg-center bg-no-repeat border-b border-wg-gunmetal">
+        <div class="absolute inset-0 map-grid-bg"></div> <!-- Grid overlay -->
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center md:text-left flex flex-col items-center md:items-start">
+            
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded border border-wg-accent-red/30 bg-wg-accent-red/10 text-wg-accent-red text-xs font-bold uppercase tracking-widest mb-6">
+                <span class="w-2 h-2 rounded-full bg-wg-accent-red animate-pulse"></span>
+                Archívum Frissítve
+            </div>
+
+            <h1 class="text-4xl sm:text-5xl lg:text-7xl font-display font-bold text-wg-beige tracking-tight mb-6 uppercase drop-shadow-lg">
+                Computer Hex <br class="hidden md:block"/> & Counter Wargames
+            </h1>
+            
+            <p class="mt-4 text-lg sm:text-xl text-gray-300 max-w-3xl font-medium leading-relaxed border-l-4 border-wg-olive pl-4">
+                Wargame Design Studio, Flashpoint Campaigns, TOAW, Gary Grigsby, Strategic Command és Decisive Campaigns rendszerezve, elemezve és összehasonlítva a komoly hadműveleti szimulációk kedvelőinek.
+            </p>
+            
+            <div class="mt-10 flex flex-col sm:flex-row gap-4 w-full md:w-auto">
+                <a href="#series" class="inline-flex justify-center items-center px-8 py-4 border border-transparent text-sm font-bold uppercase tracking-wider rounded bg-wg-olive hover:bg-wg-olive-light text-wg-beige transition-colors shadow-lg">
+                    Sorozatok Böngészése
+                </a>
+                <a href="#matrix" class="inline-flex justify-center items-center px-8 py-4 border border-wg-gunmetal text-sm font-bold uppercase tracking-wider rounded bg-wg-charcoal/80 hover:bg-wg-gunmetal text-white backdrop-blur-sm transition-colors">
+                    Belépési Útmutató Újoncoknak
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section class="bg-wg-charcoal border-b border-wg-gunmetal relative z-10 -mt-8 mx-4 sm:mx-8 lg:mx-auto max-w-6xl rounded-t shadow-2xl">
+        <div class="grid grid-cols-2 md:grid-cols-4 divide-y md:divide-y-0 md:divide-x divide-wg-gunmetal">
+            
+            <div class="p-6 flex flex-col items-center justify-center text-center group">
+                <i class="ph ph-stack text-3xl text-wg-olive mb-2 group-hover:scale-110 transition-transform"></i>
+                <dt class="text-sm font-medium text-gray-400 uppercase tracking-wide">Sorozatok Száma</dt>
+                <dd class="mt-1 text-3xl font-display font-bold text-wg-beige">6+</dd>
+            </div>
+
+            <div class="p-6 flex flex-col items-center justify-center text-center group">
+                <i class="ph ph-hourglass-high text-3xl text-wg-accent-amber mb-2 group-hover:scale-110 transition-transform"></i>
+                <dt class="text-sm font-medium text-gray-400 uppercase tracking-wide">Feldolgozott Korszakok</dt>
+                <dd class="mt-1 text-xl font-display font-bold text-wg-beige">Ókortól Napjainkig</dd>
+            </div>
+
+            <div class="p-6 flex flex-col items-center justify-center text-center group">
+                <i class="ph ph-cpu text-3xl text-wg-olive mb-2 group-hover:scale-110 transition-transform"></i>
+                <dt class="text-sm font-medium text-gray-400 uppercase tracking-wide">Vizsgált Engine-ek</dt>
+                <dd class="mt-1 text-3xl font-display font-bold text-wg-beige">15+</dd>
+            </div>
+
+            <div class="p-6 flex flex-col items-center justify-center text-center group">
+                <i class="ph ph-article text-3xl text-wg-accent-red mb-2 group-hover:scale-110 transition-transform"></i>
+                <dt class="text-sm font-medium text-gray-400 uppercase tracking-wide">Legutóbbi AAR</dt>
+                <dd class="mt-1 text-sm font-display font-bold text-wg-beige">Fulda Gap '89 (FPC)</dd>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="series" class="py-20 bg-wg-dark bg-texture-pattern relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mb-12">
+                <h2 class="text-3xl md:text-4xl font-display font-bold text-wg-beige uppercase flex items-center gap-3">
+                    <i class="ph ph-map-trifold text-wg-olive"></i> Fő Sorozatok
+                </h2>
+                <div class="w-24 h-1 bg-wg-accent-red mt-4"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <!-- Card 1: WDS -->
+                <div class="bg-wg-charcoal border border-wg-gunmetal rounded overflow-hidden hover:border-wg-olive transition-colors flex flex-col">
+                    <div class="h-2 bg-wg-olive"></div>
+                    <div class="p-6 flex-grow">
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="text-xl font-display font-bold text-white uppercase">Wargame Design Studio</h3>
+                            <span class="text-xs font-mono bg-wg-gunmetal px-2 py-1 rounded text-gray-300">12+ Engine</span>
+                        </div>
+                        <p class="text-sm text-gray-400 mb-6">Példátlanul széles történelmi lefedettség, az ókortól a modern korig. Klasszikus IGOUGO hex & counter játékmenet, rengeteg címmel.</p>
+                        
+                        <div class="space-y-2 text-sm text-gray-300 mb-6 border-l-2 border-wg-gunmetal pl-3">
+                            <p><span class="text-gray-500 w-24 inline-block">Szint:</span> Taktikai / Operatív</p>
+                            <p><span class="text-gray-500 w-24 inline-block">Korszak:</span> Ókor - Modern</p>
+                            <p><span class="text-gray-500 w-24 inline-block">Komplexitás:</span> Közepes - Magas</p>
+                        </div>
+                        
+                        <div class="bg-wg-dark p-3 rounded text-sm mb-6 border border-wg-gunmetal/50">
+                            <span class="text-wg-accent-amber font-bold text-xs uppercase block mb-1">Ajánlott első játék:</span>
+                            Panzer Campaigns: Smolensk '41
+                        </div>
+                    </div>
+                    <div class="p-4 border-t border-wg-gunmetal bg-wg-dark/50">
+                        <button class="w-full text-center text-sm font-bold uppercase tracking-wide text-wg-beige hover:text-white transition-colors">Sorozatprofil Megtekintése <i class="ph ph-arrow-right inline-block align-middle ml-1"></i></button>
+                    </div>
+                </div>
+
+                <!-- Card 2: Flashpoint Campaigns -->
+                <div class="bg-wg-charcoal border border-wg-gunmetal rounded overflow-hidden hover:border-wg-olive transition-colors flex flex-col">
+                    <div class="h-2 bg-wg-accent-red"></div>
+                    <div class="p-6 flex-grow">
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="text-xl font-display font-bold text-white uppercase">Flashpoint Campaigns</h3>
+                            <span class="text-xs font-mono bg-wg-gunmetal px-2 py-1 rounded text-gray-300">WEGO</span>
+                        </div>
+                        <p class="text-sm text-gray-400 mb-6">Adatgazdag, modern harcászati fókusz aszinkron WEGO motorral. A parancsnoki döntések és az információ (C3I) a győzelem kulcsa.</p>
+                        
+                        <div class="space-y-2 text-sm text-gray-300 mb-6 border-l-2 border-wg-gunmetal pl-3">
+                            <p><span class="text-gray-500 w-24 inline-block">Szint:</span> Grand Tactical</p>
+                            <p><span class="text-gray-500 w-24 inline-block">Korszak:</span> Hidegháború</p>
+                            <p><span class="text-gray-500 w-24 inline-block">Komplexitás:</span> Magas</p>
+                        </div>
+                        
+                        <div class="bg-wg-dark p-3 rounded text-sm mb-6 border border-wg-gunmetal/50">
+                            <span class="text-wg-accent-amber font-bold text-xs uppercase block mb-1">Ajánlott első játék:</span>
+                            FPC: Red Storm
+                        </div>
+                    </div>
+                    <div class="p-4 border-t border-wg-gunmetal bg-wg-dark/50">
+                        <button class="w-full text-center text-sm font-bold uppercase tracking-wide text-wg-beige hover:text-white transition-colors">Sorozatprofil Megtekintése <i class="ph ph-arrow-right inline-block align-middle ml-1"></i></button>
+                    </div>
+                </div>
+
+                <!-- Card 3: TOAW -->
+                <div class="bg-wg-charcoal border border-wg-gunmetal rounded overflow-hidden hover:border-wg-olive transition-colors flex flex-col">
+                    <div class="h-2 bg-wg-beige-dark"></div>
+                    <div class="p-6 flex-grow">
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="text-xl font-display font-bold text-white uppercase leading-tight">The Operational Art of War</h3>
+                            <span class="text-xs font-mono bg-wg-gunmetal px-2 py-1 rounded text-gray-300">Sandbox</span>
+                        </div>
+                        <p class="text-sm text-gray-400 mb-6">A legendás operatív sandbox. Idő- és térléptéke változtatható, masszív szerkesztővel és lenyűgöző közösségi tartalommal.</p>
+                        
+                        <div class="space-y-2 text-sm text-gray-300 mb-6 border-l-2 border-wg-gunmetal pl-3">
+                            <p><span class="text-gray-500 w-24 inline-block">Szint:</span> Operatív</p>
+                            <p><span class="text-gray-500 w-24 inline-block">Korszak:</span> 1900 - Napjainkig</p>
+                            <p><span class="text-gray-500 w-24 inline-block">Komplexitás:</span> Nagyon Magas</p>
+                        </div>
+                        
+                        <div class="bg-wg-dark p-3 rounded text-sm mb-6 border border-wg-gunmetal/50">
+                            <span class="text-wg-accent-amber font-bold text-xs uppercase block mb-1">Ajánlott első játék:</span>
+                            TOAW IV (Kisebb scenariók)
+                        </div>
+                    </div>
+                    <div class="p-4 border-t border-wg-gunmetal bg-wg-dark/50">
+                        <button class="w-full text-center text-sm font-bold uppercase tracking-wide text-wg-beige hover:text-white transition-colors">Sorozatprofil Megtekintése <i class="ph ph-arrow-right inline-block align-middle ml-1"></i></button>
+                    </div>
+                </div>
+
+                 <!-- Card 4: Gary Grigsby -->
+                 <div class="bg-wg-charcoal border border-wg-gunmetal rounded overflow-hidden hover:border-wg-olive transition-colors flex flex-col">
+                    <div class="h-2 bg-gray-500"></div>
+                    <div class="p-6 flex-grow">
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="text-xl font-display font-bold text-white uppercase">Gary Grigsby</h3>
+                            <span class="text-xs font-mono bg-wg-gunmetal px-2 py-1 rounded text-gray-300">Monster</span>
+                        </div>
+                        <p class="text-sm text-gray-400 mb-6">A "monster game" kategória királya. Brutális részletesség, komplex logisztika és teljes hadszínterek szimulációja.</p>
+                        
+                        <div class="space-y-2 text-sm text-gray-300 mb-6 border-l-2 border-wg-gunmetal pl-3">
+                            <p><span class="text-gray-500 w-24 inline-block">Szint:</span> Grand Operational</p>
+                            <p><span class="text-gray-500 w-24 inline-block">Korszak:</span> WWII</p>
+                            <p><span class="text-gray-500 w-24 inline-block">Komplexitás:</span> Extrém</p>
+                        </div>
+                        
+                        <div class="bg-wg-dark p-3 rounded text-sm mb-6 border border-wg-gunmetal/50">
+                            <span class="text-wg-accent-amber font-bold text-xs uppercase block mb-1">Ajánlott első játék:</span>
+                            War in the East 2
+                        </div>
+                    </div>
+                    <div class="p-4 border-t border-wg-gunmetal bg-wg-dark/50">
+                        <button class="w-full text-center text-sm font-bold uppercase tracking-wide text-wg-beige hover:text-white transition-colors">Sorozatprofil Megtekintése <i class="ph ph-arrow-right inline-block align-middle ml-1"></i></button>
+                    </div>
+                </div>
+
+                <!-- Card 5: Strategic Command -->
+                <div class="bg-wg-charcoal border border-wg-gunmetal rounded overflow-hidden hover:border-wg-olive transition-colors flex flex-col">
+                    <div class="h-2 bg-blue-800"></div>
+                    <div class="p-6 flex-grow">
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="text-xl font-display font-bold text-white uppercase">Strategic Command</h3>
+                            <span class="text-xs font-mono bg-wg-gunmetal px-2 py-1 rounded text-gray-300">Accessible</span>
+                        </div>
+                        <p class="text-sm text-gray-400 mb-6">Kiváló belépő a nagy stratégiai játékok világába. Egyszerűbb szabályrendszer, de mély döntési helyzetek, gyártás és diplomácia.</p>
+                        
+                        <div class="space-y-2 text-sm text-gray-300 mb-6 border-l-2 border-wg-gunmetal pl-3">
+                            <p><span class="text-gray-500 w-24 inline-block">Szint:</span> Stratégiai</p>
+                            <p><span class="text-gray-500 w-24 inline-block">Korszak:</span> WWI, WWII, ACW</p>
+                            <p><span class="text-gray-500 w-24 inline-block">Komplexitás:</span> Alacsony - Közepes</p>
+                        </div>
+                        
+                        <div class="bg-wg-dark p-3 rounded text-sm mb-6 border border-wg-gunmetal/50">
+                            <span class="text-wg-accent-amber font-bold text-xs uppercase block mb-1">Ajánlott első játék:</span>
+                            SC: World at War
+                        </div>
+                    </div>
+                    <div class="p-4 border-t border-wg-gunmetal bg-wg-dark/50">
+                        <button class="w-full text-center text-sm font-bold uppercase tracking-wide text-wg-beige hover:text-white transition-colors">Sorozatprofil Megtekintése <i class="ph ph-arrow-right inline-block align-middle ml-1"></i></button>
+                    </div>
+                </div>
+
+                <!-- Card 6: Decisive Campaigns -->
+                <div class="bg-wg-charcoal border border-wg-gunmetal rounded overflow-hidden hover:border-wg-olive transition-colors flex flex-col">
+                    <div class="h-2 bg-green-800"></div>
+                    <div class="p-6 flex-grow">
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="text-xl font-display font-bold text-white uppercase">Decisive Campaigns</h3>
+                            <span class="text-xs font-mono bg-wg-gunmetal px-2 py-1 rounded text-gray-300">RPG Lite</span>
+                        </div>
+                        <p class="text-sm text-gray-400 mb-6">Klasszikus hex & counter alapok, megfűszerezve egy egyedi parancsnoki/politikai kártyarendszerrel és döntési réteggel.</p>
+                        
+                        <div class="space-y-2 text-sm text-gray-300 mb-6 border-l-2 border-wg-gunmetal pl-3">
+                            <p><span class="text-gray-500 w-24 inline-block">Szint:</span> Operatív</p>
+                            <p><span class="text-gray-500 w-24 inline-block">Korszak:</span> WWII</p>
+                            <p><span class="text-gray-500 w-24 inline-block">Komplexitás:</span> Közepes</p>
+                        </div>
+                        
+                        <div class="bg-wg-dark p-3 rounded text-sm mb-6 border border-wg-gunmetal/50">
+                            <span class="text-wg-accent-amber font-bold text-xs uppercase block mb-1">Ajánlott első játék:</span>
+                            DC: Barbarossa
+                        </div>
+                    </div>
+                    <div class="p-4 border-t border-wg-gunmetal bg-wg-dark/50">
+                        <button class="w-full text-center text-sm font-bold uppercase tracking-wide text-wg-beige hover:text-white transition-colors">Sorozatprofil Megtekintése <i class="ph ph-arrow-right inline-block align-middle ml-1"></i></button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="matrix" class="py-20 bg-wg-charcoal border-y border-wg-gunmetal relative">
+        <!-- Abstract map lines in background -->
+        <div class="absolute inset-0 opacity-5 pointer-events-none" style="background-image: repeating-linear-gradient(45deg, #E3DAC9 0, #E3DAC9 1px, transparent 0, transparent 50%); background-size: 30px 30px;"></div>
+        
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-10">
+                <h2 class="text-3xl md:text-4xl font-display font-bold text-wg-beige uppercase">Belépési Mátrix</h2>
+                <p class="mt-4 text-gray-400 font-medium">Navigációs segédlet: melyik motor illik a legjobban a játékstílusodhoz?</p>
+            </div>
+
+            <div class="bg-wg-dark border border-wg-gunmetal rounded shadow-lg overflow-hidden">
+                <table class="w-full text-left border-collapse">
+                    <thead>
+                        <tr class="bg-wg-gunmetal text-wg-beige border-b border-wg-olive/50">
+                            <th class="p-4 font-display uppercase tracking-wider text-sm font-bold">Mit keresel?</th>
+                            <th class="p-4 font-display uppercase tracking-wider text-sm font-bold">Ajánlott Sorozat</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-wg-gunmetal/50 text-sm">
+                        <tr class="hover:bg-wg-charcoal/80 transition-colors">
+                            <td class="p-4 font-medium text-gray-300 flex items-center gap-2"><i class="ph ph-target text-wg-accent-red"></i> Modern WEGO, adatintenzív C3I szimuláció</td>
+                            <td class="p-4 font-bold text-white">Flashpoint Campaigns</td>
+                        </tr>
+                        <tr class="hover:bg-wg-charcoal/80 transition-colors">
+                            <td class="p-4 font-medium text-gray-300 flex items-center gap-2"><i class="ph ph-compass text-wg-olive"></i> Klasszikus operational sandbox, bármely korszak</td>
+                            <td class="p-4 font-bold text-white">TOAW (The Operational Art of War)</td>
+                        </tr>
+                        <tr class="hover:bg-wg-charcoal/80 transition-colors">
+                            <td class="p-4 font-medium text-gray-300 flex items-center gap-2"><i class="ph ph-books text-wg-beige-dark"></i> Sok történelmi cím azonos, klasszikus alapokon</td>
+                            <td class="p-4 font-bold text-white">Wargame Design Studio</td>
+                        </tr>
+                        <tr class="hover:bg-wg-charcoal/80 transition-colors">
+                            <td class="p-4 font-medium text-gray-300 flex items-center gap-2"><i class="ph ph-globe-hemisphere-west text-gray-400"></i> Nagy stratégiai hadszíntér szimulálása</td>
+                            <td class="p-4 font-bold text-white">Grigsby / Strategic Command / Decisive Campaigns</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <section id="aar" class="py-20 bg-wg-dark">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mb-12 flex justify-between items-end border-b border-wg-gunmetal pb-4">
+                <div>
+                    <h2 class="text-3xl md:text-4xl font-display font-bold text-wg-beige uppercase flex items-center gap-3">
+                        <i class="ph ph-newspaper text-wg-accent-red"></i> Elemzések & AAR-ek
+                    </h2>
+                </div>
+                <a href="#" class="text-sm font-bold uppercase text-wg-olive hover:text-wg-olive-light transition-colors hidden sm:block">Összes archívum <i class="ph ph-caret-right align-middle"></i></a>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <!-- Article 1 -->
+                <article class="bg-wg-charcoal rounded overflow-hidden group flex flex-col h-full border border-transparent hover:border-wg-gunmetal transition-all">
+                    <div class="h-48 bg-wg-gunmetal relative overflow-hidden">
+                        <!-- Placeholder for article image -->
+                        <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1579567761406-4684ee0c75b6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80')] bg-cover bg-center opacity-40 group-hover:opacity-60 transition-opacity duration-500 group-hover:scale-105"></div>
+                        <div class="absolute top-4 left-4 bg-wg-dark/80 px-2 py-1 text-xs font-bold text-wg-beige uppercase rounded backdrop-blur-sm">Belépő</div>
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <h3 class="text-lg font-display font-bold text-white mb-2 leading-tight group-hover:text-wg-accent-amber transition-colors">Miért jó belépő a Flashpoint Campaigns?</h3>
+                        <p class="text-sm text-gray-400 mb-4 flex-grow">Az aszinkron WEGO rendszer és a limitált parancskiadási lehetőségek meglepő módon megkönnyítik az első lépéseket a modern harcászatban.</p>
+                        <div class="flex items-center justify-between mt-auto pt-4 border-t border-wg-gunmetal/50">
+                            <span class="text-xs text-gray-500 flex items-center gap-1"><i class="ph ph-clock"></i> 8 min olvasás</span>
+                            <button class="text-sm font-bold text-wg-beige uppercase hover:text-white">Olvasom <i class="ph ph-arrow-right inline-block"></i></button>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Article 2 -->
+                <article class="bg-wg-charcoal rounded overflow-hidden group flex flex-col h-full border border-transparent hover:border-wg-gunmetal transition-all">
+                    <div class="h-48 bg-wg-gunmetal relative overflow-hidden">
+                        <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1524850011238-e3d235c7d4c9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80')] bg-cover bg-center opacity-40 group-hover:opacity-60 transition-opacity duration-500 group-hover:scale-105"></div>
+                        <div class="absolute top-4 left-4 bg-wg-dark/80 px-2 py-1 text-xs font-bold text-wg-beige uppercase rounded backdrop-blur-sm">Engine Teszt</div>
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <h3 class="text-lg font-display font-bold text-white mb-2 leading-tight group-hover:text-wg-accent-amber transition-colors">TOAW vs WDS operational élmény</h3>
+                        <p class="text-sm text-gray-400 mb-4 flex-grow">Két klasszikus megközelítés: a rugalmas időskála és az eseményvezérelt harc, szemben a szigorúbb, fix hex/kör léptékkel.</p>
+                        <div class="flex items-center justify-between mt-auto pt-4 border-t border-wg-gunmetal/50">
+                            <span class="text-xs text-gray-500 flex items-center gap-1"><i class="ph ph-clock"></i> 12 min olvasás</span>
+                            <button class="text-sm font-bold text-wg-beige uppercase hover:text-white">Olvasom <i class="ph ph-arrow-right inline-block"></i></button>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Article 3 -->
+                <article class="bg-wg-charcoal rounded overflow-hidden group flex flex-col h-full border border-transparent hover:border-wg-gunmetal transition-all">
+                    <div class="h-48 bg-wg-gunmetal relative overflow-hidden">
+                        <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1555099962-4199c345e5dd?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80')] bg-cover bg-center opacity-40 group-hover:opacity-60 transition-opacity duration-500 group-hover:scale-105"></div>
+                        <div class="absolute top-4 left-4 bg-wg-dark/80 px-2 py-1 text-xs font-bold text-wg-beige uppercase rounded backdrop-blur-sm">AAR</div>
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <h3 class="text-lg font-display font-bold text-white mb-2 leading-tight group-hover:text-wg-accent-amber transition-colors">Decisive Campaigns és a parancsnoki döntések</h3>
+                        <p class="text-sm text-gray-400 mb-4 flex-grow">Hogyan emeli ki a politikai tőke és a tábornokok menedzselése a DC sorozatot a hagyományos hex-tolók közül.</p>
+                        <div class="flex items-center justify-between mt-auto pt-4 border-t border-wg-gunmetal/50">
+                            <span class="text-xs text-gray-500 flex items-center gap-1"><i class="ph ph-clock"></i> 15 min olvasás</span>
+                            <button class="text-sm font-bold text-wg-beige uppercase hover:text-white">Olvasom <i class="ph ph-arrow-right inline-block"></i></button>
+                        </div>
+                    </div>
+                </article>
+
+            </div>
+            <div class="mt-6 text-center sm:hidden">
+                <a href="#" class="text-sm font-bold uppercase text-wg-olive border border-wg-olive px-4 py-2 rounded inline-block">Összes archívum</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="engines" class="py-16 bg-wg-gunmetal border-y border-wg-charcoal">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-8">
+                <h2 class="text-2xl font-display font-bold text-white uppercase">Keresés Rendszerjellemzők Alapján</h2>
+                <p class="text-sm text-gray-300 mt-2">Nem címet, hanem mechanikát keresel? Szűrj a motorok sajátosságaira.</p>
+            </div>
+
+            <!-- Conceptual UI for filtering (Visual representation of the wireframe) -->
+            <div class="flex flex-wrap justify-center gap-3">
+                <button class="px-4 py-2 bg-wg-dark border border-wg-charcoal rounded text-sm font-medium text-gray-300 hover:bg-wg-olive hover:text-white hover:border-wg-olive transition-colors">WEGO</button>
+                <button class="px-4 py-2 bg-wg-dark border border-wg-charcoal rounded text-sm font-medium text-gray-300 hover:bg-wg-olive hover:text-white hover:border-wg-olive transition-colors">IGOUGO</button>
+                <button class="px-4 py-2 bg-wg-dark border border-wg-charcoal rounded text-sm font-medium text-gray-300 hover:bg-wg-olive hover:text-white hover:border-wg-olive transition-colors">Hex Density</button>
+                <button class="px-4 py-2 bg-wg-dark border border-wg-charcoal rounded text-sm font-medium text-gray-300 hover:bg-wg-olive hover:text-white hover:border-wg-olive transition-colors focus:ring-2 focus:ring-wg-accent-red">Logistics Depth</button>
+                <button class="px-4 py-2 bg-wg-dark border border-wg-charcoal rounded text-sm font-medium text-gray-300 hover:bg-wg-olive hover:text-white hover:border-wg-olive transition-colors">Fog of War</button>
+                <button class="px-4 py-2 bg-wg-dark border border-wg-charcoal rounded text-sm font-medium text-gray-300 hover:bg-wg-olive hover:text-white hover:border-wg-olive transition-colors">PBEM Friendly</button>
+                <button class="px-4 py-2 bg-wg-dark border border-wg-charcoal rounded text-sm font-medium text-gray-300 hover:bg-wg-olive hover:text-white hover:border-wg-olive transition-colors">Modern UI</button>
+            </div>
+            
+            <!-- Mock Result Area -->
+            <div class="mt-8 p-4 bg-wg-dark/50 border border-wg-charcoal rounded text-center text-sm text-gray-400 italic">
+                Válassz fenti szűrőket a megfelelő motorok megjelenítéséhez. Jelenleg minden aktív.
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 bg-wg-dark overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-10">
+            <h2 class="text-3xl md:text-4xl font-display font-bold text-wg-beige uppercase flex items-center gap-3">
+                <i class="ph ph-image text-wg-beige-dark"></i> Archív Térképek
+            </h2>
+            <div class="w-24 h-1 bg-wg-beige mt-4"></div>
+        </div>
+
+        <!-- Carousel Container (CSS scroll snap) -->
+        <div class="flex overflow-x-auto gap-6 pb-8 px-4 sm:px-8 snap-x snap-mandatory no-scrollbar" style="scroll-padding-left: 2rem;">
+            
+            <!-- Map Item 1 -->
+            <div class="snap-center shrink-0 w-[85vw] sm:w-[600px] md:w-[700px] bg-wg-charcoal border border-wg-gunmetal rounded-lg overflow-hidden group">
+                <div class="h-64 sm:h-80 md:h-[400px] bg-gray-800 relative">
+                    <img src="https://images.unsplash.com/photo-1524661135-423995f22d0b?auto=format&fit=crop&w=800&q=80" alt="WDS Map" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity grayscale group-hover:grayscale-0" />
+                    <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-wg-dark to-transparent h-1/3"></div>
+                    <span class="absolute top-4 right-4 bg-wg-dark/90 px-3 py-1 rounded text-xs font-mono text-wg-olive border border-wg-olive/50 backdrop-blur">WDS ENGINE</span>
+                </div>
+                <div class="p-5 bg-wg-charcoal">
+                    <div class="flex justify-between items-end mb-2">
+                        <h4 class="font-display font-bold text-lg text-white">Panzer Campaigns Szituáció</h4>
+                        <span class="text-xs text-gray-500 uppercase tracking-widest font-bold">WWII / 1km Hex</span>
+                    </div>
+                    <p class="text-sm text-gray-400">Klasszikus 2D nézet, letisztult NATO ikonok. A sűrű egységinformációk ellenére a frontvonal átlátható marad a WDS 2D térképén.</p>
+                </div>
+            </div>
+
+            <!-- Map Item 2 -->
+            <div class="snap-center shrink-0 w-[85vw] sm:w-[600px] md:w-[700px] bg-wg-charcoal border border-wg-gunmetal rounded-lg overflow-hidden group">
+                <div class="h-64 sm:h-80 md:h-[400px] bg-gray-800 relative">
+                    <img src="https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?auto=format&fit=crop&w=800&q=80" alt="FPC Map" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity grayscale group-hover:grayscale-0" />
+                    <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-wg-dark to-transparent h-1/3"></div>
+                    <span class="absolute top-4 right-4 bg-wg-dark/90 px-3 py-1 rounded text-xs font-mono text-wg-accent-red border border-wg-accent-red/50 backdrop-blur">FPC ENGINE</span>
+                </div>
+                <div class="p-5 bg-wg-charcoal">
+                    <div class="flex justify-between items-end mb-2">
+                        <h4 class="font-display font-bold text-lg text-white">Red Storm Topográfia</h4>
+                        <span class="text-xs text-gray-500 uppercase tracking-widest font-bold">Cold War / 500m Hex</span>
+                    </div>
+                    <p class="text-sm text-gray-400">Magassági vonalak és LOS (Line of Sight) eszközök dominálnak. Az adatközpontú UI szervesen körbeveszi a műveleti területet.</p>
+                </div>
+            </div>
+
+            <!-- Map Item 3 -->
+            <div class="snap-center shrink-0 w-[85vw] sm:w-[600px] md:w-[700px] bg-wg-charcoal border border-wg-gunmetal rounded-lg overflow-hidden group">
+                <div class="h-64 sm:h-80 md:h-[400px] bg-gray-800 relative">
+                    <!-- Note: using abstract aerial map-like photos as placeholders since actual game screenshots aren't available via standard URL -->
+                    <img src="https://images.unsplash.com/photo-1588668214407-6ea9a6d8c272?auto=format&fit=crop&w=800&q=80" alt="TOAW Map" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity grayscale group-hover:grayscale-0" />
+                    <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-wg-dark to-transparent h-1/3"></div>
+                    <span class="absolute top-4 right-4 bg-wg-dark/90 px-3 py-1 rounded text-xs font-mono text-wg-beige-dark border border-wg-beige-dark/50 backdrop-blur">TOAW ENGINE</span>
+                </div>
+                <div class="p-5 bg-wg-charcoal">
+                    <div class="flex justify-between items-end mb-2">
+                        <h4 class="font-display font-bold text-lg text-white">Széles Operatív Front</h4>
+                        <span class="text-xs text-gray-500 uppercase tracking-widest font-bold">Változó / Változó Hex</span>
+                    </div>
+                    <p class="text-sm text-gray-400">Klasszikus "szobaleptékű" asztali hadijáték érzés. A TOAW térképei hatalmas területeket képesek átfogni, absztrakt logisztikai hálózatokkal.</p>
+                </div>
+            </div>
+
+            <!-- Empty spacer for proper scroll end -->
+            <div class="snap-center shrink-0 w-4 sm:w-8"></div>
+        </div>
+        
+        <div class="text-center mt-4 text-gray-500 text-sm flex items-center justify-center gap-2">
+            <i class="ph ph-arrows-left-right"></i> Lapozz a térképek között
+        </div>
+    </section>
+
+    <footer class="bg-wg-charcoal border-t-4 border-wg-gunmetal pt-16 pb-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
+                
+                <div>
+                    <h5 class="text-wg-beige font-display font-bold uppercase tracking-wider mb-4 border-b border-wg-gunmetal pb-2">Navigáció</h5>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Főoldal</a></li>
+                        <li><a href="#series" class="text-gray-400 hover:text-white transition-colors">Sorozatok</a></li>
+                        <li><a href="#engines" class="text-gray-400 hover:text-white transition-colors">Engine Kereső</a></li>
+                        <li><a href="#aar" class="text-gray-400 hover:text-white transition-colors">AAR Archívum</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h5 class="text-wg-beige font-display font-bold uppercase tracking-wider mb-4 border-b border-wg-gunmetal pb-2">Archívum Címkék</h5>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">#WWII</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">#ColdWar</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">#ModernWEGO</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">#GrandTactical</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h5 class="text-wg-beige font-display font-bold uppercase tracking-wider mb-4 border-b border-wg-gunmetal pb-2">Kezdőknek</h5>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#matrix" class="text-gray-400 hover:text-white transition-colors">Belépési Mátrix</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Fogalomszótár</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Kedvenc Forgatókönyvek</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">NATO Szimbólumok</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h5 class="text-wg-beige font-display font-bold uppercase tracking-wider mb-4 border-b border-wg-gunmetal pb-2">Archiváló</h5>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Rólam</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Kapcsolat</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">RSS Feed</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-wg-gunmetal pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                <div class="flex items-center gap-2">
+                    <i class="ph ph-hexagon-fill text-wg-gunmetal text-xl"></i>
+                    <span class="text-gray-500 text-sm">© 2026 Operations Archive. Kurált Hex & Counter Gyűjtemény.</span>
+                </div>
+                <div class="text-gray-600 text-xs font-mono">
+                    SYS.VER: 1.0.42 | STATUS: GREEN
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Simple script for mobile menu toggle (mockup functionality)
+        document.addEventListener('DOMContentLoaded', () => {
+            const menuBtn = document.querySelector('button[aria-controls="mobile-menu"]');
+            
+            if(menuBtn) {
+                menuBtn.addEventListener('click', () => {
+                    alert('Mobile menu toggle action triggered. (Requires additional hidden div setup in full implementation)');
+                });
+            }
+
+            // Smooth scrolling for anchor links is handled by Tailwind class 'scroll-smooth' on HTML tag
+        });
+    </script>
+</body>
+</html>

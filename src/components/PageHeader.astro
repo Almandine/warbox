@@ -1,0 +1,48 @@
+---
+import Icon from './Icon.astro';
+import type { IconName } from '../icons';
+
+interface Props {
+  title: string;
+  eyebrow?: string;
+  icon?: IconName;
+  lead?: string;
+}
+
+const { title, eyebrow, icon, lead } = Astro.props;
+---
+
+<header class="ph">
+  <div class="wrap">
+    {eyebrow && <p class="eyebrow">{eyebrow}</p>}
+    <h1 class="section-title">
+      {icon && <Icon name={icon} size="1em" class="ph__icon" />}
+      {title}
+    </h1>
+    <div class="section-rule"></div>
+    {lead && <p class="ph__lead">{lead}</p>}
+  </div>
+</header>
+
+<style>
+  .ph {
+    position: relative;
+    padding-block: 3.5rem 3rem;
+    border-bottom: 1px solid var(--wg-gunmetal);
+    background-color: var(--wg-charcoal);
+    background-image:
+      linear-gradient(to right, rgb(227 218 201 / 0.04) 1px, transparent 1px),
+      linear-gradient(to bottom, rgb(227 218 201 / 0.04) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+
+  .ph__icon {
+    color: var(--wg-olive-light);
+  }
+
+  .ph__lead {
+    margin-top: 1.5rem;
+    max-width: 60ch;
+    color: var(--wg-muted);
+  }
+</style>

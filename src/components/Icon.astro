@@ -1,0 +1,35 @@
+---
+import { ICON_PATHS, FILLED_ICONS, type IconName } from '../icons';
+
+interface Props {
+  name: IconName;
+  size?: number | string;
+  class?: string;
+}
+
+const { name, size = '1.25em', class: className } = Astro.props;
+const filled = FILLED_ICONS.has(name);
+---
+
+<svg
+  class={className}
+  width={size}
+  height={size}
+  viewBox="0 0 24 24"
+  fill={filled ? 'currentColor' : 'none'}
+  stroke={filled ? 'none' : 'currentColor'}
+  stroke-width="1.75"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  aria-hidden="true"
+  focusable="false"
+  set:html={ICON_PATHS[name]}
+/>
+
+<style>
+  svg {
+    display: inline-block;
+    flex-shrink: 0;
+    vertical-align: -0.15em;
+  }
+</style>

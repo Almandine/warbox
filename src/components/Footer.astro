@@ -1,0 +1,162 @@
+---
+import Icon from './Icon.astro';
+import { SITE_TITLE, WDS_URL } from '../consts';
+
+const year = new Date().getFullYear();
+
+const columns = [
+  {
+    title: 'Navigation',
+    links: [
+      { label: 'Home', href: '/' },
+      { label: 'Games', href: '/games/' },
+      { label: 'Manual cover', href: '/manual-cover/' },
+    ],
+  },
+  {
+    title: 'Getting started',
+    links: [
+      { label: 'How to use the companions', href: '/how-to-use/' },
+      { label: 'What is a Game Companion?', href: '/how-to-use/#what-is-it' },
+    ],
+  },
+  {
+    title: 'Series',
+    links: [
+      { label: 'Panzer Campaigns', href: '/games/#panzer-campaigns' },
+      { label: 'Squad Battles', href: '/games/#squad-battles' },
+      { label: 'Sword & Siege', href: '/games/#sword-and-siege' },
+    ],
+  },
+  {
+    title: 'Site',
+    links: [
+      { label: 'About', href: '/about/' },
+      { label: 'Contact', href: '/contact/' },
+    ],
+  },
+];
+---
+
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot__cols">
+      {
+        columns.map((col) => (
+          <div>
+            <h5 class="foot__title">{col.title}</h5>
+            <ul class="foot__list">
+              {col.links.map((link) => (
+                <li>
+                  <a href={link.href}>{link.label}</a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))
+      }
+    </div>
+
+    <p class="foot__disclaimer">
+      Fan-made companions for Wargame Design Studio games. Not affiliated with, or endorsed by, WDS.
+      Official site: <a href={WDS_URL} target="_blank" rel="noopener">wargameds.com <Icon
+          name="external"
+          size="0.85em"
+        /></a>
+    </p>
+
+    <div class="foot__bar">
+      <span class="foot__copy">
+        <Icon name="hexagon" size="1.1rem" />
+        © {year} {SITE_TITLE}. Companions for computer wargames.
+      </span>
+      <span class="meta">STATUS: OPERATIONAL</span>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .foot {
+    background: var(--wg-charcoal);
+    border-top: 4px solid var(--wg-gunmetal);
+    padding-block: 4rem 2rem;
+    margin-top: auto;
+  }
+
+  .foot__cols {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+  }
+
+  @media (min-width: 768px) {
+    .foot__cols {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+  }
+
+  .foot__title {
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    border-bottom: 1px solid var(--wg-gunmetal);
+    padding-bottom: 0.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .foot__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+  }
+
+  .foot__list a {
+    color: var(--wg-muted);
+    text-decoration: none;
+    transition: color 0.18s ease;
+  }
+
+  .foot__list a:hover {
+    color: #fff;
+  }
+
+  .foot__disclaimer {
+    font-size: 0.8125rem;
+    color: var(--wg-faint);
+    border-top: 1px solid var(--wg-gunmetal);
+    padding-top: 1.5rem;
+    max-width: 60ch;
+  }
+
+  .foot__disclaimer a {
+    color: var(--wg-olive-light);
+    text-decoration: none;
+  }
+
+  .foot__disclaimer a:hover {
+    color: var(--wg-beige);
+  }
+
+  .foot__bar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--wg-gunmetal);
+  }
+
+  .foot__copy {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.8125rem;
+    color: var(--wg-faint);
+  }
+</style>
