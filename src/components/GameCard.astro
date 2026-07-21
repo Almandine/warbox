@@ -1,0 +1,238 @@
+---
+import { Image } from 'astro:assets';
+import Icon from './Icon.astro';
+import { getScreenshot } from '../lib/screenshots';
+import { formatDate, lastTouched, type Game, type Series } from '../lib/games';
+
+interface Props {
+  game: Game;
+  series: Series;
+}
+
+const { game, series } = Astro.props;
+const { title, status, version, description, screenshots } = game.data;
+
+const thumb = screenshots[0] ? getScreenshot(game.id, screenshots[0].file) : undefined;
+const planned = status === 'planned';
+const updated = game.data.date_updated ? 'Updated' : 'Added';
+---
+
+<article class="card" style={`--accent: ${series.data.accent}`}>
+  <div class="card__rule"></div>
+
+  <div class="card__media">
+    {
+      thumb ? (
+        <Image src={thumb} alt="" widths={[400, 800]} sizes="(min-width: 900px) 380px, 100vw" loading="lazy" />
+      ) : (
+        <div class="card__media-empty">
+          <Icon name="image" size="2rem" />
+        </div>
+      )
+    }
+    {planned && <span class="card__status">Companion in progress</span>}
+  </div>
+
+  <div class="card__body">
+    <div class="card__head">
+      <h3 class="card__title">{title}</h3>
+      {version && <span class="card__tag">v{version}</span>}
+    </div>
+
+    {description && <p class="card__desc">{description}</p>}
+
+    <dl class="card__meta">
+      <div>
+        <dt>Series</dt>
+        <dd>{series.data.name}</dd>
+      </div>
+      <div>
+        <dt>{updated}</dt>
+        <dd>{formatDate(lastTouched(game))}</dd>
+      </div>
+      <div>
+        <dt>Screens</dt>
+        <dd>{screenshots.length || '—'}</dd>
+      </div>
+    </dl>
+  </div>
+
+  <div class="card__foot">
+    <a class="card__cta" href={`/games/${game.id}/`}>
+      {planned ? 'See what is planned' : 'Open companion'}
+      <Icon name="arrow-right" size="1.1em" />
+    </a>
+  </div>
+</article>
+
+<style>
+  .card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    background: var(--wg-charcoal);
+    border: 1px solid var(--wg-gunmetal);
+    border-radius: var(--radius);
+    overflow: hidden;
+    transition: border-color 0.2s ease;
+  }
+
+  .card:hover,
+  .card:focus-within {
+    border-color: var(--accent);
+  }
+
+  /* Series colour band across the top of the card. */
+  .card__rule {
+    height: 4px;
+    background: var(--accent);
+  }
+
+  .card__media {
+    position: relative;
+    aspect-ratio: 16 / 10;
+    background: var(--wg-gunmetal);
+    overflow: hidden;
+  }
+
+  .card__media :global(img) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* Muted until you look at it — colour is the reward for hovering. */
+    filter: grayscale(1) contrast(0.95);
+    opacity: 0.65;
+    transition:
+      filter 0.45s ease,
+      opacity 0.45s ease,
+      transform 0.6s ease;
+  }
+
+  .card:hover .card__media :global(img),
+  .card:focus-within .card__media :global(img) {
+    filter: grayscale(0) contrast(1);
+    opacity: 1;
+    transform: scale(1.04);
+  }
+
+  .card__media-empty {
+    display: grid;
+    place-items: center;
+    height: 100%;
+    color: var(--wg-faint);
+    background-image:
+      linear-gradient(to right, rgb(227 218 201 / 0.06) 1px, transparent 1px),
+      linear-gradient(to bottom, rgb(227 218 201 / 0.06) 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+
+  .card__status {
+    position: absolute;
+    top: 0.75rem;
+    left: 0.75rem;
+    padding: 0.2rem 0.5rem;
+    border-radius: var(--radius);
+    background: rgb(17 24 39 / 0.85);
+    backdrop-filter: blur(4px);
+    color: var(--wg-amber);
+    font-family: var(--font-mono);
+    font-size: 0.625rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+  }
+
+  .card__body {
+    flex: 1;
+    padding: 1.25rem;
+  }
+
+  .card__head {
+    display: flex;
+    align-items: start;
+    justify-content: space-between;
+    gap: 0.75rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .card__title {
+    font-size: 1.125rem;
+    text-transform: uppercase;
+    color: #fff;
+  }
+
+  .card__tag {
+    flex-shrink: 0;
+    padding: 0.15rem 0.45rem;
+    border-radius: var(--radius);
+    background: var(--wg-gunmetal);
+    color: var(--wg-text);
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+  }
+
+  .card__desc {
+    font-size: 0.875rem;
+    color: var(--wg-muted);
+    margin-bottom: 1.25rem;
+  }
+
+  .card__meta {
+    display: grid;
+    gap: 0.35rem;
+    margin: 0;
+    padding-left: 0.75rem;
+    border-left: 2px solid var(--wg-gunmetal);
+    font-size: 0.8125rem;
+  }
+
+  .card__meta > div {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .card__meta dt {
+    width: 5.5rem;
+    flex-shrink: 0;
+    color: var(--wg-faint);
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding-top: 0.15em;
+  }
+
+  .card__meta dd {
+    margin: 0;
+    color: var(--wg-text);
+  }
+
+  .card__foot {
+    padding: 0.875rem 1.25rem;
+    border-top: 1px solid var(--wg-gunmetal);
+    background: rgb(17 24 39 / 0.5);
+  }
+
+  .card__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.8125rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    text-decoration: none;
+    color: var(--wg-beige);
+    transition: color 0.18s ease;
+  }
+
+  /* Makes the whole card a click target without nesting links. */
+  .card__cta::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+  }
+
+  .card:hover .card__cta {
+    color: #fff;
+  }
+</style>

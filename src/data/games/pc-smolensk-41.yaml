@@ -1,0 +1,19 @@
+# SEED ENTRY — placeholder text and screenshots, replace with real content.
+title: "Panzer Campaigns: Smolensk '41"
+series: panzer-campaigns
+status: available
+excel: pc-smolensk-41.xlsx
+version: '1.0'
+date_added: 2026-07-02
+wds_url: https://wargameds.com/panzer-campaigns/
+description: >-
+  The Smolensk companion leans on the supply picture: rail heads, bridges and
+  the depots each formation draws from, all in one table. Useful for the long
+  campaign scenarios where the front outruns the trucks.
+screenshots:
+  - file: overview.png
+    caption: Campaign overview with the scenario list and turn counts.
+  - file: unit-list.png
+    caption: Full unit list, sortable by formation, type and strength.
+  - file: supply.png
+    caption: Supply sources and the rail network state by turn.

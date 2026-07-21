@@ -1,8 +1,12 @@
 ---
+import { getCollection } from 'astro:content';
 import Icon from './Icon.astro';
 import { SITE_TITLE, WDS_URL } from '../consts';
 
 const year = new Date().getFullYear();
+
+// The series column follows the catalog, so it can never drift out of date.
+const series = (await getCollection('series')).sort((a, b) => a.data.order - b.data.order);
 
 const columns = [
   {
@@ -22,11 +26,10 @@ const columns = [
   },
   {
     title: 'Series',
-    links: [
-      { label: 'Panzer Campaigns', href: '/games/#panzer-campaigns' },
-      { label: 'Squad Battles', href: '/games/#squad-battles' },
-      { label: 'Sword & Siege', href: '/games/#sword-and-siege' },
-    ],
+    links: series.map((entry) => ({
+      label: entry.data.name,
+      href: `/games/#${entry.data.id}`,
+    })),
   },
   {
     title: 'Site',

@@ -1,13 +1,24 @@
 ---
 import Base from '../layouts/Base.astro';
 import Icon from '../components/Icon.astro';
+import { getGamesByDate, getGamesBySeries, formatDate, lastTouched } from '../lib/games';
 
-// TODO(step 2): drive these from the games collection instead of hardcoding.
+const games = await getGamesByDate();
+const groups = await getGamesBySeries();
+
+const available = games.filter((game) => game.data.status === 'available');
+const newest = available[0];
+
 const stats = [
-  { icon: 'layers', tone: 'olive', label: 'Companions available', value: '3' },
-  { icon: 'books', tone: 'amber', label: 'WDS series covered', value: '2' },
-  { icon: 'cpu', tone: 'olive', label: 'Titles in the catalog', value: '30' },
-  { icon: 'clock', tone: 'red', label: 'Latest update', value: "Normandy '44" },
+  { icon: 'layers', tone: 'olive', label: 'Companions ready', value: String(available.length) },
+  { icon: 'books', tone: 'amber', label: 'WDS series covered', value: String(groups.length) },
+  { icon: 'cpu', tone: 'olive', label: 'Titles listed', value: String(games.length) },
+  {
+    icon: 'clock',
+    tone: 'red',
+    label: 'Last update',
+    value: newest ? formatDate(lastTouched(newest)) : '—',
+  },
 ] as const;
 ---
 

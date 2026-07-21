@@ -1,17 +1,119 @@
 ---
 import Base from '../../layouts/Base.astro';
 import PageHeader from '../../components/PageHeader.astro';
+import GameCard from '../../components/GameCard.astro';
 import Note from '../../components/Note.astro';
+import Icon from '../../components/Icon.astro';
+import { getGamesBySeries, assertSeriesReferencesResolve } from '../../lib/games';
+
+await assertSeriesReferencesResolve();
+const groups = await getGamesBySeries();
+
+const total = groups.reduce((n, g) => n + g.games.length, 0);
+const available = groups.reduce(
+  (n, g) => n + g.games.filter((game) => game.data.status === 'available').length,
+  0,
+);
 ---
 
-<Base title="Games" description="Every WDS title with a Warbox Game Companion, grouped by series.">
+<Base
+  title="Games"
+  description="Every WDS title with a Warbox Game Companion, grouped by Wargame Design Studio series."
+>
   <PageHeader
-    eyebrow="Catalog"
+    eyebrow={`${available} of ${total} companions ready`}
     title="Games"
     icon="map"
-    lead="Companion spreadsheets grouped by Wargame Design Studio series."
+    lead="Companion spreadsheets grouped by Wargame Design Studio series. Titles marked as in progress are listed so you know they are coming."
   />
+
   <div class="wrap section">
-    <Note tone="draft">Step 2 builds this page from the games data files.</Note>
+    <Note tone="draft">
+      The catalog below is seeded with example entries and generated screenshots while the real
+      companions are prepared.
+    </Note>
+
+    {
+      groups.map(({ series, games }) => (
+        <section class="group" id={series.data.id} style={`--accent: ${series.data.accent}`}>
+          <header class="group__head">
+            <h2 class="group__title">{series.data.name}</h2>
+            <span class="group__count">
+              {games.length} {games.length === 1 ? 'title' : 'titles'}
+            </span>
+            {series.data.wds_url && (
+              <a class="group__link" href={series.data.wds_url} target="_blank" rel="noopener">
+                Series at WDS <Icon name="external" size="0.85em" />
+              </a>
+            )}
+          </header>
+
+          {series.data.blurb && <p class="group__blurb">{series.data.blurb}</p>}
+
+          <div class="group__grid">
+            {games.map((game) => (
+              <GameCard game={game} series={series} />
+            ))}
+          </div>
+        </section>
+      ))
+    }
   </div>
 </Base>
+
+<style>
+  .group {
+    margin-top: 4rem;
+    scroll-margin-top: calc(var(--nav-h) + 2rem);
+  }
+
+  .group__head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.75rem 1rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--wg-gunmetal);
+    /* The series colour reads as a tab under its own heading. */
+    box-shadow: inset 0 -1px 0 0 var(--accent);
+  }
+
+  .group__title {
+    font-size: 1.5rem;
+    text-transform: uppercase;
+  }
+
+  .group__count {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--wg-faint);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  .group__link {
+    margin-left: auto;
+    font-size: 0.8125rem;
+    text-decoration: none;
+    color: var(--wg-muted);
+    white-space: nowrap;
+  }
+
+  .group__link:hover {
+    color: var(--wg-beige);
+  }
+
+  .group__blurb {
+    margin-top: 1rem;
+    max-width: 60ch;
+    color: var(--wg-muted);
+    font-size: 0.9375rem;
+  }
+
+  .group__grid {
+    display: grid;
+    gap: 1.5rem;
+    margin-top: 2rem;
+    grid-template-columns: repeat(auto-fill, minmax(min(20rem, 100%), 1fr));
+  }
+</style>
