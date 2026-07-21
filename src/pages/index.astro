@@ -74,8 +74,8 @@ const stats = [
     overflow: hidden;
     background-color: var(--wg-dark);
     background-image:
-      radial-gradient(ellipse 70% 90% at 15% 10%, rgb(75 83 32 / 0.28), transparent 65%),
-      radial-gradient(ellipse 80% 70% at 90% 100%, rgb(44 62 80 / 0.55), transparent 60%);
+      radial-gradient(ellipse 70% 90% at 15% 10%, rgb(from var(--wg-olive) r g b / 0.28), transparent 65%),
+      radial-gradient(ellipse 80% 70% at 90% 100%, rgb(from var(--wg-gunmetal) r g b / 0.55), transparent 60%);
   }
 
   /* Operations-map grid, drawn over the tint so it stays legible. */
@@ -85,8 +85,8 @@ const stats = [
     inset: 0;
     pointer-events: none;
     background-image:
-      linear-gradient(to right, rgb(227 218 201 / 0.055) 1px, transparent 1px),
-      linear-gradient(to bottom, rgb(227 218 201 / 0.055) 1px, transparent 1px);
+      linear-gradient(to right, rgb(from var(--wg-beige) r g b / 0.055) 1px, transparent 1px),
+      linear-gradient(to bottom, rgb(from var(--wg-beige) r g b / 0.055) 1px, transparent 1px);
     background-size: 40px 40px;
     mask-image: linear-gradient(to bottom, #000 0%, #000 65%, transparent 100%);
   }
@@ -110,9 +110,9 @@ const stats = [
     gap: 0.5rem;
     padding: 0.25rem 0.75rem;
     margin-bottom: 1.5rem;
-    border: 1px solid rgb(208 90 78 / 0.35);
+    border: 1px solid rgb(from var(--wg-red-bright) r g b / 0.35);
     border-radius: var(--radius);
-    background: rgb(139 0 0 / 0.15);
+    background: rgb(from var(--wg-red) r g b / 0.15);
     color: var(--wg-red-bright);
     font-size: 0.6875rem;
     font-weight: 700;

@@ -121,8 +121,8 @@ const updated = game.data.date_updated ? 'Updated' : 'Added';
     height: 100%;
     color: var(--wg-faint);
     background-image:
-      linear-gradient(to right, rgb(227 218 201 / 0.06) 1px, transparent 1px),
-      linear-gradient(to bottom, rgb(227 218 201 / 0.06) 1px, transparent 1px);
+      linear-gradient(to right, rgb(from var(--wg-beige) r g b / 0.06) 1px, transparent 1px),
+      linear-gradient(to bottom, rgb(from var(--wg-beige) r g b / 0.06) 1px, transparent 1px);
     background-size: 24px 24px;
   }
 
@@ -132,7 +132,7 @@ const updated = game.data.date_updated ? 'Updated' : 'Added';
     left: 0.75rem;
     padding: 0.2rem 0.5rem;
     border-radius: var(--radius);
-    background: rgb(17 24 39 / 0.85);
+    background: rgb(from var(--wg-dark) r g b / 0.85);
     backdrop-filter: blur(4px);
     color: var(--wg-amber);
     font-family: var(--font-mono);
@@ -157,7 +157,7 @@ const updated = game.data.date_updated ? 'Updated' : 'Added';
   .card__title {
     font-size: 1.125rem;
     text-transform: uppercase;
-    color: #fff;
+    color: var(--wg-bright);
   }
 
   .card__tag {
@@ -209,7 +209,7 @@ const updated = game.data.date_updated ? 'Updated' : 'Added';
   .card__foot {
     padding: 0.875rem 1.25rem;
     border-top: 1px solid var(--wg-gunmetal);
-    background: rgb(17 24 39 / 0.5);
+    background: rgb(from var(--wg-dark) r g b / 0.5);
   }
 
   .card__cta {
@@ -233,6 +233,6 @@ const updated = game.data.date_updated ? 'Updated' : 'Added';
   }
 
   .card:hover .card__cta {
-    color: #fff;
+    color: var(--wg-bright);
   }
 </style>

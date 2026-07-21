@@ -4,6 +4,19 @@
  * Component-specific rules live in the components themselves (Astro scoped styles).
  */
 
+/*
+ * RECOLOURING THE SITE
+ *
+ * Every colour on the site derives from the tokens below. Translucent variants
+ * are written as `rgb(from var(--token) r g b / <alpha>)` rather than as literal
+ * rgb() values, so changing a token here changes them too — there is nothing to
+ * hunt down in the components.
+ *
+ * Two things live outside this file on purpose:
+ *   - public/favicon.svg — a standalone file, CSS cannot reach it (3 hex values)
+ *   - src/data/series.yaml `accent:` — per-series colours, data rather than theme
+ */
+
 :root {
   /* --- Surfaces (darkest → lightest) --- */
   --wg-dark: #111827; /* page background */
@@ -18,6 +31,7 @@
   --wg-red-bright: #d05a4e; /* readable red for text/icons on dark */
 
   /* --- Type --- */
+  --wg-bright: #ffffff; /* peak contrast, hover states only */
   --wg-beige: #e3dac9; /* headings, warm off-white */
   --wg-beige-dark: #d4c5b0;
   --wg-text: #d1d5db; /* body */
@@ -193,11 +207,11 @@ img {
 
 .btn:hover {
   background: var(--wg-olive-light);
-  color: #fff;
+  color: var(--wg-bright);
 }
 
 .btn--ghost {
-  background: rgb(31 41 55 / 0.8);
+  background: rgb(from var(--wg-charcoal) r g b / 0.8);
   border-color: var(--wg-gunmetal);
   color: var(--wg-beige);
   backdrop-filter: blur(4px);
@@ -205,7 +219,7 @@ img {
 
 .btn--ghost:hover {
   background: var(--wg-gunmetal);
-  color: #fff;
+  color: var(--wg-bright);
 }
 
 /* --- Panels --- */
@@ -222,13 +236,19 @@ img {
 .tex-grid {
   background-size: 40px 40px;
   background-image:
-    linear-gradient(to right, rgb(227 218 201 / 0.05) 1px, transparent 1px),
-    linear-gradient(to bottom, rgb(227 218 201 / 0.05) 1px, transparent 1px);
+    linear-gradient(to right, rgb(from var(--wg-beige) r g b / 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(from var(--wg-beige) r g b / 0.05) 1px, transparent 1px);
 }
 
 /* Faint dot field, used on wide dark sections. */
 .tex-dots {
-  background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%239c92ac' fill-opacity='0.05' fill-rule='evenodd'%3E%3Ccircle cx='3' cy='3' r='3'/%3E%3Ccircle cx='13' cy='13' r='3'/%3E%3C/g%3E%3C/svg%3E");
+  background-image:
+    radial-gradient(rgb(from var(--wg-beige) r g b / 0.05) 1.5px, transparent 1.6px),
+    radial-gradient(rgb(from var(--wg-beige) r g b / 0.05) 1.5px, transparent 1.6px);
+  background-position:
+    0 0,
+    10px 10px;
+  background-size: 20px 20px;
 }
 
 /* Diagonal hatching, used behind narrow content sections. */
