@@ -1,0 +1,290 @@
+---
+import { Image } from 'astro:assets';
+import Icon from './Icon.astro';
+
+interface Props {
+  shots: { image: ImageMetadata; caption?: string }[];
+  /** Used in alt text: "Normandy '44 companion, screenshot 2 of 3". */
+  title: string;
+}
+
+const { shots, title } = Astro.props;
+---
+
+{
+  shots.length > 0 && (
+    <div class="gallery" data-gallery>
+      <div class="gallery__grid">
+        {shots.map((shot, i) => (
+          <figure class="shot">
+            <button
+              class="shot__button"
+              type="button"
+              data-open={i}
+              aria-label={`Open screenshot ${i + 1} of ${shots.length} full size`}
+            >
+              <Image
+                src={shot.image}
+                alt={`${title}, screenshot ${i + 1} of ${shots.length}`}
+                widths={[400, 800]}
+                sizes="(min-width: 900px) 380px, 100vw"
+                loading="lazy"
+              />
+              <span class="shot__zoom">
+                <Icon name="image" size="1rem" /> View
+              </span>
+            </button>
+            {shot.caption && <figcaption>{shot.caption}</figcaption>}
+          </figure>
+        ))}
+      </div>
+
+      {/* One dialog for the whole gallery; the active slide is toggled with [hidden]. */}
+      <dialog class="lightbox" data-lightbox>
+        <div class="lightbox__bar">
+          <span class="lightbox__count" data-count />
+          <button class="lightbox__close" type="button" data-close aria-label="Close">
+            <Icon name="close" size="1.25rem" />
+          </button>
+        </div>
+
+        <div class="lightbox__stage">
+          <button class="lightbox__nav" type="button" data-prev aria-label="Previous screenshot">
+            <Icon name="caret-right" size="1.5rem" class="flip" />
+          </button>
+
+          {shots.map((shot, i) => (
+            <figure class="slide" data-slide={i} hidden={i !== 0}>
+              <Image
+                src={shot.image}
+                alt={`${title}, screenshot ${i + 1} of ${shots.length}`}
+                widths={[900, 1600]}
+                sizes="90vw"
+                loading="lazy"
+              />
+              {shot.caption && <figcaption>{shot.caption}</figcaption>}
+            </figure>
+          ))}
+
+          <button class="lightbox__nav" type="button" data-next aria-label="Next screenshot">
+            <Icon name="caret-right" size="1.5rem" />
+          </button>
+        </div>
+      </dialog>
+    </div>
+  )
+}
+
+<script>
+  for (const gallery of document.querySelectorAll<HTMLElement>('[data-gallery]')) {
+    const dialog = gallery.querySelector<HTMLDialogElement>('[data-lightbox]');
+    const slides = [...gallery.querySelectorAll<HTMLElement>('[data-slide]')];
+    const count = gallery.querySelector<HTMLElement>('[data-count]');
+    if (!dialog || slides.length === 0) continue;
+
+    let current = 0;
+
+    const show = (index: number) => {
+      current = (index + slides.length) % slides.length;
+      slides.forEach((slide, i) => (slide.hidden = i !== current));
+      if (count) count.textContent = `${current + 1} / ${slides.length}`;
+    };
+
+    gallery.querySelectorAll<HTMLButtonElement>('[data-open]').forEach((button) => {
+      button.addEventListener('click', () => {
+        show(Number(button.dataset.open));
+        dialog.showModal();
+      });
+    });
+
+    gallery.querySelector('[data-close]')?.addEventListener('click', () => dialog.close());
+    gallery.querySelector('[data-prev]')?.addEventListener('click', () => show(current - 1));
+    gallery.querySelector('[data-next]')?.addEventListener('click', () => show(current + 1));
+
+    dialog.addEventListener('keydown', (event) => {
+      if (event.key === 'ArrowLeft') show(current - 1);
+      if (event.key === 'ArrowRight') show(current + 1);
+    });
+
+    // Clicking the backdrop closes; clicks inside the dialog box do not.
+    dialog.addEventListener('click', (event) => {
+      const box = dialog.getBoundingClientRect();
+      const outside =
+        event.clientX < box.left ||
+        event.clientX > box.right ||
+        event.clientY < box.top ||
+        event.clientY > box.bottom;
+      if (outside) dialog.close();
+    });
+  }
+</script>
+
+<style>
+  .gallery__grid {
+    display: grid;
+    gap: 1.25rem;
+    grid-template-columns: repeat(auto-fill, minmax(min(18rem, 100%), 1fr));
+  }
+
+  .shot {
+    margin: 0;
+  }
+
+  .shot__button {
+    position: relative;
+    display: block;
+    width: 100%;
+    padding: 0;
+    border: 1px solid var(--wg-border);
+    border-radius: var(--radius);
+    background: var(--wg-surface);
+    overflow: hidden;
+    cursor: zoom-in;
+  }
+
+  .shot__button :global(img) {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+    filter: grayscale(1) contrast(0.92) brightness(1.04);
+    transition:
+      filter 0.45s ease,
+      transform 0.6s ease;
+  }
+
+  .shot__button:hover :global(img),
+  .shot__button:focus-visible :global(img) {
+    filter: grayscale(0) contrast(1) brightness(1);
+    transform: scale(1.03);
+  }
+
+  .shot__zoom {
+    position: absolute;
+    right: 0.625rem;
+    bottom: 0.625rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.25rem 0.5rem;
+    border-radius: var(--radius);
+    background: rgb(from var(--wg-bg) r g b / 0.9);
+    color: var(--wg-ink);
+    font-family: var(--font-mono);
+    font-size: 0.625rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    opacity: 0;
+    transition: opacity 0.25s ease;
+  }
+
+  .shot__button:hover .shot__zoom,
+  .shot__button:focus-visible .shot__zoom {
+    opacity: 1;
+  }
+
+  .shot figcaption {
+    margin-top: 0.5rem;
+    font-size: 0.8125rem;
+    color: var(--wg-muted);
+  }
+
+  /* --- Lightbox --- */
+
+  .lightbox {
+    width: min(72rem, 94vw);
+    max-width: none;
+    padding: 0.75rem;
+    border: 1px solid var(--wg-border);
+    border-radius: var(--radius-lg);
+    background: var(--wg-bg);
+    color: var(--wg-text);
+  }
+
+  .lightbox::backdrop {
+    background: rgb(from var(--wg-emphasis) r g b / 0.75);
+  }
+
+  .lightbox__bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding-bottom: 0.5rem;
+  }
+
+  .lightbox__count {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    color: var(--wg-muted);
+  }
+
+  .lightbox__close,
+  .lightbox__nav {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.375rem;
+    border: 1px solid var(--wg-border);
+    border-radius: var(--radius);
+    background: var(--wg-surface);
+    color: var(--wg-ink);
+    cursor: pointer;
+  }
+
+  .lightbox__close:hover,
+  .lightbox__nav:hover {
+    background: var(--wg-border);
+  }
+
+  .lightbox__stage {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .lightbox__nav {
+    flex-shrink: 0;
+    align-self: center;
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+
+  /* One image is enough on a phone; swipe-free navigation lives in the bar. */
+  @media (max-width: 640px) {
+    .lightbox__nav {
+      width: 2rem;
+      height: 2rem;
+    }
+  }
+
+  .flip {
+    transform: rotate(180deg);
+  }
+
+  .slide {
+    flex: 1;
+    min-width: 0;
+    margin: 0;
+  }
+
+  .slide[hidden] {
+    display: none;
+  }
+
+  .slide :global(img) {
+    display: block;
+    width: 100%;
+    max-height: 72vh;
+    object-fit: contain;
+    border-radius: var(--radius);
+    background: var(--wg-surface);
+  }
+
+  .slide figcaption {
+    padding-top: 0.625rem;
+    font-size: 0.875rem;
+    color: var(--wg-muted);
+  }
+</style>

@@ -1,27 +1,276 @@
 ---
 import { getCollection } from 'astro:content';
 import Base from '../../layouts/Base.astro';
-import PageHeader from '../../components/PageHeader.astro';
+import Icon from '../../components/Icon.astro';
 import Note from '../../components/Note.astro';
-import type { Game } from '../../lib/games';
+import DownloadButton from '../../components/DownloadButton.astro';
+import ScreenshotGallery from '../../components/ScreenshotGallery.astro';
+import { getScreenshots } from '../../lib/screenshots';
+import { formatDate, type Game, type Series } from '../../lib/games';
 
 export async function getStaticPaths() {
-  const games = await getCollection('games');
-  return games.map((game) => ({ params: { id: game.id }, props: { game } }));
+  const [games, allSeries] = await Promise.all([getCollection('games'), getCollection('series')]);
+
+  return games.map((game) => ({
+    params: { id: game.id },
+    props: { game, series: allSeries.find((s) => s.data.id === game.data.series)! },
+  }));
 }
 
 interface Props {
   game: Game;
+  series: Series;
 }
 
-const { game } = Astro.props;
+const { game, series } = Astro.props;
+const { title, status, excel, version, description, wds_url } = game.data;
+
+const shots = getScreenshots(game.id, game.data.screenshots);
+const planned = status === 'planned';
+
+const facts = [
+  { label: 'Series', value: series.data.name },
+  version && { label: 'Version', value: `v${version}` },
+  { label: 'Added', value: formatDate(game.data.date_added) },
+  game.data.date_updated && { label: 'Updated', value: formatDate(game.data.date_updated) },
+  { label: 'Screenshots', value: shots.length ? String(shots.length) : '—' },
+].filter((fact): fact is { label: string; value: string } => Boolean(fact));
 ---
 
-<Base title={game.data.title} description={game.data.description}>
-  <PageHeader eyebrow="Companion" title={game.data.title} lead={game.data.description} />
-  <div class="wrap section">
-    <Note tone="draft">
-      Step 3 builds this page: download button, screenshot gallery and companion details.
-    </Note>
+<Base title={title} description={description}>
+  <header class="head" style={`--accent: ${series.data.accent}`}>
+    <div class="wrap">
+      <nav class="crumbs" aria-label="Breadcrumb">
+        <a href="/games/">Games</a>
+        <Icon name="caret-right" size="0.75em" />
+        <a href={`/games/#${series.data.id}`}>{series.data.name}</a>
+      </nav>
+
+      <h1 class="head__title">{title}</h1>
+      {planned && <p class="head__badge">Companion in progress</p>}
+      {description && <p class="lead head__lead">{description}</p>}
+    </div>
+  </header>
+
+  <div class="wrap layout">
+    <main class="main">
+      {
+        shots.length > 0 ? (
+          <>
+            <h2 class="block-title">
+              <Icon name="image" size="1em" /> Inside the companion
+            </h2>
+            <ScreenshotGallery shots={shots} title={title} />
+          </>
+        ) : (
+          <Note tone="info" label="No screenshots">
+            {planned
+              ? 'Screenshots go up once the companion is finished.'
+              : 'This companion has no screenshots yet.'}
+          </Note>
+        )
+      }
+    </main>
+
+    <aside class="side">
+      {
+        planned || !excel ? (
+          <Note tone="draft" label="In progress">
+            This title is listed so you know it is coming. There is nothing to download yet.
+          </Note>
+        ) : (
+          <DownloadButton file={excel} version={version} />
+        )
+      }
+
+      <dl class="facts">
+        {
+          facts.map((fact) => (
+            <div>
+              <dt>{fact.label}</dt>
+              <dd>{fact.value}</dd>
+            </div>
+          ))
+        }
+      </dl>
+
+      <ul class="links">
+        <li>
+          <a href="/how-to-use/">
+            <Icon name="file-text" size="1em" />
+            New to the companions? Read the guide
+          </a>
+        </li>
+        {
+          wds_url && (
+            <li>
+              <a href={wds_url} target="_blank" rel="noopener">
+                <Icon name="external" size="1em" />
+                {series.data.name} at Wargame Design Studio
+              </a>
+            </li>
+          )
+        }
+      </ul>
+    </aside>
   </div>
 </Base>
+
+<style>
+  .head {
+    position: relative;
+    padding-block: 3rem;
+    border-bottom: 1px solid var(--wg-border);
+    background-color: var(--wg-surface);
+    background-image:
+      linear-gradient(to right, rgb(from var(--wg-ink) r g b / 0.04) 1px, transparent 1px),
+      linear-gradient(to bottom, rgb(from var(--wg-ink) r g b / 0.04) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+
+  /* Series colour, so a game page reads as part of its series. */
+  .head::before {
+    content: '';
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: 4px;
+    background: var(--accent);
+  }
+
+  .crumbs {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--wg-faint);
+  }
+
+  .crumbs a {
+    text-decoration: none;
+    color: var(--wg-muted);
+  }
+
+  .crumbs a:hover {
+    color: var(--wg-accent);
+  }
+
+  .head__title {
+    font-size: clamp(1.875rem, 1.2rem + 3vw, 3rem);
+    text-transform: uppercase;
+    text-wrap: balance;
+  }
+
+  .head__badge {
+    display: inline-block;
+    margin-top: 1rem;
+    padding: 0.2rem 0.6rem;
+    border: 1px solid rgb(from var(--wg-highlight) r g b / 0.4);
+    border-radius: var(--radius);
+    background: rgb(from var(--wg-highlight) r g b / 0.1);
+    color: var(--wg-highlight);
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+  }
+
+  .head__lead {
+    margin-top: 1.5rem;
+    max-width: 60ch;
+  }
+
+  .layout {
+    display: grid;
+    gap: 3rem;
+    padding-block: 3.5rem 5rem;
+    align-items: start;
+  }
+
+  @media (min-width: 900px) {
+    .layout {
+      grid-template-columns: minmax(0, 1fr) 20rem;
+    }
+
+    .side {
+      position: sticky;
+      top: calc(var(--nav-h) + 2rem);
+    }
+  }
+
+  .block-title {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.125rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-bottom: 1.25rem;
+    padding-bottom: 0.625rem;
+    border-bottom: 1px solid var(--wg-border);
+    color: var(--wg-muted);
+  }
+
+  .side {
+    display: grid;
+    gap: 1.5rem;
+  }
+
+  .facts {
+    display: grid;
+    gap: 0.5rem;
+    margin: 0;
+    padding: 1.25rem;
+    border: 1px solid var(--wg-border);
+    border-radius: var(--radius);
+    background: var(--wg-surface);
+    font-size: 0.875rem;
+  }
+
+  .facts > div {
+    display: flex;
+    gap: 0.75rem;
+  }
+
+  .facts dt {
+    width: 7rem;
+    flex-shrink: 0;
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--wg-faint);
+    padding-top: 0.2em;
+  }
+
+  .facts dd {
+    margin: 0;
+    color: var(--wg-text);
+  }
+
+  .links {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 0.75rem;
+    font-size: 0.875rem;
+  }
+
+  .links a {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+    color: var(--wg-accent);
+  }
+
+  .links a:hover {
+    color: var(--wg-accent-strong);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+</style>

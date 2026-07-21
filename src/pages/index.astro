@@ -1,6 +1,8 @@
 ---
 import Base from '../layouts/Base.astro';
 import Icon from '../components/Icon.astro';
+import ScreenshotStrip, { type StripItem } from '../components/ScreenshotStrip.astro';
+import { getScreenshots } from '../lib/screenshots';
 import { getGamesByDate, getGamesBySeries, formatDate, lastTouched } from '../lib/games';
 
 const games = await getGamesByDate();
@@ -8,6 +10,22 @@ const groups = await getGamesBySeries();
 
 const available = games.filter((game) => game.data.status === 'available');
 const newest = available[0];
+
+// Every screenshot of every published companion, newest game first.
+const seriesById = new Map(groups.map(({ series }) => [series.data.id, series]));
+const stripItems: StripItem[] = available.flatMap((game) => {
+  const series = seriesById.get(game.data.series);
+  if (!series) return [];
+
+  return getScreenshots(game.id, game.data.screenshots).map((shot) => ({
+    image: shot.image,
+    caption: shot.caption,
+    gameTitle: game.data.title,
+    gameId: game.id,
+    seriesName: series.data.name,
+    accent: series.data.accent,
+  }));
+});
 
 const stats = [
   { icon: 'layers', tone: 'olive', label: 'Companions ready', value: String(available.length) },
@@ -64,6 +82,8 @@ const stats = [
       }
     </dl>
   </section>
+
+  <ScreenshotStrip items={stripItems} />
 </Base>
 
 <style>

@@ -1,0 +1,105 @@
+---
+import { statSync } from 'node:fs';
+import Icon from './Icon.astro';
+
+interface Props {
+  /** File name under public/downloads/companions/. */
+  file: string;
+  label?: string;
+  /** Companion version, shown next to the size. */
+  version?: string;
+}
+
+const { file, label = 'Download the companion', version } = Astro.props;
+
+const href = `/downloads/companions/${file}`;
+
+/**
+ * File size is read from disk at build time — no hand-maintained numbers that
+ * silently go stale when the spreadsheet is updated. A missing file renders a
+ * disabled button instead of failing the build, so a game entry can be added
+ * before its download is uploaded.
+ */
+function readSize(): number | null {
+  try {
+    return statSync(new URL(`../../public${href}`, import.meta.url)).size;
+  } catch {
+    return null;
+  }
+}
+
+/** KB below a megabyte — "0.00 MB" tells the reader nothing. */
+function formatSize(bytes: number): string {
+  return bytes < 1024 * 1024
+    ? `${Math.max(1, Math.round(bytes / 1024))} KB`
+    : `${(bytes / 1024 / 1024).toFixed(1)} MB`;
+}
+
+const bytes = readSize();
+const size = bytes === null ? null : formatSize(bytes);
+const extension = file.split('.').pop()?.toUpperCase() ?? 'FILE';
+---
+
+{
+  bytes === null ? (
+    <div class="dl dl--missing">
+      <Icon name="download" size="1.25rem" />
+      <div>
+        <strong>Download not uploaded yet</strong>
+        <span class="dl__meta">{file}</span>
+      </div>
+    </div>
+  ) : (
+    <a class="dl" href={href} download>
+      <Icon name="download" size="1.25rem" />
+      <div>
+        <strong>{label}</strong>
+        <span class="dl__meta">
+          {extension} · {size}
+          {version && ` · v${version}`}
+        </span>
+      </div>
+    </a>
+  )
+}
+
+<style>
+  .dl {
+    display: flex;
+    align-items: center;
+    gap: 0.875rem;
+    width: 100%;
+    padding: 1rem 1.25rem;
+    border: 1px solid transparent;
+    border-radius: var(--radius);
+    background: var(--wg-accent);
+    color: var(--wg-on-accent);
+    text-decoration: none;
+    transition: background-color 0.18s ease;
+  }
+
+  .dl:hover {
+    background: var(--wg-accent-strong);
+  }
+
+  .dl strong {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .dl__meta {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    opacity: 0.85;
+  }
+
+  .dl--missing {
+    background: var(--wg-surface);
+    border-color: var(--wg-border);
+    color: var(--wg-muted);
+    cursor: not-allowed;
+  }
+</style>
