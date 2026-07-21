@@ -1,7 +1,12 @@
 /** Site-wide constants. Imported by layouts and pages — no magic strings elsewhere. */
 
 export const SITE_URL = 'https://warbox.org';
-export const SITE_TITLE = 'Warbox';
+
+/** The wordmark is set in two parts so the header can style them differently. */
+export const SITE_OWNER = "Almandine's";
+export const SITE_NAME = 'Warbox';
+export const SITE_TITLE = `${SITE_OWNER} ${SITE_NAME}`;
+
 export const SITE_TAGLINE = 'Companions for computer wargames';
 export const SITE_DESCRIPTION =
   'Fan-made Game Companion spreadsheets, reference material and downloads for Wargame Design Studio titles — Panzer Campaigns, Squad Battles, Sword & Siege and more.';

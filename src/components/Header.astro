@@ -1,6 +1,6 @@
 ---
 import Icon from './Icon.astro';
-import { NAV, SITE_TITLE } from '../consts';
+import { NAV, SITE_OWNER, SITE_NAME, SITE_TITLE } from '../consts';
 
 const path = Astro.url.pathname;
 const isActive = (href: string) => (href === '/' ? path === '/' : path.startsWith(href));
@@ -8,9 +8,12 @@ const isActive = (href: string) => (href === '/' ? path === '/' : path.startsWit
 
 <header class="nav">
   <div class="wrap nav__inner">
-    <a class="brand" href="/">
+    <a class="brand" href="/" aria-label={SITE_TITLE}>
       <Icon name="hexagon" size="1.5rem" class="brand__mark" />
-      <span class="brand__text">{SITE_TITLE}</span>
+      <span class="brand__text">
+        <span class="brand__owner">{SITE_OWNER}</span>
+        <span class="brand__name">{SITE_NAME}</span>
+      </span>
     </a>
 
     <nav class="nav__links" aria-label="Main">
@@ -81,12 +84,28 @@ const isActive = (href: string) => (href === '/' ? path === '/' : path.startsWit
     color: var(--wg-highlight);
   }
 
+  /* Two-part wordmark: the owner reads as a small line of stencil above the
+     name, which keeps the full title in the header without crowding the nav. */
   .brand__text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1;
+    text-transform: uppercase;
+  }
+
+  .brand__owner {
+    font-family: var(--font-mono);
+    font-size: 0.5625rem;
+    letter-spacing: 0.22em;
+    color: var(--wg-muted);
+    margin-bottom: 0.15rem;
+  }
+
+  .brand__name {
     font-family: var(--font-display);
     font-weight: 700;
     font-size: 1.375rem;
     letter-spacing: 0.12em;
-    text-transform: uppercase;
     color: var(--wg-ink);
   }
 

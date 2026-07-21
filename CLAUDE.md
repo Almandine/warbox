@@ -1,6 +1,6 @@
 # Warbox.org
 
-Norbi's wargaming website aimed at an international audience. Working language with Norbi is Hungarian (personal project), but the site itself is in English. CLAUDE.md files are always written in English (standing rule).
+**Almandine's Warbox** — Norbi's wargaming website aimed at an international audience. The site name is "Almandine's Warbox"; the domain is warbox.org. Set once in `src/consts.ts` (`SITE_OWNER` / `SITE_NAME` / `SITE_TITLE`) — never hardcode it in a component. Working language with Norbi is Hungarian (personal project), but the site itself is in English. CLAUDE.md files are always written in English (standing rule).
 
 ## Domain
 

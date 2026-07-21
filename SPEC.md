@@ -2,6 +2,10 @@
 
 Agreed with Norbi on 2026-07-19 (interview session). This is the source of truth for what the site is; update it when decisions change.
 
+## Name
+
+The site is called **Almandine's Warbox** (decided 2026-07-21) — "Almandine" is Norbi's handle, and the domain stays `warbox.org`. The header sets it as a two-part wordmark; `SITE_OWNER` / `SITE_NAME` / `SITE_TITLE` in `src/consts.ts` are the single source for it.
+
 ## Purpose
 
 English-language static website about computer wargames. Initial goal: share Norbi's fan-made companion materials for Wargame Design Studio (WDS) games — Game Companion Excel spreadsheets and downloadable graphics (custom Panzer Campaigns User Manual cover PDF). Will grow gradually: more companions, articles written by Norbi (e.g. using AI to play these games, after action reports), later possibly other games and a curated WDS link collection.
