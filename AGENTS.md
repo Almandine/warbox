@@ -9,13 +9,12 @@
   straight to the GitHub Pages IPs `185.199.108-111.153`. Nothing passes through the Cloudflare proxy,
   so edge features (auto-injected analytics, caching, WAF) do not apply. Verified 2026-07-22.
 
-## Hosting (current state)
+## Name
 
-- GitHub Pages: <https://github.com/Almandine/Almandine.github.io>
-- That repo currently holds only a practice HTML page ("Egy szuper oldal") — **deletable** once the real site is deployed; serves as a placeholder until then
-- GitHub user/org: `Almandine`
-- Domain → Cloudflare → GitHub Pages chain verified working (2026-07-18)
-- The site itself is not deployed yet — it is built in this folder and pushed to a new `Almandine/warbox` repo at the deployment step
+**Almandine's Warbox.** Norbi's preferred name was *Almandine's War Room*; "Warbox" was chosen
+because warbox.org was the domain actually available. **Do not "correct" the site name to War
+Room** — the mismatch is deliberate. The hero artwork he supplied still carries the old wording;
+he is redrawing it.
 
 ## Project specification
 
@@ -44,16 +43,36 @@ The repo root **is** the site — `npm run dev` (port 4321), `npm run build`.
 - `public/CNAME` keeps the custom domain sticky across deploys. DNS lives at Cloudflare and is already correct — do not touch it.
 - The old `Almandine/Almandine.github.io` repo released the domain during the cut-over; it is now free to archive.
 
-## Status / next steps
+## Status
 
-v1 is built and deployed. All pages exist and work: home (hero, stat band, Latest updates, screenshot strip), `/games/` + per-game pages (download, gallery with lightbox), How to use, Manual cover, About, Contact, `/articles/` + RSS, 404.
+**MVP is live** (2026-07-22). Real content: two Modern Campaigns companions (Danube Front '85,
+Middle East '67) with five screenshots each, and the Panzer Campaigns manual cover under
+`/artwork/`. Integrations all working: Formspree contact form, Cloudflare Email Routing, Cloudflare
+Web Analytics.
 
-**Everything user-visible is still placeholder content** — seed games, generated screenshots, placeholder `.xlsx` files, seed articles, draft copy on the static pages. Every such page carries a visible DRAFT note. Replacing them is a data edit, never a code edit.
+No articles are published yet, so the Articles item is hidden from the nav automatically. The
+collection, reading layout, RSS feed and `_template.md` are all in place for the first one.
 
-**Integrations are all live** (2026-07-22): Formspree contact form (`FORMSPREE_ID`, delivering to
-Norbi's Gmail — switch to contact@warbox.org in the Formspree dashboard, no code change),
-Cloudflare Email Routing, and Cloudflare Web Analytics (`CF_ANALYTICS_TOKEN`, manual snippet).
+## Open items
 
-Owner (Norbi) still to do: the real companion files, screenshots and copy; optionally archive the old
-`Almandine/Almandine.github.io` repo. Optional nicety not built: a `/contact/thanks/` page so
-Formspree redirects back to the site after a submission instead of showing its own branded page.
+Carried forward deliberately — do not quietly drop these.
+
+1. **Hero image blocked on a name mismatch.** `inbox/main_image.png` reads "Almandine's War Room",
+   the site is "Almandine's Warbox". Norbi is redrawing it. Nothing goes on the home page until the
+   wording matches — see the Name section above.
+2. **The manual cover carries WDS branding.** `/artwork/` publishes a cover headed "Wargame Design
+   Studio · Panzer Campaigns · User Manual", set in their own styling. It is fan art for a game
+   Norbi owns, non-commercial, and the page states it is not official — but it is another company's
+   name and trade dress. Norbi was told; he may want to clear it with WDS. Raise it again if the
+   artwork section grows.
+3. **Screenshots show Hungarian dates.** The scenario tracker images render dates as
+   `10 június 1985`, which reads as a bug on an English-language site. Norbi will re-export them
+   with an English locale; replace the files in `src/assets/screenshots/<game-id>/` when he does.
+4. **Companion versions are unset.** Both game YAMLs omit `version:`. The Danube Front source file
+   was named `v06`; Middle East had none. Left blank rather than guessed — ask Norbi.
+5. **Draft copy remains** on How to use, About and Contact, each carrying a visible DRAFT note. The
+   personal passages in About are Norbi's to supply; do not invent biography.
+6. **Not built, offered and unanswered:** a `/contact/thanks/` page so Formspree redirects back to
+   the site instead of showing its own branded page.
+7. **Optional:** archive the old `Almandine/Almandine.github.io` repo, now that it has released the
+   domain.
