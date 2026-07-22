@@ -50,4 +50,10 @@ v1 is built and deployed. All pages exist and work: home (hero, stat band, Lates
 
 **Everything user-visible is still placeholder content** — seed games, generated screenshots, placeholder `.xlsx` files, seed articles, draft copy on the static pages. Every such page carries a visible DRAFT note. Replacing them is a data edit, never a code edit.
 
-Owner (Norbi) still to do: Formspree account (→ `FORMSPREE_ID`), Cloudflare Email Routing (contact@warbox.org), Cloudflare Analytics token (→ `CF_ANALYTICS_TOKEN`), real companion files, screenshots and copy.
+**Integrations are all live** (2026-07-22): Formspree contact form (`FORMSPREE_ID`, delivering to
+Norbi's Gmail — switch to contact@warbox.org in the Formspree dashboard, no code change),
+Cloudflare Email Routing, and Cloudflare Web Analytics (`CF_ANALYTICS_TOKEN`, manual snippet).
+
+Owner (Norbi) still to do: the real companion files, screenshots and copy; optionally archive the old
+`Almandine/Almandine.github.io` repo. Optional nicety not built: a `/contact/thanks/` page so
+Formspree redirects back to the site after a submission instead of showing its own branded page.
