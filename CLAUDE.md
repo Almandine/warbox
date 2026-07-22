@@ -33,14 +33,19 @@ The repo root **is** the site — `npm run dev` (port 4321), `npm run build`.
 - `samples/` holds two design references and is **not** part of the site: `sample_website.html` (structure and interaction language) and `ChatGPT_prototype/` (a separate full implementation, source of the colour palette). `samples/ChatGPT_prototype/node_modules/` is large and git-ignored.
 - Adding a page, route, or content collection: <https://docs.astro.build/en/guides/routing/>, <https://docs.astro.build/en/guides/content-collections/>
 
+## Deployment
+
+**Live at <https://warbox.org> since 2026-07-22.** Repo: `Almandine/warbox` (public). Every push to `main` rebuilds and republishes via `.github/workflows/deploy.yml` (~2 min).
+
+- GitHub access: the **`alm-vops`** account is Norbi's AI-facing GitHub identity and has **Write** on this repo only. `Almandine` is his personal account and keeps admin — Pages, domain and secrets are his. Do not authenticate as `Almandine`.
+- Pages source must be **GitHub Actions** (not "Deploy from a branch"). The `deploy` job fails with a 404 "Ensure GitHub Pages has been enabled" until it is set.
+- `public/CNAME` keeps the custom domain sticky across deploys. DNS lives at Cloudflare and is already correct — do not touch it.
+- The old `Almandine/Almandine.github.io` repo released the domain during the cut-over; it is now free to archive.
+
 ## Status / next steps
 
-Building the site step by step (started 2026-07-21). Done so far:
+v1 is built and deployed. All pages exist and work: home (hero, stat band, Latest updates, screenshot strip), `/games/` + per-game pages (download, gallery with lightbox), How to use, Manual cover, About, Contact, `/articles/` + RSS, 404.
 
-1. Astro scaffold + design system (tokens, Base layout, Header/Footer, home hero and stat band)
-2. Games data layer (content collections, seed content) + `/games/` catalog page
-3. Light/paper repalette from the ChatGPT prototype; all colours token-derived
+**Everything user-visible is still placeholder content** — seed games, generated screenshots, placeholder `.xlsx` files, seed articles, draft copy on the static pages. Every such page carries a visible DRAFT note. Replacing them is a data edit, never a code edit.
 
-Remaining: game subpage with download button and screenshot gallery (lightbox, horizontal snap gallery) → the static pages (How to use, Manual cover, About, Contact) → Articles + RSS + Latest updates → deployment per BLUEPRINT.md.
-
-Owner (Norbi) still to do: Formspree account, Cloudflare Email Routing (contact@warbox.org), Cloudflare Analytics toggle, create the `warbox` repo.
+Owner (Norbi) still to do: Formspree account (→ `FORMSPREE_ID`), Cloudflare Email Routing (contact@warbox.org), Cloudflare Analytics token (→ `CF_ANALYTICS_TOKEN`), real companion files, screenshots and copy.

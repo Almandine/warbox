@@ -1,5 +1,6 @@
 ---
 import { statSync } from 'node:fs';
+import { join } from 'node:path';
 import Icon from './Icon.astro';
 
 interface Props {
@@ -21,10 +22,14 @@ const file = href.split('/').pop() ?? href;
  * silently go stale when the spreadsheet is updated. A missing file renders a
  * disabled button instead of failing the build, so a game entry can be added
  * before its download is uploaded.
+ *
+ * Resolved from the working directory, not from `import.meta.url`: in a build
+ * this component is bundled into a chunk elsewhere on disk, so a path relative
+ * to the module silently misses and every download reads as missing.
  */
 function readSize(): number | null {
   try {
-    return statSync(new URL(`../../public${href}`, import.meta.url)).size;
+    return statSync(join(process.cwd(), 'public', href)).size;
   } catch {
     return null;
   }

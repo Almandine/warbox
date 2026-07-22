@@ -124,13 +124,19 @@ Decision history, so nobody flips it back by accident:
 
 ## Deployment (do in this order, each step verifiable)
 
-1. `git init` + first commit (include `.gitignore` from scaffold: `node_modules`, `dist`).
-2. `gh repo create Almandine/warbox --public --source . --push`.
-3. Add `.github/workflows/deploy.yml` using the official `withastro/action@v3` (+ `actions/deploy-pages@v4`) — copy the canonical example from Astro's "Deploy to GitHub Pages" docs. Push; verify the Actions run is green.
-4. Repo Settings → Pages → Source: **GitHub Actions**. Verify `https://<something>.github.io/...` serves (or skip straight to domain).
-5. Custom domain cut-over: on the **old** `Almandine.github.io` repo, remove the custom domain setting; on `warbox` repo Settings → Pages set custom domain `warbox.org` + enforce HTTPS. `public/CNAME` keeps it sticky across deploys. DNS at Cloudflare is already correct — do not touch it.
-6. Verify `https://warbox.org` serves the new site; then the old repo may be archived/deleted (Norbi's call).
-7. Cloudflare Web Analytics: Norbi enables it in the CF dashboard; paste the beacon `<script>` into Base.astro (there is a marked placeholder comment).
+**Done on 2026-07-22 — the site is live at <https://warbox.org>.** Kept as a record of what actually happened, including where this plan was wrong.
+
+1. `git init` + first commit. ✔
+2. Repo `Almandine/warbox` created on github.com, then `git remote add` + `git push -u origin main`. ✔
+   - `gh repo create` was not used: `gh` was installed but unauthenticated, and Git Credential Manager held a token for **`alm-vops`** (Norbi's AI-facing GitHub account) rather than `Almandine`. Rather than swap credentials, `alm-vops` was given **Write** on this repo only — and the invitation has to be *accepted* as `alm-vops` or the push keeps failing with 403.
+3. `.github/workflows/deploy.yml`. ✔ — **the versions in the old plan were stale.** Current canonical set from Astro's deploy guide: `actions/checkout@v7`, `withastro/action@v6`, `actions/deploy-pages@v5`. Check the docs rather than trusting this file.
+4. Settings → Pages → Source: **GitHub Actions**. ✔ — **do this before the first deploy.** Until it is set, `build` succeeds and `deploy` fails with `Failed to create deployment (status: 404) … Ensure GitHub Pages has been enabled`. Re-running the old run is not enough if the setting changed after it started; start a fresh run.
+5. Custom domain cut-over: cleared the custom domain on the **old** `Almandine.github.io` repo first, then let `public/CNAME` claim it on `warbox`, then enabled Enforce HTTPS. ✔ DNS at Cloudflare untouched.
+   - Do the release **first**. While the old repo holds the domain, `almandine.github.io/<anything>` 301s to `warbox.org`, which makes it look as if the new repo is already serving when it is not.
+6. Verified `https://warbox.org`. ✔ The old repo is now free to archive (Norbi's call).
+7. Cloudflare Web Analytics: still pending. Norbi enables it in the CF dashboard, then `CF_ANALYTICS_TOKEN` in `src/consts.ts` — `Base.astro` already renders the beacon when it is non-null.
+
+**Verify the built output, not the dev server.** The first live deploy shipped a bug the dev server could not show: `DownloadButton` resolved the file with `import.meta.url`, which points into a bundled chunk in a build, so every download rendered as "Not uploaded yet". Anything that touches the filesystem at build time must be checked in `dist/`.
 
 ## Runbook: adding a new game companion (put this in README.md too)
 
