@@ -71,4 +71,31 @@ const articles = defineCollection({
     }),
 });
 
-export const collections = { games, series, articles };
+/**
+ * Non-companion downloads: manual covers, and whatever image-ish things follow.
+ * Files live in public/downloads/artwork/<id>/, previews in
+ * src/assets/artwork/<id>/. Adding one is a data edit, like a game.
+ */
+const artwork = defineCollection({
+  loader: file('src/data/artwork.yaml'),
+  schema: z.object({
+    id: z.string(),
+    title: z.string(),
+    description: z.string(),
+    date_added: z.coerce.date(),
+    /** Preview image file name under src/assets/artwork/<id>/. */
+    preview: z.string().optional(),
+    /** Download formats, in the order they should be offered. */
+    files: z
+      .array(
+        z.object({
+          file: z.string(),
+          label: z.string(),
+          note: z.string().optional(),
+        }),
+      )
+      .default([]),
+  }),
+});
+
+export const collections = { games, series, articles, artwork };

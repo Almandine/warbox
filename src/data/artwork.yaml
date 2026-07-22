@@ -1,0 +1,19 @@
+# Non-companion downloads — covers, and any image-ish thing that follows.
+#
+# To add one:
+#   1. put the downloadable files in public/downloads/artwork/<id>/
+#   2. put a preview image in src/assets/artwork/<id>/
+#   3. add an entry here
+# A file that is not there yet renders as a disabled button, not a broken link.
+
+- id: pc-manual-cover
+  title: Panzer Campaigns manual cover
+  description: >-
+    A custom front page for the Panzer Campaigns user manual, drawn for people
+    who print theirs. Free to download and print.
+  date_added: 2026-07-22
+  # preview: cover.png
+  files:
+    - file: panzer-campaigns-manual-cover.pdf
+      label: PDF — print ready
+      note: The one to send to a print shop.

@@ -36,7 +36,7 @@ export interface NavItem {
 export const NAV: NavItem[] = [
   { label: 'Games', href: '/games/' },
   { label: 'How to use', href: '/how-to-use/' },
-  { label: 'Manual cover', href: '/manual-cover/' },
+  { label: 'Artwork', href: '/artwork/' },
   { label: 'About', href: '/about/' },
   { label: 'Contact', href: '/contact/' },
 ];

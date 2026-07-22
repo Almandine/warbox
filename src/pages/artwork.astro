@@ -1,0 +1,160 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import PageHeader from '../components/PageHeader.astro';
+import Note from '../components/Note.astro';
+import DownloadButton from '../components/DownloadButton.astro';
+import { getArtwork, getPreview } from '../lib/artwork';
+import { formatDate } from '../lib/games';
+import { WDS_URL } from '../consts';
+
+const items = await getArtwork();
+---
+
+<Base
+  title="Artwork"
+  description="Free artwork for Wargame Design Studio games — manual covers and other printable extras."
+>
+  <PageHeader
+    eyebrow="Downloads"
+    title="Artwork"
+    icon="image"
+    lead="Printable extras that are not companions: covers, and whatever else seems worth drawing."
+  />
+
+  <div class="wrap section">
+    {
+      items.length === 0 ? (
+        <Note tone="info" label="Empty">
+          Nothing here yet.
+        </Note>
+      ) : (
+        items.map((item) => {
+          const preview = getPreview(item.data.id, item.data.preview);
+
+          return (
+            <article class="item">
+              <div class="item__media">
+                {preview ? (
+                  <Image
+                    src={preview}
+                    alt={item.data.title}
+                    widths={[500, 1000]}
+                    sizes="(min-width: 900px) 460px, 100vw"
+                    loading="lazy"
+                  />
+                ) : (
+                  <div class="item__placeholder">
+                    <span class="meta">Preview to come</span>
+                  </div>
+                )}
+              </div>
+
+              <div class="item__body">
+                <h2 class="item__title">{item.data.title}</h2>
+                <p class="item__date meta">Added {formatDate(item.data.date_added)}</p>
+                <p class="item__desc">{item.data.description}</p>
+
+                <div class="item__files">
+                  {item.data.files.map((entry) => (
+                    <div>
+                      <DownloadButton
+                        href={`/downloads/artwork/${item.data.id}/${entry.file}`}
+                        label={entry.label}
+                        variant="subtle"
+                      />
+                      {entry.note && <p class="item__note">{entry.note}</p>}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </article>
+          );
+        })
+      )
+    }
+
+    <div class="prose terms">
+      <h2>What you may do with it</h2>
+      <p>
+        Print it, share it, put it in a binder. It is fan art for a game series made by other
+        people: do not sell it, and do not present it as official material from
+        <a href={WDS_URL} target="_blank" rel="noopener">Wargame Design Studio</a>.
+      </p>
+    </div>
+  </div>
+</Base>
+
+<style>
+  .item {
+    display: grid;
+    gap: 2rem;
+    align-items: start;
+  }
+
+  @media (min-width: 900px) {
+    .item {
+      grid-template-columns: minmax(0, 28rem) minmax(0, 1fr);
+      gap: 3rem;
+    }
+  }
+
+  .item + .item {
+    margin-top: 4rem;
+    padding-top: 4rem;
+    border-top: 1px solid var(--wg-border);
+  }
+
+  .item__media :global(img) {
+    display: block;
+    width: 100%;
+    border: 1px solid var(--wg-border);
+    border-radius: var(--radius);
+  }
+
+  .item__placeholder {
+    display: grid;
+    place-items: center;
+    aspect-ratio: 3 / 4;
+    border: 1px dashed var(--wg-border);
+    border-radius: var(--radius);
+    background-image:
+      linear-gradient(to right, rgb(from var(--wg-ink) r g b / 0.05) 1px, transparent 1px),
+      linear-gradient(to bottom, rgb(from var(--wg-ink) r g b / 0.05) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+
+  .item__title {
+    font-size: 1.5rem;
+    text-transform: uppercase;
+  }
+
+  .item__date {
+    margin-top: 0.5rem;
+  }
+
+  .item__desc {
+    margin-top: 1rem;
+    max-width: 55ch;
+    color: var(--wg-muted);
+  }
+
+  .item__files {
+    display: grid;
+    gap: 1.25rem;
+    margin-top: 2rem;
+    max-width: 26rem;
+  }
+
+  .item__note {
+    margin-top: 0.5rem;
+    font-size: 0.8125rem;
+    color: var(--wg-muted);
+  }
+
+  .terms {
+    margin-top: 4rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--wg-border);
+  }
+</style>
