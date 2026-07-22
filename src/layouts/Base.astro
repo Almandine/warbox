@@ -42,10 +42,15 @@ const canonical = new URL(Astro.url.pathname, Astro.site ?? 'https://warbox.org'
     <meta name="twitter:card" content="summary_large_image" />
 
     {
-      /* Cloudflare Web Analytics — cookie-less. Token arrives once Norbi enables it in the CF dashboard. */
+      /* Cloudflare Web Analytics — cookie-less, no consent banner needed.
+         Installed by hand rather than auto-injected at the edge, because
+         warbox.org resolves straight to GitHub Pages (DNS-only, not proxied),
+         so Cloudflare never sees the response. `is:inline` keeps Astro from
+         touching a third-party tag. */
       CF_ANALYTICS_TOKEN && (
         <script
-          defer
+          is:inline
+          type="module"
           src="https://static.cloudflareinsights.com/beacon.min.js"
           data-cf-beacon={`{"token": "${CF_ANALYTICS_TOKEN}"}`}
         />

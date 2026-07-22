@@ -5,7 +5,9 @@
 ## Domain
 
 - **warbox.org** — registered 2026-07-18, 1 years, auto-renew enabled
-- Registrar and DNS: **Cloudflare** (apex resolves to Cloudflare proxy IPs; HTTPS works)
+- Registrar and DNS: **Cloudflare**, but the records are **DNS-only (grey cloud)** — the apex resolves
+  straight to the GitHub Pages IPs `185.199.108-111.153`. Nothing passes through the Cloudflare proxy,
+  so edge features (auto-injected analytics, caching, WAF) do not apply. Verified 2026-07-22.
 
 ## Hosting (current state)
 

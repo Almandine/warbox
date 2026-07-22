@@ -18,8 +18,13 @@ export const SITE_DESCRIPTION =
  */
 export const FORMSPREE_ID: string | null = 'xeeyzyrg';
 
-/** Cloudflare Web Analytics beacon token. Null until enabled in the CF dashboard. */
-export const CF_ANALYTICS_TOKEN: string | null = null;
+/**
+ * Cloudflare Web Analytics beacon token. Public by nature — it ships in the HTML.
+ * Installed manually (CF dashboard: "Enable with JS Snippet installation") because
+ * the domain is DNS-only, so Cloudflare cannot auto-inject it. Set to null to
+ * remove analytics entirely.
+ */
+export const CF_ANALYTICS_TOKEN: string | null = '2619cc29fa474f319ea7b50749e0c9c3';
 
 export const WDS_URL = 'https://wargameds.com';
 
