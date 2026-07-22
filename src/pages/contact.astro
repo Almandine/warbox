@@ -77,6 +77,9 @@ const live = Boolean(action);
         <textarea name="message" rows="8" required disabled={!live}></textarea>
       </label>
 
+      {/* Formspree reads these: the subject of the notification mail Norbi receives. */}
+      <input type="hidden" name="_subject" value="Warbox contact form" />
+
       {/* Honeypot: bots fill it in, people never see it. */}
       <input class="form__honeypot" type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" />
 

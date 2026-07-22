@@ -12,10 +12,11 @@ export const SITE_DESCRIPTION =
   'Fan-made Game Companion spreadsheets, reference material and downloads for Wargame Design Studio titles — Panzer Campaigns, Squad Battles, Sword & Siege and more.';
 
 /**
- * Formspree form id for the contact page. Null until the account exists —
- * the contact form renders disabled with a notice while this is null.
+ * Formspree form id for the contact page. Public by nature — it ships in the
+ * HTML. Set to null to disable the form (it then renders read-only with a note).
+ * Delivery address is configured in Formspree, not here.
  */
-export const FORMSPREE_ID: string | null = null;
+export const FORMSPREE_ID: string | null = 'xeeyzyrg';
 
 /** Cloudflare Web Analytics beacon token. Null until enabled in the CF dashboard. */
 export const CF_ANALYTICS_TOKEN: string | null = null;
