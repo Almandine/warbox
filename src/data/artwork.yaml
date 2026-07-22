@@ -7,13 +7,17 @@
 # A file that is not there yet renders as a disabled button, not a broken link.
 
 - id: pc-manual-cover
-  title: Panzer Campaigns manual cover
+  title: Panzer Campaigns user manual cover
   description: >-
-    A custom front page for the Panzer Campaigns user manual, drawn for people
-    who print theirs. Free to download and print.
+    A custom front page for the Panzer Campaigns user manual, for anyone who
+    prints theirs and would rather it looked like it belongs on the shelf next
+    to the boxed games. Free to download and print.
   date_added: 2026-07-22
-  # preview: cover.png
+  preview: cover.jpg
   files:
     - file: panzer-campaigns-manual-cover.pdf
       label: PDF — print ready
-      note: The one to send to a print shop.
+      note: The one to send to a print shop, or to print at home at full size.
+    - file: panzer-campaigns-manual-cover.jpg
+      label: JPG — screen
+      note: For a quick look, or a forum post.

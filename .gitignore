@@ -22,3 +22,6 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# Norbi drops raw source files here; they are copied into the site, not tracked
+inbox/

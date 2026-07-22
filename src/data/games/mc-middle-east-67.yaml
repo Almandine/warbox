@@ -1,0 +1,26 @@
+title: "Modern Campaigns: Middle East '67"
+series: modern-campaigns
+status: available
+excel: mc-middle-east-67.xlsx
+date_added: 2026-07-22
+wds_url: https://wargameds.com/modern-campaigns/
+description: >-
+  The same companion built for the Six-Day War title: every scenario in a
+  sortable tracker with space to log your results, the scenario descriptions in
+  full, and the terrain, weather and combat reference tables collected on one
+  sheet.
+screenshots:
+  - file: scenario-tracker.jpg
+    caption: >-
+      Scenario tracker — every scenario with date, location, size and turn
+      count, plus columns to log your own results.
+  - file: descriptions.jpg
+    caption: The full scenario descriptions, readable without loading the game.
+  - file: game-reference.jpg
+    caption: >-
+      Game reference — terrain and weather modifiers, fortifications, and the
+      combat mechanics rules in one place.
+  - file: keyboard-shortcuts.jpg
+    caption: Every keyboard shortcut, grouped by what it does.
+  - file: menu-reference.jpg
+    caption: Menu reference — what each menu item does, without hunting through the manual.

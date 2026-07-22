@@ -2,7 +2,6 @@
 import Base from '../../layouts/Base.astro';
 import PageHeader from '../../components/PageHeader.astro';
 import GameCard from '../../components/GameCard.astro';
-import Note from '../../components/Note.astro';
 import Icon from '../../components/Icon.astro';
 import { getGamesBySeries, assertSeriesReferencesResolve } from '../../lib/games';
 
@@ -24,15 +23,10 @@ const available = groups.reduce(
     eyebrow={`${available} of ${total} companions ready`}
     title="Games"
     icon="map"
-    lead="Companion spreadsheets grouped by Wargame Design Studio series. Titles marked as in progress are listed so you know they are coming."
+    lead="Companion spreadsheets for Wargame Design Studio titles, grouped by series. Free, no account, no strings."
   />
 
   <div class="wrap section">
-    <Note tone="draft">
-      The catalog below is seeded with example entries and generated screenshots while the real
-      companions are prepared.
-    </Note>
-
     {
       groups.map(({ series, games }) => (
         <section class="group" id={series.data.id} style={`--accent: ${series.data.accent}`}>

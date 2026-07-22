@@ -1,0 +1,26 @@
+title: "Modern Campaigns: Danube Front '85"
+series: modern-campaigns
+status: available
+excel: mc-danube-front-85.xlsx
+date_added: 2026-07-22
+wds_url: https://wargameds.com/modern-campaigns/
+description: >-
+  All 96 scenarios in one sortable table, with the reference material the manual
+  buries: terrain and weather modifiers, fortification values, and the combat
+  rules that actually decide a fight. There is a play log built in, so you can
+  track which scenarios you have finished and how they went.
+screenshots:
+  - file: scenarios.jpg
+    caption: >-
+      Scenario tracker — all 96 scenarios with date, location, size, turn count
+      and recommended side, plus columns to log your own results.
+  - file: descriptions.jpg
+    caption: The full scenario descriptions, readable without loading the game.
+  - file: game-reference.jpg
+    caption: >-
+      Game reference — terrain and weather modifiers, fortifications, and the
+      combat mechanics rules in one place.
+  - file: hotkeys.jpg
+    caption: Every keyboard shortcut, grouped by what it does.
+  - file: menu-items.jpg
+    caption: Menu reference — what each menu item does, without hunting through the manual.
