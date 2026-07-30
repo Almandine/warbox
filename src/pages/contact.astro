@@ -3,7 +3,7 @@ import Base from '../layouts/Base.astro';
 import PageHeader from '../components/PageHeader.astro';
 import Note from '../components/Note.astro';
 import Icon from '../components/Icon.astro';
-import { FORMSPREE_ID } from '../consts';
+import { FORMSPREE_ID, SITE_URL } from '../consts';
 
 // The form posts straight to Formspree. Until the account exists the fields are
 // rendered disabled rather than hidden, so the page still shows what it will do.
@@ -77,8 +77,10 @@ const live = Boolean(action);
         <textarea name="message" rows="8" required disabled={!live}></textarea>
       </label>
 
-      {/* Formspree reads these: the subject of the notification mail Norbi receives. */}
+      {/* Formspree reads these: the subject of the notification mail Norbi receives,
+          and the page to redirect to once the message is sent. */}
       <input type="hidden" name="_subject" value="Warbox contact form" />
+      <input type="hidden" name="_next" value={`${SITE_URL}/contact/thanks/`} />
 
       {/* Honeypot: bots fill it in, people never see it. */}
       <input class="form__honeypot" type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" />

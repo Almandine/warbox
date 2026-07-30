@@ -1,0 +1,39 @@
+---
+import Base from '../../layouts/Base.astro';
+import Icon from '../../components/Icon.astro';
+---
+
+<Base title="Message sent" description="Your message has been sent.">
+  <div class="wrap thanks">
+    <Icon name="check" size="2.5rem" class="thanks__icon" />
+    <h1>Message received</h1>
+    <div class="section-rule"></div>
+    <p class="thanks__text">
+      Thanks for writing in. If you left an email address, expect a reply once it's been read —
+      otherwise the message is already on its way to the mailbox.
+    </p>
+    <a class="btn" href="/">Return to base <Icon name="arrow-right" size="1.1em" /></a>
+  </div>
+</Base>
+
+<style>
+  .thanks {
+    padding-block: 7rem;
+    max-width: 42rem;
+  }
+
+  .thanks__icon {
+    color: var(--wg-accent-strong);
+  }
+
+  .thanks h1 {
+    font-size: clamp(2rem, 1.4rem + 3vw, 3rem);
+    text-transform: uppercase;
+    margin-top: 0.75rem;
+  }
+
+  .thanks__text {
+    margin-block: 1.5rem 2.5rem;
+    color: var(--wg-muted);
+  }
+</style>
