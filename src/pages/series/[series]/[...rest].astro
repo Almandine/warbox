@@ -1,0 +1,82 @@
+---
+/**
+ * Everything one level below a series: the game hubs, the series' own material
+ * and the material attached to a game.
+ *
+ * These share one catch-all route on purpose. /series/<series>/<game>/ and
+ * /series/<series>/<slug>/ are the same shape, so two sibling routes would be
+ * ambiguous; one route that knows which of the two it is building never can be.
+ */
+import { getCollection } from 'astro:content';
+import Base from '../../../layouts/Base.astro';
+import GameHub from '../../../components/GameHub.astro';
+import ResourceView from '../../../components/ResourceView.astro';
+import { getAllSeries, assertSeriesReferencesResolve, type Game, type Series } from '../../../lib/games';
+import {
+  assertResourceReferencesResolve,
+  resourceSlug,
+  type Resource,
+} from '../../../lib/resources';
+
+export async function getStaticPaths() {
+  await Promise.all([assertSeriesReferencesResolve(), assertResourceReferencesResolve()]);
+
+  const [allSeries, games, resources] = await Promise.all([
+    getAllSeries(),
+    getCollection('games'),
+    getCollection('resources'),
+  ]);
+
+  const seriesById = new Map(allSeries.map((series) => [series.data.id, series]));
+  const gamesById = new Map(games.map((game) => [game.id, game]));
+
+  const gamePaths = games.map((game) => ({
+    params: { series: game.data.series, rest: game.id },
+    props: {
+      type: 'game' as const,
+      series: seriesById.get(game.data.series)!,
+      game,
+      resources: resources
+        .filter((resource) => resource.data.game === game.id)
+        .sort((a, b) => a.data.order - b.data.order || a.data.title.localeCompare(b.data.title)),
+    },
+  }));
+
+  const resourcePaths = resources.map((resource) => {
+    const slug = resourceSlug(resource);
+    const { series, game } = resource.data;
+
+    return {
+      params: { series, rest: game ? `${game}/${slug}` : slug },
+      props: {
+        type: 'resource' as const,
+        series: seriesById.get(series)!,
+        game: game ? gamesById.get(game) : undefined,
+        resource,
+      },
+    };
+  });
+
+  return [...gamePaths, ...resourcePaths];
+}
+
+type Props =
+  | { type: 'game'; series: Series; game: Game; resources: Resource[] }
+  | { type: 'resource'; series: Series; game?: Game; resource: Resource };
+
+const props = Astro.props;
+
+const title = props.type === 'game' ? props.game.data.title : props.resource.data.title;
+const description =
+  props.type === 'game' ? props.game.data.description : props.resource.data.summary;
+---
+
+<Base title={title} description={description}>
+  {
+    props.type === 'game' ? (
+      <GameHub game={props.game} series={props.series} resources={props.resources} />
+    ) : (
+      <ResourceView resource={props.resource} series={props.series} game={props.game} />
+    )
+  }
+</Base>

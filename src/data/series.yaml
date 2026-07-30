@@ -1,13 +1,51 @@
-# WDS series metadata. `order` controls the grouping order on /games/,
-# `accent` the colour of the card rule and series badge.
-# Adding a series here makes it available to any game YAML via its `id`.
+# WDS series metadata. A series is the top level of the site: `order` controls
+# the order of the cards on the home page and of the groups in the catalog,
+# `accent` colours the card rule, the badge and the series pages.
+#
+# `image` is the card picture — put the file in src/assets/series/<id>/ and name
+# it here. Until then the card draws a placeholder built from `monogram`.
+#
+# Adding a series here makes it available to any game YAML and any resource
+# page via its `id`.
+
+- id: panzer-campaigns
+  name: Panzer Campaigns
+  order: 1
+  accent: '#4d5a63'
+  monogram: PC
+  blurb: >-
+    The Second World War at operational scale, from the invasion of Poland to
+    the last battles in the Reich. Divisions and battalions on a hex map, with
+    supply, fatigue and the fog of a moving front.
+  wds_url: https://wargameds.com/collections/panzer-campaigns
 
 - id: modern-campaigns
   name: Modern Campaigns
-  order: 1
+  order: 2
   accent: '#4a6b3c'
+  monogram: MC
   blurb: >-
     Operational warfare from the Cold War and the wars that shaped the modern
     Middle East, at battalion and company scale. Fast-moving fronts, helicopters,
     and supply lines that decide the battle before the shooting does.
-  wds_url: https://wargameds.com/modern-campaigns/
+  wds_url: https://wargameds.com/collections/modern-campaigns
+
+- id: sword-siege
+  name: Sword & Siege
+  order: 3
+  accent: '#8a5a2b'
+  monogram: S&S
+  blurb: >-
+    Medieval warfare, where a battle turns on cavalry, terrain and the nerve of
+    men on foot. The Crusades books cover the campaigns fought for the Levant.
+  wds_url: https://wargameds.com/collections/sword-and-siege
+
+- id: squad-battles
+  name: Squad Battles
+  order: 4
+  accent: '#7a3b34'
+  monogram: SB
+  blurb: >-
+    Tactical combat down at the level of the individual squad and vehicle,
+    across conflicts from the Second World War to the present day.
+  wds_url: https://wargameds.com/collections/squad-battles

@@ -1,6 +1,6 @@
 ---
 import Icon from './Icon.astro';
-import { getGamesByDate, formatDate, lastTouched } from '../lib/games';
+import { getGamesByDate, formatDate, hrefOf, lastTouched } from '../lib/games';
 import { getArticles } from '../lib/articles';
 
 interface Props {
@@ -28,7 +28,7 @@ const entries: Entry[] = [
       kind: game.data.date_updated ? ('updated' as const) : ('added' as const),
       label: game.data.date_updated ? 'Updated' : 'New companion',
       title: game.data.title,
-      href: `/games/${game.id}/`,
+      href: hrefOf.game(game),
       date: lastTouched(game),
     })),
   ...articles.map((article) => ({
@@ -51,8 +51,8 @@ const entries: Entry[] = [
           <h2 class="section-title">
             <Icon name="clock" size="1em" class="updates__icon" /> Latest updates
           </h2>
-          <a class="updates__all" href="/games/">
-            All companions <Icon name="caret-right" size="0.85em" />
+          <a class="updates__all" href="/series/">
+            All series <Icon name="caret-right" size="0.85em" />
           </a>
         </div>
         <div class="section-rule" />

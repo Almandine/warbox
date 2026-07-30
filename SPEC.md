@@ -25,21 +25,36 @@ International wargaming community (WDS players). Site language: English only.
 
 ## Content architecture
 
-- **Data-driven**: a single structured data file (games catalog, e.g. `src/data/games.yaml` or Astro content collection) drives the game list and per-game pages. Adding a new companion = add files + one data entry, never touch HTML.
+- **Series-first**: the site is a two-level hierarchy. A WDS series (Panzer Campaigns, Modern
+  Campaigns, Sword & Siege, Squad Battles) is the top level and owns both its games and its own
+  material; each game in turn owns its material. `/series/` lists every series; `/series/<series>/`
+  is a series hub; `/series/<series>/<game>/` is a game hub.
+- **Resources**: anything attached to a series or a game that is not the companion spreadsheet
+  itself — manual covers, timelines, maps, scenario lists, link collections — is a resource page,
+  living at `/series/<series>/<slug>/` or `/series/<series>/<game>/<slug>/`.
+- **Data-driven**: one YAML file per game (`src/data/games/`) drives the game list and game hub
+  pages; one YAML file (`src/data/series.yaml`) drives the series list. One markdown file per
+  resource (`src/content/resources/`). Adding a new companion, a new resource, or a new series =
+  add files + one data entry, never touch HTML.
 - Downloadable files (Excels, PDFs) live **in the repo** and are served directly by the site (e.g. `warbox.org/downloads/...`). No bit.ly, no external cloud hosting.
-- Each game entry: name, WDS series (Panzer Campaigns, Squad Battles, Sword & Siege, …), Excel download, multiple screenshots, date added/updated.
+- Each game entry: name, WDS series, Excel download, multiple screenshots, date added/updated.
+- Each series entry: name, ordering, accent colour, optional card image, blurb.
 
 ## Pages (v1)
 
-1. **Home** — intro + auto-generated "Latest updates" section (newest entries from the data file, sorted by date)
-2. **Games** — overview list grouped by WDS series; each game links to its own subpage
-3. **Game subpages** — one per game: screenshots, download link, notes
-4. **How to use** — single English step-by-step guide for the Excels (identical usage across all games)
-5. **Panzer Campaigns manual cover** — description + downloads in multiple formats
-6. **About** — short personal page (who Norbi is, why he loves WDS games, why he shares these aids)
-7. **Contact** — form via **Formspree** (free tier); messages go to **contact@warbox.org** (Cloudflare Email Routing → forwards to Norbi's gmail). Email address never displayed on the site.
+1. **Home** — cover band, intro, series cards, auto-generated "Latest updates" section (newest entries from the data files, sorted by date)
+2. **Series** — every WDS series as a card, plus the full catalog of titles grouped by series
+3. **Series hub** — one per series: its own material (resources) plus every title in it
+4. **Game hub** — one per game: screenshots, download link, notes, material attached to that game
+5. **Resource pages** — series-level or game-level material: description, preview image, downloads where there are any
+6. **How to use** — single English step-by-step guide for the Excels (identical usage across all games)
+7. **About** — short personal page (who Norbi is, why he loves WDS games, why he shares these aids)
+8. **Contact** — form via **Formspree** (free tier); messages go to **contact@warbox.org** (Cloudflare Email Routing → forwards to Norbi's gmail). Email address never displayed on the site.
 
-8. **Articles** — Norbi's own writing (AI-assisted play, after action reports, tips). Markdown files, one per article; index page + per-article pages; RSS feed. The section is built in v1 but the "Articles" nav item only appears once the first article exists.
+9. **Articles** — Norbi's own writing (AI-assisted play, after action reports, tips). Markdown files, one per article; index page + per-article pages; RSS feed. The section is built in v1 but the "Articles" nav item only appears once the first article exists.
+
+The series themselves are not menu entries — they reach the reader as cards under the header, with
+"Series" as the one nav item that leads to them.
 
 Deferred (post-v1): curated WDS link collection (grouped articles from the WDS News section).
 

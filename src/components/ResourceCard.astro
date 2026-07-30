@@ -1,0 +1,120 @@
+---
+import Icon from './Icon.astro';
+import { KINDS, resourceHref, type Resource } from '../lib/resources';
+
+interface Props {
+  resource: Resource;
+}
+
+const { resource } = Astro.props;
+const kind = KINDS[resource.data.kind];
+const downloads = resource.data.files.length;
+---
+
+<article class="rc">
+  <span class="rc__icon">
+    <Icon name={kind.icon} size="1.25rem" />
+  </span>
+
+  <div class="rc__body">
+    <h3 class="rc__title">
+      <a href={resourceHref(resource)}>{resource.data.title}</a>
+      {resource.data.draft && <span class="rc__flag">Draft</span>}
+    </h3>
+    <p class="rc__summary">{resource.data.summary}</p>
+  </div>
+
+  <span class="rc__kind">
+    {kind.label}
+    {downloads > 0 && <> · {downloads} {downloads === 1 ? 'file' : 'files'}</>}
+  </span>
+</article>
+
+<style>
+  .rc {
+    position: relative;
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    align-items: start;
+    gap: 0.25rem 1rem;
+    padding: 1.125rem 1.25rem;
+    border: 1px solid var(--wg-border);
+    border-radius: var(--radius);
+    background: var(--wg-surface);
+    transition:
+      border-color 0.2s ease,
+      background-color 0.2s ease;
+  }
+
+  .rc:hover,
+  .rc:focus-within {
+    border-color: var(--accent, var(--wg-accent));
+    background: var(--wg-bg);
+  }
+
+  .rc__icon {
+    display: grid;
+    place-items: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: var(--radius);
+    background: rgb(from var(--accent, var(--wg-accent)) r g b / 0.12);
+    color: var(--accent, var(--wg-accent-strong));
+  }
+
+  .rc__body {
+    min-width: 0;
+  }
+
+  .rc__title {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1rem;
+    text-transform: uppercase;
+    color: var(--wg-ink);
+  }
+
+  .rc__title a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  /* The title link covers the card, so the whole thing is clickable. */
+  .rc__title a::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+  }
+
+  .rc:hover .rc__title a {
+    color: var(--wg-emphasis);
+  }
+
+  .rc__flag {
+    padding: 0.1rem 0.4rem;
+    border: 1px solid rgb(from var(--wg-highlight) r g b / 0.4);
+    border-radius: var(--radius);
+    color: var(--wg-highlight);
+    font-family: var(--font-mono);
+    font-size: 0.625rem;
+    letter-spacing: 0.12em;
+  }
+
+  .rc__summary {
+    margin-top: 0.375rem;
+    font-size: 0.875rem;
+    color: var(--wg-muted);
+  }
+
+  .rc__kind {
+    grid-column: 2;
+    margin-top: 0.625rem;
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--wg-faint);
+  }
+</style>

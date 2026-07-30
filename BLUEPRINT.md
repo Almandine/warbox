@@ -7,7 +7,7 @@ Execution plan written 2026-07-19 by Fable so a lower-tier model (Sonnet/Opus) c
 1. **Astro, latest stable, TypeScript strict, no UI framework.** Static output only (`output: 'static'`, the default). No React/Vue/Tailwind — plain `.astro` components + one global CSS file with custom properties. Rationale: minimal dependency surface, nothing to break on upgrades, any AI model can maintain it.
 2. **One YAML file per game** in `src/data/games/`, loaded as an Astro content collection (glob loader). This satisfies the spec's "data file, not hardcoded HTML" requirement and beats a single `games.yaml`: adding a game = adding one self-contained file, no risk of corrupting a 1000-line monolith, clean git diffs. A separate single `src/data/series.yaml` defines series metadata and ordering.
 3. **Downloads are plain static files** under `public/downloads/`, served as-is at `warbox.org/downloads/...`. Screenshots live in `src/assets/screenshots/<game-id>/` so Astro's `<Image>` optimizes them (WebP, responsive widths); the YAML references them by filename only.
-4. **Slugs = file names.** `src/data/games/pc-normandy-44.yaml` → route `/games/pc-normandy-44/`. Slug convention: `<series-abbrev>-<game-short-name>`, kebab-case.
+4. **Slugs = file names.** `src/data/games/pc-normandy-44.yaml` → route `/series/panzer-campaigns/pc-normandy-44/` (the game hangs off the series named in its own `series:` field). Slug convention: `<series-abbrev>-<game-short-name>`, kebab-case.
 5. **Lightbox with zero dependencies**: screenshots open in a native `<dialog>` element with a few lines of vanilla JS in the gallery component. No lightbox library.
 6. **Contact form posts directly to Formspree** (`https://formspree.io/f/<ID>`), plus a honeypot field. Form ID goes in `src/consts.ts` (it is public by nature; no env machinery needed). Until Norbi supplies the ID, render the form disabled with a "coming soon" note.
 7. **Sitemap via `@astrojs/sitemap`** and **RSS via `@astrojs/rss`** (the only two integrations/helpers).
@@ -24,43 +24,72 @@ Execution plan written 2026-07-19 by Fable so a lower-tier model (Sonnet/Opus) c
    }
    ```
    Article images live in `src/assets/articles/<slug>/` and are embedded with standard markdown syntax (Astro optimizes them). Routes: `/articles/` (list, newest first, category filter chips) and `/articles/[slug]/` (prose layout, `65ch`). The "Articles" nav item renders only when ≥1 non-draft article exists. `rss.xml` at site root covers articles (title/description/date/link). AARs will be screenshot-heavy — the prose layout must handle many inline images gracefully (max-width 100%, captioned via standard `![caption](img)` alt-to-figcaption treatment).
+9. **Reorganised around series (2026-07-29).** The flat `/games/` catalog plus a one-off `/artwork/`
+   page for the manual cover did not scale: the manual cover is not the only thing that will ever
+   attach to a series, or to one game within it (timelines, maps, scenario lists, link collections
+   were all coming). Rather than grow more one-off pages, the site became a two-level hierarchy — a
+   series owns its games and its own material — and a new `resources` content collection
+   (`src/content/resources/`) replaced both the `artwork` collection and any future one-off
+   collection of the same shape. One route (`src/pages/series/[series]/[...rest].astro`) serves both
+   game hubs and resource pages, because `/series/<series>/<game>/` and `/series/<series>/<slug>/`
+   are the same shape and two sibling dynamic routes would be ambiguous. `src/lib/urls.ts` is the one
+   place that builds these paths, so the shape can change again without hunting for hand-written
+   links. Old live URLs (`/games/`, `/artwork/`, the two companion pages) redirect via
+   `astro.config.mjs`.
 
 ## Prerequisites
 
 Verify `node --version` (need ≥ 20) and `git --version`. GitHub CLI (`gh`) needed only at deploy step. Scaffold **inside this folder** (`D:\AI_Projects\Personal\Website - warbox.org`) in a subfolder `site/` — keeps SPEC/BLUEPRINT/CLAUDE.md outside the repo? **No** — decision: the repo root IS this folder; SPEC.md, BLUEPRINT.md, CLAUDE.md get committed (they are the project's memory). Run `git init` here; scaffold Astro directly here (`npm create astro@latest .` refuses non-empty dirs → scaffold into `tmp/`, move contents up, delete `tmp/`).
 
-## File tree (target)
+## File tree (current)
 
 ```
 / (repo root = this folder)
-├── CLAUDE.md, SPEC.md, BLUEPRINT.md
-├── astro.config.mjs          # site: 'https://warbox.org', sitemap integration
+├── CLAUDE.md, SPEC.md, BLUEPRINT.md, README.md
+├── astro.config.mjs          # site: 'https://warbox.org', sitemap integration, redirects for pre-reorg URLs
 ├── package.json, tsconfig.json
 ├── public/
 │   ├── CNAME                 # contains: warbox.org  (required for Pages custom domain)
 │   ├── favicon.svg           # simple "W" mark, generate inline SVG
 │   └── downloads/
 │       ├── companions/<game-id>.xlsx
-│       └── pc-manual-cover/<files>
+│       └── resources/<series>/[<game>/]<slug>/<files>   # mirrors the resource's own content path
 └── src/
-    ├── consts.ts             # SITE_TITLE, SITE_DESCRIPTION, FORMSPREE_ID (nullable)
-    ├── content.config.ts
+    ├── consts.ts             # SITE_TITLE, SITE_DESCRIPTION, NAV, FORMSPREE_ID / CF_ANALYTICS_TOKEN (nullable)
+    ├── content.config.ts     # games, series, resources, articles collections
+    ├── icons.ts
     ├── styles/global.css
     ├── data/
-    │   ├── series.yaml
-    │   └── games/<game-id>.yaml
-    ├── content/articles/<slug>.md
-    ├── assets/screenshots/<game-id>/*.png
-    ├── assets/articles/<slug>/*.png
-    ├── components/  Header, Footer, GameCard, ScreenshotGallery, LatestUpdates, DownloadButton
-    ├── layouts/Base.astro    # <head> w/ SEO meta, header, footer, Cloudflare analytics snippet placeholder
+    │   ├── series.yaml               # panzer-campaigns, modern-campaigns, sword-siege, squad-battles
+    │   └── games/<game-id>.yaml      # one file per title; `series:` names its series.yaml id
+    ├── content/
+    │   ├── resources/<series>/<slug>.md              # series-level material
+    │   ├── resources/<series>/<game-id>/<slug>.md    # game-level material
+    │   └── articles/<slug>.md, articles/_template.md
+    ├── assets/
+    │   ├── cover/*                          # home page cover image, if any (Cover.astro picks it up)
+    │   ├── series/<series-id>/*             # series card images
+    │   ├── screenshots/<game-id>/*
+    │   ├── resources/<series>/[<game>/]<slug>/*   # resource preview images, same path as the .md
+    │   └── articles/<slug>/*
+    ├── lib/
+    │   ├── urls.ts            # every internal /series/... link is built here
+    │   ├── games.ts           # series/game queries, hrefOf, date helpers
+    │   ├── resources.ts       # resource queries, preview image lookup, cross-reference validation
+    │   ├── articles.ts, screenshots.ts
+    ├── components/
+    │   ├── Header, Footer, Cover, PageHeader, Icon, Note
+    │   ├── SeriesCard, GameCard, GameHub               # series overview card, game card, game hub body
+    │   ├── ResourceCard, ResourceView                  # resource link card, resource page body
+    │   ├── ScreenshotGallery, ScreenshotStrip, DownloadButton, LatestUpdates, ArticleCard
+    ├── layouts/Base.astro    # <head> w/ SEO meta, header, footer, Cloudflare analytics snippet
     └── pages/
-        ├── index.astro           # hero intro + LatestUpdates (6 newest by date_updated||date_added)
-        ├── games/index.astro     # all games grouped by series (series.yaml order)
-        ├── games/[id].astro      # getStaticPaths over games collection
-        ├── how-to-use.astro      # the shared Excel guide (placeholder until copy exists)
-        ├── manual-cover.astro    # PC cover: preview image + format download table
-        ├── about.astro           # placeholder until copy exists
+        ├── index.astro                      # cover band + intro + series cards + Latest updates + screenshot strip
+        ├── series/index.astro               # every series as a card, plus the full catalog by series
+        ├── series/[series]/index.astro      # series hub: series-wide resources + its titles
+        ├── series/[series]/[...rest].astro  # game hubs (/<game>/) and resource pages (/<slug>/, /<game>/<slug>/) — one route for both, see Architectural decision 9
+        ├── how-to-use.astro      # the shared Excel guide (draft copy until Norbi supplies it)
+        ├── about.astro           # draft copy until Norbi supplies it
         ├── contact.astro         # Formspree form
         ├── articles/index.astro  # article list (hidden from nav while empty)
         ├── articles/[slug].astro # prose layout
@@ -74,31 +103,78 @@ Verify `node --version` (need ≥ 20) and `git --version`. GitHub CLI (`gh`) nee
 // games collection — glob loader over src/data/games/*.yaml
 {
   title: z.string(),                      // "Panzer Campaigns: Normandy '44"
-  series: z.string(),                     // must match a key in series.yaml
+  series: z.string(),                     // must match an id in series.yaml
   status: z.enum(['available','planned']).default('available'),
   excel: z.string().optional(),           // filename in public/downloads/companions/
   version: z.string().optional(),         // companion version, e.g. "1.2"
   date_added: z.coerce.date(),
   date_updated: z.coerce.date().optional(),
   wds_url: z.string().url().optional(),   // official product page
-  description: z.string().optional(),     // 1–3 sentences, shown on game page
+  description: z.string().optional(),     // 1–3 sentences, shown on the game hub
   screenshots: z.array(z.object({
     file: z.string(),                     // filename under src/assets/screenshots/<id>/
     caption: z.string().optional(),
   })).default([]),
 }
-// series.yaml — file loader: array of { id, name, blurb?, wds_url?, order }
+
+// series collection — file loader over src/data/series.yaml
+{
+  id: z.string(),
+  name: z.string(),
+  order: z.number(),
+  accent: z.string(),                     // hex — card rule, badge, series page accent
+  blurb: z.string().optional(),
+  wds_url: z.string().url().optional(),
+  image: z.string().optional(),           // card picture, filename under src/assets/series/<id>/
+  monogram: z.string().optional(),        // stand-in for the card while there's no image
+}
+
+// resources collection — glob loader over src/content/resources/**/*.md
+{
+  title: z.string(),
+  series: z.string(),                     // must match an id in series.yaml
+  game: z.string().optional(),            // must match a games/ file name; omit for series-level material
+  slug: z.string().optional(),            // URL segment; defaults to the file's own name
+  kind: z.enum(['page','artwork','scenarios','references','map']).default('page'),
+  summary: z.string(),                    // one sentence, shown on the card that links here
+  order: z.number().default(50),          // sort order on the hub page, lower first
+  date_added: z.coerce.date().optional(),
+  preview: z.string().optional(),         // filename under src/assets/resources/<same path>/
+  files: z.array(z.object({
+    file: z.string(),                     // filename under public/downloads/resources/<same path>/
+    label: z.string(),
+    note: z.string().optional(),
+  })).default([]),
+  draft: z.boolean().default(false),      // page still builds; a Note renders on it
+}
+// The markdown body is the page. src/lib/resources.ts fails the build if `series` or `game` don't
+// resolve, or if a game's own `series` disagrees with the resource's.
+
+// articles collection — glob loader over src/content/articles/**/*.md
+{
+  title: z.string(),
+  date: z.coerce.date(),
+  description: z.string(),
+  category: z.enum(['aar','ai','tips','misc']),
+  game: z.string().optional(),            // optional games/ id, linking the article back to it
+  draft: z.boolean().default(false),
+  cover: image().optional(),
+}
 ```
 
 `status: planned` lets all 30 owned games be listed as "companion coming soon" — build supports it from day one; whether to list planned games is Norbi's call per entry.
 
 ## Page/component specs
 
-- **Base.astro**: `<title>` = `{page} · Warbox`, meta description prop required, canonical URL, og:title/description/image (og fallback: site-wide default image — skip until one exists). Nav: Games / How to use / Manual cover / About / Contact. Footer: "Fan-made companions for Wargame Design Studio games. Not affiliated with WDS." + link to wargameds.com.
-- **games/index.astro**: series in `series.yaml` order; within a series, games alphabetically. Card: title, screenshot thumb (first screenshot), status badge if planned, updated date.
-- **games/[id].astro**: h1 title, series breadcrumb link, description, DownloadButton (file size shown — compute at build with `fs.statSync`), version + dates line, ScreenshotGallery grid, link to How-to-use page ("New to the companion? Read the guide"), wds_url link.
+- **Base.astro**: `<title>` = `{page} · Warbox` (site title alone on the home page), meta description prop (falls back to `SITE_DESCRIPTION`), canonical URL, og:title/description. Cloudflare Web Analytics beacon rendered when `CF_ANALYTICS_TOKEN` is set. Nav (`src/consts.ts`): Home / Series / How to use / About / Contact, with Articles inserted after Series once a non-draft article exists. Footer: "Fan-made companions for Wargame Design Studio games. Not affiliated with WDS." + link to wargameds.com.
+- **series/index.astro**: a `SeriesCard` per series (every series, even an empty one — a series is a place on the site, not a by-product of its games), then every series' games grouped and in `series.yaml` order underneath.
+- **series/[series]/index.astro**: series head (blurb, image or monogram stand-in, WDS link) + series-wide resources (`ResourceCard` grid) + the series' titles (`GameCard` grid).
+- **series/[series]/[...rest].astro**: resolves to a game hub (`GameHub`) or a resource page (`ResourceView`) depending on which collection the path matches — see Architectural decision 9 for why it's one route.
+- **GameHub**: breadcrumb (Series → series name), h1, status badge if planned, description, resources attached to the game, DownloadButton or an "in progress" note, a facts list (series/version/dates/screenshot count), ScreenshotGallery, links to the how-to guide and back to the series.
+- **ResourceView**: breadcrumb (Series → series → game if any), kind label + icon, h1, summary, draft note if `draft: true`, preview image, rendered markdown body, download list in a sticky side rail if `files` is non-empty.
 - **LatestUpdates**: merged feed of games (by `date_updated ?? date_added`, label "Added"/"Updated") and non-draft articles (by `date`, label "Article"), newest 6 overall.
 - **ScreenshotGallery**: thumbnails via `<Image>` (~400px wide, lazy); click opens `<dialog>` with full-size `<Image>` (1600px max) + caption + close on Esc/backdrop.
+- **Cover**: the home page's top band. Renders the first image found in `src/assets/cover/`; while that folder is empty, draws the wordmark on paper instead. Sits in Base's `cover` slot, above the (sticky) header, so it scrolls away on its own.
 - **contact.astro**: name (optional), email (optional but encouraged), message (required), hidden honeypot `_gotcha`; POST to Formspree; note that replies go via email. GDPR-light privacy sentence.
 
 ## Design spec (light, tactical / field-manual)
@@ -138,18 +214,20 @@ Decision history, so nobody flips it back by accident:
 
 **Verify the built output, not the dev server.** The first live deploy shipped a bug the dev server could not show: `DownloadButton` resolved the file with `import.meta.url`, which points into a bundled chunk in a build, so every download rendered as "Not uploaded yet". Anything that touches the filesystem at build time must be checked in `dist/`.
 
-## Runbook: adding a new game companion (put this in README.md too)
+## Runbooks
 
-1. Copy `MyGame.xlsx` → `public/downloads/companions/<game-id>.xlsx`
-2. Copy screenshots → `src/assets/screenshots/<game-id>/`
-3. Create `src/data/games/<game-id>.yaml` (copy an existing one as template)
-4. `git add -A && git commit -m "Add <game> companion" && git push` → live in ~2 min
+Now in README.md: adding a game companion, adding a resource page, adding a series, publishing an
+article. Keep that copy in sync with this file rather than duplicating it here.
 
-Publishing an article is analogous: one `.md` in `src/content/articles/`, images next to it in `src/assets/articles/<slug>/`, push. Include both workflows in README.md.
+## Build-time content
 
-## Build-time content (until real content arrives)
-
-Seed with 3 example games across 2 series (clearly fake data, `status: available`, placeholder screenshots as generated neutral PNGs) so every page renders and is reviewable. Replace with real content as Norbi supplies it. Placeholder copy pages must carry a visible "draft" note.
+The two real companions (Modern Campaigns: Danube Front '85, Middle East '67) sit alongside seed
+placeholder content so every route renders and the series-first structure is reviewable end to end:
+seven more games (`status: planned`, no download) across the other three series, and six
+placeholder resource pages under Panzer Campaigns. Placeholder game and resource pages carry a
+visible draft note (`GameHub`'s "in progress" note; `ResourceView`'s draft `Note` when
+`draft: true`). Replace or add to either as Norbi supplies real material — see the runbooks in
+README.md.
 
 ## Acceptance checklist for the executing model
 

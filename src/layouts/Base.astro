@@ -60,6 +60,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site ?? 'https://warbox.org'
 
   <body>
     <a class="skip" href="#main">Skip to content</a>
+    <slot name="cover" />
     <Header />
     <main id="main">
       <slot />
@@ -71,10 +72,6 @@ const canonical = new URL(Astro.url.pathname, Astro.site ?? 'https://warbox.org'
         display: flex;
         flex-direction: column;
         min-height: 100vh;
-      }
-
-      main {
-        padding-top: var(--nav-h);
       }
 
       .skip {

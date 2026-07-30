@@ -2,8 +2,9 @@ import { defineCollection, z } from 'astro:content';
 import { glob, file } from 'astro/loaders';
 
 /**
- * One YAML file per game in src/data/games/. The file name is the id and the
- * URL slug: src/data/games/pc-normandy-44.yaml → /games/pc-normandy-44/
+ * One YAML file per game in src/data/games/. The file name is the id, and the
+ * game hangs off its series in the URL:
+ * src/data/games/pc-normandy-44.yaml → /series/panzer-campaigns/pc-normandy-44/
  *
  * Screenshots are referenced by bare file name; they live in
  * src/assets/screenshots/<game-id>/ and are resolved by src/lib/screenshots.ts.
@@ -35,7 +36,10 @@ const games = defineCollection({
   }),
 });
 
-/** WDS series metadata: display order, blurb and the accent colour used on cards. */
+/**
+ * WDS series metadata. A series is the top level of the site: it owns its games
+ * and its own material, and gets a card on the home page.
+ */
 const series = defineCollection({
   loader: file('src/data/series.yaml'),
   schema: z.object({
@@ -46,6 +50,10 @@ const series = defineCollection({
     accent: z.string(),
     blurb: z.string().optional(),
     wds_url: z.string().url().optional(),
+    /** Card image file name, under src/assets/series/<id>/. */
+    image: z.string().optional(),
+    /** Shown on the card while there is no image. Defaults to the initials. */
+    monogram: z.string().optional(),
   }),
 });
 
@@ -72,20 +80,39 @@ const articles = defineCollection({
 });
 
 /**
- * Non-companion downloads: manual covers, and whatever image-ish things follow.
- * Files live in public/downloads/artwork/<id>/, previews in
- * src/assets/artwork/<id>/. Adding one is a data edit, like a game.
+ * Everything attached to a series or a game that is not the companion
+ * spreadsheet itself: manual covers, timelines, maps, scenario lists, link
+ * collections. One markdown file each, the body is the page.
+ *
+ * `series` (and optionally `game`) decide where the page hangs:
+ *   series only → /series/<series>/<slug>/
+ *   series+game → /series/<series>/<game>/<slug>/
+ *
+ * Images and downloads follow the file's own path under src/content/resources/.
+ * For src/content/resources/panzer-campaigns/manual-cover.md they live in
+ * src/assets/resources/panzer-campaigns/manual-cover/ and
+ * public/downloads/resources/panzer-campaigns/manual-cover/.
  */
-const artwork = defineCollection({
-  loader: file('src/data/artwork.yaml'),
+const resources = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/resources' }),
   schema: z.object({
-    id: z.string(),
     title: z.string(),
-    description: z.string(),
-    date_added: z.coerce.date(),
-    /** Preview image file name under src/assets/artwork/<id>/. */
+    /** Must match an id in src/data/series.yaml. */
+    series: z.string(),
+    /** Must match a file name in src/data/games/. Omit for series-level material. */
+    game: z.string().optional(),
+    /** URL segment. Defaults to the file name. */
+    slug: z.string().optional(),
+    /** Picks the icon and the label on the card; no other effect. */
+    kind: z.enum(['page', 'artwork', 'scenarios', 'references', 'map']).default('page'),
+    /** One sentence, shown on the card that links here. */
+    summary: z.string(),
+    /** Sort order on the hub page; lower first. */
+    order: z.number().default(50),
+    date_added: z.coerce.date().optional(),
+    /** Preview image file name, resolved by src/lib/resources.ts. */
     preview: z.string().optional(),
-    /** Download formats, in the order they should be offered. */
+    /** Downloads offered on the page, in order. */
     files: z
       .array(
         z.object({
@@ -95,7 +122,9 @@ const artwork = defineCollection({
         }),
       )
       .default([]),
+    /** Renders a visible draft note. The page is still built and linked. */
+    draft: z.boolean().default(false),
   }),
 });
 
-export const collections = { games, series, articles, artwork };
+export const collections = { games, series, articles, resources };

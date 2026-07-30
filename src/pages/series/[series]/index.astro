@@ -1,0 +1,267 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../../../layouts/Base.astro';
+import Icon from '../../../components/Icon.astro';
+import GameCard from '../../../components/GameCard.astro';
+import ResourceCard from '../../../components/ResourceCard.astro';
+import Note from '../../../components/Note.astro';
+import {
+  getAllSeries,
+  getSeriesGames,
+  getSeriesImage,
+  seriesMonogram,
+  type Game,
+  type Series,
+} from '../../../lib/games';
+import { getSeriesResources, type Resource } from '../../../lib/resources';
+
+export async function getStaticPaths() {
+  const allSeries = await getAllSeries();
+
+  return Promise.all(
+    allSeries.map(async (series) => ({
+      params: { series: series.data.id },
+      props: {
+        series,
+        games: await getSeriesGames(series.data.id),
+        resources: await getSeriesResources(series.data.id),
+      },
+    })),
+  );
+}
+
+interface Props {
+  series: Series;
+  games: Game[];
+  resources: Resource[];
+}
+
+const { series, games, resources } = Astro.props;
+const image = getSeriesImage(series);
+const available = games.filter((game) => game.data.status === 'available').length;
+---
+
+<Base title={series.data.name} description={series.data.blurb}>
+  <header class="head" style={`--accent: ${series.data.accent}`}>
+    <div class="wrap head__inner">
+      <div class="head__text">
+        <nav class="crumbs" aria-label="Breadcrumb">
+          <a href="/series/">Series</a>
+        </nav>
+
+        <h1 class="head__title">{series.data.name}</h1>
+        {series.data.blurb && <p class="lead head__lead">{series.data.blurb}</p>}
+
+        <p class="head__counts">
+          {games.length}
+          {games.length === 1 ? ' title' : ' titles'} · {available} with a companion
+        </p>
+
+        {
+          series.data.wds_url && (
+            <a class="head__link" href={series.data.wds_url} target="_blank" rel="noopener">
+              The series at Wargame Design Studio <Icon name="external" size="0.85em" />
+            </a>
+          )
+        }
+      </div>
+
+      <div class="head__media">
+        {
+          image ? (
+            <Image src={image} alt="" widths={[400, 800]} sizes="320px" loading="eager" />
+          ) : (
+            <div class="head__standin tex-grid" aria-hidden="true">
+              <span class="head__monogram">{seriesMonogram(series)}</span>
+            </div>
+          )
+        }
+      </div>
+    </div>
+  </header>
+
+  <div class="wrap section" style={`--accent: ${series.data.accent}`}>
+    <section class="block">
+      <h2 class="block-title">
+        <Icon name="file-text" size="1em" /> For the whole series
+      </h2>
+
+      {
+        resources.length > 0 ? (
+          <div class="cards">
+            {resources.map((resource) => (
+              <ResourceCard resource={resource} />
+            ))}
+          </div>
+        ) : (
+          <Note tone="info" label="Nothing yet">
+            No series-wide material here yet — covers, timelines and maps land on this page as they
+            are made.
+          </Note>
+        )
+      }
+    </section>
+
+    <section class="block">
+      <h2 class="block-title">
+        <Icon name="layers" size="1em" /> Titles in the series
+      </h2>
+
+      {
+        games.length > 0 ? (
+          <div class="grid">
+            {games.map((game) => (
+              <GameCard game={game} series={series} />
+            ))}
+          </div>
+        ) : (
+          <Note tone="info" label="Nothing yet">
+            No titles from this series are listed yet.
+          </Note>
+        )
+      }
+    </section>
+  </div>
+</Base>
+
+<style>
+  .head {
+    position: relative;
+    padding-block: 3rem;
+    border-bottom: 1px solid var(--wg-border);
+    background-color: var(--wg-surface);
+    background-image: var(--tex-hex);
+    background-size: var(--tex-hex-size);
+  }
+
+  .head::before {
+    content: '';
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: 4px;
+    background: var(--accent);
+  }
+
+  .head__inner {
+    display: grid;
+    gap: 2rem;
+    align-items: center;
+  }
+
+  @media (min-width: 900px) {
+    .head__inner {
+      grid-template-columns: minmax(0, 1fr) 20rem;
+    }
+  }
+
+  .crumbs {
+    margin-bottom: 1rem;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  .crumbs a {
+    text-decoration: none;
+    color: var(--wg-muted);
+  }
+
+  .crumbs a:hover {
+    color: var(--wg-accent);
+  }
+
+  .head__title {
+    font-size: clamp(1.875rem, 1.2rem + 3vw, 3rem);
+    text-transform: uppercase;
+    text-wrap: balance;
+  }
+
+  .head__lead {
+    margin-top: 1.25rem;
+    max-width: 55ch;
+  }
+
+  .head__counts {
+    margin-top: 1.25rem;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--wg-faint);
+  }
+
+  .head__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    margin-top: 1rem;
+    font-size: 0.875rem;
+    text-decoration: none;
+    color: var(--wg-accent);
+  }
+
+  .head__link:hover {
+    color: var(--wg-accent-strong);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .head__media {
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    border: 1px solid var(--wg-border);
+    border-radius: var(--radius);
+  }
+
+  .head__media :global(img) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .head__standin {
+    display: grid;
+    place-items: center;
+    height: 100%;
+    background-color: rgb(from var(--accent) r g b / 0.14);
+  }
+
+  .head__monogram {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: clamp(2.5rem, 8vw, 3.5rem);
+    letter-spacing: 0.08em;
+    color: rgb(from var(--accent) r g b / 0.55);
+  }
+
+  .block + .block {
+    margin-top: 4rem;
+  }
+
+  .block-title {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.125rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.625rem;
+    border-bottom: 1px solid var(--wg-border);
+    box-shadow: inset 0 -1px 0 0 var(--accent);
+    color: var(--wg-muted);
+  }
+
+  .cards {
+    display: grid;
+    gap: 0.75rem;
+    max-width: 52rem;
+  }
+
+  .grid {
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fill, minmax(min(20rem, 100%), 1fr));
+  }
+</style>

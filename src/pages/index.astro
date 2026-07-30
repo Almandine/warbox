@@ -1,19 +1,21 @@
 ---
 import Base from '../layouts/Base.astro';
+import Cover from '../components/Cover.astro';
 import Icon from '../components/Icon.astro';
+import SeriesCard from '../components/SeriesCard.astro';
 import ScreenshotStrip, { type StripItem } from '../components/ScreenshotStrip.astro';
 import LatestUpdates from '../components/LatestUpdates.astro';
 import { getScreenshots } from '../lib/screenshots';
-import { getGamesByDate, getGamesBySeries, formatDate, lastTouched } from '../lib/games';
+import { getGamesByDate, getSeriesOverview, formatDate, hrefOf, lastTouched } from '../lib/games';
+import { SITE_NAME, SITE_TITLE } from '../consts';
 
-const games = await getGamesByDate();
-const groups = await getGamesBySeries();
+const [games, overview] = await Promise.all([getGamesByDate(), getSeriesOverview()]);
 
 const available = games.filter((game) => game.data.status === 'available');
 const newest = available[0];
 
 // Every screenshot of every published companion, newest game first.
-const seriesById = new Map(groups.map(({ series }) => [series.data.id, series]));
+const seriesById = new Map(overview.map(({ series }) => [series.data.id, series]));
 const stripItems: StripItem[] = available.flatMap((game) => {
   const series = seriesById.get(game.data.series);
   if (!series) return [];
@@ -22,7 +24,7 @@ const stripItems: StripItem[] = available.flatMap((game) => {
     image: shot.image,
     caption: shot.caption,
     gameTitle: game.data.title,
-    gameId: game.id,
+    gameHref: hrefOf.game(game),
     seriesName: series.data.name,
     accent: series.data.accent,
   }));
@@ -30,7 +32,7 @@ const stripItems: StripItem[] = available.flatMap((game) => {
 
 const stats = [
   { icon: 'layers', tone: 'olive', label: 'Companions ready', value: String(available.length) },
-  { icon: 'books', tone: 'amber', label: 'WDS series covered', value: String(groups.length) },
+  { icon: 'books', tone: 'amber', label: 'WDS series covered', value: String(overview.length) },
   { icon: 'cpu', tone: 'olive', label: 'Titles listed', value: String(games.length) },
   {
     icon: 'clock',
@@ -39,34 +41,41 @@ const stats = [
     value: newest ? formatDate(lastTouched(newest)) : '—',
   },
 ] as const;
+
+// The three kinds of material the site publishes — the "what you get" band.
+const offerings = [
+  {
+    icon: 'file-text',
+    title: 'Game Companions',
+    body: 'Custom-built Excel scenario track sheets designed to log your progress, record your outcomes, and analyze your campaigns scenario by scenario.',
+  },
+  {
+    icon: 'image',
+    title: 'Visual Assets',
+    body: 'Downloadable materials like custom-designed printable user manual covers.',
+  },
+  {
+    icon: 'books',
+    title: 'Curated Intelligence',
+    body: 'Historical references, recommended books, insightful articles, and YouTube briefings to deepen your immersion and historical understanding.',
+  },
+] as const;
 ---
 
 <Base>
-  <section class="hero">
-    <div class="wrap hero__inner">
-      <p class="hero__badge">
-        <span class="hero__pulse"></span>
-        Catalog updated
+  <Cover slot="cover" />
+
+  <section class="intro">
+    <div class="wrap">
+      <h1 class="intro__title">Welcome to {SITE_TITLE}</h1>
+      <p class="intro__tagline">Where history becomes playable</p>
+      <p class="lead intro__lead">
+        A dedicated resource and command hub for historical hex-and-counter wargames. To me, these
+        games are much more than just digital simulations — they are playable history books. They
+        offer a unique opportunity to step into the boots of historical commanders, explore
+        real-world campaigns, and test your tactical acumen on authentic battlefields.
       </p>
-
-      <h1 class="hero__title">
-        Game Companions<br />
-        for Wargame Design Studio
-      </h1>
-
-      <p class="lead hero__lead">
-        Free companion spreadsheets for WDS titles — unit data, orders of battle and victory
-        conditions pulled out of the game and laid out so you can actually read them. Made by a
-        player who got tired of squinting at the unit list.
-      </p>
-
-      <div class="hero__actions">
-        <a class="btn" href="/games/">
-          Browse the catalog
-          <Icon name="arrow-right" size="1.1em" />
-        </a>
-        <a class="btn btn--ghost" href="/how-to-use/">New here? Start with the guide</a>
-      </div>
+      <a class="btn btn--ghost intro__cta" href="/how-to-use/">New here? Start with the guide</a>
     </div>
   </section>
 
@@ -84,106 +93,127 @@ const stats = [
     </dl>
   </section>
 
+  <section class="wrap section">
+    <h2 class="section-title">
+      <Icon name="compass" size="1em" class="mission__icon" /> Order on the battlefield
+    </h2>
+    <div class="section-rule"></div>
+
+    <p class="mission__body">
+      Every successful campaign requires precise logistics and clear information. I created this site
+      to bring a structured, analytical approach to our favorite wargames. Whether you are navigating
+      massive operational fronts or gritty tactical firefights, you will find meticulously crafted
+      tools here to enhance your gameplay.
+    </p>
+
+    <h3 class="mission__subtitle">What you will find inside the {SITE_NAME}</h3>
+
+    <ul class="mission__grid">
+      {
+        offerings.map((item) => (
+          <li class="mission__card panel">
+            <Icon name={item.icon} size="1.75rem" class="mission__card-icon" />
+            <h4 class="mission__card-title">{item.title}</h4>
+            <p class="mission__card-body">{item.body}</p>
+          </li>
+        ))
+      }
+    </ul>
+
+    <p class="mission__closer">
+      Grab your digital counters, check your supply lines, and dive into the campaigns! The hexes are
+      waiting.
+    </p>
+  </section>
+
+  <section class="wrap section section--tight">
+    <div class="series__head">
+      <h2 class="section-title">
+        <Icon name="layers" size="1em" class="series__icon" /> Pick a series
+      </h2>
+      <a class="series__all" href="/series/">
+        Every title <Icon name="caret-right" size="0.85em" />
+      </a>
+    </div>
+    <div class="section-rule"></div>
+
+    <div class="series__grid">
+      {
+        overview.map((entry) => (
+          <SeriesCard
+            series={entry.series}
+            games={entry.games.length}
+            companions={entry.companions}
+            resources={entry.resources}
+          />
+        ))
+      }
+    </div>
+  </section>
+
   <LatestUpdates />
   <ScreenshotStrip items={stripItems} />
 </Base>
 
 <style>
-  .hero {
+  /* Deliberately restrained: the cover band above the nav carries the weight,
+     so the page gets to its content — the series cards — quickly. */
+  .intro {
     position: relative;
     border-bottom: 1px solid var(--wg-border);
-    padding-block: 6rem 7rem;
+    padding-block: 3rem 4.5rem;
     overflow: hidden;
     background-color: var(--wg-bg);
-    background-image:
-      radial-gradient(ellipse 70% 90% at 15% 10%, rgb(from var(--wg-accent) r g b / 0.1), transparent 65%),
-      radial-gradient(ellipse 80% 70% at 90% 100%, rgb(from var(--wg-border) r g b / 0.45), transparent 60%);
+    background-image: radial-gradient(
+      ellipse 70% 90% at 15% 10%,
+      rgb(from var(--wg-accent) r g b / 0.1),
+      transparent 65%
+    );
   }
 
   /* Operations-map grid, drawn over the tint so it stays legible. */
-  .hero::after {
+  .intro::after {
     content: '';
     position: absolute;
     inset: 0;
     pointer-events: none;
-    background-image:
-      linear-gradient(to right, rgb(from var(--wg-ink) r g b / 0.055) 1px, transparent 1px),
-      linear-gradient(to bottom, rgb(from var(--wg-ink) r g b / 0.055) 1px, transparent 1px);
-    background-size: 40px 40px;
+    background-image: var(--tex-hex);
+    background-size: var(--tex-hex-size);
     mask-image: linear-gradient(to bottom, #000 0%, #000 65%, transparent 100%);
   }
 
-  @media (min-width: 1024px) {
-    .hero {
-      padding-block: 9rem 10rem;
-    }
-  }
-
-  .hero__inner {
+  .intro > * {
     position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
   }
 
-  .hero__badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.25rem 0.75rem;
-    margin-bottom: 1.5rem;
-    border: 1px solid rgb(from var(--wg-alert) r g b / 0.35);
-    border-radius: var(--radius);
-    background: rgb(from var(--wg-alert) r g b / 0.15);
-    color: var(--wg-alert);
-    font-size: 0.6875rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.18em;
-  }
-
-  .hero__pulse {
-    width: 0.5rem;
-    height: 0.5rem;
-    border-radius: 50%;
-    background: var(--wg-alert);
-    animation: pulse 2s ease-in-out infinite;
-  }
-
-  @keyframes pulse {
-    50% {
-      opacity: 0.35;
-    }
-  }
-
-  .hero__title {
-    font-size: clamp(2.25rem, 1.2rem + 4.5vw, 4.5rem);
+  .intro__title {
+    font-size: clamp(1.75rem, 1.1rem + 2.6vw, 2.75rem);
     text-transform: uppercase;
     letter-spacing: -0.01em;
-    margin-bottom: 1.5rem;
+    margin-bottom: 0.75rem;
+    max-width: 24ch;
     text-wrap: balance;
   }
 
-  .hero__lead {
+  /* Unit motto under the wordmark — small, stamped, out of the h1's way. */
+  .intro__tagline {
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--wg-accent-strong);
+    margin-bottom: 1.75rem;
+  }
+
+  .intro__lead {
     max-width: 46rem;
   }
 
-  .hero__actions {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    margin-top: 2.5rem;
-    width: 100%;
+  .intro__cta {
+    margin-top: 2rem;
   }
 
-  @media (min-width: 640px) {
-    .hero__actions {
-      flex-direction: row;
-      width: auto;
-    }
-  }
-
-  /* --- Stat band: overlaps the hero edge like a clipboard laid on the map. --- */
+  /* --- Stat band: overlaps the intro edge like a clipboard laid on the map. --- */
 
   .stats {
     display: grid;
@@ -267,5 +297,103 @@ const stats = [
     font-size: 1.75rem;
     color: var(--wg-ink);
     line-height: 1.1;
+  }
+
+  /* --- Mission: what the site is for, and what it hands you --- */
+
+  .mission__icon {
+    color: var(--wg-accent-strong);
+  }
+
+  .mission__body {
+    max-width: 68ch;
+    margin-top: 1.75rem;
+  }
+
+  .mission__subtitle {
+    margin-top: 2.75rem;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .mission__grid {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    gap: 1.5rem;
+    margin-top: 1.25rem;
+    grid-template-columns: repeat(auto-fit, minmax(min(17rem, 100%), 1fr));
+  }
+
+  .mission__card {
+    padding: 1.5rem;
+  }
+
+  .mission__card-icon {
+    color: var(--wg-accent-strong);
+    margin-bottom: 0.75rem;
+  }
+
+  .mission__card-title {
+    font-size: 1.0625rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .mission__card-body {
+    font-size: 0.9375rem;
+    color: var(--wg-muted);
+  }
+
+  /* Sign-off: reads as a stamped order rather than another paragraph. */
+  .mission__closer {
+    margin-top: 2.5rem;
+    font-family: var(--font-mono);
+    font-size: 0.9375rem;
+    letter-spacing: 0.01em;
+    color: var(--wg-ink);
+    border-left: 4px solid var(--wg-alert);
+    padding-left: 1rem;
+    max-width: 52ch;
+  }
+
+  /* --- Series cards --- */
+
+  /* Follows the mission block, which already provides the gap above. */
+  .section--tight {
+    padding-top: 0;
+  }
+
+  .series__head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .series__icon {
+    color: var(--wg-accent-strong);
+  }
+
+  .series__all {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    text-decoration: none;
+    color: var(--wg-muted);
+    white-space: nowrap;
+  }
+
+  .series__all:hover {
+    color: var(--wg-ink);
+  }
+
+  .series__grid {
+    display: grid;
+    gap: 1.5rem;
+    margin-top: 2rem;
+    grid-template-columns: repeat(auto-fill, minmax(min(21rem, 100%), 1fr));
   }
 </style>

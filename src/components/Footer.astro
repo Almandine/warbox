@@ -1,13 +1,13 @@
 ---
-import { getCollection } from 'astro:content';
 import Icon from './Icon.astro';
 import { SITE_TITLE, WDS_URL } from '../consts';
 import { getArticles } from '../lib/articles';
+import { getAllSeries, hrefOf } from '../lib/games';
 
 const year = new Date().getFullYear();
 
 // The series column follows the catalog, so it can never drift out of date.
-const series = (await getCollection('series')).sort((a, b) => a.data.order - b.data.order);
+const series = await getAllSeries();
 const hasArticles = (await getArticles()).length > 0;
 
 const columns = [
@@ -15,9 +15,8 @@ const columns = [
     title: 'Navigation',
     links: [
       { label: 'Home', href: '/' },
-      { label: 'Games', href: '/games/' },
+      { label: 'All series', href: '/series/' },
       ...(hasArticles ? [{ label: 'Articles', href: '/articles/' }] : []),
-      { label: 'Artwork', href: '/artwork/' },
     ],
   },
   {
@@ -31,7 +30,7 @@ const columns = [
     title: 'Series',
     links: series.map((entry) => ({
       label: entry.data.name,
-      href: `/games/#${entry.data.id}`,
+      href: hrefOf.series(entry),
     })),
   },
   {

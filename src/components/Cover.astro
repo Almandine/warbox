@@ -1,0 +1,103 @@
+---
+import { Image } from 'astro:assets';
+import { SITE_OWNER, SITE_NAME, SITE_TAGLINE } from '../consts';
+
+/**
+ * The banner at the very top of the home page. It scrolls away; the nav bar
+ * underneath it sticks.
+ *
+ * To use a picture, drop one file into src/assets/cover/ — any name, any of the
+ * usual formats. There is no code to change and no path to register. While the
+ * folder is empty the band draws the wordmark on paper instead, so the page
+ * still has a top edge and the scroll behaviour is unchanged.
+ */
+const covers = import.meta.glob<{ default: ImageMetadata }>(
+  '../assets/cover/*.{png,jpg,jpeg,webp,avif}',
+  { eager: true },
+);
+
+// Sorted so that two files in the folder still give a stable result.
+const image = Object.keys(covers).sort().map((key) => covers[key]!.default)[0];
+---
+
+<div class="cover">
+  {
+    image ? (
+      <Image
+        src={image}
+        alt=""
+        widths={[900, 1600, 2400]}
+        sizes="100vw"
+        loading="eager"
+        fetchpriority="high"
+      />
+    ) : (
+      <div class="cover__standin">
+        <p class="cover__owner">{SITE_OWNER}</p>
+        <p class="cover__name">{SITE_NAME}</p>
+        <p class="cover__tagline">{SITE_TAGLINE}</p>
+      </div>
+    )
+  }
+</div>
+
+<style>
+  .cover {
+    height: clamp(11rem, 26vw, 22rem);
+    overflow: hidden;
+    background: var(--wg-surface);
+    border-bottom: 1px solid var(--wg-border);
+  }
+
+  .cover :global(img) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .cover__standin {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    text-align: center;
+    padding-inline: 1rem;
+    background-color: var(--wg-surface);
+    background-image:
+      radial-gradient(
+        ellipse 70% 100% at 50% 120%,
+        rgb(from var(--wg-accent) r g b / 0.12),
+        transparent 70%
+      ),
+      var(--tex-hex);
+    background-size:
+      100% 100%,
+      var(--tex-hex-size);
+  }
+
+  .cover__owner {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.32em;
+    color: var(--wg-muted);
+  }
+
+  .cover__name {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: clamp(2.5rem, 9vw, 5rem);
+    line-height: 1;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--wg-ink);
+    margin-block: 0.25rem 0.5rem;
+  }
+
+  .cover__tagline {
+    font-size: 0.875rem;
+    color: var(--wg-muted);
+  }
+</style>

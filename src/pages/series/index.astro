@@ -1,0 +1,134 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import SeriesCard from '../../components/SeriesCard.astro';
+import GameCard from '../../components/GameCard.astro';
+import Icon from '../../components/Icon.astro';
+import { getSeriesOverview, assertSeriesReferencesResolve } from '../../lib/games';
+import { assertResourceReferencesResolve } from '../../lib/resources';
+
+await Promise.all([assertSeriesReferencesResolve(), assertResourceReferencesResolve()]);
+
+const overview = await getSeriesOverview();
+
+const titles = overview.reduce((n, entry) => n + entry.games.length, 0);
+const companions = overview.reduce((n, entry) => n + entry.companions, 0);
+---
+
+<Base
+  title="Series"
+  description="Every Wargame Design Studio series covered here, with its titles, companions and reference material."
+>
+  <PageHeader
+    eyebrow={`${companions} of ${titles} titles have a companion`}
+    title="Series"
+    icon="layers"
+    lead="Each Wargame Design Studio series has its own corner here: material that covers the whole series, and a page for every title in it."
+  />
+
+  <div class="wrap section">
+    <div class="cards">
+      {
+        overview.map((entry) => (
+          <SeriesCard
+            series={entry.series}
+            games={entry.games.length}
+            companions={entry.companions}
+            resources={entry.resources}
+          />
+        ))
+      }
+    </div>
+  </div>
+
+  <div class="wrap section catalog">
+    <h2 class="section-title">
+      <Icon name="cpu" size="1em" class="catalog__icon" /> Every title
+    </h2>
+    <div class="section-rule"></div>
+
+    {
+      overview
+        .filter((entry) => entry.games.length > 0)
+        .map((entry) => (
+          <section class="group" id={entry.series.data.id} style={`--accent: ${entry.series.data.accent}`}>
+            <header class="group__head">
+              <h3 class="group__title">
+                <a href={`/series/${entry.series.data.id}/`}>{entry.series.data.name}</a>
+              </h3>
+              <span class="group__count">
+                {entry.games.length} {entry.games.length === 1 ? 'title' : 'titles'}
+              </span>
+            </header>
+
+            <div class="group__grid">
+              {entry.games.map((game) => (
+                <GameCard game={game} series={entry.series} />
+              ))}
+            </div>
+          </section>
+        ))
+    }
+  </div>
+</Base>
+
+<style>
+  .cards {
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fill, minmax(min(21rem, 100%), 1fr));
+  }
+
+  .catalog {
+    padding-top: 0;
+  }
+
+  .catalog__icon {
+    color: var(--wg-accent-strong);
+  }
+
+  .group {
+    margin-top: 3rem;
+    scroll-margin-top: calc(var(--nav-h) + 2rem);
+  }
+
+  .group__head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.75rem 1rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--wg-border);
+    /* The series colour reads as a tab under its own heading. */
+    box-shadow: inset 0 -1px 0 0 var(--accent);
+  }
+
+  .group__title {
+    font-size: 1.25rem;
+    text-transform: uppercase;
+  }
+
+  .group__title a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .group__title a:hover {
+    color: var(--wg-accent);
+  }
+
+  .group__count {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--wg-faint);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  .group__grid {
+    display: grid;
+    gap: 1.5rem;
+    margin-top: 2rem;
+    grid-template-columns: repeat(auto-fill, minmax(min(20rem, 100%), 1fr));
+  }
+</style>

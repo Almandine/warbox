@@ -6,7 +6,8 @@ export interface StripItem {
   image: ImageMetadata;
   caption?: string;
   gameTitle: string;
-  gameId: string;
+  /** Where the slide links to — built by the caller from src/lib/urls.ts. */
+  gameHref: string;
   seriesName: string;
   accent: string;
 }
@@ -35,7 +36,7 @@ const { items } = Astro.props;
       <div class="strip__rail no-scrollbar">
         {items.map((item) => (
           <article class="slide" style={`--accent: ${item.accent}`}>
-            <a class="slide__media" href={`/games/${item.gameId}/`}>
+            <a class="slide__media" href={item.gameHref}>
               <Image
                 src={item.image}
                 alt={`${item.gameTitle} companion`}

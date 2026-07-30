@@ -2,7 +2,7 @@
 import { Image } from 'astro:assets';
 import Icon from './Icon.astro';
 import { getScreenshot } from '../lib/screenshots';
-import { formatDate, lastTouched, type Game, type Series } from '../lib/games';
+import { formatDate, hrefOf, lastTouched, type Game, type Series } from '../lib/games';
 
 interface Props {
   game: Game;
@@ -58,7 +58,7 @@ const updated = game.data.date_updated ? 'Updated' : 'Added';
   </div>
 
   <div class="card__foot">
-    <a class="card__cta" href={`/games/${game.id}/`}>
+    <a class="card__cta" href={hrefOf.game(game)}>
       {planned ? 'See what is planned' : 'Open companion'}
       <Icon name="arrow-right" size="1.1em" />
     </a>
@@ -117,10 +117,8 @@ const updated = game.data.date_updated ? 'Updated' : 'Added';
     place-items: center;
     height: 100%;
     color: var(--wg-faint);
-    background-image:
-      linear-gradient(to right, rgb(from var(--wg-ink) r g b / 0.06) 1px, transparent 1px),
-      linear-gradient(to bottom, rgb(from var(--wg-ink) r g b / 0.06) 1px, transparent 1px);
-    background-size: 24px 24px;
+    background-image: var(--tex-hex);
+    background-size: var(--tex-hex-size-sm);
   }
 
   .card__status {

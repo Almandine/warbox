@@ -1,0 +1,209 @@
+---
+import { Image } from 'astro:assets';
+import { render } from 'astro:content';
+import Icon from './Icon.astro';
+import Note from './Note.astro';
+import DownloadButton from './DownloadButton.astro';
+import { hrefOf, type Game, type Series } from '../lib/games';
+import { KINDS, getResourcePreview, type Resource } from '../lib/resources';
+import { resourceFileUrl } from '../lib/urls';
+
+interface Props {
+  resource: Resource;
+  series: Series;
+  /** Set when the resource belongs to a game rather than to the series. */
+  game?: Game;
+}
+
+const { resource, series, game } = Astro.props;
+const { title, summary, kind, files, draft } = resource.data;
+
+const { Content } = await render(resource);
+const preview = getResourcePreview(resource);
+---
+
+<header class="head" style={`--accent: ${series.data.accent}`}>
+  <div class="wrap">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <a href="/series/">Series</a>
+      <Icon name="caret-right" size="0.75em" />
+      <a href={hrefOf.series(series)}>{series.data.name}</a>
+      {
+        game && (
+          <>
+            <Icon name="caret-right" size="0.75em" />
+            <a href={hrefOf.game(game)}>{game.data.title}</a>
+          </>
+        )
+      }
+    </nav>
+
+    <p class="head__kind">
+      <Icon name={KINDS[kind].icon} size="1em" />
+      {KINDS[kind].label}
+    </p>
+    <h1 class="head__title">{title}</h1>
+    <p class="lead head__lead">{summary}</p>
+  </div>
+</header>
+
+<div class="wrap layout">
+  <article class="main">
+    {
+      draft && (
+        <Note tone="draft" label="Draft">
+          This page is a placeholder. The material described below is not here yet.
+        </Note>
+      )
+    }
+
+    {
+      preview && (
+        <figure class="preview">
+          <Image
+            src={preview}
+            alt={title}
+            widths={[600, 1200]}
+            sizes="(min-width: 900px) 640px, 100vw"
+            loading="eager"
+          />
+        </figure>
+      )
+    }
+
+    <div class="prose">
+      <Content />
+    </div>
+  </article>
+
+  {
+    files.length > 0 && (
+      <aside class="side">
+        <h2 class="side__title">Download</h2>
+        {files.map((entry) => (
+          <div>
+            <DownloadButton
+              href={resourceFileUrl(resource.id, entry.file)}
+              label={entry.label}
+              variant="subtle"
+            />
+            {entry.note && <p class="side__note">{entry.note}</p>}
+          </div>
+        ))}
+      </aside>
+    )
+  }
+</div>
+
+<style>
+  .head {
+    position: relative;
+    padding-block: 3rem;
+    border-bottom: 1px solid var(--wg-border);
+    background-color: var(--wg-surface);
+    background-image: var(--tex-hex);
+    background-size: var(--tex-hex-size);
+  }
+
+  .head::before {
+    content: '';
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: 4px;
+    background: var(--accent);
+  }
+
+  .crumbs {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--wg-faint);
+  }
+
+  .crumbs a {
+    text-decoration: none;
+    color: var(--wg-muted);
+  }
+
+  .crumbs a:hover {
+    color: var(--wg-accent);
+  }
+
+  .head__kind {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    margin-bottom: 0.75rem;
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--accent);
+  }
+
+  .head__title {
+    font-size: clamp(1.875rem, 1.2rem + 3vw, 3rem);
+    text-transform: uppercase;
+    text-wrap: balance;
+  }
+
+  .head__lead {
+    margin-top: 1.25rem;
+    max-width: 60ch;
+  }
+
+  .layout {
+    display: grid;
+    gap: 3rem;
+    padding-block: 3.5rem 5rem;
+    align-items: start;
+  }
+
+  @media (min-width: 900px) {
+    .layout:has(.side) {
+      grid-template-columns: minmax(0, 1fr) 20rem;
+    }
+
+    .side {
+      position: sticky;
+      top: calc(var(--nav-h) + 2rem);
+    }
+  }
+
+  .preview {
+    margin-bottom: 2.5rem;
+  }
+
+  .preview :global(img) {
+    display: block;
+    width: 100%;
+    border: 1px solid var(--wg-border);
+    border-radius: var(--radius);
+  }
+
+  .side {
+    display: grid;
+    gap: 1.25rem;
+  }
+
+  .side__title {
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--wg-muted);
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--wg-border);
+  }
+
+  .side__note {
+    margin-top: 0.5rem;
+    font-size: 0.8125rem;
+    color: var(--wg-muted);
+  }
+</style>

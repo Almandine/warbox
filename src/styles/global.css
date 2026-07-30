@@ -49,6 +49,18 @@
   --radius-lg: 8px;
   --nav-h: 4rem;
 
+  /* --- Textures ---
+     The operations-map grid, as a flat-top hex lattice. One seamless tile:
+     a whole hexagon plus the two half-edges that join it to its neighbours.
+     A data URI cannot read a custom property, so the line colour is spelled
+     out here — it is --wg-ink. Changing the palette means changing it in both
+     places; this is the only spot in the site where that is true, alongside
+     public/favicon.svg. */
+  --tex-hex: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='27.713' viewBox='0 0 48 27.713'%3E%3Cpath d='M16 0 L32 0 L40 13.856 L32 27.713 L16 27.713 L8 13.856 Z M0 13.856 L8 13.856 M40 13.856 L48 13.856' fill='none' stroke='%231c2228' stroke-opacity='0.07' stroke-width='1'/%3E%3C/svg%3E");
+  --tex-hex-size: 48px 27.713px;
+  /* Half scale, for small panels where the full lattice reads as noise. */
+  --tex-hex-size-sm: 32px 18.475px;
+
   color-scheme: light;
 }
 
@@ -301,10 +313,8 @@ img {
 
 /* Operations-map grid. */
 .tex-grid {
-  background-size: 40px 40px;
-  background-image:
-    linear-gradient(to right, rgb(from var(--wg-ink) r g b / 0.05) 1px, transparent 1px),
-    linear-gradient(to bottom, rgb(from var(--wg-ink) r g b / 0.05) 1px, transparent 1px);
+  background-image: var(--tex-hex);
+  background-size: var(--tex-hex-size);
 }
 
 /* Faint dot field, used on wide flat sections. */

@@ -33,10 +33,15 @@ export interface NavItem {
   href: string;
 }
 
+/**
+ * The series are not in here on purpose: they are the site's own content, and
+ * reach the reader as cards under the header rather than as menu entries.
+ * "Series" is the one item that leads to them.
+ */
 export const NAV: NavItem[] = [
-  { label: 'Games', href: '/games/' },
+  { label: 'Home', href: '/' },
+  { label: 'Series', href: '/series/' },
   { label: 'How to use', href: '/how-to-use/' },
-  { label: 'Artwork', href: '/artwork/' },
   { label: 'About', href: '/about/' },
   { label: 'Contact', href: '/contact/' },
 ];

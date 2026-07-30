@@ -1,28 +1,22 @@
 ---
-import { getCollection } from 'astro:content';
-import Base from '../../layouts/Base.astro';
-import Icon from '../../components/Icon.astro';
-import Note from '../../components/Note.astro';
-import DownloadButton from '../../components/DownloadButton.astro';
-import ScreenshotGallery from '../../components/ScreenshotGallery.astro';
-import { getScreenshots } from '../../lib/screenshots';
-import { formatDate, type Game, type Series } from '../../lib/games';
-
-export async function getStaticPaths() {
-  const [games, allSeries] = await Promise.all([getCollection('games'), getCollection('series')]);
-
-  return games.map((game) => ({
-    params: { id: game.id },
-    props: { game, series: allSeries.find((s) => s.data.id === game.data.series)! },
-  }));
-}
+import Icon from './Icon.astro';
+import Note from './Note.astro';
+import DownloadButton from './DownloadButton.astro';
+import ScreenshotGallery from './ScreenshotGallery.astro';
+import ResourceCard from './ResourceCard.astro';
+import { getScreenshots } from '../lib/screenshots';
+import { formatDate, hrefOf, type Game, type Series } from '../lib/games';
+import { companionUrl } from '../lib/urls';
+import type { Resource } from '../lib/resources';
 
 interface Props {
   game: Game;
   series: Series;
+  /** Material attached to this game: scenario lists, references, maps. */
+  resources: Resource[];
 }
 
-const { game, series } = Astro.props;
+const { game, series, resources } = Astro.props;
 const { title, status, excel, version, description, wds_url } = game.data;
 
 const shots = getScreenshots(game.id, game.data.screenshots);
@@ -37,23 +31,38 @@ const facts = [
 ].filter((fact): fact is { label: string; value: string } => Boolean(fact));
 ---
 
-<Base title={title} description={description}>
-  <header class="head" style={`--accent: ${series.data.accent}`}>
-    <div class="wrap">
-      <nav class="crumbs" aria-label="Breadcrumb">
-        <a href="/games/">Games</a>
-        <Icon name="caret-right" size="0.75em" />
-        <a href={`/games/#${series.data.id}`}>{series.data.name}</a>
-      </nav>
+<header class="head" style={`--accent: ${series.data.accent}`}>
+  <div class="wrap">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <a href="/series/">Series</a>
+      <Icon name="caret-right" size="0.75em" />
+      <a href={hrefOf.series(series)}>{series.data.name}</a>
+    </nav>
 
-      <h1 class="head__title">{title}</h1>
-      {planned && <p class="head__badge">Companion in progress</p>}
-      {description && <p class="lead head__lead">{description}</p>}
-    </div>
-  </header>
+    <h1 class="head__title">{title}</h1>
+    {planned && <p class="head__badge">Companion in progress</p>}
+    {description && <p class="lead head__lead">{description}</p>}
+  </div>
+</header>
 
-  <div class="wrap layout">
-    <main class="main">
+<div class="wrap layout" style={`--accent: ${series.data.accent}`}>
+  <main class="main">
+    {
+      resources.length > 0 && (
+        <section class="block">
+          <h2 class="block-title">
+            <Icon name="layers" size="1em" /> For this title
+          </h2>
+          <div class="cards">
+            {resources.map((resource) => (
+              <ResourceCard resource={resource} />
+            ))}
+          </div>
+        </section>
+      )
+    }
+
+    <section class="block">
       {
         shots.length > 0 ? (
           <>
@@ -70,51 +79,57 @@ const facts = [
           </Note>
         )
       }
-    </main>
+    </section>
+  </main>
 
-    <aside class="side">
+  <aside class="side">
+    {
+      planned || !excel ? (
+        <Note tone="draft" label="In progress">
+          This title is listed so you know it is coming. There is nothing to download yet.
+        </Note>
+      ) : (
+        <DownloadButton href={companionUrl(excel)} version={version} />
+      )
+    }
+
+    <dl class="facts">
       {
-        planned || !excel ? (
-          <Note tone="draft" label="In progress">
-            This title is listed so you know it is coming. There is nothing to download yet.
-          </Note>
-        ) : (
-          <DownloadButton href={`/downloads/companions/${excel}`} version={version} />
+        facts.map((fact) => (
+          <div>
+            <dt>{fact.label}</dt>
+            <dd>{fact.value}</dd>
+          </div>
+        ))
+      }
+    </dl>
+
+    <ul class="links">
+      <li>
+        <a href="/how-to-use/">
+          <Icon name="file-text" size="1em" />
+          New to the companions? Read the guide
+        </a>
+      </li>
+      <li>
+        <a href={hrefOf.series(series)}>
+          <Icon name="layers" size="1em" />
+          Everything else in {series.data.name}
+        </a>
+      </li>
+      {
+        wds_url && (
+          <li>
+            <a href={wds_url} target="_blank" rel="noopener">
+              <Icon name="external" size="1em" />
+              {series.data.name} at Wargame Design Studio
+            </a>
+          </li>
         )
       }
-
-      <dl class="facts">
-        {
-          facts.map((fact) => (
-            <div>
-              <dt>{fact.label}</dt>
-              <dd>{fact.value}</dd>
-            </div>
-          ))
-        }
-      </dl>
-
-      <ul class="links">
-        <li>
-          <a href="/how-to-use/">
-            <Icon name="file-text" size="1em" />
-            New to the companions? Read the guide
-          </a>
-        </li>
-        {
-          wds_url && (
-            <li>
-              <a href={wds_url} target="_blank" rel="noopener">
-                <Icon name="external" size="1em" />
-                {series.data.name} at Wargame Design Studio
-              </a>
-            </li>
-          )
-        }
-      </ul>
-    </aside>
-  </div>
-</Base>
+    </ul>
+  </aside>
+</div>
 
 <style>
   .head {
@@ -122,10 +137,8 @@ const facts = [
     padding-block: 3rem;
     border-bottom: 1px solid var(--wg-border);
     background-color: var(--wg-surface);
-    background-image:
-      linear-gradient(to right, rgb(from var(--wg-ink) r g b / 0.04) 1px, transparent 1px),
-      linear-gradient(to bottom, rgb(from var(--wg-ink) r g b / 0.04) 1px, transparent 1px);
-    background-size: 40px 40px;
+    background-image: var(--tex-hex);
+    background-size: var(--tex-hex-size);
   }
 
   /* Series colour, so a game page reads as part of its series. */
@@ -201,6 +214,10 @@ const facts = [
     }
   }
 
+  .block + .block {
+    margin-top: 3.5rem;
+  }
+
   .block-title {
     display: flex;
     align-items: center;
@@ -212,6 +229,11 @@ const facts = [
     padding-bottom: 0.625rem;
     border-bottom: 1px solid var(--wg-border);
     color: var(--wg-muted);
+  }
+
+  .cards {
+    display: grid;
+    gap: 0.75rem;
   }
 
   .side {

@@ -30,10 +30,8 @@ const { title, eyebrow, icon, lead } = Astro.props;
     padding-block: 3.5rem 3rem;
     border-bottom: 1px solid var(--wg-border);
     background-color: var(--wg-surface);
-    background-image:
-      linear-gradient(to right, rgb(from var(--wg-ink) r g b / 0.04) 1px, transparent 1px),
-      linear-gradient(to bottom, rgb(from var(--wg-ink) r g b / 0.04) 1px, transparent 1px);
-    background-size: 40px 40px;
+    background-image: var(--tex-hex);
+    background-size: var(--tex-hex-size);
   }
 
   .ph__icon {

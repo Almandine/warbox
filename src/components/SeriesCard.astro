@@ -1,0 +1,185 @@
+---
+import { Image } from 'astro:assets';
+import Icon from './Icon.astro';
+import { getSeriesImage, seriesMonogram, hrefOf, type Series } from '../lib/games';
+
+interface Props {
+  series: Series;
+  /** Titles listed under the series. */
+  games: number;
+  /** Companion spreadsheets ready to download. */
+  companions: number;
+  /** Everything else attached to the series or to one of its games. */
+  resources: number;
+}
+
+const { series, games, companions, resources } = Astro.props;
+
+const image = getSeriesImage(series);
+
+// Only counts that mean something get a slot — "0 companions" reads as a
+// complaint, and an empty series should simply say less.
+const counts = [
+  `${games} ${games === 1 ? 'title' : 'titles'}`,
+  companions > 0 && `${companions} ${companions === 1 ? 'companion' : 'companions'}`,
+  resources > 0 && `${resources} ${resources === 1 ? 'extra' : 'extras'}`,
+].filter((entry): entry is string => Boolean(entry));
+---
+
+<article class="card" style={`--accent: ${series.data.accent}`}>
+  <div class="card__rule"></div>
+
+  <div class="card__media">
+    {
+      image ? (
+        <Image
+          src={image}
+          alt=""
+          widths={[400, 800]}
+          sizes="(min-width: 900px) 380px, 100vw"
+          loading="lazy"
+        />
+      ) : (
+        /* Until a picture arrives: the series colour, the map grid, the initials. */
+        <div class="card__standin tex-grid" aria-hidden="true">
+          <span class="card__monogram">{seriesMonogram(series)}</span>
+        </div>
+      )
+    }
+  </div>
+
+  <div class="card__body">
+    <h3 class="card__title">{series.data.name}</h3>
+    {series.data.blurb && <p class="card__blurb">{series.data.blurb}</p>}
+  </div>
+
+  <div class="card__foot">
+    <span class="card__counts">{counts.join(' · ')}</span>
+    <a class="card__cta" href={hrefOf.series(series)}>
+      Open
+      <Icon name="arrow-right" size="1.1em" />
+    </a>
+  </div>
+</article>
+
+<style>
+  .card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    background: var(--wg-surface);
+    border: 1px solid var(--wg-border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    transition: border-color 0.2s ease;
+  }
+
+  .card:hover,
+  .card:focus-within {
+    border-color: var(--accent);
+  }
+
+  .card__rule {
+    height: 4px;
+    background: var(--accent);
+  }
+
+  .card__media {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    background: var(--wg-border);
+    overflow: hidden;
+  }
+
+  .card__media :global(img) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(1) contrast(0.92) brightness(1.04);
+    transition:
+      filter 0.45s ease,
+      transform 0.6s ease;
+  }
+
+  .card:hover .card__media :global(img),
+  .card:focus-within .card__media :global(img) {
+    filter: grayscale(0) contrast(1) brightness(1);
+    transform: scale(1.04);
+  }
+
+  .card__standin {
+    display: grid;
+    place-items: center;
+    height: 100%;
+    /* The series colour, heavily diluted — a tint, not a poster. */
+    background-color: rgb(from var(--accent) r g b / 0.14);
+  }
+
+  .card__monogram {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: clamp(2.5rem, 8vw, 3.5rem);
+    letter-spacing: 0.08em;
+    color: rgb(from var(--accent) r g b / 0.55);
+  }
+
+  .card__body {
+    flex: 1;
+    padding: 1.25rem;
+  }
+
+  .card__title {
+    font-size: 1.25rem;
+    text-transform: uppercase;
+    color: var(--wg-emphasis);
+    margin-bottom: 0.75rem;
+  }
+
+  .card__blurb {
+    font-size: 0.875rem;
+    color: var(--wg-muted);
+  }
+
+  .card__foot {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    padding: 0.875rem 1.25rem;
+    border-top: 1px solid var(--wg-border);
+    background: rgb(from var(--wg-bg) r g b / 0.5);
+  }
+
+  .card__counts {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--wg-faint);
+  }
+
+  .card__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.8125rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    text-decoration: none;
+    color: var(--wg-ink);
+    transition: color 0.18s ease;
+  }
+
+  /* Makes the whole card a click target without nesting links. */
+  .card__cta::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+  }
+
+  .card:hover .card__cta {
+    color: var(--wg-emphasis);
+  }
+</style>

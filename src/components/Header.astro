@@ -4,10 +4,11 @@ import { NAV, SITE_OWNER, SITE_NAME, SITE_TITLE } from '../consts';
 import { getArticles } from '../lib/articles';
 
 // Articles only enters the nav once something is published there — an empty
-// section in the menu is worse than no section.
+// section in the menu is worse than no section. It sits after Series, the other
+// item that leads to a body of content.
 const hasArticles = (await getArticles()).length > 0;
 const items = hasArticles
-  ? [...NAV.slice(0, 1), { label: 'Articles', href: '/articles/' }, ...NAV.slice(1)]
+  ? [...NAV.slice(0, 2), { label: 'Articles', href: '/articles/' }, ...NAV.slice(2)]
   : NAV;
 
 const path = Astro.url.pathname;
@@ -65,9 +66,11 @@ const isActive = (href: string) => (href === '/' ? path === '/' : path.startsWit
 </script>
 
 <style>
+  /* Sticky rather than fixed: the home page's cover band scrolls up behind
+     nothing, and the bar takes over the top edge once it reaches it. */
   .nav {
-    position: fixed;
-    inset: 0 0 auto 0;
+    position: sticky;
+    top: 0;
     z-index: 50;
     background: rgb(from var(--wg-surface) r g b / 0.9);
     backdrop-filter: blur(6px);
