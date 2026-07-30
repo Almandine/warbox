@@ -93,13 +93,11 @@ Carried forward deliberately — do not quietly drop these.
    was named `v06`; Middle East had none. Left blank rather than guessed — ask Norbi.
 5. **Draft copy remains** on How to use, About and Contact, each carrying a visible DRAFT note. The
    personal passages in About are Norbi's to supply; do not invent biography.
-6. **Not built, offered and unanswered:** a `/contact/thanks/` page so Formspree redirects back to
-   the site instead of showing its own branded page.
-7. **Series cards have no pictures.** All four draw the monogram placeholder. Norbi wants a picture
+6. **Series cards have no pictures.** All four draw the monogram placeholder. Norbi wants a picture
    per series (a German panzer on the Panzer Campaigns card, and so on) — one file into
    `src/assets/series/<id>/`, named in `image:` in `src/data/series.yaml`.
-8. **The placeholder copy is not Norbi's.** The seven planned games and six placeholder resource
+7. **The placeholder copy is not Norbi's.** The seven planned games and six placeholder resource
    pages carry descriptions written for this build. The campaign facts were checked against WDS and
    the usual references, but the wording is a stand-in — he should read it and make it his.
-9. **Optional:** archive the old `Almandine/Almandine.github.io` repo, now that it has released the
+8. **Optional:** archive the old `Almandine/Almandine.github.io` repo, now that it has released the
    domain.
