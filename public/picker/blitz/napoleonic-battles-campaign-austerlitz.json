@@ -1,0 +1,35 @@
+{
+  "source": "theblitz.club",
+  "game_json": "Napoleonic Battles - Campaign Austerlitz.json",
+  "faction_a": "French",
+  "faction_b": "Allied",
+  "fetched": "2026-08-24",
+  "scenarios": {
+    "52": {
+      "file_name": "#07H1-HTH-Herbrechtingen",
+      "blitz_title": "#07H1. Herbrechtingen: Prelude to Disastor (HTH)",
+      "blitz_url": "https://www.theblitz.club/scenarios/wds-campaign-austerlitz/07h1-herbrechtingen-prelude-to-disastor-hth/b-15.htm?action=scenario&id=10840",
+      "rating": "6.6 (2)",
+      "games_played": 1,
+      "draws": 1,
+      "wins_a": 0,
+      "wins_b": 0,
+      "balance_gap_pct": null,
+      "balance_rating": null,
+      "sample_size_flag": "small"
+    },
+    "53": {
+      "file_name": "#07H1-Solo-Herbrechtingen",
+      "blitz_title": "#07H1. Herbrechtingen: Prelude to Disastor (Solo)",
+      "blitz_url": "https://www.theblitz.club/scenarios/wds-campaign-austerlitz/07h1-herbrechtingen-prelude-to-disastor-solo/b-15.htm?action=scenario&id=1060",
+      "rating": "0 (0)",
+      "games_played": 1,
+      "draws": 0,
+      "wins_a": 1,
+      "wins_b": 0,
+      "balance_gap_pct": 100.0,
+      "balance_rating": "imbalanced",
+      "sample_size_flag": "small"
+    }
+  }
+}

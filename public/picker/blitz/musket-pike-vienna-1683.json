@@ -1,0 +1,22 @@
+{
+  "source": "theblitz.club",
+  "game_json": "Musket & Pike - Vienna 1683.json",
+  "faction_a": "Alliance",
+  "faction_b": "Ottoman",
+  "fetched": "2026-08-24",
+  "scenarios": {
+    "5": {
+      "file_name": "004.Vienna Afternoon",
+      "blitz_title": "004 Vienna: the Afternoon Battle",
+      "blitz_url": "https://www.theblitz.club/scenarios/wds-vienna-1683/004-vienna-the-afternoon-battle/b-15.htm?action=scenario&id=14989",
+      "rating": "0 (0)",
+      "games_played": 0,
+      "draws": null,
+      "wins_a": null,
+      "wins_b": null,
+      "balance_gap_pct": null,
+      "balance_rating": null,
+      "sample_size_flag": "small"
+    }
+  }
+}

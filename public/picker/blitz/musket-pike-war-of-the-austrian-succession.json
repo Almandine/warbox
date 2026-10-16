@@ -1,0 +1,35 @@
+{
+  "source": "theblitz.club",
+  "game_json": "Musket & Pike - War of the Austrian Succession.json",
+  "faction_a": "Pragmatic Alliance",
+  "faction_b": "Anti-Pragmatic",
+  "fetched": "2026-08-24",
+  "scenarios": {
+    "51": {
+      "file_name": "050.Soor_a",
+      "blitz_title": "050 The Battle of Soor (5:00 Start)",
+      "blitz_url": "https://www.theblitz.club/scenarios/wds-war-of-the-austrian-succession/050-the-battle-of-soor-5-00-start/b-15.htm?action=scenario&id=14951",
+      "rating": "0 (0)",
+      "games_played": 0,
+      "draws": null,
+      "wins_a": null,
+      "wins_b": null,
+      "balance_gap_pct": null,
+      "balance_rating": null,
+      "sample_size_flag": "small"
+    },
+    "52": {
+      "file_name": "051.Soor_b",
+      "blitz_title": "051 The Battle of Soor (Alternative 5:00 Start)",
+      "blitz_url": "https://www.theblitz.club/scenarios/wds-war-of-the-austrian-succession/051-the-battle-of-soor-alternative-5-00-start/b-15.htm?action=scenario&id=14952",
+      "rating": "0 (0)",
+      "games_played": 0,
+      "draws": null,
+      "wins_a": null,
+      "wins_b": null,
+      "balance_gap_pct": null,
+      "balance_rating": null,
+      "sample_size_flag": "small"
+    }
+  }
+}

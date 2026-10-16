@@ -1,0 +1,87 @@
+{
+  "source": "theblitz.club",
+  "game_json": "Musket & Pike - Thirty Years War.json",
+  "faction_a": "Imperialist",
+  "faction_b": "Anti-Imperialist",
+  "fetched": "2026-08-24",
+  "scenarios": {
+    "2": {
+      "file_name": "001.BootCamp1",
+      "blitz_title": "001_Boot Camp 1: Attacking the enemy",
+      "blitz_url": "https://www.theblitz.club/scenarios/wds-thirty-years-war/001-boot-camp-1-attacking-the-enemy/b-15.htm?action=scenario&id=14603",
+      "rating": "0 (0)",
+      "games_played": 0,
+      "draws": null,
+      "wins_a": null,
+      "wins_b": null,
+      "balance_gap_pct": null,
+      "balance_rating": null,
+      "sample_size_flag": "small"
+    },
+    "3": {
+      "file_name": "002.BootCamp2",
+      "blitz_title": "002_Boot Camp 2: Column or Block?",
+      "blitz_url": "https://www.theblitz.club/scenarios/wds-thirty-years-war/002-boot-camp-2-column-or-block/b-15.htm?action=scenario&id=14604",
+      "rating": "0 (0)",
+      "games_played": 0,
+      "draws": null,
+      "wins_a": null,
+      "wins_b": null,
+      "balance_gap_pct": null,
+      "balance_rating": null,
+      "sample_size_flag": "small"
+    },
+    "4": {
+      "file_name": "003.BootCamp3",
+      "blitz_title": "003_Boot Camp 3: Not all cavalry are created equal!",
+      "blitz_url": "https://www.theblitz.club/scenarios/wds-thirty-years-war/003-boot-camp-3-not-all-cavalry-are-created-equal/b-15.htm?action=scenario&id=14605",
+      "rating": "0 (0)",
+      "games_played": 0,
+      "draws": null,
+      "wins_a": null,
+      "wins_b": null,
+      "balance_gap_pct": null,
+      "balance_rating": null,
+      "sample_size_flag": "small"
+    },
+    "5": {
+      "file_name": "004.BootCamp4",
+      "blitz_title": "004_Boot Camp 4: Swedish Tactics",
+      "blitz_url": "https://www.theblitz.club/scenarios/wds-thirty-years-war/004-boot-camp-4-swedish-tactics/b-15.htm?action=scenario&id=14606",
+      "rating": "0 (0)",
+      "games_played": 0,
+      "draws": null,
+      "wins_a": null,
+      "wins_b": null,
+      "balance_gap_pct": null,
+      "balance_rating": null,
+      "sample_size_flag": "small"
+    },
+    "70": {
+      "file_name": "069.Freiburg_a",
+      "blitz_title": "069_Freiburg: The French Assault - Historical",
+      "blitz_url": "https://www.theblitz.club/scenarios/wds-thirty-years-war/069-freiburg-the-french-assault-historical/b-15.htm?action=scenario&id=14681",
+      "rating": "0 (0)",
+      "games_played": 0,
+      "draws": null,
+      "wins_a": null,
+      "wins_b": null,
+      "balance_gap_pct": null,
+      "balance_rating": null,
+      "sample_size_flag": "small"
+    },
+    "71": {
+      "file_name": "070.Freiburg_b",
+      "blitz_title": "070_Freiburg: Conde's Assault - Historical",
+      "blitz_url": "https://www.theblitz.club/scenarios/wds-thirty-years-war/070-freiburg-conde-s-assault-historical/b-15.htm?action=scenario&id=14682",
+      "rating": "0 (0)",
+      "games_played": 0,
+      "draws": null,
+      "wins_a": null,
+      "wins_b": null,
+      "balance_gap_pct": null,
+      "balance_rating": null,
+      "sample_size_flag": "small"
+    }
+  }
+}

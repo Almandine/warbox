@@ -1,0 +1,113 @@
+{
+  "source": "theblitz.club",
+  "game_json": "Panzer Campaigns - Normandy '44 Gold.json",
+  "faction_a": "Allied",
+  "faction_b": "Axis",
+  "fetched": "2026-08-24",
+  "scenarios": {
+    "77": {
+      "file_name": "#23-Epsom-1",
+      "blitz_title": "#23 - Operation \"Martlet\" (Epsom: Day 1)",
+      "blitz_url": "https://www.theblitz.club/scenarios/pzc-02-normandy-44/23-operation-martlet-epsom-day-1/b-15.htm?action=scenario&id=5716",
+      "rating": "6.57 (9)",
+      "games_played": 10,
+      "draws": 1,
+      "wins_a": 2,
+      "wins_b": 7,
+      "balance_gap_pct": 55.6,
+      "balance_rating": "imbalanced",
+      "sample_size_flag": "ok"
+    },
+    "78": {
+      "file_name": "#23-Epsom-1_Alt",
+      "blitz_title": "#23 - Operation \"Martlet\" (Epsom: Day 1)_Alt",
+      "blitz_url": "https://www.theblitz.club/scenarios/pzc-02-normandy-44/23-operation-martlet-epsom-day-1-alt/b-15.htm?action=scenario&id=5790",
+      "rating": "4.05 (2)",
+      "games_played": 2,
+      "draws": 0,
+      "wins_a": 0,
+      "wins_b": 2,
+      "balance_gap_pct": 100.0,
+      "balance_rating": "imbalanced",
+      "sample_size_flag": "small"
+    },
+    "79": {
+      "file_name": "#24-Epsom-2",
+      "blitz_title": "#24 - Weathering the Storm (Epsom: Day 2)",
+      "blitz_url": "https://www.theblitz.club/scenarios/pzc-02-normandy-44/24-weathering-the-storm-epsom-day-2/b-15.htm?action=scenario&id=5700",
+      "rating": "8.04 (24)",
+      "games_played": 26,
+      "draws": 5,
+      "wins_a": 7,
+      "wins_b": 14,
+      "balance_gap_pct": 33.3,
+      "balance_rating": "imbalanced",
+      "sample_size_flag": "ok"
+    },
+    "80": {
+      "file_name": "#24-Epsom-2_Alt",
+      "blitz_title": "#24 - Weathering the Storm (Epsom: Day 2)_Alt",
+      "blitz_url": "https://www.theblitz.club/scenarios/pzc-02-normandy-44/24-weathering-the-storm-epsom-day-2-alt/b-15.htm?action=scenario&id=5791",
+      "rating": "5.3 (1)",
+      "games_played": 1,
+      "draws": 0,
+      "wins_a": 0,
+      "wins_b": 1,
+      "balance_gap_pct": 100.0,
+      "balance_rating": "imbalanced",
+      "sample_size_flag": "small"
+    },
+    "81": {
+      "file_name": "#25-Epsom-3",
+      "blitz_title": "#25 - Seize the Crossings! (Epsom: Day 3)",
+      "blitz_url": "https://www.theblitz.club/scenarios/pzc-02-normandy-44/25-seize-the-crossings-epsom-day-3/b-15.htm?action=scenario&id=5709",
+      "rating": "6.68 (10)",
+      "games_played": 12,
+      "draws": 2,
+      "wins_a": 1,
+      "wins_b": 9,
+      "balance_gap_pct": 80.0,
+      "balance_rating": "imbalanced",
+      "sample_size_flag": "ok"
+    },
+    "82": {
+      "file_name": "#25-Epsom-3_Alt",
+      "blitz_title": "#25 - Seize the Crossings! (Epsom: Day 3)_Alt",
+      "blitz_url": "https://www.theblitz.club/scenarios/pzc-02-normandy-44/25-seize-the-crossings-epsom-day-3-alt/b-15.htm?action=scenario&id=5792",
+      "rating": "0 (0)",
+      "games_played": 0,
+      "draws": null,
+      "wins_a": null,
+      "wins_b": null,
+      "balance_gap_pct": null,
+      "balance_rating": null,
+      "sample_size_flag": "small"
+    },
+    "83": {
+      "file_name": "#26-Epsom-4",
+      "blitz_title": "#26 - Hitlers' Twins (Epsom: Day 4)",
+      "blitz_url": "https://www.theblitz.club/scenarios/pzc-02-normandy-44/26-hitlers-twins-epsom-day-4/b-15.htm?action=scenario&id=5728",
+      "rating": "7.84 (5)",
+      "games_played": 6,
+      "draws": 2,
+      "wins_a": 3,
+      "wins_b": 1,
+      "balance_gap_pct": 50.0,
+      "balance_rating": "imbalanced",
+      "sample_size_flag": "small"
+    },
+    "84": {
+      "file_name": "#26-Epsom-4_Alt",
+      "blitz_title": "#26 - Hitlers' Twins (Epsom: Day 4)_Alt",
+      "blitz_url": "https://www.theblitz.club/scenarios/pzc-02-normandy-44/26-hitlers-twins-epsom-day-4-alt/b-15.htm?action=scenario&id=5793",
+      "rating": "6.25 (2)",
+      "games_played": 3,
+      "draws": 1,
+      "wins_a": 1,
+      "wins_b": 1,
+      "balance_gap_pct": 0.0,
+      "balance_rating": "balanced",
+      "sample_size_flag": "small"
+    }
+  }
+}
