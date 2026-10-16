@@ -3,7 +3,7 @@
   "game_json": "Squad Battles - Eagles Strike.json",
   "faction_a": "American",
   "faction_b": "German",
-  "fetched": "2026-08-24",
+  "fetched": "2026-10-16",
   "scenarios": {
     "1": {
       "file_name": "001.Getting Started",
@@ -100,12 +100,12 @@
       "file_name": "008.Busy Bosses",
       "blitz_title": "Busy Bosses",
       "blitz_url": "https://www.theblitz.club/scenarios/eagles-strike/busy-bosses/b-15.htm?action=scenario&id=8758",
-      "rating": "7.65 (15)",
-      "games_played": 23,
+      "rating": "7.74 (16)",
+      "games_played": 24,
       "draws": 5,
       "wins_a": 1,
-      "wins_b": 17,
-      "balance_gap_pct": 88.9,
+      "wins_b": 18,
+      "balance_gap_pct": 89.5,
       "balance_rating": "imbalanced",
       "sample_size_flag": "ok"
     },

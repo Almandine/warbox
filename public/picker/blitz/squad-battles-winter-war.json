@@ -3,7 +3,7 @@
   "game_json": "Squad Battles - Winter War.json",
   "faction_a": "Finnish",
   "faction_b": "Russian",
-  "fetched": "2026-08-24",
+  "fetched": "2026-10-16",
   "scenarios": {
     "1": {
       "file_name": "001.Getting Started",
@@ -36,8 +36,8 @@
       "blitz_title": "Calm Down and Kill Russians",
       "blitz_url": "https://www.theblitz.club/scenarios/winter-war/calm-down-and-kill-russians/b-15.htm?action=scenario&id=9198",
       "rating": "8.4 (3)",
-      "games_played": 12,
-      "draws": 6,
+      "games_played": 13,
+      "draws": 7,
       "wins_a": 2,
       "wins_b": 4,
       "balance_gap_pct": 33.3,
@@ -100,13 +100,13 @@
       "file_name": "011.Uomaa",
       "blitz_title": "Crossroads",
       "blitz_url": "https://www.theblitz.club/scenarios/winter-war/crossroads/b-15.htm?action=scenario&id=9205",
-      "rating": "9.1 (1)",
-      "games_played": 8,
+      "rating": "8.5 (2)",
+      "games_played": 9,
       "draws": 1,
       "wins_a": 3,
-      "wins_b": 4,
-      "balance_gap_pct": 14.3,
-      "balance_rating": "lean",
+      "wins_b": 5,
+      "balance_gap_pct": 25.0,
+      "balance_rating": "imbalanced",
       "sample_size_flag": "small"
     },
     "12": {

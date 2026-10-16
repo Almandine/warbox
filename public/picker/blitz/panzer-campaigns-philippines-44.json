@@ -3,7 +3,7 @@
   "game_json": "Panzer Campaigns - Philippines '44.json",
   "faction_a": "Allied",
   "faction_b": "Axis",
-  "fetched": "2026-08-24",
+  "fetched": "2026-10-16",
   "scenarios": {
     "2": {
       "file_name": "#44_1020_01_Leyte-Operation",
@@ -360,13 +360,13 @@
       "file_name": "#45_0125_01_Battle-of-Clark-Field-P1",
       "blitz_title": "#45_0125_01: The Battle of Clark Field - Part 1",
       "blitz_url": "https://www.theblitz.club/scenarios/pzc-27-philippines-44/45-0125-01-the-battle-of-clark-field-part-1/b-15.htm?action=scenario&id=14418",
-      "rating": "0 (0)",
-      "games_played": 0,
-      "draws": null,
-      "wins_a": null,
-      "wins_b": null,
-      "balance_gap_pct": null,
-      "balance_rating": null,
+      "rating": "5.3 (2)",
+      "games_played": 1,
+      "draws": 0,
+      "wins_a": 1,
+      "wins_b": 0,
+      "balance_gap_pct": 100.0,
+      "balance_rating": "imbalanced",
       "sample_size_flag": "small"
     },
     "35": {

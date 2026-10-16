@@ -3,7 +3,7 @@
   "game_json": "Modern Campaigns - Middle East '67.json",
   "faction_a": "Israeli",
   "faction_b": "Arab",
-  "fetched": "2026-08-24",
+  "fetched": "2026-10-16",
   "scenarios": {
     "1": {
       "file_name": "#00_73_Started",
@@ -87,12 +87,12 @@
       "file_name": "#67_01s_Campaign",
       "blitz_title": "'67_01s: The Six Day War of 1967 - (Exp Supply available)",
       "blitz_url": "https://www.theblitz.club/scenarios/mc-01-middle-east-67/67-01s-the-six-day-war-of-1967-exp-supply-available/b-15.htm?action=scenario&id=6022",
-      "rating": "5.38 (5)",
-      "games_played": 5,
+      "rating": "5.37 (6)",
+      "games_played": 6,
       "draws": 0,
-      "wins_a": 4,
+      "wins_a": 5,
       "wins_b": 1,
-      "balance_gap_pct": 60.0,
+      "balance_gap_pct": 66.7,
       "balance_rating": "imbalanced",
       "sample_size_flag": "small"
     },

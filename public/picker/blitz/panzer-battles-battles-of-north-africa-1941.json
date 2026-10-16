@@ -3,7 +3,7 @@
   "game_json": "Panzer Battles - Battles of North Africa 1941.json",
   "faction_a": "Allied",
   "faction_b": "Axis",
-  "fetched": "2026-08-24",
+  "fetched": "2026-10-16",
   "scenarios": {
     "96": {
       "file_name": "#411122_01_Crusader_Fall_of_Sidi_Rezegh",
@@ -35,12 +35,12 @@
       "file_name": "#411123_04_Crusader_Point175",
       "blitz_title": "#411123_04: Assault on Pt 175 (HTH)",
       "blitz_url": "https://www.theblitz.club/scenarios/north-africa-1941/411123-04-assault-on-pt-175-hth/b-15.htm?action=scenario&id=12718",
-      "rating": "7.43 (3)",
-      "games_played": 4,
+      "rating": "7.78 (4)",
+      "games_played": 5,
       "draws": 0,
       "wins_a": 1,
-      "wins_b": 3,
-      "balance_gap_pct": 50.0,
+      "wins_b": 4,
+      "balance_gap_pct": 60.0,
       "balance_rating": "imbalanced",
       "sample_size_flag": "small"
     },

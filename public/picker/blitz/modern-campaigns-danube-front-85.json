@@ -3,7 +3,7 @@
   "game_json": "Modern Campaigns - Danube Front '85.json",
   "faction_a": "NATO",
   "faction_b": "Warsaw Pact",
-  "fetched": "2026-08-24",
+  "fetched": "2026-10-16",
   "scenarios": {
     "1": {
       "file_name": "#00_Started",
@@ -153,11 +153,11 @@
       "blitz_title": "850610_06a: The Eaglehorse at Bad Kissingen (HTH)",
       "blitz_url": "https://www.theblitz.club/scenarios/mc-05-danube-front-85/850610-06a-the-eaglehorse-at-bad-kissingen-hth/b-15.htm?action=scenario&id=6728",
       "rating": "8.34 (21)",
-      "games_played": 25,
+      "games_played": 26,
       "draws": 2,
       "wins_a": 12,
-      "wins_b": 11,
-      "balance_gap_pct": 4.3,
+      "wins_b": 12,
+      "balance_gap_pct": 0.0,
       "balance_rating": "balanced",
       "sample_size_flag": "ok"
     },
