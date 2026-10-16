@@ -13,9 +13,19 @@
     "sha256": "cc65763ef6110779c5e8e329a46878def04bb9889737e08c9eacd47c09ce9701",
     "fetched": "2026-10-16"
    },
+   "First World War Campaigns - France '14.json": {
+    "file": "first-world-war-campaigns-france-14.json",
+    "sha256": "b60a23f8263914a6f5099f6910c3f6ce111fc07c1bc7a7f53c14446620f5e136",
+    "fetched": "2026-10-16"
+   },
    "Modern Campaigns - Danube Front '85.json": {
     "file": "modern-campaigns-danube-front-85.json",
     "sha256": "31d908065089f301d870824a55ae085ac3304d2137e39d726299b5cf87822ac0",
+    "fetched": "2026-10-16"
+   },
+   "Modern Campaigns - Korea '85.json": {
+    "file": "modern-campaigns-korea-85.json",
+    "sha256": "1b993141c412b355243cbe8ed8590e5b35f2b5445c74b9d78a304c21c5f94329",
     "fetched": "2026-10-16"
    },
    "Modern Campaigns - Middle East '67.json": {
@@ -40,7 +50,7 @@
    },
    "Musket & Pike - Thirty Years War.json": {
     "file": "musket-pike-thirty-years-war.json",
-    "sha256": "928863472fd19bb3e54b918370628c2898acbda3183fabf48e17542a8b2804d2",
+    "sha256": "16bcb34601aa4d0169998ff35b028ec0e36b21aa0a185f582b723226cf119668",
     "fetched": "2026-10-16"
    },
    "Musket & Pike - Vienna 1683.json": {
@@ -50,12 +60,12 @@
    },
    "Musket & Pike - War of the Austrian Succession.json": {
     "file": "musket-pike-war-of-the-austrian-succession.json",
-    "sha256": "41cbc017735ee6068377d3a03077d97160e30035d161aa6844fc5375a5c20c10",
+    "sha256": "f9ae5317cdb86d523dff86198981152b8cf89539cb25ca45a02eb0d5c1cd9724",
     "fetched": "2026-10-16"
    },
    "Napoleonic Battles - Campaign Austerlitz.json": {
     "file": "napoleonic-battles-campaign-austerlitz.json",
-    "sha256": "fa35ef0206bb5361276f52b47c48cb2087ae8d324060a03bc86650f3e4fb03d2",
+    "sha256": "c0f817c90160669c62329582afe4d5e98c3c881d8a4f3d5fab70d256a5a542ba",
     "fetched": "2026-10-16"
    },
    "Napoleonic Battles - The Final Struggle.json": {
@@ -70,7 +80,7 @@
    },
    "Panzer Battles - Battles of North Africa 1941.json": {
     "file": "panzer-battles-battles-of-north-africa-1941.json",
-    "sha256": "ed84b01706077e0be5a43a6bd5ed2451d4ee1bc1dba0a09e2819fe7cc5e2949f",
+    "sha256": "08c3372a666f65c8c5511fea94179f73af01f77c612fed1bd81cb72ab3464ede",
     "fetched": "2026-10-16"
    },
    "Panzer Battles - Panzer Battles Demo.json": {
@@ -81,6 +91,11 @@
    "Panzer Campaigns - Budapest '45 Gold.json": {
     "file": "panzer-campaigns-budapest-45-gold.json",
     "sha256": "179ec106f1e909274efbc8e5880164203ac80851d75f15d92121072eb0787961",
+    "fetched": "2026-10-16"
+   },
+   "Panzer Campaigns - Bulge '44 Gold.json": {
+    "file": "panzer-campaigns-bulge-44-gold.json",
+    "sha256": "519ba019dd4c736261f6ca7ca0cec472a4a7b60af23161b75b21a86ae28748a2",
     "fetched": "2026-10-16"
    },
    "Panzer Campaigns - France '40 Gold.json": {
@@ -100,7 +115,7 @@
    },
    "Panzer Campaigns - Normandy '44 Gold.json": {
     "file": "panzer-campaigns-normandy-44-gold.json",
-    "sha256": "5d1a82f96514c27bf98a0eade65ec61bef977e074e3eb00de91b21ffa4d7aa15",
+    "sha256": "205b406571b62f2c89b0c67d82166c60f9adc86245ad9bd7f22476380858773d",
     "fetched": "2026-10-16"
    },
    "Panzer Campaigns - Philippines '44.json": {
@@ -111,6 +126,11 @@
    "Panzer Campaigns - Poland '39.json": {
     "file": "panzer-campaigns-poland-39.json",
     "sha256": "d5643f7d775daf1d2b3fe413b22eb3a1082099feae34464e0f8ea152db93d3ad",
+    "fetched": "2026-10-16"
+   },
+   "Panzer Campaigns - Salerno '43 Gold.json": {
+    "file": "panzer-campaigns-salerno-43-gold.json",
+    "sha256": "030a5503561345dd67a8eeb32414afe045756adb3be8927254b8827445c02ad6",
     "fetched": "2026-10-16"
    },
    "Panzer Campaigns - Sicily '43 Gold.json": {
@@ -195,5 +215,5 @@
    }
   }
  },
- "signature": "l/QYU/AMl/RFSLnkgaYgNlqgldBcSEiiz4221wcxar5Vc0xdUYu+3DxlPTJaExso/hH96MlKqz3x4SgBrXToAA=="
+ "signature": "vSFR1C/CMGdtZLedQalXocwiF0p8Dz5Px+Co34pL10ZB5GWDLHqXlILLAxlEXftwZE9QfGswORN9zufs3WnRBg=="
 }
