@@ -3,6 +3,33 @@
   "game_json": "Civil War Battles - Civil War Battles Demo.json",
   "faction_a": "Union",
   "faction_b": "Confederate",
-  "fetched": "2026-08-24",
-  "scenarios": {}
+  "fetched": "2026-10-16",
+  "scenarios": {
+    "2": {
+      "file_name": "002-631014-Bristoe Station Heth's Attack",
+      "blitz_title": "002-631014-Bristoe Station Heth's Attack",
+      "blitz_url": "https://www.theblitz.club/scenarios/wds-civil-war-battles-demo/002-631014-bristoe-station-heth-s-attack/b-15.htm?action=scenario&id=14194",
+      "rating": "0 (0)",
+      "games_played": 0,
+      "draws": null,
+      "wins_a": null,
+      "wins_b": null,
+      "balance_gap_pct": null,
+      "balance_rating": null,
+      "sample_size_flag": "small"
+    },
+    "3": {
+      "file_name": "003-631014-Bristoe Station Meeting Engagement",
+      "blitz_title": "003-631014-Bristoe Station Meeting Engagement",
+      "blitz_url": "https://www.theblitz.club/scenarios/wds-civil-war-battles-demo/003-631014-bristoe-station-meeting-engagement/b-15.htm?action=scenario&id=14195",
+      "rating": "5 (1)",
+      "games_played": 1,
+      "draws": 0,
+      "wins_a": 1,
+      "wins_b": 0,
+      "balance_gap_pct": 100.0,
+      "balance_rating": "imbalanced",
+      "sample_size_flag": "small"
+    }
+  }
 }

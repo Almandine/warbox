@@ -5,17 +5,17 @@
   "games": {
    "Civil War Battles - Campaign Gettysburg.json": {
     "file": "civil-war-battles-campaign-gettysburg.json",
-    "sha256": "8664984ca48b05fa8d13106380148a83611cb05c0b020f73d177d0da04193a83",
-    "fetched": "2026-08-24"
+    "sha256": "8dd901995df16cae960117a4112aff3fb47edf2ac68ca891eee4a4e2760b95dd",
+    "fetched": "2026-10-16"
    },
    "Civil War Battles - Civil War Battles Demo.json": {
     "file": "civil-war-battles-civil-war-battles-demo.json",
-    "sha256": "a148376ab0f8e5fe6815e3122573768efb3d76d041e349ad641b510fd01174bd",
-    "fetched": "2026-08-24"
+    "sha256": "cc65763ef6110779c5e8e329a46878def04bb9889737e08c9eacd47c09ce9701",
+    "fetched": "2026-10-16"
    },
    "Modern Campaigns - Danube Front '85.json": {
     "file": "modern-campaigns-danube-front-85.json",
-    "sha256": "f326eae40188a3bdd8d61b464d85c4f23e8278b1cf8af107890e015a594d4ec8",
+    "sha256": "31d908065089f301d870824a55ae085ac3304d2137e39d726299b5cf87822ac0",
     "fetched": "2026-10-16"
    },
    "Modern Campaigns - Middle East '67.json": {
@@ -25,8 +25,8 @@
    },
    "Modern Campaigns - Quang Tri '72.json": {
     "file": "modern-campaigns-quang-tri-72.json",
-    "sha256": "34ebbae22be80cddd731a4214a54214ee1c0597f47ed4a859dde0b264774c021",
-    "fetched": "2026-08-24"
+    "sha256": "8b30fbf57a83e3ae203d301f677007f32d08f3ba995665b8dde4329351c52338",
+    "fetched": "2026-10-16"
    },
    "Musket & Pike - American Revolutionary War.json": {
     "file": "musket-pike-american-revolutionary-war.json",
@@ -75,8 +75,8 @@
    },
    "Panzer Battles - Panzer Battles Demo.json": {
     "file": "panzer-battles-panzer-battles-demo.json",
-    "sha256": "d519b8ed372671e1221a9686687f2216592d40a673d1f591e346d2d843f3afcb",
-    "fetched": "2026-08-24"
+    "sha256": "9c3dd7889e55a861f0aa3f077c7eee2f032b8559b2f5ddab95f46b410e9846f7",
+    "fetched": "2026-10-16"
    },
    "Panzer Campaigns - Budapest '45 Gold.json": {
     "file": "panzer-campaigns-budapest-45-gold.json",
@@ -95,8 +95,8 @@
    },
    "Panzer Campaigns - Mius '43.json": {
     "file": "panzer-campaigns-mius-43.json",
-    "sha256": "b637cf72cb7a0af1c94b4e742f76a52f71d644693bfff957818e35f0d06f47aa",
-    "fetched": "2026-08-24"
+    "sha256": "39dcf48759bebf3f651da47d687cadbf786ec877455b7cc8e2903b3e7939ad1a",
+    "fetched": "2026-10-16"
    },
    "Panzer Campaigns - Normandy '44 Gold.json": {
     "file": "panzer-campaigns-normandy-44-gold.json",
@@ -110,23 +110,23 @@
    },
    "Panzer Campaigns - Poland '39.json": {
     "file": "panzer-campaigns-poland-39.json",
-    "sha256": "22073a5a04c94845f3d8ce9e0639d1ba2bd3d96cafd9681d5787bbdf4a9e9872",
-    "fetched": "2026-08-24"
+    "sha256": "d5643f7d775daf1d2b3fe413b22eb3a1082099feae34464e0f8ea152db93d3ad",
+    "fetched": "2026-10-16"
    },
    "Panzer Campaigns - Sicily '43 Gold.json": {
     "file": "panzer-campaigns-sicily-43-gold.json",
-    "sha256": "223b4f4219561dcef150c60a2a8acad73e0c7b0b67efd113f07a0c4b455675ff",
+    "sha256": "ea10075bf05e9a05bf94bfd5dfff860bf73d12e36384d9734b81233db786d5aa",
     "fetched": "2026-10-16"
    },
    "Panzer Campaigns - Spring Awakening '45.json": {
     "file": "panzer-campaigns-spring-awakening-45.json",
-    "sha256": "62bee771e04647e9594e9621bd004e62cb715eabbf227839354068d1b8a9650a",
-    "fetched": "2026-08-24"
+    "sha256": "a07b29286e1a3d495dc561f046ac42167df9e4495106924f6c44efc3fa959ece",
+    "fetched": "2026-10-16"
    },
    "Panzer Campaigns - Tobruk '41 Gold.json": {
     "file": "panzer-campaigns-tobruk-41-gold.json",
-    "sha256": "a07162cf34ea7d3186fab532f3779b4e30ba79cd2826dd5eb29c380ecae8e8fe",
-    "fetched": "2026-08-24"
+    "sha256": "13d351d0ad5a296f1cf1b2fe623883e3340a7ea72ece2cb39d8f52a89a68e648",
+    "fetched": "2026-10-16"
    },
    "Panzer Campaigns - Tunisia '43 Gold.json": {
     "file": "panzer-campaigns-tunisia-43-gold.json",
@@ -150,8 +150,8 @@
    },
    "Squad Battles - Grenada.json": {
     "file": "squad-battles-grenada.json",
-    "sha256": "371adc213a205e3fd59c7419cce131e867de49d09023f18df900d983bff52b75",
-    "fetched": "2026-08-24"
+    "sha256": "c8d74e6413dc0d8420b90263d5aae1670cc025f34b2dbe069142b6b419a820a0",
+    "fetched": "2026-10-16"
    },
    "Squad Battles - Modern War.json": {
     "file": "squad-battles-modern-war.json",
@@ -185,15 +185,15 @@
    },
    "Sword & Siege - Crusades Book I.json": {
     "file": "sword-siege-crusades-book-i.json",
-    "sha256": "699e78d940e9c523c7c65719209e99e7164cd343ec1527cb0cf78c656a9dceb5",
-    "fetched": "2026-08-24"
+    "sha256": "b89b58cd72372bc5729fdad1bf83609d7188f210819de14fbf9bc2f04c47f26d",
+    "fetched": "2026-10-16"
    },
    "Sword & Siege - Crusades Book II.json": {
     "file": "sword-siege-crusades-book-ii.json",
-    "sha256": "559d659737b144cc7f0ab295a5e643967f944ab4c37e2e9764c1032da4657cbb",
-    "fetched": "2026-08-24"
+    "sha256": "6154efaaa05fbf07260a4cc4da75537bf8892e1a82ce315c55a15f3d2ef2c9c7",
+    "fetched": "2026-10-16"
    }
   }
  },
- "signature": "0w0hNWy4V5Dn8zxYPFy1IRv+kcCgSdxU0tfPkxPX7OEnnGy3ARYQIr0gydTTKmthLV8vyrPg2raZO7uJW/UNAw=="
+ "signature": "l/QYU/AMl/RFSLnkgaYgNlqgldBcSEiiz4221wcxar5Vc0xdUYu+3DxlPTJaExso/hH96MlKqz3x4SgBrXToAA=="
 }

@@ -3,6 +3,46 @@
   "game_json": "Panzer Campaigns - Mius '43.json",
   "faction_a": "Soviet",
   "faction_b": "Axis",
-  "fetched": "2026-08-24",
-  "scenarios": {}
+  "fetched": "2026-10-16",
+  "scenarios": {
+    "1": {
+      "file_name": "#00_Getting_Started",
+      "blitz_title": "#00 Rumbling on the Mius",
+      "blitz_url": "https://www.theblitz.club/scenarios/pzc-00-mius-43/00-rumbling-on-the-mius/b-15.htm?action=scenario&id=7225",
+      "rating": "6.7 (1)",
+      "games_played": 0,
+      "draws": null,
+      "wins_a": null,
+      "wins_b": null,
+      "balance_gap_pct": null,
+      "balance_rating": null,
+      "sample_size_flag": "small"
+    },
+    "2": {
+      "file_name": "#0717_01_Mius_Campaign",
+      "blitz_title": "#0717_01 The Mius Front is Penetrated",
+      "blitz_url": "https://www.theblitz.club/scenarios/pzc-00-mius-43/0717-01-the-mius-front-is-penetrated/b-15.htm?action=scenario&id=7226",
+      "rating": "5.12 (6)",
+      "games_played": 4,
+      "draws": 0,
+      "wins_a": 4,
+      "wins_b": 0,
+      "balance_gap_pct": 100.0,
+      "balance_rating": "imbalanced",
+      "sample_size_flag": "small"
+    },
+    "3": {
+      "file_name": "#0717_02_Mius_CG_SS_Axis",
+      "blitz_title": "#0717_02 The Mius Front with Early SS Arrival",
+      "blitz_url": "https://www.theblitz.club/scenarios/pzc-00-mius-43/0717-02-the-mius-front-with-early-ss-arrival/b-15.htm?action=scenario&id=7227",
+      "rating": "6.58 (6)",
+      "games_played": 9,
+      "draws": 0,
+      "wins_a": 6,
+      "wins_b": 3,
+      "balance_gap_pct": 33.3,
+      "balance_rating": "imbalanced",
+      "sample_size_flag": "small"
+    }
+  }
 }

@@ -31,6 +31,19 @@
       "balance_rating": "lean",
       "sample_size_flag": "ok"
     },
+    "3": {
+      "file_name": "#0709_01s_SicilyCG_VARIANT 1",
+      "blitz_title": "0709_01s alt: Operation Husky (Passive HG Div)",
+      "blitz_url": "https://www.theblitz.club/scenarios/pzc-08-sicily-43/0709-01s-alt-operation-husky-passive-hg-div/b-15.htm?action=scenario&id=6186",
+      "rating": "0 (0)",
+      "games_played": 0,
+      "draws": null,
+      "wins_a": null,
+      "wins_b": null,
+      "balance_gap_pct": null,
+      "balance_rating": null,
+      "sample_size_flag": "small"
+    },
     "4": {
       "file_name": "#0709_01s_SicilyCG_VARIANT 2",
       "blitz_title": "0709_01s_VARIANT 2_SicilyCG_Operation Husky - The Sicily Campaign HTH v1.00b (Land's Edge)",
@@ -56,19 +69,6 @@
       "balance_gap_pct": 9.1,
       "balance_rating": "balanced",
       "sample_size_flag": "ok"
-    },
-    "6": {
-      "file_name": "#0709_01s_SicilyCG_alt",
-      "blitz_title": "0709_01s alt: Operation Husky (Passive HG Div)",
-      "blitz_url": "https://www.theblitz.club/scenarios/pzc-08-sicily-43/0709-01s-alt-operation-husky-passive-hg-div/b-15.htm?action=scenario&id=6186",
-      "rating": "0 (0)",
-      "games_played": 0,
-      "draws": null,
-      "wins_a": null,
-      "wins_b": null,
-      "balance_gap_pct": null,
-      "balance_rating": null,
-      "sample_size_flag": "small"
     },
     "7": {
       "file_name": "#0709_01s_SicilyCG_alt_Alt",
