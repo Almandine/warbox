@@ -3,7 +3,7 @@
   "game_json": "Panzer Battles - Battles of Normandy.json",
   "faction_a": "Allied",
   "faction_b": "Axis",
-  "fetched": "2026-10-16",
+  "fetched": "2026-10-20",
   "scenarios": {
     "1": {
       "file_name": "#01_Getting_Started_Hill_192",
@@ -213,6 +213,19 @@
       "balance_rating": "balanced",
       "sample_size_flag": "ok"
     },
+    "18": {
+      "file_name": "#0607_02_Authie",
+      "blitz_title": "#0607_02_Authie: 12th SS Riposte",
+      "blitz_url": "https://www.theblitz.club/scenarios/battles-of-normandy/0607-02-authie-12th-ss-riposte/b-15.htm?action=scenario&id=11415",
+      "rating": "7.23 (12)",
+      "games_played": 14,
+      "draws": 5,
+      "wins_a": 3,
+      "wins_b": 6,
+      "balance_gap_pct": 33.3,
+      "balance_rating": "imbalanced",
+      "sample_size_flag": "ok"
+    },
     "19": {
       "file_name": "#0611_01_le_Mesnil",
       "blitz_title": "#0611_01: Misery at le Mesnil-Patry",
@@ -298,6 +311,45 @@
       "rating": "6.2 (3)",
       "games_played": 3,
       "draws": 1,
+      "wins_a": 0,
+      "wins_b": 2,
+      "balance_gap_pct": 100.0,
+      "balance_rating": "imbalanced",
+      "sample_size_flag": "small"
+    },
+    "26": {
+      "file_name": "#0622_01_Cherbourg_Landfront",
+      "blitz_title": "#0622_01 Cherbourg Landfront",
+      "blitz_url": "https://www.theblitz.club/scenarios/battles-of-normandy/0622-01-cherbourg-landfront/b-15.htm?action=scenario&id=11423",
+      "rating": "8.2 (2)",
+      "games_played": 4,
+      "draws": 1,
+      "wins_a": 2,
+      "wins_b": 1,
+      "balance_gap_pct": 33.3,
+      "balance_rating": "imbalanced",
+      "sample_size_flag": "small"
+    },
+    "27": {
+      "file_name": "#0622_01a_Cherbourg_Landfront",
+      "blitz_title": "#0622_01a Cherbourg Landfront",
+      "blitz_url": "https://www.theblitz.club/scenarios/battles-of-normandy/0622-01a-cherbourg-landfront/b-15.htm?action=scenario&id=11424",
+      "rating": "0 (0)",
+      "games_played": 0,
+      "draws": null,
+      "wins_a": null,
+      "wins_b": null,
+      "balance_gap_pct": null,
+      "balance_rating": null,
+      "sample_size_flag": "small"
+    },
+    "28": {
+      "file_name": "#0622_02_Cherbourg_Right_Flank",
+      "blitz_title": "#0622_02 Cherbourg - The Right Flank",
+      "blitz_url": "https://www.theblitz.club/scenarios/battles-of-normandy/0622-02-cherbourg-the-right-flank/b-15.htm?action=scenario&id=11425",
+      "rating": "7.9 (1)",
+      "games_played": 2,
+      "draws": 0,
       "wins_a": 0,
       "wins_b": 2,
       "balance_gap_pct": 100.0,
@@ -395,6 +447,32 @@
       "balance_rating": "imbalanced",
       "sample_size_flag": "ok"
     },
+    "38": {
+      "file_name": "#0711_01a_Le_Dezert",
+      "blitz_title": "#0711_01a: Le Dezert - Panzer Lehr Counterttacks",
+      "blitz_url": "https://www.theblitz.club/scenarios/battles-of-normandy/0711-01a-le-dezert-panzer-lehr-counterttacks/b-15.htm?action=scenario&id=11436",
+      "rating": "0 (0)",
+      "games_played": 0,
+      "draws": null,
+      "wins_a": null,
+      "wins_b": null,
+      "balance_gap_pct": null,
+      "balance_rating": null,
+      "sample_size_flag": "small"
+    },
+    "39": {
+      "file_name": "#0711_02_Hill_192",
+      "blitz_title": "#0711_02 Hill 192 - Battle in the Bocage",
+      "blitz_url": "https://www.theblitz.club/scenarios/battles-of-normandy/0711-02-hill-192-battle-in-the-bocage/b-15.htm?action=scenario&id=11437",
+      "rating": "3.03 (22)",
+      "games_played": 21,
+      "draws": 0,
+      "wins_a": 1,
+      "wins_b": 20,
+      "balance_gap_pct": 90.5,
+      "balance_rating": "imbalanced",
+      "sample_size_flag": "ok"
+    },
     "40": {
       "file_name": "#0718_01_Goodwood_Atlantic",
       "blitz_title": "#0718_01: Operation Goodwood and Operation Atlantic",
@@ -457,6 +535,19 @@
       "wins_a": 0,
       "wins_b": 1,
       "balance_gap_pct": 100.0,
+      "balance_rating": "imbalanced",
+      "sample_size_flag": "small"
+    },
+    "45": {
+      "file_name": "#0719_01_Goodwood_Day_2",
+      "blitz_title": "#0719_01 The 11th Armoured on Day Two of Operation Goodwood",
+      "blitz_url": "https://www.theblitz.club/scenarios/battles-of-normandy/0719-01-the-11th-armoured-on-day-two-of-operation-goodwood/b-15.htm?action=scenario&id=11444",
+      "rating": "6.67 (3)",
+      "games_played": 5,
+      "draws": 0,
+      "wins_a": 4,
+      "wins_b": 1,
+      "balance_gap_pct": 60.0,
       "balance_rating": "imbalanced",
       "sample_size_flag": "small"
     },
@@ -655,11 +746,76 @@
       "balance_rating": "imbalanced",
       "sample_size_flag": "small"
     },
+    "63": {
+      "file_name": "#0808_03_Totalize_Phase_1",
+      "blitz_title": "#0808_03 Operation Totalize - Phase One",
+      "blitz_url": "https://www.theblitz.club/scenarios/battles-of-normandy/0808-03-operation-totalize-phase-one/b-15.htm?action=scenario&id=11464",
+      "rating": "7.33 (3)",
+      "games_played": 6,
+      "draws": 2,
+      "wins_a": 2,
+      "wins_b": 2,
+      "balance_gap_pct": 0.0,
+      "balance_rating": "balanced",
+      "sample_size_flag": "small"
+    },
+    "64": {
+      "file_name": "#0808_04_Gaumesnil",
+      "blitz_title": "#0808_04 Gaumesnil - Wittmann's Last Ride",
+      "blitz_url": "https://www.theblitz.club/scenarios/battles-of-normandy/0808-04-gaumesnil-wittmann-s-last-ride/b-15.htm?action=scenario&id=11465",
+      "rating": "8.5 (2)",
+      "games_played": 2,
+      "draws": 0,
+      "wins_a": 2,
+      "wins_b": 0,
+      "balance_gap_pct": 100.0,
+      "balance_rating": "imbalanced",
+      "sample_size_flag": "small"
+    },
+    "65": {
+      "file_name": "#0808_05_Cauvicourt",
+      "blitz_title": "#0808_05 Cauvicourt - Blooding the Polish",
+      "blitz_url": "https://www.theblitz.club/scenarios/battles-of-normandy/0808-05-cauvicourt-blooding-the-polish/b-15.htm?action=scenario&id=11466",
+      "rating": "9.4 (4)",
+      "games_played": 7,
+      "draws": 5,
+      "wins_a": 2,
+      "wins_b": 0,
+      "balance_gap_pct": 100.0,
+      "balance_rating": "imbalanced",
+      "sample_size_flag": "small"
+    },
+    "66": {
+      "file_name": "#0809_01_Worthington_Force",
+      "blitz_title": "#0809_01 Worthington Force - Sacrifice on Point 140",
+      "blitz_url": "https://www.theblitz.club/scenarios/battles-of-normandy/0809-01-worthington-force-sacrifice-on-point-140/b-15.htm?action=scenario&id=11468",
+      "rating": "2.83 (3)",
+      "games_played": 4,
+      "draws": 0,
+      "wins_a": 0,
+      "wins_b": 4,
+      "balance_gap_pct": 100.0,
+      "balance_rating": "imbalanced",
+      "sample_size_flag": "small"
+    },
     "67": {
       "file_name": "#0811_01_Barenton",
       "blitz_title": "#0811_01: Barenton - V Corps Strikes",
       "blitz_url": "https://www.theblitz.club/scenarios/battles-of-normandy/0811-01-barenton-v-corps-strikes/b-15.htm?action=scenario&id=11477",
       "rating": "7.65 (2)",
+      "games_played": 3,
+      "draws": 0,
+      "wins_a": 3,
+      "wins_b": 0,
+      "balance_gap_pct": 100.0,
+      "balance_rating": "imbalanced",
+      "sample_size_flag": "small"
+    },
+    "68": {
+      "file_name": "#0812_01_Ecouves",
+      "blitz_title": "#0812_01 Forêt d'Ecouves - The Crossroads",
+      "blitz_url": "https://www.theblitz.club/scenarios/battles-of-normandy/0812-01-fort-d-ecouves-the-crossroads/b-15.htm?action=scenario&id=11478",
+      "rating": "6.83 (3)",
       "games_played": 3,
       "draws": 0,
       "wins_a": 3,
@@ -863,6 +1019,19 @@
       "balance_rating": "imbalanced",
       "sample_size_flag": "small"
     },
+    "96": {
+      "file_name": "%CG_DD_47DG_2_Moving_Inland",
+      "blitz_title": "#0606_09: Villiers-le-Sec: Moving Inland",
+      "blitz_url": "https://www.theblitz.club/scenarios/battles-of-normandy/0606-09-villiers-le-sec-moving-inland/b-15.htm?action=scenario&id=11412",
+      "rating": "6.48 (17)",
+      "games_played": 12,
+      "draws": 0,
+      "wins_a": 0,
+      "wins_b": 12,
+      "balance_gap_pct": 100.0,
+      "balance_rating": "imbalanced",
+      "sample_size_flag": "ok"
+    },
     "97": {
       "file_name": "%CG_DD_47DG_3_Cristot",
       "blitz_title": "47DG_3: Advance to Cristot",
@@ -888,6 +1057,19 @@
       "balance_gap_pct": 100.0,
       "balance_rating": "imbalanced",
       "sample_size_flag": "ok"
+    },
+    "99": {
+      "file_name": "%CG_DD_47DG_5_Op_Martlet",
+      "blitz_title": "47DG_5  Operation Martlet",
+      "blitz_url": "https://www.theblitz.club/scenarios/battles-of-normandy/47dg-5-operation-martlet/b-15.htm?action=scenario&id=11485",
+      "rating": "5.95 (2)",
+      "games_played": 1,
+      "draws": 0,
+      "wins_a": 1,
+      "wins_b": 0,
+      "balance_gap_pct": 100.0,
+      "balance_rating": "imbalanced",
+      "sample_size_flag": "small"
     },
     "100": {
       "file_name": "%CG_VII_Corps_Allied_Reinf_Only",

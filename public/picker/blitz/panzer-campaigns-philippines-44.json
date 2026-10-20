@@ -3,7 +3,7 @@
   "game_json": "Panzer Campaigns - Philippines '44.json",
   "faction_a": "Allied",
   "faction_b": "Axis",
-  "fetched": "2026-10-16",
+  "fetched": "2026-10-20",
   "scenarios": {
     "2": {
       "file_name": "#44_1020_01_Leyte-Operation",
@@ -16,6 +16,19 @@
       "wins_b": 0,
       "balance_gap_pct": 100.0,
       "balance_rating": "imbalanced",
+      "sample_size_flag": "small"
+    },
+    "3": {
+      "file_name": "#44_1020_02_Leyte-Operation_VAR1",
+      "blitz_title": "#44_1020_02: Leyte Operation: Loose Lips Sink Ships",
+      "blitz_url": "https://www.theblitz.club/scenarios/pzc-27-philippines-44/44-1020-02-leyte-operation-loose-lips-sink-ships/b-15.htm?action=scenario&id=14387",
+      "rating": "0 (0)",
+      "games_played": 0,
+      "draws": null,
+      "wins_a": null,
+      "wins_b": null,
+      "balance_gap_pct": null,
+      "balance_rating": null,
       "sample_size_flag": "small"
     },
     "4": {
@@ -122,6 +135,19 @@
       "balance_rating": null,
       "sample_size_flag": "small"
     },
+    "12": {
+      "file_name": "#44_1020_11_Leyte-Operation_VAR2",
+      "blitz_title": "#44_1020_11: Leyte Ops: Naval Debacle in the Gulf!",
+      "blitz_url": "https://www.theblitz.club/scenarios/pzc-27-philippines-44/44-1020-11-leyte-ops-naval-debacle-in-the-gulf/b-15.htm?action=scenario&id=14396",
+      "rating": "0 (0)",
+      "games_played": 0,
+      "draws": null,
+      "wins_a": null,
+      "wins_b": null,
+      "balance_gap_pct": null,
+      "balance_rating": null,
+      "sample_size_flag": "small"
+    },
     "13": {
       "file_name": "#44_1021_01_Leyte-7th-Div-Dulag-Buraen",
       "blitz_title": "#44_1021_01: The 7th Division's Drive to Burauen",
@@ -165,6 +191,32 @@
       "file_name": "#44_1027_02_Holding-Action-Pastrana",
       "blitz_title": "#44_1027_02: Holding Action at Pastrana",
       "blitz_url": "https://www.theblitz.club/scenarios/pzc-27-philippines-44/44-1027-02-holding-action-at-pastrana/b-15.htm?action=scenario&id=14400",
+      "rating": "0 (0)",
+      "games_played": 0,
+      "draws": null,
+      "wins_a": null,
+      "wins_b": null,
+      "balance_gap_pct": null,
+      "balance_rating": null,
+      "sample_size_flag": "small"
+    },
+    "17": {
+      "file_name": "#44_1027_03_Holding-Action-Pastrana_VAR1",
+      "blitz_title": "#44_1027_03: Holding Action at Pastrana: More Forces",
+      "blitz_url": "https://www.theblitz.club/scenarios/pzc-27-philippines-44/44-1027-03-holding-action-at-pastrana-more-forces/b-15.htm?action=scenario&id=14401",
+      "rating": "0 (0)",
+      "games_played": 0,
+      "draws": null,
+      "wins_a": null,
+      "wins_b": null,
+      "balance_gap_pct": null,
+      "balance_rating": null,
+      "sample_size_flag": "small"
+    },
+    "18": {
+      "file_name": "#44_1027_04_Leyte-Upper-Valley_VAR1",
+      "blitz_title": "#44_1027_04: Upper Leyte Valley: First With the Most!",
+      "blitz_url": "https://www.theblitz.club/scenarios/pzc-27-philippines-44/44-1027-04-upper-leyte-valley-first-with-the-most/b-15.htm?action=scenario&id=14402",
       "rating": "0 (0)",
       "games_played": 0,
       "draws": null,
@@ -256,6 +308,19 @@
       "file_name": "#44_1205_01_The-Linkup",
       "blitz_title": "#44_1205_01: The Linkup",
       "blitz_url": "https://www.theblitz.club/scenarios/pzc-27-philippines-44/44-1205-01-the-linkup/b-15.htm?action=scenario&id=14409",
+      "rating": "0 (0)",
+      "games_played": 0,
+      "draws": null,
+      "wins_a": null,
+      "wins_b": null,
+      "balance_gap_pct": null,
+      "balance_rating": null,
+      "sample_size_flag": "small"
+    },
+    "26": {
+      "file_name": "#44_1205_02_The-Linkup_VAR1",
+      "blitz_title": "#44_1205_02: The Linkup: Japanese Reinforcements",
+      "blitz_url": "https://www.theblitz.club/scenarios/pzc-27-philippines-44/44-1205-02-the-linkup-japanese-reinforcements/b-15.htm?action=scenario&id=14410",
       "rating": "0 (0)",
       "games_played": 0,
       "draws": null,
@@ -499,6 +564,32 @@
       "balance_rating": null,
       "sample_size_flag": "small"
     },
+    "45": {
+      "file_name": "#45_0201_02_Battle-of-Zig-Zag-Pass_VAR1",
+      "blitz_title": "#45_0201_02: Battle of Zig Zag Pass: More Allied Forces",
+      "blitz_url": "https://www.theblitz.club/scenarios/pzc-27-philippines-44/45-0201-02-battle-of-zig-zag-pass-more-allied-forces/b-15.htm?action=scenario&id=14428",
+      "rating": "0 (0)",
+      "games_played": 0,
+      "draws": null,
+      "wins_a": null,
+      "wins_b": null,
+      "balance_gap_pct": null,
+      "balance_rating": null,
+      "sample_size_flag": "small"
+    },
+    "46": {
+      "file_name": "#45_0201_03_Battle-of-Zig-Zag-Pass_VAR2",
+      "blitz_title": "#45_0201_03: Battle of Zig Zag Pass: More Forces",
+      "blitz_url": "https://www.theblitz.club/scenarios/pzc-27-philippines-44/45-0201-03-battle-of-zig-zag-pass-more-forces/b-15.htm?action=scenario&id=14429",
+      "rating": "0 (0)",
+      "games_played": 0,
+      "draws": null,
+      "wins_a": null,
+      "wins_b": null,
+      "balance_gap_pct": null,
+      "balance_rating": null,
+      "sample_size_flag": "small"
+    },
     "47": {
       "file_name": "#45_0205_01_Battle-of-Manila-P1",
       "blitz_title": "#45_0205_01: Battle of Manila - Part 1 - Encirclement",
@@ -538,8 +629,8 @@
       "balance_rating": null,
       "sample_size_flag": "small"
     },
-    "51": {
-      "file_name": "#45_0222_02_Shimbu-Group-Left-P1-HTH",
+    "50": {
+      "file_name": "#45_0222_01_Shimbu-Group-Left-P1-SOLO",
       "blitz_title": "#45_0222_02: The Shimbu Group Left - Part 1 (HTH)",
       "blitz_url": "https://www.theblitz.club/scenarios/pzc-27-philippines-44/45-0222-02-the-shimbu-group-left-part-1-hth/b-15.htm?action=scenario&id=14434",
       "rating": "0 (0)",
@@ -603,8 +694,8 @@
       "balance_rating": "imbalanced",
       "sample_size_flag": "small"
     },
-    "57": {
-      "file_name": "#45_0308_02_Shimbu-Group-Left-P2-HTH",
+    "56": {
+      "file_name": "#45_0308_01_Shimbu-Group-Left-P2-SOLO",
       "blitz_title": "#45_0308_02: The Shimbu Group Left - Part 2 (HTH)",
       "blitz_url": "https://www.theblitz.club/scenarios/pzc-27-philippines-44/45-0308-02-the-shimbu-group-left-part-2-hth/b-15.htm?action=scenario&id=14439",
       "rating": "0 (0)",
@@ -659,6 +750,19 @@
       "file_name": "#45_0329_02_Clearing-Southern-Luzon",
       "blitz_title": "#45_0329_02: Clearing Southern Luzon - Lipa Corridor",
       "blitz_url": "https://www.theblitz.club/scenarios/pzc-27-philippines-44/45-0329-02-clearing-southern-luzon-lipa-corridor/b-15.htm?action=scenario&id=14443",
+      "rating": "0 (0)",
+      "games_played": 0,
+      "draws": null,
+      "wins_a": null,
+      "wins_b": null,
+      "balance_gap_pct": null,
+      "balance_rating": null,
+      "sample_size_flag": "small"
+    },
+    "62": {
+      "file_name": "#45_0329_03_Clearing-Southern-Luzon_VAR1",
+      "blitz_title": "#45_0329_03: Southern Luzon: More Axis Forces",
+      "blitz_url": "https://www.theblitz.club/scenarios/pzc-27-philippines-44/45-0329-03-southern-luzon-more-axis-forces/b-15.htm?action=scenario&id=14444",
       "rating": "0 (0)",
       "games_played": 0,
       "draws": null,
@@ -798,8 +902,8 @@
       "balance_rating": null,
       "sample_size_flag": "small"
     },
-    "75": {
-      "file_name": "#45_0616_02_Advance-to-Kiangan-HTH",
+    "74": {
+      "file_name": "#45_0616_01_Advance-to-Kiangan-SOLO",
       "blitz_title": "#45_0616_02: The Advance to Kiangan (HTH)",
       "blitz_url": "https://www.theblitz.club/scenarios/pzc-27-philippines-44/45-0616-02-the-advance-to-kiangan-hth/b-15.htm?action=scenario&id=14455",
       "rating": "0 (0)",

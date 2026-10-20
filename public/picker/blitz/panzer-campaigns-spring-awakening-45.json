@@ -3,7 +3,7 @@
   "game_json": "Panzer Campaigns - Spring Awakening '45.json",
   "faction_a": "Soviet",
   "faction_b": "Axis",
-  "fetched": "2026-10-16",
+  "fetched": "2026-10-20",
   "scenarios": {
     "6": {
       "file_name": "#45_0306_01_Spring_Awakening_Campaign_(Dynamic)",
@@ -31,21 +31,8 @@
       "balance_rating": null,
       "sample_size_flag": "small"
     },
-    "14": {
-      "file_name": "#45_0306_02_Spring_Awakening_Campaign_Historical",
-      "blitz_title": "#45_0306_02_Spring_Awakening_Campaign_Historical",
-      "blitz_url": "https://www.theblitz.club/scenarios/pzc-29-spring-awakening-45/45-0306-02-spring-awakening-campaign-historical/b-15.htm?action=scenario&id=14715",
-      "rating": "0 (0)",
-      "games_played": 0,
-      "draws": null,
-      "wins_a": null,
-      "wins_b": null,
-      "balance_gap_pct": null,
-      "balance_rating": null,
-      "sample_size_flag": "small"
-    },
-    "15": {
-      "file_name": "#45_0306_02a_Spring_Awakening_Campaign_Historical",
+    "8": {
+      "file_name": "#45_0306_01b_Spring_Awakening_Campaign_Waldteufel",
       "blitz_title": "#45_0306_02a_Spring_Awakening_Campaign_Historical",
       "blitz_url": "https://www.theblitz.club/scenarios/pzc-29-spring-awakening-45/45-0306-02a-spring-awakening-campaign-historical/b-15.htm?action=scenario&id=14716",
       "rating": "8.17 (7)",
@@ -57,10 +44,10 @@
       "balance_rating": "imbalanced",
       "sample_size_flag": "small"
     },
-    "22": {
-      "file_name": "#45_0306_03_2nd_Panzer_Army_The_Long_River_Flank",
-      "blitz_title": "#45_0306_03_2nd_Panzer_Army_The_Long_River_Flank",
-      "blitz_url": "https://www.theblitz.club/scenarios/pzc-29-spring-awakening-45/45-0306-03-2nd-panzer-army-the-long-river-flank/b-15.htm?action=scenario&id=14717",
+    "9": {
+      "file_name": "#45_0306_01c_Spring_Awakening_Campaign_Waldteufel",
+      "blitz_title": "#45_0306_02_Spring_Awakening_Campaign_Historical",
+      "blitz_url": "https://www.theblitz.club/scenarios/pzc-29-spring-awakening-45/45-0306-02-spring-awakening-campaign-historical/b-15.htm?action=scenario&id=14715",
       "rating": "0 (0)",
       "games_played": 0,
       "draws": null,
@@ -70,8 +57,8 @@
       "balance_rating": null,
       "sample_size_flag": "small"
     },
-    "23": {
-      "file_name": "#45_0306_03a_2nd_Panzer_Army_The_Long_River_Flank",
+    "10": {
+      "file_name": "#45_0306_01d_Spring_Awakening_Campaign_No_Southwind",
       "blitz_title": "#45_0306_03a_2nd_Panzer_Army_The_Long_River_Flank",
       "blitz_url": "https://www.theblitz.club/scenarios/pzc-29-spring-awakening-45/45-0306-03a-2nd-panzer-army-the-long-river-flank/b-15.htm?action=scenario&id=14718",
       "rating": "5.15 (2)",
@@ -83,10 +70,10 @@
       "balance_rating": "imbalanced",
       "sample_size_flag": "small"
     },
-    "24": {
-      "file_name": "#45_0306_04_2nd_Panzer_Army_The_Long_River_Flank_Initial",
-      "blitz_title": "#45_0306_04_2nd_Panzer_Army_The_Long_River_Flank_Initial",
-      "blitz_url": "https://www.theblitz.club/scenarios/pzc-29-spring-awakening-45/45-0306-04-2nd-panzer-army-the-long-river-flank-initial/b-15.htm?action=scenario&id=14719",
+    "11": {
+      "file_name": "#45_0306_01e_Spring_Awakening_Campaign_No_Southwind",
+      "blitz_title": "#45_0306_03_2nd_Panzer_Army_The_Long_River_Flank",
+      "blitz_url": "https://www.theblitz.club/scenarios/pzc-29-spring-awakening-45/45-0306-03-2nd-panzer-army-the-long-river-flank/b-15.htm?action=scenario&id=14717",
       "rating": "0 (0)",
       "games_played": 0,
       "draws": null,
@@ -96,8 +83,8 @@
       "balance_rating": null,
       "sample_size_flag": "small"
     },
-    "25": {
-      "file_name": "#45_0306_04a_2nd_Panzer_Army_The_Long_River_Flank_Initial",
+    "12": {
+      "file_name": "#45_0306_01f_Spring_Awakening_Campaign_W+NS",
       "blitz_title": "#45_0306_04a_2nd_Panzer_Army_The_Long_River_Flank_Initial",
       "blitz_url": "https://www.theblitz.club/scenarios/pzc-29-spring-awakening-45/45-0306-04a-2nd-panzer-army-the-long-river-flank-initial/b-15.htm?action=scenario&id=14720",
       "rating": "7.45 (2)",
@@ -109,10 +96,10 @@
       "balance_rating": "imbalanced",
       "sample_size_flag": "small"
     },
-    "26": {
-      "file_name": "#45_0306_05_LXVIII_Corps_Fight_For_Kaposvar",
-      "blitz_title": "#45_0306_05_LXVIII_Corps_Fight_For_Kaposvar",
-      "blitz_url": "https://www.theblitz.club/scenarios/pzc-29-spring-awakening-45/45-0306-05-lxviii-corps-fight-for-kaposvar/b-15.htm?action=scenario&id=14721",
+    "13": {
+      "file_name": "#45_0306_01g_Spring_Awakening_Campaign_W+NS",
+      "blitz_title": "#45_0306_04_2nd_Panzer_Army_The_Long_River_Flank_Initial",
+      "blitz_url": "https://www.theblitz.club/scenarios/pzc-29-spring-awakening-45/45-0306-04-2nd-panzer-army-the-long-river-flank-initial/b-15.htm?action=scenario&id=14719",
       "rating": "0 (0)",
       "games_played": 0,
       "draws": null,
@@ -122,8 +109,8 @@
       "balance_rating": null,
       "sample_size_flag": "small"
     },
-    "27": {
-      "file_name": "#45_0306_05a_LXVIII_Corps_Fight_For_Kaposvar",
+    "14": {
+      "file_name": "#45_0306_02_Spring_Awakening_Campaign_Historical",
       "blitz_title": "#45_0306_05a_LXVIII_Corps_Fight_For_Kaposvar",
       "blitz_url": "https://www.theblitz.club/scenarios/pzc-29-spring-awakening-45/45-0306-05a-lxviii-corps-fight-for-kaposvar/b-15.htm?action=scenario&id=14741",
       "rating": "0 (0)",
@@ -135,10 +122,10 @@
       "balance_rating": null,
       "sample_size_flag": "small"
     },
-    "28": {
-      "file_name": "#45_0306_06_LXVIII_Corps_Road_To_Kaposvar",
-      "blitz_title": "#45_0306_06_LXVIII_Corps_Road_To_Kaposvar",
-      "blitz_url": "https://www.theblitz.club/scenarios/pzc-29-spring-awakening-45/45-0306-06-lxviii-corps-road-to-kaposvar/b-15.htm?action=scenario&id=14742",
+    "15": {
+      "file_name": "#45_0306_02a_Spring_Awakening_Campaign_Historical",
+      "blitz_title": "#45_0306_05_LXVIII_Corps_Fight_For_Kaposvar",
+      "blitz_url": "https://www.theblitz.club/scenarios/pzc-29-spring-awakening-45/45-0306-05-lxviii-corps-fight-for-kaposvar/b-15.htm?action=scenario&id=14721",
       "rating": "0 (0)",
       "games_played": 0,
       "draws": null,
@@ -148,8 +135,8 @@
       "balance_rating": null,
       "sample_size_flag": "small"
     },
-    "29": {
-      "file_name": "#45_0306_06a_LXVIII_Corps_Road_To_Kaposvar",
+    "16": {
+      "file_name": "#45_0306_02b_Spring_Awakening_Campaign_Waldteufel",
       "blitz_title": "#45_0306_06a_LXVIII_Corps_Road_To_Kaposvar",
       "blitz_url": "https://www.theblitz.club/scenarios/pzc-29-spring-awakening-45/45-0306-06a-lxviii-corps-road-to-kaposvar/b-15.htm?action=scenario&id=14743",
       "rating": "8.5 (2)",
@@ -161,10 +148,10 @@
       "balance_rating": "imbalanced",
       "sample_size_flag": "small"
     },
-    "30": {
-      "file_name": "#45_0306_07_LXXXXI_Corps_Into_Yugoslavia",
-      "blitz_title": "#45_0306_07_LXXXXI_Corps_Into_Yugoslavia",
-      "blitz_url": "https://www.theblitz.club/scenarios/pzc-29-spring-awakening-45/45-0306-07-lxxxxi-corps-into-yugoslavia/b-15.htm?action=scenario&id=14744",
+    "17": {
+      "file_name": "#45_0306_02c_Spring_Awakening_Campaign_Waldteufel",
+      "blitz_title": "#45_0306_06_LXVIII_Corps_Road_To_Kaposvar",
+      "blitz_url": "https://www.theblitz.club/scenarios/pzc-29-spring-awakening-45/45-0306-06-lxviii-corps-road-to-kaposvar/b-15.htm?action=scenario&id=14742",
       "rating": "0 (0)",
       "games_played": 0,
       "draws": null,
@@ -174,8 +161,8 @@
       "balance_rating": null,
       "sample_size_flag": "small"
     },
-    "31": {
-      "file_name": "#45_0306_07a_LXXXXI_Corps_Into_Yugoslavia",
+    "18": {
+      "file_name": "#45_0306_02d_Spring_Awakening_Campaign_No_Southwind",
       "blitz_title": "#45_0306_07a_LXXXXI_Corps_Into_Yugoslavia",
       "blitz_url": "https://www.theblitz.club/scenarios/pzc-29-spring-awakening-45/45-0306-07a-lxxxxi-corps-into-yugoslavia/b-15.htm?action=scenario&id=14745",
       "rating": "0 (0)",
@@ -187,8 +174,8 @@
       "balance_rating": null,
       "sample_size_flag": "small"
     },
-    "32": {
-      "file_name": "#45_0306_07b_LXXXXI_Corps_Into_Yugoslavia_Var_1",
+    "19": {
+      "file_name": "#45_0306_02e_Spring_Awakening_Campaign_No_Southwind",
       "blitz_title": "#45_0306_07b_LXXXXI_Corps_Into_Yugoslavia_Var_1",
       "blitz_url": "https://www.theblitz.club/scenarios/pzc-29-spring-awakening-45/45-0306-07b-lxxxxi-corps-into-yugoslavia-var-1/b-15.htm?action=scenario&id=14746",
       "rating": "0 (0)",
@@ -200,10 +187,10 @@
       "balance_rating": null,
       "sample_size_flag": "small"
     },
-    "33": {
-      "file_name": "#45_0306_08_LXXXXI_Corps_Crosses_The_Drava",
-      "blitz_title": "#45_0306_08_LXXXXI_Corps_Crosses_The_Drava",
-      "blitz_url": "https://www.theblitz.club/scenarios/pzc-29-spring-awakening-45/45-0306-08-lxxxxi-corps-crosses-the-drava/b-15.htm?action=scenario&id=14747",
+    "20": {
+      "file_name": "#45_0306_02f_Spring_Awakening_Campaign_W+NS",
+      "blitz_title": "#45_0306_07_LXXXXI_Corps_Into_Yugoslavia",
+      "blitz_url": "https://www.theblitz.club/scenarios/pzc-29-spring-awakening-45/45-0306-07-lxxxxi-corps-into-yugoslavia/b-15.htm?action=scenario&id=14744",
       "rating": "0 (0)",
       "games_played": 0,
       "draws": null,
@@ -213,8 +200,8 @@
       "balance_rating": null,
       "sample_size_flag": "small"
     },
-    "34": {
-      "file_name": "#45_0306_08a_LXXXXI_Corps_Crosses_The_Drava",
+    "21": {
+      "file_name": "#45_0306_02g_Spring_Awakening_Campaign_W+NS",
       "blitz_title": "#45_0306_08a_LXXXXI_Corps_Crosses_The_Drava",
       "blitz_url": "https://www.theblitz.club/scenarios/pzc-29-spring-awakening-45/45-0306-08a-lxxxxi-corps-crosses-the-drava/b-15.htm?action=scenario&id=14748",
       "rating": "0 (0)",
@@ -226,10 +213,10 @@
       "balance_rating": null,
       "sample_size_flag": "small"
     },
-    "35": {
-      "file_name": "#45_0306_09_LXXXXI_Corps_Valpovo_Bridgehead",
-      "blitz_title": "#45_0306_09_LXXXXI_Corps_Valpovo_Bridgehead",
-      "blitz_url": "https://www.theblitz.club/scenarios/pzc-29-spring-awakening-45/45-0306-09-lxxxxi-corps-valpovo-bridgehead/b-15.htm?action=scenario&id=14749",
+    "22": {
+      "file_name": "#45_0306_03_2nd_Panzer_Army_The_Long_River_Flank",
+      "blitz_title": "#45_0306_08_LXXXXI_Corps_Crosses_The_Drava",
+      "blitz_url": "https://www.theblitz.club/scenarios/pzc-29-spring-awakening-45/45-0306-08-lxxxxi-corps-crosses-the-drava/b-15.htm?action=scenario&id=14747",
       "rating": "0 (0)",
       "games_played": 0,
       "draws": null,
@@ -239,8 +226,8 @@
       "balance_rating": null,
       "sample_size_flag": "small"
     },
-    "36": {
-      "file_name": "#45_0306_09a_LXXXXI_Corps_Valpovo_Bridgehead",
+    "23": {
+      "file_name": "#45_0306_03a_2nd_Panzer_Army_The_Long_River_Flank",
       "blitz_title": "#45_0306_09a_LXXXXI_Corps_Valpovo_Bridgehead",
       "blitz_url": "https://www.theblitz.club/scenarios/pzc-29-spring-awakening-45/45-0306-09a-lxxxxi-corps-valpovo-bridgehead/b-15.htm?action=scenario&id=14750",
       "rating": "0 (0)",
@@ -252,10 +239,10 @@
       "balance_rating": null,
       "sample_size_flag": "small"
     },
-    "37": {
-      "file_name": "#45_0306_10_LXXXXI_Corps_Donji_Miholjac_Bridgehead",
-      "blitz_title": "#45_0306_10_LXXXXI_Corps_Donji_Miholjac_Bridgehead",
-      "blitz_url": "https://www.theblitz.club/scenarios/pzc-29-spring-awakening-45/45-0306-10-lxxxxi-corps-donji-miholjac-bridgehead/b-15.htm?action=scenario&id=14751",
+    "24": {
+      "file_name": "#45_0306_04_2nd_Panzer_Army_The_Long_River_Flank_Initial",
+      "blitz_title": "#45_0306_09_LXXXXI_Corps_Valpovo_Bridgehead",
+      "blitz_url": "https://www.theblitz.club/scenarios/pzc-29-spring-awakening-45/45-0306-09-lxxxxi-corps-valpovo-bridgehead/b-15.htm?action=scenario&id=14749",
       "rating": "0 (0)",
       "games_played": 0,
       "draws": null,
@@ -265,8 +252,8 @@
       "balance_rating": null,
       "sample_size_flag": "small"
     },
-    "38": {
-      "file_name": "#45_0306_10a_LXXXXI_Corps_Donji_Miholjac_Bridgehead",
+    "25": {
+      "file_name": "#45_0306_04a_2nd_Panzer_Army_The_Long_River_Flank_Initial",
       "blitz_title": "#45_0306_10a_LXXXXI_Corps_Donji_Miholjac_Bridgehead",
       "blitz_url": "https://www.theblitz.club/scenarios/pzc-29-spring-awakening-45/45-0306-10a-lxxxxi-corps-donji-miholjac-bridgehead/b-15.htm?action=scenario&id=14752",
       "rating": "0 (0)",
@@ -278,10 +265,10 @@
       "balance_rating": null,
       "sample_size_flag": "small"
     },
-    "39": {
-      "file_name": "#45_0306_11_I_Cavalry_Corps_Men_Horses_&_Mud",
-      "blitz_title": "#45_0306_11_I_Cavalry_Corps_Men_Horses_&_Mud",
-      "blitz_url": "https://www.theblitz.club/scenarios/pzc-29-spring-awakening-45/45-0306-11-i-cavalry-corps-men-horses-mud/b-15.htm?action=scenario&id=14753",
+    "26": {
+      "file_name": "#45_0306_05_LXVIII_Corps_Fight_For_Kaposvar",
+      "blitz_title": "#45_0306_10_LXXXXI_Corps_Donji_Miholjac_Bridgehead",
+      "blitz_url": "https://www.theblitz.club/scenarios/pzc-29-spring-awakening-45/45-0306-10-lxxxxi-corps-donji-miholjac-bridgehead/b-15.htm?action=scenario&id=14751",
       "rating": "0 (0)",
       "games_played": 0,
       "draws": null,
@@ -291,8 +278,8 @@
       "balance_rating": null,
       "sample_size_flag": "small"
     },
-    "40": {
-      "file_name": "#45_0306_11a_I_Cavalry_Corps_Men_Horses_&_Mud",
+    "27": {
+      "file_name": "#45_0306_05a_LXVIII_Corps_Fight_For_Kaposvar",
       "blitz_title": "#45_0306_11a_I_Cavalry_Corps_Men_Horses_&_Mud",
       "blitz_url": "https://www.theblitz.club/scenarios/pzc-29-spring-awakening-45/45-0306-11a-i-cavalry-corps-men-horses-mud/b-15.htm?action=scenario&id=14754",
       "rating": "0 (0)",
@@ -304,10 +291,10 @@
       "balance_rating": null,
       "sample_size_flag": "small"
     },
-    "41": {
-      "file_name": "#45_0306_12_I_Cavalry_Corps_A_Farmhouse_Over_Agoston_Hill",
-      "blitz_title": "#45_0306_12_I_Cavalry_Corps_A_Farmhouse_Over_Agoston_Hill",
-      "blitz_url": "https://www.theblitz.club/scenarios/pzc-29-spring-awakening-45/45-0306-12-i-cavalry-corps-a-farmhouse-over-agoston-hill/b-15.htm?action=scenario&id=14755",
+    "28": {
+      "file_name": "#45_0306_06_LXVIII_Corps_Road_To_Kaposvar",
+      "blitz_title": "#45_0306_11_I_Cavalry_Corps_Men_Horses_&_Mud",
+      "blitz_url": "https://www.theblitz.club/scenarios/pzc-29-spring-awakening-45/45-0306-11-i-cavalry-corps-men-horses-mud/b-15.htm?action=scenario&id=14753",
       "rating": "0 (0)",
       "games_played": 0,
       "draws": null,
@@ -317,8 +304,8 @@
       "balance_rating": null,
       "sample_size_flag": "small"
     },
-    "42": {
-      "file_name": "#45_0306_12a_I_Cavalry_Corps_A_Farmhouse_Over_Agoston_Hill",
+    "29": {
+      "file_name": "#45_0306_06a_LXVIII_Corps_Road_To_Kaposvar",
       "blitz_title": "#45_0306_12a_I_Cavalry_Corps_A_Farmhouse_Over_Agoston_Hill",
       "blitz_url": "https://www.theblitz.club/scenarios/pzc-29-spring-awakening-45/45-0306-12a-i-cavalry-corps-a-farmhouse-over-agoston-hill/b-15.htm?action=scenario&id=14756",
       "rating": "0 (0)",
@@ -330,10 +317,10 @@
       "balance_rating": null,
       "sample_size_flag": "small"
     },
-    "43": {
-      "file_name": "#45_0306_13_I_Cavalry_Corps_Race_Against_Time",
-      "blitz_title": "#45_0306_13_I_Cavalry_Corps_Race_Against_Time",
-      "blitz_url": "https://www.theblitz.club/scenarios/pzc-29-spring-awakening-45/45-0306-13-i-cavalry-corps-race-against-time/b-15.htm?action=scenario&id=14757",
+    "30": {
+      "file_name": "#45_0306_07_LXXXXI_Corps_Into_Yugoslavia",
+      "blitz_title": "#45_0306_12_I_Cavalry_Corps_A_Farmhouse_Over_Agoston_Hill",
+      "blitz_url": "https://www.theblitz.club/scenarios/pzc-29-spring-awakening-45/45-0306-12-i-cavalry-corps-a-farmhouse-over-agoston-hill/b-15.htm?action=scenario&id=14755",
       "rating": "0 (0)",
       "games_played": 0,
       "draws": null,
@@ -343,8 +330,8 @@
       "balance_rating": null,
       "sample_size_flag": "small"
     },
-    "44": {
-      "file_name": "#45_0306_13a_I_Cavalry_Corps_Race_Against_Time",
+    "31": {
+      "file_name": "#45_0306_07a_LXXXXI_Corps_Into_Yugoslavia",
       "blitz_title": "#45_0306_13a_I_Cavalry_Corps_Race_Against_Time",
       "blitz_url": "https://www.theblitz.club/scenarios/pzc-29-spring-awakening-45/45-0306-13a-i-cavalry-corps-race-against-time/b-15.htm?action=scenario&id=14758",
       "rating": "0 (0)",
@@ -356,10 +343,10 @@
       "balance_rating": null,
       "sample_size_flag": "small"
     },
-    "45": {
-      "file_name": "#45_0306_14_Battle_Between_The_Lakes_Balaton_&_Valence_(Dynamic)",
-      "blitz_title": "#45_0306_14_Battle_Between_The_Lakes_Balaton_&_Valence_(Dynamic)",
-      "blitz_url": "https://www.theblitz.club/scenarios/pzc-29-spring-awakening-45/45-0306-14-battle-between-the-lakes-balaton-valence-dynamic/b-15.htm?action=scenario&id=14759",
+    "32": {
+      "file_name": "#45_0306_07b_LXXXXI_Corps_Into_Yugoslavia_Var_1",
+      "blitz_title": "#45_0306_13_I_Cavalry_Corps_Race_Against_Time",
+      "blitz_url": "https://www.theblitz.club/scenarios/pzc-29-spring-awakening-45/45-0306-13-i-cavalry-corps-race-against-time/b-15.htm?action=scenario&id=14757",
       "rating": "0 (0)",
       "games_played": 0,
       "draws": null,
@@ -369,8 +356,8 @@
       "balance_rating": null,
       "sample_size_flag": "small"
     },
-    "46": {
-      "file_name": "#45_0306_14a_Battle_Between_The_Lakes_Balaton_&_Valence_(Dynamic)",
+    "33": {
+      "file_name": "#45_0306_08_LXXXXI_Corps_Crosses_The_Drava",
       "blitz_title": "#45_0306_14a_Battle_Between_The_Lakes_Balaton_&_Valence_(Dynamic)",
       "blitz_url": "https://www.theblitz.club/scenarios/pzc-29-spring-awakening-45/45-0306-14a-battle-between-the-lakes-balaton-valence-dynamic/b-15.htm?action=scenario&id=14760",
       "rating": "0 (0)",
@@ -382,10 +369,10 @@
       "balance_rating": null,
       "sample_size_flag": "small"
     },
-    "49": {
-      "file_name": "#45_0306_15_Battle_Between_The_Lakes_Balaton_&_Valence_Historical",
-      "blitz_title": "#45_0306_15_Battle_Between_The_Lakes_Balaton_&_Valence_Historical",
-      "blitz_url": "https://www.theblitz.club/scenarios/pzc-29-spring-awakening-45/45-0306-15-battle-between-the-lakes-balaton-valence-historical/b-15.htm?action=scenario&id=14761",
+    "34": {
+      "file_name": "#45_0306_08a_LXXXXI_Corps_Crosses_The_Drava",
+      "blitz_title": "#45_0306_14_Battle_Between_The_Lakes_Balaton_&_Valence_(Dynamic)",
+      "blitz_url": "https://www.theblitz.club/scenarios/pzc-29-spring-awakening-45/45-0306-14-battle-between-the-lakes-balaton-valence-dynamic/b-15.htm?action=scenario&id=14759",
       "rating": "0 (0)",
       "games_played": 0,
       "draws": null,
@@ -395,8 +382,8 @@
       "balance_rating": null,
       "sample_size_flag": "small"
     },
-    "50": {
-      "file_name": "#45_0306_15a_Battle_Between_The_Lakes_Balaton_&_Valence_Historical",
+    "35": {
+      "file_name": "#45_0306_09_LXXXXI_Corps_Valpovo_Bridgehead",
       "blitz_title": "#45_0306_15a_Battle_Between_The_Lakes_Balaton_&_Valence_Historical",
       "blitz_url": "https://www.theblitz.club/scenarios/pzc-29-spring-awakening-45/45-0306-15a-battle-between-the-lakes-balaton-valence-historical/b-15.htm?action=scenario&id=14762",
       "rating": "0 (0)",
@@ -408,10 +395,10 @@
       "balance_rating": null,
       "sample_size_flag": "small"
     },
-    "53": {
-      "file_name": "#45_0306_16_I_SS-Panzer_Corps_A_Far_Far_Away_City",
-      "blitz_title": "#45_0306_16_I_SS-Panzer_Corps_A_Far_Far_Away_City",
-      "blitz_url": "https://www.theblitz.club/scenarios/pzc-29-spring-awakening-45/45-0306-16-i-ss-panzer-corps-a-far-far-away-city/b-15.htm?action=scenario&id=14763",
+    "36": {
+      "file_name": "#45_0306_09a_LXXXXI_Corps_Valpovo_Bridgehead",
+      "blitz_title": "#45_0306_15_Battle_Between_The_Lakes_Balaton_&_Valence_Historical",
+      "blitz_url": "https://www.theblitz.club/scenarios/pzc-29-spring-awakening-45/45-0306-15-battle-between-the-lakes-balaton-valence-historical/b-15.htm?action=scenario&id=14761",
       "rating": "0 (0)",
       "games_played": 0,
       "draws": null,
@@ -421,8 +408,8 @@
       "balance_rating": null,
       "sample_size_flag": "small"
     },
-    "54": {
-      "file_name": "#45_0306_16a_I_SS-Panzer_Corps_A_Far_Far_Away_City",
+    "37": {
+      "file_name": "#45_0306_10_LXXXXI_Corps_Donji_Miholjac_Bridgehead",
       "blitz_title": "#45_0306_16a_I_SS-Panzer_Corps_A_Far_Far_Away_City",
       "blitz_url": "https://www.theblitz.club/scenarios/pzc-29-spring-awakening-45/45-0306-16a-i-ss-panzer-corps-a-far-far-away-city/b-15.htm?action=scenario&id=14764",
       "rating": "0 (0)",
@@ -434,10 +421,10 @@
       "balance_rating": null,
       "sample_size_flag": "small"
     },
-    "55": {
-      "file_name": "#45_0306_17_II_SS-Panzer_Corps_Against_The_Odds",
-      "blitz_title": "#45_0306_17_II_SS-Panzer_Corps_Against_The_Odds",
-      "blitz_url": "https://www.theblitz.club/scenarios/pzc-29-spring-awakening-45/45-0306-17-ii-ss-panzer-corps-against-the-odds/b-15.htm?action=scenario&id=14767",
+    "38": {
+      "file_name": "#45_0306_10a_LXXXXI_Corps_Donji_Miholjac_Bridgehead",
+      "blitz_title": "#45_0306_16_I_SS-Panzer_Corps_A_Far_Far_Away_City",
+      "blitz_url": "https://www.theblitz.club/scenarios/pzc-29-spring-awakening-45/45-0306-16-i-ss-panzer-corps-a-far-far-away-city/b-15.htm?action=scenario&id=14763",
       "rating": "0 (0)",
       "games_played": 0,
       "draws": null,
@@ -447,8 +434,8 @@
       "balance_rating": null,
       "sample_size_flag": "small"
     },
-    "56": {
-      "file_name": "#45_0306_17a_II_SS-Panzer_Corps_Against_The_Odds",
+    "39": {
+      "file_name": "#45_0306_11_I_Cavalry_Corps_Men_Horses_&_Mud",
       "blitz_title": "#45_0306_17a_II_SS-Panzer_Corps_Against_The_Odds",
       "blitz_url": "https://www.theblitz.club/scenarios/pzc-29-spring-awakening-45/45-0306-17a-ii-ss-panzer-corps-against-the-odds/b-15.htm?action=scenario&id=14768",
       "rating": "0 (0)",
@@ -460,8 +447,8 @@
       "balance_rating": null,
       "sample_size_flag": "small"
     },
-    "57": {
-      "file_name": "#45_0306_17b_II_SS-Panzer_Corps_Against_The_Odds",
+    "40": {
+      "file_name": "#45_0306_11a_I_Cavalry_Corps_Men_Horses_&_Mud",
       "blitz_title": "#45_0306_17b_II_SS-Panzer_Corps_Against_The_Odds",
       "blitz_url": "https://www.theblitz.club/scenarios/pzc-29-spring-awakening-45/45-0306-17b-ii-ss-panzer-corps-against-the-odds/b-15.htm?action=scenario&id=14769",
       "rating": "0 (0)",
@@ -473,10 +460,10 @@
       "balance_rating": null,
       "sample_size_flag": "small"
     },
-    "58": {
-      "file_name": "#45_0306_18_II_SS-Panzer_Corps_A_Muddy_Road",
-      "blitz_title": "#45_0306_18_II_SS-Panzer_Corps_A_Muddy_Road",
-      "blitz_url": "https://www.theblitz.club/scenarios/pzc-29-spring-awakening-45/45-0306-18-ii-ss-panzer-corps-a-muddy-road/b-15.htm?action=scenario&id=14770",
+    "41": {
+      "file_name": "#45_0306_12_I_Cavalry_Corps_A_Farmhouse_Over_Agoston_Hill",
+      "blitz_title": "#45_0306_17_II_SS-Panzer_Corps_Against_The_Odds",
+      "blitz_url": "https://www.theblitz.club/scenarios/pzc-29-spring-awakening-45/45-0306-17-ii-ss-panzer-corps-against-the-odds/b-15.htm?action=scenario&id=14767",
       "rating": "0 (0)",
       "games_played": 0,
       "draws": null,
@@ -486,8 +473,8 @@
       "balance_rating": null,
       "sample_size_flag": "small"
     },
-    "59": {
-      "file_name": "#45_0306_18a_II_SS-Panzer_Corps_A_Muddy_Road",
+    "42": {
+      "file_name": "#45_0306_12a_I_Cavalry_Corps_A_Farmhouse_Over_Agoston_Hill",
       "blitz_title": "#45_0306_18a_II_SS-Panzer_Corps_A_Muddy_Road",
       "blitz_url": "https://www.theblitz.club/scenarios/pzc-29-spring-awakening-45/45-0306-18a-ii-ss-panzer-corps-a-muddy-road/b-15.htm?action=scenario&id=14771",
       "rating": "0 (0)",
@@ -499,10 +486,10 @@
       "balance_rating": null,
       "sample_size_flag": "small"
     },
-    "60": {
-      "file_name": "#45_0306_19_III_Panzer_Corps_In_The_Shadow_Of_Lake_Valence",
-      "blitz_title": "#45_0306_19_III_Panzer_Corps_In_The_Shadow_Of_Lake_Valence",
-      "blitz_url": "https://www.theblitz.club/scenarios/pzc-29-spring-awakening-45/45-0306-19-iii-panzer-corps-in-the-shadow-of-lake-valence/b-15.htm?action=scenario&id=14772",
+    "43": {
+      "file_name": "#45_0306_13_I_Cavalry_Corps_Race_Against_Time",
+      "blitz_title": "#45_0306_18_II_SS-Panzer_Corps_A_Muddy_Road",
+      "blitz_url": "https://www.theblitz.club/scenarios/pzc-29-spring-awakening-45/45-0306-18-ii-ss-panzer-corps-a-muddy-road/b-15.htm?action=scenario&id=14770",
       "rating": "0 (0)",
       "games_played": 0,
       "draws": null,
@@ -512,10 +499,23 @@
       "balance_rating": null,
       "sample_size_flag": "small"
     },
-    "61": {
-      "file_name": "#45_0306_19a_III_Panzer_Corps_In_The_Shadow_Of_Lake_Valence",
+    "44": {
+      "file_name": "#45_0306_13a_I_Cavalry_Corps_Race_Against_Time",
       "blitz_title": "#45_0306_19a_III_Panzer_Corps_In_The_Shadow_Of_Lake_Valence",
       "blitz_url": "https://www.theblitz.club/scenarios/pzc-29-spring-awakening-45/45-0306-19a-iii-panzer-corps-in-the-shadow-of-lake-valence/b-15.htm?action=scenario&id=14773",
+      "rating": "0 (0)",
+      "games_played": 0,
+      "draws": null,
+      "wins_a": null,
+      "wins_b": null,
+      "balance_gap_pct": null,
+      "balance_rating": null,
+      "sample_size_flag": "small"
+    },
+    "45": {
+      "file_name": "#45_0306_14_Battle_Between_The_Lakes_Balaton_&_Valence_(Dynamic)",
+      "blitz_title": "#45_0306_19_III_Panzer_Corps_In_The_Shadow_Of_Lake_Valence",
+      "blitz_url": "https://www.theblitz.club/scenarios/pzc-29-spring-awakening-45/45-0306-19-iii-panzer-corps-in-the-shadow-of-lake-valence/b-15.htm?action=scenario&id=14772",
       "rating": "0 (0)",
       "games_played": 0,
       "draws": null,

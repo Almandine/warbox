@@ -3,7 +3,7 @@
   "game_json": "First World War Campaigns - France '14.json",
   "faction_a": "Allied Powers",
   "faction_b": "Central Powers",
-  "fetched": "2026-10-16",
+  "fetched": "2026-10-20",
   "scenarios": {
     "1": {
       "file_name": "#00_Started",

@@ -3,8 +3,21 @@
   "game_json": "Musket & Pike - American Revolutionary War.json",
   "faction_a": "Americans",
   "faction_b": "Crown",
-  "fetched": "2026-10-16",
+  "fetched": "2026-10-20",
   "scenarios": {
+    "1": {
+      "file_name": "000.Getting Started",
+      "blitz_title": "#000.Getting Started (ARW)",
+      "blitz_url": "https://www.theblitz.club/scenarios/wds-american-revolutionary-war/000getting-started-arw/b-15.htm?action=scenario&id=15396",
+      "rating": "0 (0)",
+      "games_played": 0,
+      "draws": null,
+      "wins_a": null,
+      "wins_b": null,
+      "balance_gap_pct": null,
+      "balance_rating": null,
+      "sample_size_flag": "small"
+    },
     "2": {
       "file_name": "001.Getting Started BL",
       "blitz_title": "001.Getting Started BL",

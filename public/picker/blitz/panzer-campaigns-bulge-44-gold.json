@@ -3,7 +3,7 @@
   "game_json": "Panzer Campaigns - Bulge '44 Gold.json",
   "faction_a": "Allied",
   "faction_b": "Axis",
-  "fetched": "2026-10-16",
+  "fetched": "2026-10-20",
   "scenarios": {
     "1": {
       "file_name": "#00_Started",
@@ -438,12 +438,12 @@
       "file_name": "#23_01s_Bastogne",
       "blitz_title": "#23_01s: The Relief of Bastogne",
       "blitz_url": "https://www.theblitz.club/scenarios/pzc-05-bulge-44/23-01s-the-relief-of-bastogne/b-15.htm?action=scenario&id=5977",
-      "rating": "7.28 (38)",
-      "games_played": 48,
+      "rating": "7.29 (40)",
+      "games_played": 49,
       "draws": 3,
-      "wins_a": 26,
+      "wins_a": 27,
       "wins_b": 19,
-      "balance_gap_pct": 15.6,
+      "balance_gap_pct": 17.4,
       "balance_rating": "lean",
       "sample_size_flag": "ok"
     },

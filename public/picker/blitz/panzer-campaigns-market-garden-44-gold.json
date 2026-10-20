@@ -3,7 +3,7 @@
   "game_json": "Panzer Campaigns - Market-Garden '44 Gold.json",
   "faction_a": "Allied",
   "faction_b": "Axis",
-  "fetched": "2026-10-16",
+  "fetched": "2026-10-20",
   "scenarios": {
     "1": {
       "file_name": "#00_Started",
@@ -31,6 +31,19 @@
       "balance_rating": "imbalanced",
       "sample_size_flag": "ok"
     },
+    "3": {
+      "file_name": "#0917_01s_Market-Garden_Alt",
+      "blitz_title": "0917_01s: Market-Garden Historical Campaign Game _Alt",
+      "blitz_url": "https://www.theblitz.club/scenarios/pzc-10-market-garden-44/0917-01s-market-garden-historical-campaign-game-alt/b-15.htm?action=scenario&id=6351",
+      "rating": "8.53 (23)",
+      "games_played": 35,
+      "draws": 11,
+      "wins_a": 13,
+      "wins_b": 11,
+      "balance_gap_pct": 8.3,
+      "balance_rating": "balanced",
+      "sample_size_flag": "ok"
+    },
     "4": {
       "file_name": "#0917_02s_Market-Garden",
       "blitz_title": "0917_02s: Market-Garden - Alternate Campaign Game",
@@ -42,6 +55,19 @@
       "wins_b": 4,
       "balance_gap_pct": 0.0,
       "balance_rating": "balanced",
+      "sample_size_flag": "ok"
+    },
+    "5": {
+      "file_name": "#0917_02s_Market-Garden_Alt",
+      "blitz_title": "0917_02s: Market-Garden - Alternate Campaign Game_Alt",
+      "blitz_url": "https://www.theblitz.club/scenarios/pzc-10-market-garden-44/0917-02s-market-garden-alternate-campaign-game-alt/b-15.htm?action=scenario&id=6352",
+      "rating": "7.38 (9)",
+      "games_played": 11,
+      "draws": 1,
+      "wins_a": 3,
+      "wins_b": 7,
+      "balance_gap_pct": 40.0,
+      "balance_rating": "imbalanced",
       "sample_size_flag": "ok"
     },
     "6": {
@@ -57,6 +83,19 @@
       "balance_rating": "imbalanced",
       "sample_size_flag": "small"
     },
+    "7": {
+      "file_name": "#0917_03s_Market-Garden_Alt",
+      "blitz_title": "0917_03s: Market-Garden - Allied Maximum Effort Campaign Game_Alt",
+      "blitz_url": "https://www.theblitz.club/scenarios/pzc-10-market-garden-44/0917-03s-market-garden-allied-maximum-effort-campaign-game-alt/b-15.htm?action=scenario&id=6353",
+      "rating": "8.8 (1)",
+      "games_played": 2,
+      "draws": 0,
+      "wins_a": 1,
+      "wins_b": 1,
+      "balance_gap_pct": 0.0,
+      "balance_rating": "balanced",
+      "sample_size_flag": "small"
+    },
     "8": {
       "file_name": "#0917_04s_Market-Garden",
       "blitz_title": "0917_04s: Market-Garden - Increased Allied Effort Campaign Game",
@@ -68,6 +107,19 @@
       "wins_b": 1,
       "balance_gap_pct": 0.0,
       "balance_rating": "balanced",
+      "sample_size_flag": "small"
+    },
+    "9": {
+      "file_name": "#0917_04s_Market-Garden_Alt",
+      "blitz_title": "0917_04s: Market-Garden - Increased Allied Effort Campaign Game_Alt",
+      "blitz_url": "https://www.theblitz.club/scenarios/pzc-10-market-garden-44/0917-04s-market-garden-increased-allied-effort-campaign-game-alt/b-15.htm?action=scenario&id=6354",
+      "rating": "0 (0)",
+      "games_played": 0,
+      "draws": null,
+      "wins_a": null,
+      "wins_b": null,
+      "balance_gap_pct": null,
+      "balance_rating": null,
       "sample_size_flag": "small"
     },
     "10": {
@@ -83,6 +135,19 @@
       "balance_rating": "lean",
       "sample_size_flag": "ok"
     },
+    "11": {
+      "file_name": "#0917_05s_Market-Garden_Alt",
+      "blitz_title": "0917_05s: Market-Garden - Historical Campaign Game (Pole options)_Alt",
+      "blitz_url": "https://www.theblitz.club/scenarios/pzc-10-market-garden-44/0917-05s-market-garden-historical-campaign-game-pole-options-alt/b-15.htm?action=scenario&id=6355",
+      "rating": "7.73 (3)",
+      "games_played": 3,
+      "draws": 0,
+      "wins_a": 1,
+      "wins_b": 2,
+      "balance_gap_pct": 33.3,
+      "balance_rating": "imbalanced",
+      "sample_size_flag": "small"
+    },
     "12": {
       "file_name": "#0917_06s_Market-Garden",
       "blitz_title": "0917_06s: Market-Garden - Increased 1st Abn Drop",
@@ -94,6 +159,19 @@
       "wins_b": 4,
       "balance_gap_pct": 14.3,
       "balance_rating": "lean",
+      "sample_size_flag": "small"
+    },
+    "13": {
+      "file_name": "#0917_06s_Market-Garden_Alt",
+      "blitz_title": "0917_06s: Market-Garden - Increased 1st Abn Drop_Alt",
+      "blitz_url": "https://www.theblitz.club/scenarios/pzc-10-market-garden-44/0917-06s-market-garden-increased-1st-abn-drop-alt/b-15.htm?action=scenario&id=6356",
+      "rating": "0 (0)",
+      "games_played": 1,
+      "draws": 1,
+      "wins_a": 0,
+      "wins_b": 0,
+      "balance_gap_pct": null,
+      "balance_rating": null,
       "sample_size_flag": "small"
     },
     "14": {
@@ -122,6 +200,19 @@
       "balance_rating": "lean",
       "sample_size_flag": "ok"
     },
+    "16": {
+      "file_name": "#0917_10_Neerpelt_Gds_Alt",
+      "blitz_title": "0917_10: The Irish Guards Leading_Alt",
+      "blitz_url": "https://www.theblitz.club/scenarios/pzc-10-market-garden-44/0917-10-the-irish-guards-leading-alt/b-15.htm?action=scenario&id=6357",
+      "rating": "7.16 (8)",
+      "games_played": 10,
+      "draws": 1,
+      "wins_a": 4,
+      "wins_b": 5,
+      "balance_gap_pct": 11.1,
+      "balance_rating": "lean",
+      "sample_size_flag": "ok"
+    },
     "17": {
       "file_name": "#0917_11_Eindhoven_101st",
       "blitz_title": "0917_11: Screaming Eagles take on the Indians",
@@ -134,6 +225,19 @@
       "balance_gap_pct": 100.0,
       "balance_rating": "imbalanced",
       "sample_size_flag": "ok"
+    },
+    "18": {
+      "file_name": "#0917_11_Eindhoven_101st_Alt",
+      "blitz_title": "0917_11: Screaming Eagles take on the Indians_Alt",
+      "blitz_url": "https://www.theblitz.club/scenarios/pzc-10-market-garden-44/0917-11-screaming-eagles-take-on-the-indians-alt/b-15.htm?action=scenario&id=6358",
+      "rating": "0 (0)",
+      "games_played": 0,
+      "draws": null,
+      "wins_a": null,
+      "wins_b": null,
+      "balance_gap_pct": null,
+      "balance_rating": null,
+      "sample_size_flag": "small"
     },
     "19": {
       "file_name": "#0917_12_Nijmegen_82nd_A",
@@ -148,6 +252,19 @@
       "balance_rating": "imbalanced",
       "sample_size_flag": "ok"
     },
+    "20": {
+      "file_name": "#0917_12_Nijmegen_82nd_A_Alt",
+      "blitz_title": "0917_12: The 82nd - \"To Hell with Groesbeek\" (B. Variable DZ's)_Alt",
+      "blitz_url": "https://www.theblitz.club/scenarios/pzc-10-market-garden-44/0917-12-the-82nd-to-hell-with-groesbeek-b-variable-dz-s-alt/b-15.htm?action=scenario&id=6360",
+      "rating": "4.7 (1)",
+      "games_played": 2,
+      "draws": 0,
+      "wins_a": 0,
+      "wins_b": 2,
+      "balance_gap_pct": 100.0,
+      "balance_rating": "imbalanced",
+      "sample_size_flag": "small"
+    },
     "21": {
       "file_name": "#0917_12_Nijmegen_82nd_B",
       "blitz_title": "0917_12: The 82nd - \"To Hell with Groesbeek\" (B. Variable DZ's)",
@@ -157,6 +274,19 @@
       "draws": 0,
       "wins_a": 3,
       "wins_b": 0,
+      "balance_gap_pct": 100.0,
+      "balance_rating": "imbalanced",
+      "sample_size_flag": "small"
+    },
+    "22": {
+      "file_name": "#0917_12_Nijmegen_82nd_B_Alt",
+      "blitz_title": "0917_12: The 82nd - Upon the Highlands of Holland (A. Historical Drop Zones)_Alt",
+      "blitz_url": "https://www.theblitz.club/scenarios/pzc-10-market-garden-44/0917-12-the-82nd-upon-the-highlands-of-holland-a-historical-drop-zones-alt/b-15.htm?action=scenario&id=6359",
+      "rating": "7.6 (1)",
+      "games_played": 2,
+      "draws": 0,
+      "wins_a": 0,
+      "wins_b": 2,
       "balance_gap_pct": 100.0,
       "balance_rating": "imbalanced",
       "sample_size_flag": "small"
@@ -174,6 +304,19 @@
       "balance_rating": "imbalanced",
       "sample_size_flag": "small"
     },
+    "24": {
+      "file_name": "#0917_13_Arnhem_Bridge_A_Alt",
+      "blitz_title": "0917_13: Two Days at Arnhem (A. Take the Bridge)_Alt",
+      "blitz_url": "https://www.theblitz.club/scenarios/pzc-10-market-garden-44/0917-13-two-days-at-arnhem-a-take-the-bridge-alt/b-15.htm?action=scenario&id=6361",
+      "rating": "7.63 (4)",
+      "games_played": 4,
+      "draws": 0,
+      "wins_a": 2,
+      "wins_b": 2,
+      "balance_gap_pct": 0.0,
+      "balance_rating": "balanced",
+      "sample_size_flag": "small"
+    },
     "25": {
       "file_name": "#0917_13_Arnhem_Bridge_B",
       "blitz_title": "0917_13: Two Days at Arnhem (B. Early Poles - Take the Bridge)",
@@ -184,6 +327,19 @@
       "wins_a": 1,
       "wins_b": 4,
       "balance_gap_pct": 60.0,
+      "balance_rating": "imbalanced",
+      "sample_size_flag": "small"
+    },
+    "26": {
+      "file_name": "#0917_13_Arnhem_Bridge_B_Alt",
+      "blitz_title": "0917_13: Two Days at Arnhem (B. Early Poles - Take the Bridge)_Alt",
+      "blitz_url": "https://www.theblitz.club/scenarios/pzc-10-market-garden-44/0917-13-two-days-at-arnhem-b-early-poles-take-the-bridge-alt/b-15.htm?action=scenario&id=6362",
+      "rating": "7.05 (2)",
+      "games_played": 1,
+      "draws": 0,
+      "wins_a": 0,
+      "wins_b": 1,
+      "balance_gap_pct": 100.0,
       "balance_rating": "imbalanced",
       "sample_size_flag": "small"
     },
@@ -200,10 +356,36 @@
       "balance_rating": "imbalanced",
       "sample_size_flag": "small"
     },
+    "28": {
+      "file_name": "#0917_14_Arnhem_1stAB_A_Alt",
+      "blitz_title": "0917_14: The Red Devils (A. Actual placement of Krafft Training Btln)_Alt",
+      "blitz_url": "https://www.theblitz.club/scenarios/pzc-10-market-garden-44/0917-14-the-red-devils-a-actual-placement-of-krafft-training-btln-alt/b-15.htm?action=scenario&id=6363",
+      "rating": "0 (0)",
+      "games_played": 1,
+      "draws": 0,
+      "wins_a": 0,
+      "wins_b": 1,
+      "balance_gap_pct": 100.0,
+      "balance_rating": "imbalanced",
+      "sample_size_flag": "small"
+    },
     "29": {
       "file_name": "#0917_14_Arnhem_1stAB_B",
       "blitz_title": "0917_14: The Red Devils (B. Where is Krafft's Btln Training today?)",
       "blitz_url": "https://www.theblitz.club/scenarios/pzc-10-market-garden-44/0917-14-the-red-devils-b-where-is-krafft-s-btln-training-today/b-15.htm?action=scenario&id=6328",
+      "rating": "0 (0)",
+      "games_played": 0,
+      "draws": null,
+      "wins_a": null,
+      "wins_b": null,
+      "balance_gap_pct": null,
+      "balance_rating": null,
+      "sample_size_flag": "small"
+    },
+    "30": {
+      "file_name": "#0917_14_Arnhem_1stAB_B_Alt",
+      "blitz_title": "0917_14: The Red Devils (B. Where is Krafft's Btln Training today?)_Alt",
+      "blitz_url": "https://www.theblitz.club/scenarios/pzc-10-market-garden-44/0917-14-the-red-devils-b-where-is-krafft-s-btln-training-today-alt/b-15.htm?action=scenario&id=6364",
       "rating": "0 (0)",
       "games_played": 0,
       "draws": null,
@@ -226,6 +408,45 @@
       "balance_rating": null,
       "sample_size_flag": "small"
     },
+    "32": {
+      "file_name": "#0917_14_Arnhem_1stAB_C_Alt",
+      "blitz_title": "0917_14: The Red Devils (C. Variable Drop Zones)_Alt",
+      "blitz_url": "https://www.theblitz.club/scenarios/pzc-10-market-garden-44/0917-14-the-red-devils-c-variable-drop-zones-alt/b-15.htm?action=scenario&id=6365",
+      "rating": "0 (0)",
+      "games_played": 2,
+      "draws": 0,
+      "wins_a": 2,
+      "wins_b": 0,
+      "balance_gap_pct": 100.0,
+      "balance_rating": "imbalanced",
+      "sample_size_flag": "small"
+    },
+    "33": {
+      "file_name": "#0917_14_Arnhem_1stAB_D",
+      "blitz_title": "0917_14: The Red Devils (D. Full 1st AB Division - Variable DZâ€™s)",
+      "blitz_url": "https://www.theblitz.club/scenarios/pzc-10-market-garden-44/0917-14-the-red-devils-d-full-1st-ab-division-variable-dzs/b-15.htm?action=scenario&id=6330",
+      "rating": "7 (2)",
+      "games_played": 2,
+      "draws": 0,
+      "wins_a": 1,
+      "wins_b": 1,
+      "balance_gap_pct": 0.0,
+      "balance_rating": "balanced",
+      "sample_size_flag": "small"
+    },
+    "34": {
+      "file_name": "#0917_14_Arnhem_1stAB_D_Alt",
+      "blitz_title": "0917_14: The Red Devils (D. Full 1st AB Division - Variable DZâ€™s)_Alt",
+      "blitz_url": "https://www.theblitz.club/scenarios/pzc-10-market-garden-44/0917-14-the-red-devils-d-full-1st-ab-division-variable-dzs-alt/b-15.htm?action=scenario&id=6366",
+      "rating": "0 (0)",
+      "games_played": 1,
+      "draws": 0,
+      "wins_a": 0,
+      "wins_b": 1,
+      "balance_gap_pct": 100.0,
+      "balance_rating": "imbalanced",
+      "sample_size_flag": "small"
+    },
     "35": {
       "file_name": "#0917_15_Two_Div_to_Arnhem",
       "blitz_title": "0917_15: Maximum Effort for Arnhem!",
@@ -237,6 +458,19 @@
       "wins_b": null,
       "balance_gap_pct": null,
       "balance_rating": null,
+      "sample_size_flag": "small"
+    },
+    "36": {
+      "file_name": "#0917_15_Two_Div_to_Arnhem_Alt",
+      "blitz_title": "0917_15: Maximum Effort for Arnhem!_Alt",
+      "blitz_url": "https://www.theblitz.club/scenarios/pzc-10-market-garden-44/0917-15-maximum-effort-for-arnhem-alt/b-15.htm?action=scenario&id=6367",
+      "rating": "0 (0)",
+      "games_played": 1,
+      "draws": 0,
+      "wins_a": 1,
+      "wins_b": 0,
+      "balance_gap_pct": 100.0,
+      "balance_rating": "imbalanced",
       "sample_size_flag": "small"
     },
     "37": {
@@ -252,10 +486,36 @@
       "balance_rating": "balanced",
       "sample_size_flag": "small"
     },
+    "38": {
+      "file_name": "#0918_01s_2nd_Day_Alt",
+      "blitz_title": "0918_01s: \"To Snatch a Victory\" - D+1 and Onward_Alt",
+      "blitz_url": "https://www.theblitz.club/scenarios/pzc-10-market-garden-44/0918-01s-to-snatch-a-victory-d1-and-onward-alt/b-15.htm?action=scenario&id=6368",
+      "rating": "0 (0)",
+      "games_played": 0,
+      "draws": null,
+      "wins_a": null,
+      "wins_b": null,
+      "balance_gap_pct": null,
+      "balance_rating": null,
+      "sample_size_flag": "small"
+    },
     "39": {
       "file_name": "#0918_02_Reichswald_A",
       "blitz_title": "0918_02: Gavin's Worst Nightmare (A. Human German vs. AI)",
       "blitz_url": "https://www.theblitz.club/scenarios/pzc-10-market-garden-44/0918-02-gavin-s-worst-nightmare-a-human-german-vs-ai/b-15.htm?action=scenario&id=6333",
+      "rating": "0 (0)",
+      "games_played": 0,
+      "draws": null,
+      "wins_a": null,
+      "wins_b": null,
+      "balance_gap_pct": null,
+      "balance_rating": null,
+      "sample_size_flag": "small"
+    },
+    "40": {
+      "file_name": "#0918_02_Reichswald_A_Alt",
+      "blitz_title": "0918_02: Gavin's Worst Nightmare (A. Human German vs. AI)_Alt",
+      "blitz_url": "https://www.theblitz.club/scenarios/pzc-10-market-garden-44/0918-02-gavin-s-worst-nightmare-a-human-german-vs-ai-alt/b-15.htm?action=scenario&id=6369",
       "rating": "0 (0)",
       "games_played": 0,
       "draws": null,
@@ -278,6 +538,19 @@
       "balance_rating": "imbalanced",
       "sample_size_flag": "small"
     },
+    "42": {
+      "file_name": "#0918_02_Reichswald_B_Alt",
+      "blitz_title": "0918_02: Gavin's Worst Nightmare (B. Balanced Play)_Alt",
+      "blitz_url": "https://www.theblitz.club/scenarios/pzc-10-market-garden-44/0918-02-gavin-s-worst-nightmare-b-balanced-play-alt/b-15.htm?action=scenario&id=6370",
+      "rating": "7.97 (10)",
+      "games_played": 11,
+      "draws": 1,
+      "wins_a": 3,
+      "wins_b": 7,
+      "balance_gap_pct": 40.0,
+      "balance_rating": "imbalanced",
+      "sample_size_flag": "ok"
+    },
     "43": {
       "file_name": "#0918_03_Arnhem_Bridge",
       "blitz_title": "0918_03: Frost's Bridge",
@@ -291,6 +564,19 @@
       "balance_rating": null,
       "sample_size_flag": "small"
     },
+    "44": {
+      "file_name": "#0918_03_Arnhem_Bridge_Alt",
+      "blitz_title": "0918_03: Frost's Bridge_Alt",
+      "blitz_url": "https://www.theblitz.club/scenarios/pzc-10-market-garden-44/0918-03-frost-s-bridge-alt/b-15.htm?action=scenario&id=6371",
+      "rating": "1.9 (2)",
+      "games_played": 1,
+      "draws": 0,
+      "wins_a": 0,
+      "wins_b": 1,
+      "balance_gap_pct": 100.0,
+      "balance_rating": "imbalanced",
+      "sample_size_flag": "small"
+    },
     "45": {
       "file_name": "#0919_01s_Hells_Highway1",
       "blitz_title": "0919_01s: A Jab at Son",
@@ -301,6 +587,19 @@
       "wins_a": 2,
       "wins_b": 1,
       "balance_gap_pct": 33.3,
+      "balance_rating": "imbalanced",
+      "sample_size_flag": "small"
+    },
+    "46": {
+      "file_name": "#0919_01s_Hells_Highway1_Alt",
+      "blitz_title": "0919_01s: A Jab at Son_Alt",
+      "blitz_url": "https://www.theblitz.club/scenarios/pzc-10-market-garden-44/0919-01s-a-jab-at-son-alt/b-15.htm?action=scenario&id=6372",
+      "rating": "0 (0)",
+      "games_played": 1,
+      "draws": 0,
+      "wins_a": 0,
+      "wins_b": 1,
+      "balance_gap_pct": 100.0,
       "balance_rating": "imbalanced",
       "sample_size_flag": "small"
     },
@@ -317,6 +616,19 @@
       "balance_rating": "imbalanced",
       "sample_size_flag": "small"
     },
+    "48": {
+      "file_name": "#0921_01_Oosterhout_Alt",
+      "blitz_title": "0921_01: Horrock's Choice_Alt",
+      "blitz_url": "https://www.theblitz.club/scenarios/pzc-10-market-garden-44/0921-01-horrock-s-choice-alt/b-15.htm?action=scenario&id=6373",
+      "rating": "0 (0)",
+      "games_played": 0,
+      "draws": null,
+      "wins_a": null,
+      "wins_b": null,
+      "balance_gap_pct": null,
+      "balance_rating": null,
+      "sample_size_flag": "small"
+    },
     "49": {
       "file_name": "#0921_02s_5th_Day",
       "blitz_title": "0921_02s: \"Is that Our Tanks I Hear\" - D+4 and Onward",
@@ -330,6 +642,19 @@
       "balance_rating": "imbalanced",
       "sample_size_flag": "small"
     },
+    "50": {
+      "file_name": "#0921_02s_5th_Day_Alt",
+      "blitz_title": "0921_02s: \"Is that Our Tanks I Hear\" - D+4 and Onward_Alt",
+      "blitz_url": "https://www.theblitz.club/scenarios/pzc-10-market-garden-44/0921-02s-is-that-our-tanks-i-hear-d4-and-onward-alt/b-15.htm?action=scenario&id=6374",
+      "rating": "9.1 (1)",
+      "games_played": 2,
+      "draws": 1,
+      "wins_a": 0,
+      "wins_b": 1,
+      "balance_gap_pct": 100.0,
+      "balance_rating": "imbalanced",
+      "sample_size_flag": "small"
+    },
     "51": {
       "file_name": "#0922_01_Hells_Highway2_A",
       "blitz_title": "0922_01: Cutting Hell's Highway (A. Human German vs. AI)",
@@ -339,6 +664,19 @@
       "draws": 0,
       "wins_a": 2,
       "wins_b": 0,
+      "balance_gap_pct": 100.0,
+      "balance_rating": "imbalanced",
+      "sample_size_flag": "small"
+    },
+    "52": {
+      "file_name": "#0922_01_Hells_Highway2_A_Alt",
+      "blitz_title": "0922_01: Cutting Hell's Highway (A. Human German vs. AI)_Alt",
+      "blitz_url": "https://www.theblitz.club/scenarios/pzc-10-market-garden-44/0922-01-cutting-hell-s-highway-a-human-german-vs-ai-alt/b-15.htm?action=scenario&id=6375",
+      "rating": "0 (0)",
+      "games_played": 1,
+      "draws": 0,
+      "wins_a": 0,
+      "wins_b": 1,
       "balance_gap_pct": 100.0,
       "balance_rating": "imbalanced",
       "sample_size_flag": "small"
@@ -369,6 +707,19 @@
       "balance_rating": "imbalanced",
       "sample_size_flag": "small"
     },
+    "56": {
+      "file_name": "#0922_02_Oosterhout2_Alt",
+      "blitz_title": "0922_02: Are We There Yet?_Alt",
+      "blitz_url": "https://www.theblitz.club/scenarios/pzc-10-market-garden-44/0922-02-are-we-there-yet-alt/b-15.htm?action=scenario&id=6377",
+      "rating": "0 (0)",
+      "games_played": 0,
+      "draws": null,
+      "wins_a": null,
+      "wins_b": null,
+      "balance_gap_pct": null,
+      "balance_rating": null,
+      "sample_size_flag": "small"
+    },
     "57": {
       "file_name": "#0924_01s_Hells_Highway3",
       "blitz_title": "0924_01s: The Last Straw",
@@ -377,6 +728,19 @@
       "games_played": 5,
       "draws": 1,
       "wins_a": 4,
+      "wins_b": 0,
+      "balance_gap_pct": 100.0,
+      "balance_rating": "imbalanced",
+      "sample_size_flag": "small"
+    },
+    "58": {
+      "file_name": "#0924_01s_Hells_Highway3_Alt",
+      "blitz_title": "0924_01s: The Last Straw_Alt",
+      "blitz_url": "https://www.theblitz.club/scenarios/pzc-10-market-garden-44/0924-01s-the-last-straw-alt/b-15.htm?action=scenario&id=6378",
+      "rating": "0 (0)",
+      "games_played": 1,
+      "draws": 0,
+      "wins_a": 1,
       "wins_b": 0,
       "balance_gap_pct": 100.0,
       "balance_rating": "imbalanced",
@@ -395,6 +759,19 @@
       "balance_rating": "imbalanced",
       "sample_size_flag": "small"
     },
+    "60": {
+      "file_name": "#1001_01_Frundsberg_Alt",
+      "blitz_title": "1001_01: KG Frundsberg Counter-Attacks_Alt",
+      "blitz_url": "https://www.theblitz.club/scenarios/pzc-10-market-garden-44/1001-01-kg-frundsberg-counter-attacks-alt/b-15.htm?action=scenario&id=6379",
+      "rating": "0 (0)",
+      "games_played": 1,
+      "draws": 1,
+      "wins_a": 0,
+      "wins_b": 0,
+      "balance_gap_pct": null,
+      "balance_rating": null,
+      "sample_size_flag": "small"
+    },
     "61": {
       "file_name": "#1004_01_Opheusden",
       "blitz_title": "1004_01: Relief in Place",
@@ -405,6 +782,19 @@
       "wins_a": 2,
       "wins_b": 1,
       "balance_gap_pct": 33.3,
+      "balance_rating": "imbalanced",
+      "sample_size_flag": "small"
+    },
+    "62": {
+      "file_name": "#1004_01_Opheusden_Alt",
+      "blitz_title": "1004_01: Relief in Place_Alt",
+      "blitz_url": "https://www.theblitz.club/scenarios/pzc-10-market-garden-44/1004-01-relief-in-place-alt/b-15.htm?action=scenario&id=6380",
+      "rating": "0 (0)",
+      "games_played": 1,
+      "draws": 0,
+      "wins_a": 0,
+      "wins_b": 1,
+      "balance_gap_pct": 100.0,
       "balance_rating": "imbalanced",
       "sample_size_flag": "small"
     },

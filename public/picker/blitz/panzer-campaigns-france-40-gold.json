@@ -3,7 +3,7 @@
   "game_json": "Panzer Campaigns - France '40 Gold.json",
   "faction_a": "Allied",
   "faction_b": "Axis",
-  "fetched": "2026-10-16",
+  "fetched": "2026-10-20",
   "scenarios": {
     "1": {
       "file_name": "#00_Started",
@@ -16,6 +16,32 @@
       "wins_b": 0,
       "balance_gap_pct": 100.0,
       "balance_rating": "imbalanced",
+      "sample_size_flag": "small"
+    },
+    "2": {
+      "file_name": "#0510_01A_Campaign_WDS",
+      "blitz_title": "0510_01A WDS: Fall Gelb",
+      "blitz_url": "https://www.theblitz.club/scenarios/pzc-12-france-40/0510-01a-wds-fall-gelb/b-15.htm?action=scenario&id=14893",
+      "rating": "4 (1)",
+      "games_played": 1,
+      "draws": 0,
+      "wins_a": 0,
+      "wins_b": 1,
+      "balance_gap_pct": 100.0,
+      "balance_rating": "imbalanced",
+      "sample_size_flag": "small"
+    },
+    "3": {
+      "file_name": "#0510_01B_Campaign_WDS",
+      "blitz_title": "0510_01B1: Fall Gelb",
+      "blitz_url": "https://www.theblitz.club/scenarios/pzc-12-france-40/0510-01b1-fall-gelb/b-15.htm?action=scenario&id=13560",
+      "rating": "0 (0)",
+      "games_played": 0,
+      "draws": null,
+      "wins_a": null,
+      "wins_b": null,
+      "balance_gap_pct": null,
+      "balance_rating": null,
       "sample_size_flag": "small"
     },
     "6": {
@@ -31,6 +57,19 @@
       "balance_rating": "imbalanced",
       "sample_size_flag": "ok"
     },
+    "7": {
+      "file_name": "#0510_01_Campaign_Alt",
+      "blitz_title": "0510_01: The Invasion of France and Belgium_Alt",
+      "blitz_url": "https://www.theblitz.club/scenarios/pzc-12-france-40/0510-01-the-invasion-of-france-and-belgium-alt/b-15.htm?action=scenario&id=6899",
+      "rating": "6.55 (2)",
+      "games_played": 2,
+      "draws": 0,
+      "wins_a": 1,
+      "wins_b": 1,
+      "balance_gap_pct": 0.0,
+      "balance_rating": "balanced",
+      "sample_size_flag": "small"
+    },
     "8": {
       "file_name": "#0510_01x_Campaign",
       "blitz_title": "0510_01x: France '40 (No Halt)",
@@ -43,6 +82,19 @@
       "balance_gap_pct": 100.0,
       "balance_rating": "imbalanced",
       "sample_size_flag": "ok"
+    },
+    "9": {
+      "file_name": "#0510_01x_Campaign_Alt",
+      "blitz_title": "0510_01x: France '40 (No Halt)_Alt",
+      "blitz_url": "https://www.theblitz.club/scenarios/pzc-12-france-40/0510-01x-france-40-no-halt-alt/b-15.htm?action=scenario&id=6903",
+      "rating": "5.2 (2)",
+      "games_played": 2,
+      "draws": 0,
+      "wins_a": 1,
+      "wins_b": 1,
+      "balance_gap_pct": 0.0,
+      "balance_rating": "balanced",
+      "sample_size_flag": "small"
     },
     "10": {
       "file_name": "#0510_02_Campaign",
@@ -57,6 +109,19 @@
       "balance_rating": "imbalanced",
       "sample_size_flag": "ok"
     },
+    "11": {
+      "file_name": "#0510_02_Campaign_Alt",
+      "blitz_title": "0510_02: The Allies Cast the Die_Alt",
+      "blitz_url": "https://www.theblitz.club/scenarios/pzc-12-france-40/0510-02-the-allies-cast-the-die-alt/b-15.htm?action=scenario&id=6904",
+      "rating": "9.1 (1)",
+      "games_played": 3,
+      "draws": 0,
+      "wins_a": 1,
+      "wins_b": 2,
+      "balance_gap_pct": 33.3,
+      "balance_rating": "imbalanced",
+      "sample_size_flag": "small"
+    },
     "12": {
       "file_name": "#0510_03_Dyle_Line",
       "blitz_title": "0510_03: Holding the Dyle Line",
@@ -70,6 +135,58 @@
       "balance_rating": "imbalanced",
       "sample_size_flag": "small"
     },
+    "13": {
+      "file_name": "#0510_03_Dyle_Line_Alt",
+      "blitz_title": "0510_03: Holding the Dyle Line_Alt",
+      "blitz_url": "https://www.theblitz.club/scenarios/pzc-12-france-40/0510-03-holding-the-dyle-line-alt/b-15.htm?action=scenario&id=6905",
+      "rating": "0 (0)",
+      "games_played": 0,
+      "draws": null,
+      "wins_a": null,
+      "wins_b": null,
+      "balance_gap_pct": null,
+      "balance_rating": null,
+      "sample_size_flag": "small"
+    },
+    "14": {
+      "file_name": "#0510_04A_Ardennes_WDS",
+      "blitz_title": "0510_04A: The Approach to the Meuse",
+      "blitz_url": "https://www.theblitz.club/scenarios/pzc-12-france-40/0510-04a-the-approach-to-the-meuse/b-15.htm?action=scenario&id=13564",
+      "rating": "9.4 (1)",
+      "games_played": 1,
+      "draws": 0,
+      "wins_a": 1,
+      "wins_b": 0,
+      "balance_gap_pct": 100.0,
+      "balance_rating": "imbalanced",
+      "sample_size_flag": "small"
+    },
+    "15": {
+      "file_name": "#0510_04B_Ardennes_WDS",
+      "blitz_title": "0510_04B: The Approach to the Meuse",
+      "blitz_url": "https://www.theblitz.club/scenarios/pzc-12-france-40/0510-04b-the-approach-to-the-meuse/b-15.htm?action=scenario&id=13565",
+      "rating": "8.2 (1)",
+      "games_played": 1,
+      "draws": 0,
+      "wins_a": 0,
+      "wins_b": 1,
+      "balance_gap_pct": 100.0,
+      "balance_rating": "imbalanced",
+      "sample_size_flag": "small"
+    },
+    "16": {
+      "file_name": "#0510_04C_Ardennes_WDS",
+      "blitz_title": "0510_04C: The Approach to the Meuse",
+      "blitz_url": "https://www.theblitz.club/scenarios/pzc-12-france-40/0510-04c-the-approach-to-the-meuse/b-15.htm?action=scenario&id=14828",
+      "rating": "3.45 (2)",
+      "games_played": 1,
+      "draws": 0,
+      "wins_a": 1,
+      "wins_b": 0,
+      "balance_gap_pct": 100.0,
+      "balance_rating": "imbalanced",
+      "sample_size_flag": "small"
+    },
     "18": {
       "file_name": "#0510_04_Ardennes",
       "blitz_title": "0510_04: Like a Scythe through the Ardennes",
@@ -79,6 +196,19 @@
       "draws": 0,
       "wins_a": 0,
       "wins_b": 1,
+      "balance_gap_pct": 100.0,
+      "balance_rating": "imbalanced",
+      "sample_size_flag": "small"
+    },
+    "19": {
+      "file_name": "#0510_04_Ardennes_Alt",
+      "blitz_title": "0510_04: Like a Scythe through the Ardennes_Alt",
+      "blitz_url": "https://www.theblitz.club/scenarios/pzc-12-france-40/0510-04-like-a-scythe-through-the-ardennes-alt/b-15.htm?action=scenario&id=6906",
+      "rating": "0 (0)",
+      "games_played": 1,
+      "draws": 0,
+      "wins_a": 1,
+      "wins_b": 0,
       "balance_gap_pct": 100.0,
       "balance_rating": "imbalanced",
       "sample_size_flag": "small"
@@ -96,6 +226,32 @@
       "balance_rating": "imbalanced",
       "sample_size_flag": "small"
     },
+    "21": {
+      "file_name": "#0510_05_Ardennes_Alt",
+      "blitz_title": "0510_05: But First, We Must Cross the Meuse!_Alt",
+      "blitz_url": "https://www.theblitz.club/scenarios/pzc-12-france-40/0510-05-but-first-we-must-cross-the-meuse-alt/b-15.htm?action=scenario&id=6907",
+      "rating": "9.1 (1)",
+      "games_played": 2,
+      "draws": 0,
+      "wins_a": 2,
+      "wins_b": 0,
+      "balance_gap_pct": 100.0,
+      "balance_rating": "imbalanced",
+      "sample_size_flag": "small"
+    },
+    "22": {
+      "file_name": "#0510_06A_Maastricht_WDS",
+      "blitz_title": "0510_06A: The Boldest Coup",
+      "blitz_url": "https://www.theblitz.club/scenarios/pzc-12-france-40/0510-06a-the-boldest-coup/b-15.htm?action=scenario&id=13567",
+      "rating": "6.85 (6)",
+      "games_played": 4,
+      "draws": 0,
+      "wins_a": 0,
+      "wins_b": 4,
+      "balance_gap_pct": 100.0,
+      "balance_rating": "imbalanced",
+      "sample_size_flag": "small"
+    },
     "24": {
       "file_name": "#0510_06_Maastricht",
       "blitz_title": "0510_06: The Fall of Eben Emael",
@@ -107,6 +263,19 @@
       "wins_b": 7,
       "balance_gap_pct": 100.0,
       "balance_rating": "imbalanced",
+      "sample_size_flag": "small"
+    },
+    "25": {
+      "file_name": "#0510_06_Maastricht_Alt",
+      "blitz_title": "0510_06: The Fall of Eben Emael_Alt",
+      "blitz_url": "https://www.theblitz.club/scenarios/pzc-12-france-40/0510-06-the-fall-of-eben-emael-alt/b-15.htm?action=scenario&id=6908",
+      "rating": "8.45 (4)",
+      "games_played": 4,
+      "draws": 0,
+      "wins_a": 2,
+      "wins_b": 2,
+      "balance_gap_pct": 0.0,
+      "balance_rating": "balanced",
       "sample_size_flag": "small"
     },
     "26": {
@@ -148,6 +317,45 @@
       "balance_rating": "imbalanced",
       "sample_size_flag": "small"
     },
+    "29": {
+      "file_name": "#0510_10A_Netherlands_WDS",
+      "blitz_title": "0510_10A WDS: The Five Days War",
+      "blitz_url": "https://www.theblitz.club/scenarios/pzc-12-france-40/0510-10a-wds-the-five-days-war/b-15.htm?action=scenario&id=15138",
+      "rating": "9.7 (1)",
+      "games_played": 1,
+      "draws": 1,
+      "wins_a": 0,
+      "wins_b": 0,
+      "balance_gap_pct": null,
+      "balance_rating": null,
+      "sample_size_flag": "small"
+    },
+    "30": {
+      "file_name": "#0510_10B_Netherlands_WDS",
+      "blitz_title": "0510_10B: The Five Days War",
+      "blitz_url": "https://www.theblitz.club/scenarios/pzc-12-france-40/0510-10b-the-five-days-war/b-15.htm?action=scenario&id=13571",
+      "rating": "6.27 (3)",
+      "games_played": 2,
+      "draws": 0,
+      "wins_a": 0,
+      "wins_b": 2,
+      "balance_gap_pct": 100.0,
+      "balance_rating": "imbalanced",
+      "sample_size_flag": "small"
+    },
+    "32": {
+      "file_name": "#0510_10D_Netherlands_WDS",
+      "blitz_title": "0510_10D_Netherlands_WDS \"The Five Days War\"",
+      "blitz_url": "https://www.theblitz.club/scenarios/pzc-12-france-40/0510-10d-netherlands-wds-the-five-days-war/b-15.htm?action=scenario&id=14830",
+      "rating": "0 (0)",
+      "games_played": 0,
+      "draws": null,
+      "wins_a": null,
+      "wins_b": null,
+      "balance_gap_pct": null,
+      "balance_rating": null,
+      "sample_size_flag": "small"
+    },
     "34": {
       "file_name": "#0512_01_Gembloux_Gap",
       "blitz_title": "0512_01: Gembloux Gap - The Battle of Hannut",
@@ -158,6 +366,19 @@
       "wins_a": 20,
       "wins_b": 20,
       "balance_gap_pct": 0.0,
+      "balance_rating": "balanced",
+      "sample_size_flag": "ok"
+    },
+    "35": {
+      "file_name": "#0512_01_Gembloux_Gap_Alt",
+      "blitz_title": "0512_01: Gembloux Gap - The Battle of Hannut_Alt",
+      "blitz_url": "https://www.theblitz.club/scenarios/pzc-12-france-40/0512-01-gembloux-gap-the-battle-of-hannut-alt/b-15.htm?action=scenario&id=6909",
+      "rating": "7.28 (10)",
+      "games_played": 11,
+      "draws": 0,
+      "wins_a": 6,
+      "wins_b": 5,
+      "balance_gap_pct": 9.1,
       "balance_rating": "balanced",
       "sample_size_flag": "ok"
     },
@@ -226,6 +447,32 @@
       "balance_rating": null,
       "sample_size_flag": "small"
     },
+    "41": {
+      "file_name": "#0512_06_Sarre_WDS",
+      "blitz_title": "0512_06_Sarre_WDS \"Operation Fackel\"",
+      "blitz_url": "https://www.theblitz.club/scenarios/pzc-12-france-40/0512-06-sarre-wds-operation-fackel/b-15.htm?action=scenario&id=14776",
+      "rating": "9.55 (2)",
+      "games_played": 3,
+      "draws": 1,
+      "wins_a": 0,
+      "wins_b": 2,
+      "balance_gap_pct": 100.0,
+      "balance_rating": "imbalanced",
+      "sample_size_flag": "small"
+    },
+    "42": {
+      "file_name": "#0512_07_Lummen_WDS",
+      "blitz_title": "0512_07_Lummen_WDS \"Belgian Rearguard\"",
+      "blitz_url": "https://www.theblitz.club/scenarios/pzc-12-france-40/0512-07-lummen-wds-belgian-rearguard/b-15.htm?action=scenario&id=14829",
+      "rating": "7.63 (3)",
+      "games_played": 3,
+      "draws": 0,
+      "wins_a": 2,
+      "wins_b": 1,
+      "balance_gap_pct": 33.3,
+      "balance_rating": "imbalanced",
+      "sample_size_flag": "small"
+    },
     "43": {
       "file_name": "#0513_01_Sedan",
       "blitz_title": "0513_01: The Crisis at Sedan",
@@ -238,6 +485,19 @@
       "balance_gap_pct": 56.2,
       "balance_rating": "imbalanced",
       "sample_size_flag": "ok"
+    },
+    "44": {
+      "file_name": "#0513_01_Sedan_Alt",
+      "blitz_title": "0513_01: The Crisis at Sedan_Alt",
+      "blitz_url": "https://www.theblitz.club/scenarios/pzc-12-france-40/0513-01-the-crisis-at-sedan-alt/b-15.htm?action=scenario&id=6910",
+      "rating": "0 (0)",
+      "games_played": 0,
+      "draws": null,
+      "wins_a": null,
+      "wins_b": null,
+      "balance_gap_pct": null,
+      "balance_rating": null,
+      "sample_size_flag": "small"
     },
     "45": {
       "file_name": "#0513_01_Sedan_WDS",
@@ -265,6 +525,19 @@
       "balance_rating": "imbalanced",
       "sample_size_flag": "small"
     },
+    "47": {
+      "file_name": "#0513_01a_Sedan_Alt",
+      "blitz_title": "0513_01a: The Crisis at Sedan (Human French vs. AI)_Alt",
+      "blitz_url": "https://www.theblitz.club/scenarios/pzc-12-france-40/0513-01a-the-crisis-at-sedan-human-french-vs-ai-alt/b-15.htm?action=scenario&id=6911",
+      "rating": "0 (0)",
+      "games_played": 1,
+      "draws": 0,
+      "wins_a": 0,
+      "wins_b": 1,
+      "balance_gap_pct": 100.0,
+      "balance_rating": "imbalanced",
+      "sample_size_flag": "small"
+    },
     "48": {
       "file_name": "#0513_01b_Sedan",
       "blitz_title": "0513_01b: The Crisis at Sedan (stronger French & German)",
@@ -276,6 +549,19 @@
       "wins_b": 1,
       "balance_gap_pct": 50.0,
       "balance_rating": "imbalanced",
+      "sample_size_flag": "small"
+    },
+    "49": {
+      "file_name": "#0513_01b_Sedan_Alt",
+      "blitz_title": "0513_01b: The Crisis at Sedan (stronger French & German)_Alt",
+      "blitz_url": "https://www.theblitz.club/scenarios/pzc-12-france-40/0513-01b-the-crisis-at-sedan-stronger-french-german-alt/b-15.htm?action=scenario&id=6912",
+      "rating": "0 (0)",
+      "games_played": 0,
+      "draws": null,
+      "wins_a": null,
+      "wins_b": null,
+      "balance_gap_pct": null,
+      "balance_rating": null,
       "sample_size_flag": "small"
     },
     "50": {
@@ -291,6 +577,19 @@
       "balance_rating": "imbalanced",
       "sample_size_flag": "small"
     },
+    "51": {
+      "file_name": "#0513_02_Orp_Alt",
+      "blitz_title": "0513_02: Half a Days Work_Alt",
+      "blitz_url": "https://www.theblitz.club/scenarios/pzc-12-france-40/0513-02-half-a-days-work-alt/b-15.htm?action=scenario&id=6913",
+      "rating": "0 (0)",
+      "games_played": 0,
+      "draws": null,
+      "wins_a": null,
+      "wins_b": null,
+      "balance_gap_pct": null,
+      "balance_rating": null,
+      "sample_size_flag": "small"
+    },
     "52": {
       "file_name": "#0513_03_Meuse_River",
       "blitz_title": "0513_03: Crossing the Meuse River",
@@ -303,6 +602,19 @@
       "balance_gap_pct": 86.7,
       "balance_rating": "imbalanced",
       "sample_size_flag": "ok"
+    },
+    "53": {
+      "file_name": "#0513_03_Meuse_River_Alt",
+      "blitz_title": "0513_03: Crossing the Meuse River_Alt",
+      "blitz_url": "https://www.theblitz.club/scenarios/pzc-12-france-40/0513-03-crossing-the-meuse-river-alt/b-15.htm?action=scenario&id=6914",
+      "rating": "6.75 (2)",
+      "games_played": 3,
+      "draws": 0,
+      "wins_a": 1,
+      "wins_b": 2,
+      "balance_gap_pct": 33.3,
+      "balance_rating": "imbalanced",
+      "sample_size_flag": "small"
     },
     "54": {
       "file_name": "#0513_03_Meuse_River_WDS",
@@ -330,6 +642,19 @@
       "balance_rating": "lean",
       "sample_size_flag": "ok"
     },
+    "56": {
+      "file_name": "#0513_04_Dinant_Alt",
+      "blitz_title": "0513_04: A Crossing at Dinant_Alt",
+      "blitz_url": "https://www.theblitz.club/scenarios/pzc-12-france-40/0513-04-a-crossing-at-dinant-alt/b-15.htm?action=scenario&id=6915",
+      "rating": "8.05 (4)",
+      "games_played": 5,
+      "draws": 1,
+      "wins_a": 2,
+      "wins_b": 2,
+      "balance_gap_pct": 0.0,
+      "balance_rating": "balanced",
+      "sample_size_flag": "small"
+    },
     "57": {
       "file_name": "#0513_04_Dinant_WDS",
       "blitz_title": "0513_04: Ils sont là !",
@@ -352,6 +677,32 @@
       "draws": 0,
       "wins_a": 0,
       "wins_b": 1,
+      "balance_gap_pct": 100.0,
+      "balance_rating": "imbalanced",
+      "sample_size_flag": "small"
+    },
+    "59": {
+      "file_name": "#0515_01A_Stonne_WDS",
+      "blitz_title": "0515_01A: The Verdun of 1940",
+      "blitz_url": "https://www.theblitz.club/scenarios/pzc-12-france-40/0515-01a-the-verdun-of-1940/b-15.htm?action=scenario&id=13073",
+      "rating": "6.95 (8)",
+      "games_played": 6,
+      "draws": 2,
+      "wins_a": 3,
+      "wins_b": 1,
+      "balance_gap_pct": 50.0,
+      "balance_rating": "imbalanced",
+      "sample_size_flag": "small"
+    },
+    "60": {
+      "file_name": "#0515_01B_Stonne_WDS",
+      "blitz_title": "0515_01B WDS: The Verdun of 1940",
+      "blitz_url": "https://www.theblitz.club/scenarios/pzc-12-france-40/0515-01b-wds-the-verdun-of-1940/b-15.htm?action=scenario&id=15595",
+      "rating": "5.3 (1)",
+      "games_played": 1,
+      "draws": 0,
+      "wins_a": 1,
+      "wins_b": 0,
       "balance_gap_pct": 100.0,
       "balance_rating": "imbalanced",
       "sample_size_flag": "small"
@@ -408,6 +759,19 @@
       "balance_rating": "imbalanced",
       "sample_size_flag": "small"
     },
+    "67": {
+      "file_name": "#0517_01_Montcornet_WDS",
+      "blitz_title": "0517_01: Allez De Gaulle !",
+      "blitz_url": "https://www.theblitz.club/scenarios/pzc-12-france-40/0517-01-allez-de-gaulle/b-15.htm?action=scenario&id=13581",
+      "rating": "3.6 (2)",
+      "games_played": 2,
+      "draws": 0,
+      "wins_a": 0,
+      "wins_b": 2,
+      "balance_gap_pct": 100.0,
+      "balance_rating": "imbalanced",
+      "sample_size_flag": "small"
+    },
     "68": {
       "file_name": "#0517_01s_Montcornet",
       "blitz_title": "0517_01s: De Gaulle Unleashed",
@@ -419,6 +783,19 @@
       "wins_b": 6,
       "balance_gap_pct": 100.0,
       "balance_rating": "imbalanced",
+      "sample_size_flag": "small"
+    },
+    "69": {
+      "file_name": "#0517_01s_Montcornet_Alt",
+      "blitz_title": "0517_01s: De Gaulle Unleashed_Alt",
+      "blitz_url": "https://www.theblitz.club/scenarios/pzc-12-france-40/0517-01s-de-gaulle-unleashed-alt/b-15.htm?action=scenario&id=6917",
+      "rating": "0 (0)",
+      "games_played": 0,
+      "draws": null,
+      "wins_a": null,
+      "wins_b": null,
+      "balance_gap_pct": null,
+      "balance_rating": null,
       "sample_size_flag": "small"
     },
     "70": {
@@ -473,6 +850,19 @@
       "balance_rating": "imbalanced",
       "sample_size_flag": "ok"
     },
+    "74": {
+      "file_name": "#0520_01_Amiens_Alt",
+      "blitz_title": "0520_01: \"Quelle Chance!\" (HTH)_Alt",
+      "blitz_url": "https://www.theblitz.club/scenarios/pzc-12-france-40/0520-01-quelle-chance-hth-alt/b-15.htm?action=scenario&id=6918",
+      "rating": "5.16 (5)",
+      "games_played": 4,
+      "draws": 0,
+      "wins_a": 0,
+      "wins_b": 4,
+      "balance_gap_pct": 100.0,
+      "balance_rating": "imbalanced",
+      "sample_size_flag": "small"
+    },
     "75": {
       "file_name": "#0520_01_Amiens_WDS",
       "blitz_title": "0520_01 WDS: Like Lambs to the Slaughter",
@@ -490,6 +880,19 @@
       "file_name": "#0520_01a_Amiens",
       "blitz_title": "0520_01a: Quelle Chance! (Human Allies vs. German AI)",
       "blitz_url": "https://www.theblitz.club/scenarios/pzc-12-france-40/0520-01a-quelle-chance-human-allies-vs-german-ai/b-15.htm?action=scenario&id=6509",
+      "rating": "0 (0)",
+      "games_played": 0,
+      "draws": null,
+      "wins_a": null,
+      "wins_b": null,
+      "balance_gap_pct": null,
+      "balance_rating": null,
+      "sample_size_flag": "small"
+    },
+    "77": {
+      "file_name": "#0520_01a_Amiens_Alt",
+      "blitz_title": "0520_01a: \"Quelle Chance!\" (Human Allies vs. German AI)_Alt",
+      "blitz_url": "https://www.theblitz.club/scenarios/pzc-12-france-40/0520-01a-quelle-chance-human-allies-vs-german-ai-alt/b-15.htm?action=scenario&id=6919",
       "rating": "0 (0)",
       "games_played": 0,
       "draws": null,
@@ -525,6 +928,19 @@
       "balance_rating": "imbalanced",
       "sample_size_flag": "small"
     },
+    "80": {
+      "file_name": "#0521_01_Arras_Alt",
+      "blitz_title": "0521_01: Frankforce_Alt",
+      "blitz_url": "https://www.theblitz.club/scenarios/pzc-12-france-40/0521-01-frankforce-alt/b-15.htm?action=scenario&id=6920",
+      "rating": "2.5 (1)",
+      "games_played": 3,
+      "draws": 0,
+      "wins_a": 0,
+      "wins_b": 3,
+      "balance_gap_pct": 100.0,
+      "balance_rating": "imbalanced",
+      "sample_size_flag": "small"
+    },
     "81": {
       "file_name": "#0521_01_Arras_WDS",
       "blitz_title": "0521_01: A Tight Spot",
@@ -551,11 +967,63 @@
       "balance_rating": "imbalanced",
       "sample_size_flag": "small"
     },
+    "83": {
+      "file_name": "#0523_01A_Dunkerque_Pocket_WDS",
+      "blitz_title": "0523_01A1: The Miracle of Dunkirk",
+      "blitz_url": "https://www.theblitz.club/scenarios/pzc-12-france-40/0523-01a1-the-miracle-of-dunkirk/b-15.htm?action=scenario&id=13586",
+      "rating": "0 (0)",
+      "games_played": 0,
+      "draws": null,
+      "wins_a": null,
+      "wins_b": null,
+      "balance_gap_pct": null,
+      "balance_rating": null,
+      "sample_size_flag": "small"
+    },
+    "84": {
+      "file_name": "#0523_01B_Dunkerque_Pocket_WDS",
+      "blitz_title": "0523_01B1: The Miracle of Dunkirk",
+      "blitz_url": "https://www.theblitz.club/scenarios/pzc-12-france-40/0523-01b1-the-miracle-of-dunkirk/b-15.htm?action=scenario&id=13588",
+      "rating": "9.1 (1)",
+      "games_played": 1,
+      "draws": 0,
+      "wins_a": 0,
+      "wins_b": 1,
+      "balance_gap_pct": 100.0,
+      "balance_rating": "imbalanced",
+      "sample_size_flag": "small"
+    },
     "87": {
       "file_name": "#0523_02_Lys_WDS",
       "blitz_title": "0523_02: The Trial of the Belgian Army",
       "blitz_url": "https://www.theblitz.club/scenarios/pzc-12-france-40/0523-02-the-trial-of-the-belgian-army/b-15.htm?action=scenario&id=13590",
       "rating": "5.6 (1)",
+      "games_played": 1,
+      "draws": 0,
+      "wins_a": 0,
+      "wins_b": 1,
+      "balance_gap_pct": 100.0,
+      "balance_rating": "imbalanced",
+      "sample_size_flag": "small"
+    },
+    "89": {
+      "file_name": "#0524_01_Dunkerque_Pocket",
+      "blitz_title": "0524_01: Dunkerque: Panzers, forward!",
+      "blitz_url": "https://www.theblitz.club/scenarios/pzc-12-france-40/0524-01-dunkerque-panzers-forward/b-15.htm?action=scenario&id=6511",
+      "rating": "5 (2)",
+      "games_played": 4,
+      "draws": 0,
+      "wins_a": 3,
+      "wins_b": 1,
+      "balance_gap_pct": 50.0,
+      "balance_rating": "imbalanced",
+      "sample_size_flag": "small"
+    },
+    "90": {
+      "file_name": "#0524_01_Dunkerque_Pocket_Alt",
+      "blitz_title": "0524_01: Dunkerque: \"Panzers, forward!\"_Alt",
+      "blitz_url": "https://www.theblitz.club/scenarios/pzc-12-france-40/0524-01-dunkerque-panzers-forward-alt/b-15.htm?action=scenario&id=6921",
+      "rating": "0 (0)",
       "games_played": 1,
       "draws": 0,
       "wins_a": 0,
@@ -577,6 +1045,58 @@
       "balance_rating": null,
       "sample_size_flag": "small"
     },
+    "92": {
+      "file_name": "#0524_03A_Courtrai_WDS",
+      "blitz_title": "0524_03A: Defeat on the Lys",
+      "blitz_url": "https://www.theblitz.club/scenarios/pzc-12-france-40/0524-03a-defeat-on-the-lys/b-15.htm?action=scenario&id=13592",
+      "rating": "0 (0)",
+      "games_played": 0,
+      "draws": null,
+      "wins_a": null,
+      "wins_b": null,
+      "balance_gap_pct": null,
+      "balance_rating": null,
+      "sample_size_flag": "small"
+    },
+    "93": {
+      "file_name": "#0524_03B_Courtrai_WDS",
+      "blitz_title": "0524_03B: Defeat on the Lys",
+      "blitz_url": "https://www.theblitz.club/scenarios/pzc-12-france-40/0524-03b-defeat-on-the-lys/b-15.htm?action=scenario&id=13593",
+      "rating": "0 (0)",
+      "games_played": 0,
+      "draws": null,
+      "wins_a": null,
+      "wins_b": null,
+      "balance_gap_pct": null,
+      "balance_rating": null,
+      "sample_size_flag": "small"
+    },
+    "96": {
+      "file_name": "#0527_01_Abbeville",
+      "blitz_title": "0527_01: 1st Armoured Division Attacks (Prucha)",
+      "blitz_url": "https://www.theblitz.club/scenarios/pzc-12-france-40/0527-01-1st-armoured-division-attacks-prucha/b-15.htm?action=scenario&id=13068",
+      "rating": "0 (0)",
+      "games_played": 0,
+      "draws": null,
+      "wins_a": null,
+      "wins_b": null,
+      "balance_gap_pct": null,
+      "balance_rating": null,
+      "sample_size_flag": "small"
+    },
+    "97": {
+      "file_name": "#0527_01_Abbeville_Alt",
+      "blitz_title": "0527_01: The 1st Armoured Division Attacks_Alt",
+      "blitz_url": "https://www.theblitz.club/scenarios/pzc-12-france-40/0527-01-the-1st-armoured-division-attacks-alt/b-15.htm?action=scenario&id=6922",
+      "rating": "0 (0)",
+      "games_played": 0,
+      "draws": null,
+      "wins_a": null,
+      "wins_b": null,
+      "balance_gap_pct": null,
+      "balance_rating": null,
+      "sample_size_flag": "small"
+    },
     "98": {
       "file_name": "#0527_02_Comines",
       "blitz_title": "0527_02: Thin Blue Line",
@@ -586,6 +1106,19 @@
       "draws": 0,
       "wins_a": 2,
       "wins_b": 0,
+      "balance_gap_pct": 100.0,
+      "balance_rating": "imbalanced",
+      "sample_size_flag": "small"
+    },
+    "99": {
+      "file_name": "#0527_02_Comines_Alt",
+      "blitz_title": "0527_02: Thin Blue Line_Alt",
+      "blitz_url": "https://www.theblitz.club/scenarios/pzc-12-france-40/0527-02-thin-blue-line-alt/b-15.htm?action=scenario&id=6923",
+      "rating": "0 (0)",
+      "games_played": 1,
+      "draws": 0,
+      "wins_a": 0,
+      "wins_b": 1,
       "balance_gap_pct": 100.0,
       "balance_rating": "imbalanced",
       "sample_size_flag": "small"
@@ -629,8 +1162,8 @@
       "balance_rating": "imbalanced",
       "sample_size_flag": "small"
     },
-    "105": {
-      "file_name": "#0528_01_Abbeville_WDS",
+    "103": {
+      "file_name": "#0528_01_Abbeville_2ndDay",
       "blitz_title": "0528_01: Panzerpanik",
       "blitz_url": "https://www.theblitz.club/scenarios/pzc-12-france-40/0528-01-panzerpanik/b-15.htm?action=scenario&id=13069",
       "rating": "9.4 (2)",
@@ -638,6 +1171,32 @@
       "draws": 1,
       "wins_a": 0,
       "wins_b": 0,
+      "balance_gap_pct": null,
+      "balance_rating": null,
+      "sample_size_flag": "small"
+    },
+    "104": {
+      "file_name": "#0528_01_Abbeville_2ndDay_Alt",
+      "blitz_title": "0528_01: The Battle of Abbeville, the Second day_Alt",
+      "blitz_url": "https://www.theblitz.club/scenarios/pzc-12-france-40/0528-01-the-battle-of-abbeville-the-second-day-alt/b-15.htm?action=scenario&id=6924",
+      "rating": "0 (0)",
+      "games_played": 0,
+      "draws": null,
+      "wins_a": null,
+      "wins_b": null,
+      "balance_gap_pct": null,
+      "balance_rating": null,
+      "sample_size_flag": "small"
+    },
+    "105": {
+      "file_name": "#0528_01_Abbeville_WDS",
+      "blitz_title": "0528_01: The Battle of Abbeville, the Second day",
+      "blitz_url": "https://www.theblitz.club/scenarios/pzc-12-france-40/0528-01-the-battle-of-abbeville-the-second-day/b-15.htm?action=scenario&id=6514",
+      "rating": "0 (0)",
+      "games_played": 0,
+      "draws": null,
+      "wins_a": null,
+      "wins_b": null,
       "balance_gap_pct": null,
       "balance_rating": null,
       "sample_size_flag": "small"
@@ -665,6 +1224,32 @@
       "wins_a": 2,
       "wins_b": 1,
       "balance_gap_pct": 33.3,
+      "balance_rating": "imbalanced",
+      "sample_size_flag": "small"
+    },
+    "111": {
+      "file_name": "#0530_01_Dunkerque_Evacuation_Alt",
+      "blitz_title": "0530_01: Pyrrhic Victory at Dunkerque_Alt",
+      "blitz_url": "https://www.theblitz.club/scenarios/pzc-12-france-40/0530-01-pyrrhic-victory-at-dunkerque-alt/b-15.htm?action=scenario&id=6925",
+      "rating": "0 (0)",
+      "games_played": 0,
+      "draws": null,
+      "wins_a": null,
+      "wins_b": null,
+      "balance_gap_pct": null,
+      "balance_rating": null,
+      "sample_size_flag": "small"
+    },
+    "113": {
+      "file_name": "#0604_01_Abbeville_WDS",
+      "blitz_title": "0604_01: Failure at Mont Caubert",
+      "blitz_url": "https://www.theblitz.club/scenarios/pzc-12-france-40/0604-01-failure-at-mont-caubert/b-15.htm?action=scenario&id=13070",
+      "rating": "7.98 (4)",
+      "games_played": 2,
+      "draws": 1,
+      "wins_a": 1,
+      "wins_b": 0,
+      "balance_gap_pct": 100.0,
       "balance_rating": "imbalanced",
       "sample_size_flag": "small"
     }

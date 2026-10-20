@@ -3,8 +3,21 @@
   "game_json": "Civil War Battles - Civil War Battles Demo.json",
   "faction_a": "Union",
   "faction_b": "Confederate",
-  "fetched": "2026-10-16",
+  "fetched": "2026-10-20",
   "scenarios": {
+    "1": {
+      "file_name": "001-Getting Started",
+      "blitz_title": "001 Getting Starter CWB Demo",
+      "blitz_url": "https://www.theblitz.club/scenarios/wds-civil-war-battles-demo/001-getting-starter-cwb-demo/b-15.htm?action=scenario&id=14193",
+      "rating": "0 (0)",
+      "games_played": 0,
+      "draws": null,
+      "wins_a": null,
+      "wins_b": null,
+      "balance_gap_pct": null,
+      "balance_rating": null,
+      "sample_size_flag": "small"
+    },
     "2": {
       "file_name": "002-631014-Bristoe Station Heth's Attack",
       "blitz_title": "002-631014-Bristoe Station Heth's Attack",
