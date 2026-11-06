@@ -41,7 +41,7 @@ English only.
 ## Technology
 
 - **Astro** static site generator (chosen for AI-maintainability — Claude Code will do all future development; Norbi is a software engineer but new to web tech)
-- Hosted on **GitHub Pages**, built and deployed via **GitHub Actions**, from the public repo `Almandine/warbox` (local checkout: `C:\Dev\Personal\Website - warbox.org`). A push to `master` deploys.
+- Hosted on **GitHub Pages**, built and deployed via **GitHub Actions**, from the public repo `Almandine/warbox` (local checkout: `C:\Dev\Personal\Website - warbox.org`). A push to `main` deploys.
 - Domain: **warbox.org** via Cloudflare (wired and verified; do not touch DNS)
 
 ## Navigation *(2026-11-06)*

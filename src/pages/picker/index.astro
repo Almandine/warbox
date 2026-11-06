@@ -1,0 +1,558 @@
+---
+/**
+ * The WDS Scenario Picker's product page. Also where the in-app update notice
+ * lands (latest.json's download_url), so the download sits at the top.
+ *
+ * Content rule: the distribution build only. Nothing behind the Picker's
+ * Developer Mode, and no mention of the Adjutant (SPEC.md). Install facts
+ * follow the Picker's packaging/README.txt.
+ *
+ * DRAFT copy, written for Norbi to review and rewrite.
+ */
+import { Image } from 'astro:assets';
+import Base from '../../layouts/Base.astro';
+import Icon from '../../components/Icon.astro';
+import Note from '../../components/Note.astro';
+import PickerDownload from '../../components/PickerDownload.astro';
+import ScreenshotGallery from '../../components/ScreenshotGallery.astro';
+import {
+  PICKER,
+  PICKER_GAMES,
+  SCREENSHOT_SLOTS,
+  coverOf,
+  pickerGamesBySeries,
+  screenshotOf,
+} from '../../lib/picker';
+
+const found = SCREENSHOT_SLOTS.flatMap((slot) => {
+  const image = screenshotOf(slot.file);
+  return image ? [{ image, caption: slot.caption }] : [];
+});
+const missing = SCREENSHOT_SLOTS.filter((slot) => !screenshotOf(slot.file));
+
+const groups = pickerGamesBySeries();
+
+const features = [
+  {
+    title: 'The scenario table',
+    body: 'Every scenario of a game in one sortable, searchable table: size, type, sector, turns, historical date, designer. Colour-coded, with filters for played, date, turns, size and head-to-head.',
+  },
+  {
+    title: 'The full briefing beside it',
+    body: 'Pick a row and the panel shows the scenario’s description and designer notes, so you know what you are getting into before the game loads.',
+  },
+  {
+    title: 'Launch in one click',
+    body: 'Press Launch Scenario and the Picker selects that scenario in the game’s own Scenario Selector and clicks OK for you.',
+  },
+  {
+    title: 'All Scenarios',
+    body: 'One list across every installed game — find a short evening scenario without opening each title in turn.',
+  },
+  {
+    title: 'Saved Games and PBEM turns',
+    body: 'Every save and play-by-email turn file across your installed titles, in one place. Continue your last game from a desktop shortcut.',
+  },
+  {
+    title: 'My Play Log',
+    body: 'Record your result and notes for each scenario you play. The log is a plain file in a folder you choose, with rolling backups.',
+  },
+  {
+    title: 'Blitz Rating and Balance',
+    body: 'TheBlitz.club ratings and win balance per scenario, as sortable columns — see at a glance whether a scenario is balanced or one-sided.',
+  },
+  {
+    title: 'My Files and Game Files',
+    body: 'The game’s own programs, editors and manuals as in the WDS Menu, and a place for your own books, maps and notes per game — kept outside the game folder, where updates cannot touch them.',
+  },
+  {
+    title: 'Update notices',
+    body: 'When a newer Picker is out, a button in the header says so. Nothing is ever downloaded or installed automatically.',
+  },
+];
+
+const faq = [
+  {
+    q: 'Is it official?',
+    a: 'No. It is a free, unofficial, fan-made tool. It is not affiliated with or endorsed by Wargame Design Studio.',
+  },
+  {
+    q: 'Does it change my game?',
+    a: 'No. It never modifies your game installation, scenario files or saved games. It only clicks the game’s own Scenario Selector for you, exactly as your mouse would. The one exception is Duplicate and Delete in the Saved Games tab, which you trigger yourself.',
+  },
+  {
+    q: 'Does it go online?',
+    a: 'Only for two optional checks, both switchable in Preferences → Updates: whether a newer Picker is out (with the Blitz numbers on the same switch), and — off by default — whether your games have updates. Nothing about you is sent, and there are no accounts or telemetry.',
+  },
+  {
+    q: 'Where is my play log kept?',
+    a: 'In the folder you choose on first launch — Documents\\WDS Scenario Picker unless you pick another. Preferences → Play Log Folder shows or changes it. Updating the Picker never touches it.',
+  },
+  {
+    q: 'What does it need?',
+    a: 'Windows 10 or 11, 64-bit, and your WDS games installed. No Python, no runtime, nothing else to install.',
+  },
+  {
+    q: 'I have the Steam versions. Does it find them?',
+    a: 'Yes. Every Steam library is found on its own, on any drive. For non-Steam games, unzip the Picker into your WDS game folder, or point it at that folder once: gear icon → Installed Games → WDS game folder → Browse.',
+  },
+  {
+    q: 'My game is not on the list.',
+    a: 'It still shows up in the Picker — you can launch it and browse its saved games — but without a scenario table. The download already includes the scenario catalog for every game listed on this page; more are added over time.',
+  },
+];
+---
+
+<Base
+  title="WDS Scenario Picker"
+  description="A free scenario browser for Wargame Design Studio games: a sortable, colour-coded scenario table with full briefings, saved games, a play log and TheBlitz.club balance data."
+>
+  <section class="hero">
+    <div class="wrap hero__inner">
+      <p class="eyebrow">Free · for Wargame Design Studio games</p>
+      <h1 class="hero__title">WDS Scenario Picker</h1>
+      <p class="lead hero__lead">
+        Every scenario of your WDS games in one sortable, colour-coded table, with the full briefing
+        beside it. Pick one, and the Picker starts it in the game for you.
+      </p>
+      <div class="hero__actions">
+        <PickerDownload />
+        <a class="btn btn--ghost" href="#install">How to install</a>
+      </div>
+      <p class="meta hero__fine">
+        Unofficial, fan-made. Not affiliated with or endorsed by Wargame Design Studio. Windows may warn
+        about an unsigned program the first time — see <a href="#install">Install</a>.
+      </p>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <Note tone="draft">
+      This page’s text is a first draft, to be reviewed. Screenshots are still to come.
+    </Note>
+  </div>
+
+  <section class="wrap section" id="what">
+    <h2 class="section-title"><Icon name="target" size="1em" class="ic" /> What it does</h2>
+    <div class="section-rule"></div>
+    <div class="prose cols">
+      <p>
+        A WDS game’s own Scenario Selector is, essentially, a list of file names. You cannot tell a
+        two-hour introductory scenario from a forty-turn campaign without clicking each one in turn.
+      </p>
+      <p>
+        The Picker sits alongside your games and shows the same scenarios as a table you can sort,
+        search and filter, with the description and designer’s notes beside it. Pick a row, press
+        <strong>Launch Scenario</strong>, and it selects that scenario in the game’s own selector and
+        clicks OK for you.
+      </p>
+      <p>
+        It is not a mod, a patch or a trainer: it never changes your game files, and your games behave
+        exactly as they did before.
+      </p>
+    </div>
+  </section>
+
+  <section class="wrap section section--tight" id="screenshots">
+    <h2 class="section-title"><Icon name="image" size="1em" class="ic" /> Screenshots</h2>
+    <div class="section-rule"></div>
+    <div class="shots">
+      <ScreenshotGallery shots={found} title="WDS Scenario Picker" />
+      {
+        missing.length > 0 && (
+          <ul class="slots">
+            {missing.map((slot) => (
+              <li class="slot">
+                <Icon name="image" size="1.5rem" />
+                <span>{slot.caption}</span>
+                <span class="meta">Screenshot to come</span>
+              </li>
+            ))}
+          </ul>
+        )
+      }
+    </div>
+  </section>
+
+  <section class="wrap section section--tight" id="features">
+    <h2 class="section-title"><Icon name="layers" size="1em" class="ic" /> Features</h2>
+    <div class="section-rule"></div>
+    <ul class="features">
+      {
+        features.map((f) => (
+          <li class="panel feature">
+            <h3 class="feature__title">{f.title}</h3>
+            <p class="feature__body">{f.body}</p>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+
+  <section class="band" id="install">
+    <div class="wrap section steps-grid">
+      <div>
+        <h2 class="section-title"><Icon name="download" size="1em" class="ic" /> Install</h2>
+        <div class="section-rule"></div>
+        <ol class="steps">
+          <li>
+            <strong>Download</strong> the zip. It holds one folder, <code>WDS Scenario Picker</code>.
+          </li>
+          <li>
+            <strong>Unzip the whole folder into your WDS game folder</strong> — the one that holds your
+            games, e.g. <code>C:\WDS</code>. Placed there, the Picker finds your games on its own. Anywhere
+            else you can write to works too; you then point it at your games once.
+          </li>
+          <li>
+            <strong>Double-click <code>WDS Scenario Picker.exe</code></strong> inside it. Keep the exe,
+            <code>_internal</code> and <code>Scenario Catalog</code> together, and don’t run it from inside
+            the zip.
+          </li>
+          <li>
+            <strong>Windows SmartScreen</strong> may say <em>“Windows protected your PC”</em>, because the
+            program is not code-signed. Click <em>More info → Run anyway</em>. This happens once.
+          </li>
+        </ol>
+        <p class="meta">Nothing to install — no Python, no runtime, no libraries.</p>
+      </div>
+
+      <div id="updating">
+        <h2 class="section-title"><Icon name="clock" size="1em" class="ic" /> Updating</h2>
+        <div class="section-rule"></div>
+        <ol class="steps">
+          <li>Close the Picker.</li>
+          <li>Delete your old <code>WDS Scenario Picker</code> folder.</li>
+          <li>Unzip the new one in the same place.</li>
+        </ol>
+        <p>
+          Nothing of yours is lost: your settings, your play log and the catalog files you added with
+          <em>+ Add to Catalog</em> are kept outside that folder. Only a <code>.wdspack</code> you dropped
+          into the <code>Scenario Catalog</code> folder by hand lives inside it — copy it out first.
+        </p>
+        <p>
+          When a newer version is out, the Picker’s header shows an update button that brings you to this
+          page.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap section" id="games">
+    <h2 class="section-title"><Icon name="books" size="1em" class="ic" /> Supported games</h2>
+    <div class="section-rule"></div>
+    <p class="games__lead">
+      The Picker has scenario data for these {PICKER_GAMES.length} titles, and the download includes all of them. Other WDS games
+      still appear in the Picker — you can launch them and browse their saves — just without a scenario
+      table yet. More are added over time.
+    </p>
+
+    {
+      groups.map((group) => (
+        <div class="series">
+          <h3 class="series__name">
+            {group.series} <span class="meta">{group.games.length}</span>
+          </h3>
+          <ul class="games">
+            {group.games.map((game) => {
+              const cover = coverOf(game);
+              return (
+                <li class="game">
+                  {cover ? (
+                    <Image src={cover} alt="" width={100} class="game__cover" loading="lazy" />
+                  ) : (
+                    <span class="game__cover game__cover--none">
+                      <Icon name="hexagon" size="1.5rem" />
+                    </span>
+                  )}
+                  <span class="game__title">{game.title}</span>
+                  {game.is_demo && <span class="tag">Free demo</span>}
+                  {game.is_mod && (
+                    <span class="tag tag--mod">
+                      Community mod{game.base_game && ` for ${game.base_game}`}
+                    </span>
+                  )}
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+      ))
+    }
+    <p class="meta games__fine">Game names and box art belong to their owners.</p>
+  </section>
+
+  <section class="wrap section section--tight" id="faq">
+    <h2 class="section-title"><Icon name="compass" size="1em" class="ic" /> FAQ</h2>
+    <div class="section-rule"></div>
+    <dl class="faq prose">
+      {
+        faq.map((item) => (
+          <div>
+            <dt>{item.q}</dt>
+            <dd>{item.a}</dd>
+          </div>
+        ))
+      }
+    </dl>
+  </section>
+
+  <section class="band" id="feedback">
+    <div class="wrap section feedback">
+      <div>
+        <h2 class="section-title"><Icon name="mail" size="1em" class="ic" /> Feedback</h2>
+        <div class="section-rule"></div>
+        <p>
+          A bug, a scenario with wrong details, a game you would like next, or just how it works for you —
+          every message is read.
+        </p>
+      </div>
+      <a class="btn" href={PICKER.feedbackHref}><Icon name="mail" size="1.1em" /> Send feedback</a>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .ic {
+    color: var(--wg-accent-strong);
+  }
+
+  .hero {
+    position: relative;
+    padding-block: 3.5rem 3rem;
+    border-bottom: 1px solid var(--wg-border);
+    background-color: var(--wg-surface);
+    background-image: var(--tex-hex);
+    background-size: var(--tex-hex-size);
+    margin-bottom: 2rem;
+  }
+
+  .hero__title {
+    font-size: clamp(2rem, 1.2rem + 3vw, 3.25rem);
+    text-transform: uppercase;
+    margin-block: 0.5rem 1.25rem;
+  }
+
+  .hero__lead {
+    max-width: 48rem;
+  }
+
+  .hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+
+  .hero__fine {
+    margin-top: 1.5rem;
+    max-width: 70ch;
+  }
+
+  .hero__fine a {
+    color: inherit;
+  }
+
+  .section--tight {
+    padding-top: 0;
+  }
+
+  .cols {
+    margin-top: 1.75rem;
+  }
+
+  .shots {
+    margin-top: 2rem;
+    display: grid;
+    gap: 1.5rem;
+  }
+
+  .slots {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fill, minmax(min(17rem, 100%), 1fr));
+  }
+
+  .slot {
+    display: grid;
+    justify-items: center;
+    align-content: center;
+    gap: 0.5rem;
+    min-height: 10rem;
+    padding: 1.25rem;
+    text-align: center;
+    font-size: 0.9375rem;
+    color: var(--wg-muted);
+    border: 1px dashed var(--wg-border);
+    border-radius: var(--radius-lg);
+    background-image: var(--tex-hex);
+    background-size: var(--tex-hex-size);
+  }
+
+  .features {
+    list-style: none;
+    padding: 0;
+    margin-top: 2rem;
+    display: grid;
+    gap: 1.25rem;
+    grid-template-columns: repeat(auto-fill, minmax(min(18rem, 100%), 1fr));
+  }
+
+  .feature {
+    padding: 1.25rem 1.5rem;
+  }
+
+  .feature__title {
+    font-size: 1.0625rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .feature__body {
+    font-size: 0.9375rem;
+    color: var(--wg-muted);
+  }
+
+  .band {
+    background: var(--wg-surface);
+    border-block: 1px solid var(--wg-border);
+  }
+
+  .steps-grid {
+    display: grid;
+    gap: 3rem;
+  }
+
+  @media (min-width: 900px) {
+    .steps-grid {
+      grid-template-columns: 3fr 2fr;
+    }
+  }
+
+  .steps-grid p {
+    margin-top: 1rem;
+    max-width: 60ch;
+  }
+
+  .steps {
+    margin-top: 1.75rem;
+    padding-left: 1.25rem;
+    display: grid;
+    gap: 0.75rem;
+    max-width: 62ch;
+  }
+
+  code {
+    font-family: var(--font-mono);
+    font-size: 0.875em;
+    padding: 0.05em 0.3em;
+    border: 1px solid var(--wg-border);
+    border-radius: var(--radius);
+    background: var(--wg-bg);
+  }
+
+  .games__lead {
+    margin-top: 1.75rem;
+    max-width: 68ch;
+  }
+
+  .series {
+    margin-top: 2.5rem;
+  }
+
+  .series__name {
+    font-size: 1.0625rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--wg-border);
+  }
+
+  .games {
+    list-style: none;
+    padding: 0;
+    margin-top: 1rem;
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fill, minmax(min(9.5rem, 100%), 1fr));
+  }
+
+  .game {
+    display: grid;
+    gap: 0.375rem;
+    align-content: start;
+    font-size: 0.875rem;
+  }
+
+  .game__cover {
+    width: 100%;
+    height: auto;
+    border: 1px solid var(--wg-border);
+    border-radius: var(--radius);
+    background: var(--wg-surface);
+  }
+
+  .game__cover--none {
+    aspect-ratio: 3 / 4;
+    display: grid;
+    place-items: center;
+    color: var(--wg-faint);
+  }
+
+  .game__title {
+    font-weight: 600;
+    color: var(--wg-ink);
+  }
+
+  .tag {
+    justify-self: start;
+    font-family: var(--font-mono);
+    font-size: 0.625rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: 0.15rem 0.4rem;
+    border: 1px solid var(--wg-accent);
+    border-radius: var(--radius);
+    color: var(--wg-accent-strong);
+  }
+
+  .tag--mod {
+    border-color: var(--wg-highlight);
+    color: var(--wg-highlight);
+  }
+
+  .games__fine {
+    margin-top: 2rem;
+  }
+
+  .faq {
+    margin-top: 1.75rem;
+    display: grid;
+    gap: 1.5rem;
+  }
+
+  .faq dt {
+    font-weight: 700;
+    color: var(--wg-ink);
+  }
+
+  .faq dd {
+    margin: 0.375rem 0 0;
+    color: var(--wg-muted);
+  }
+
+  .feedback {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: end;
+    justify-content: space-between;
+    gap: 2rem;
+  }
+
+  .feedback p {
+    margin-top: 1.25rem;
+    max-width: 56ch;
+  }
+</style>

@@ -5,6 +5,9 @@ import Icon from '../components/Icon.astro';
 import SeriesCard from '../components/SeriesCard.astro';
 import ScreenshotStrip, { type StripItem } from '../components/ScreenshotStrip.astro';
 import LatestUpdates from '../components/LatestUpdates.astro';
+import PickerDownload from '../components/PickerDownload.astro';
+import { Image } from 'astro:assets';
+import { PICKER, PICKER_GAMES, screenshotOf } from '../lib/picker';
 import { getScreenshots } from '../lib/screenshots';
 import { getGamesByDate, getSeriesOverview, formatDate, hrefOf, lastTouched } from '../lib/games';
 import { SITE_NAME, SITE_TITLE } from '../consts';
@@ -29,6 +32,14 @@ const stripItems: StripItem[] = available.flatMap((game) => {
     accent: series.data.accent,
   }));
 });
+
+// The Picker block's picture: the scenario table, once Norbi supplies it.
+const pickerShot = screenshotOf('scenario-table');
+const pickerPoints = [
+  'Sort, search and filter every scenario — size, type, turns, date, designer',
+  'The full briefing beside it, then one click starts it in the game',
+  `Scenario data for ${PICKER_GAMES.length} WDS titles, your play log and saved games in one place`,
+];
 
 const stats = [
   { icon: 'layers', tone: 'olive', label: 'Companions ready', value: String(available.length) },
@@ -65,17 +76,49 @@ const offerings = [
 <Base>
   <Cover slot="cover" />
 
-  <section class="intro">
+  <section class="intro picker">
+    <div class="wrap picker__grid">
+      <div>
+        <p class="intro__tagline">Free · for Wargame Design Studio games</p>
+        <h1 class="intro__title">WDS Scenario Picker</h1>
+        <p class="lead">
+          Every scenario of your WDS games in one sortable, colour-coded table, with the full briefing
+          beside it. Pick one, and the Picker starts it in the game for you.
+        </p>
+        <ul class="picker__points">
+          {pickerPoints.map((point) => <li><Icon name="check" size="1em" class="picker__tick" />{point}</li>)}
+        </ul>
+        <div class="picker__actions">
+          <PickerDownload />
+          <a class="btn btn--ghost" href="/picker/">Learn more</a>
+        </div>
+      </div>
+      {
+        pickerShot ? (
+          <a class="picker__shot" href="/picker/#screenshots">
+            <Image src={pickerShot} alt="The WDS Scenario Picker's scenario table" widths={[600, 1000]} sizes="(min-width: 900px) 560px, 100vw" />
+          </a>
+        ) : (
+          <a class="picker__shot picker__shot--none" href="/picker/">
+            <Icon name="image" size="2rem" />
+            <span class="meta">Screenshot to come</span>
+          </a>
+        )
+      }
+    </div>
+  </section>
+
+  <section class="welcome">
     <div class="wrap">
-      <h1 class="intro__title">Welcome to {SITE_TITLE}</h1>
+      <h2 class="welcome__title">Welcome to {SITE_TITLE}</h2>
       <p class="intro__tagline">Where history becomes playable</p>
-      <p class="lead intro__lead">
+      <p class="lead welcome__lead">
         A dedicated resource and command hub for historical hex-and-counter wargames. To me, these
         games are much more than just digital simulations — they are playable history books. They
         offer a unique opportunity to step into the boots of historical commanders, explore
         real-world campaigns, and test your tactical acumen on authentic battlefields.
       </p>
-      <a class="btn btn--ghost intro__cta" href="/how-to-use/">New here? Start with the guide</a>
+      <a class="btn btn--ghost welcome__cta" href="/how-to-use/">New to the companions? Start with the guide</a>
     </div>
   </section>
 
@@ -205,11 +248,95 @@ const offerings = [
     margin-bottom: 1.75rem;
   }
 
-  .intro__lead {
+  /* --- Picker block: the first screen of the site (SPEC.md, Home). --- */
+
+  .picker {
+    padding-block: 3rem 3.5rem;
+  }
+
+  .picker__grid {
+    display: grid;
+    gap: 2.5rem;
+    align-items: center;
+  }
+
+  @media (min-width: 900px) {
+    .picker__grid {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    }
+  }
+
+  .picker__points {
+    list-style: none;
+    padding: 0;
+    margin-top: 1.5rem;
+    display: grid;
+    gap: 0.5rem;
+    font-size: 0.9375rem;
+  }
+
+  .picker__points li {
+    display: flex;
+    gap: 0.5rem;
+    align-items: baseline;
+  }
+
+  .picker__tick {
+    flex-shrink: 0;
+    color: var(--wg-accent-strong);
+  }
+
+  .picker__actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+
+  .picker__shot {
+    display: block;
+    border: 1px solid var(--wg-border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: 0 20px 40px -28px rgb(from var(--wg-emphasis) r g b / 0.5);
+  }
+
+  .picker__shot img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .picker__shot--none {
+    display: grid;
+    place-items: center;
+    align-content: center;
+    gap: 0.5rem;
+    aspect-ratio: 16 / 10;
+    color: var(--wg-faint);
+    text-decoration: none;
+    border-style: dashed;
+    background: rgb(from var(--wg-surface) r g b / 0.7);
+  }
+
+  /* --- Welcome: the rest of the brand, below the Picker. --- */
+
+  .welcome {
+    padding-block: 4.5rem 4.5rem;
+  }
+
+  .welcome__title {
+    font-size: clamp(1.5rem, 1rem + 2vw, 2.125rem);
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+  }
+
+  .welcome__lead {
     max-width: 46rem;
   }
 
-  .intro__cta {
+  .welcome__cta {
     margin-top: 2rem;
   }
 
@@ -218,7 +345,6 @@ const offerings = [
   .stats {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    margin-top: -2.5rem;
     position: relative;
     z-index: 10;
     box-shadow: 0 16px 32px -22px rgb(from var(--wg-emphasis) r g b / 0.45);

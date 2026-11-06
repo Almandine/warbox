@@ -6,14 +6,14 @@ import { getKnowledgeEntries } from '../lib/knowledge';
 
 // Knowledge and Articles only enter the nav once something is published in
 // them — an empty section in the menu is worse than no section. Both sit
-// after Series, the other item that leads to a body of content.
+// after Companions, the other item that leads to a body of content.
 const hasKnowledge = (await getKnowledgeEntries()).length > 0;
 const hasArticles = (await getArticles()).length > 0;
 const extra = [
   ...(hasKnowledge ? [{ label: 'Knowledge', href: '/knowledge/' }] : []),
   ...(hasArticles ? [{ label: 'Articles', href: '/articles/' }] : []),
 ];
-const items = [...NAV.slice(0, 2), ...extra, ...NAV.slice(2)];
+const items = [...NAV.slice(0, 3), ...extra, ...NAV.slice(3)];
 
 const path = Astro.url.pathname;
 const isActive = (href: string) => (href === '/' ? path === '/' : path.startsWith(href));

@@ -7,9 +7,13 @@ export const SITE_OWNER = "Almandine's";
 export const SITE_NAME = 'Warbox';
 export const SITE_TITLE = `${SITE_OWNER} ${SITE_NAME}`;
 
-export const SITE_TAGLINE = 'Companions for computer wargames';
+export const SITE_TAGLINE = 'Tools and companions for Wargame Design Studio games';
 export const SITE_DESCRIPTION =
-  'Fan-made Game Companion spreadsheets, reference material and downloads for Wargame Design Studio titles — Panzer Campaigns, Squad Battles, Sword & Siege and more.';
+  'Home of the WDS Scenario Picker, a free scenario browser for Wargame Design Studio games — plus fan-made companion spreadsheets and reference material for Panzer Campaigns, Squad Battles, Sword & Siege and more.';
+
+/** The fixed legal line, shown in every page's footer (SPEC.md, "Legal line"). */
+export const LEGAL_LINE =
+  'Unofficial, fan-made. Not affiliated with or endorsed by Wargame Design Studio. Game names and box art belong to their owners.';
 
 /**
  * Formspree form id for the contact page. Public by nature — it ships in the
@@ -36,12 +40,14 @@ export interface NavItem {
 /**
  * The series are not in here on purpose: they are the site's own content, and
  * reach the reader as cards under the header rather than as menu entries.
- * "Series" is the one item that leads to them.
+ * "Companions" (the old "Series" item, renamed 2026-11-06) is the one item that
+ * leads to them; the How-to-use guide is reached from there and the footer.
+ * Header.astro inserts Knowledge / Articles after the first three items.
  */
 export const NAV: NavItem[] = [
   { label: 'Home', href: '/' },
-  { label: 'Series', href: '/series/' },
-  { label: 'How to use', href: '/how-to-use/' },
+  { label: 'Scenario Picker', href: '/picker/' },
+  { label: 'Companions', href: '/series/' },
   { label: 'About', href: '/about/' },
   { label: 'Contact', href: '/contact/' },
 ];

@@ -1,0 +1,75 @@
+---
+/**
+ * The Picker's Download button. Version, date, size and link all come from
+ * public/picker/latest.json via src/lib/picker.ts — nothing to edit here at
+ * a release.
+ */
+import Icon from './Icon.astro';
+import { PICKER } from '../lib/picker';
+import { formatDate } from '../lib/games';
+
+const meta = [
+  `Released ${formatDate(PICKER.released)}`,
+  ...(PICKER.size ? [`ZIP · ${PICKER.size}`] : []),
+  PICKER.platform,
+].join(' · ');
+---
+
+{
+  PICKER.downloadHref ? (
+    <a class="pdl" href={PICKER.downloadHref}>
+      <Icon name="download" size="1.5rem" />
+      <span>
+        <strong>Download the Picker {PICKER.version}</strong>
+        <span class="pdl__meta">{meta}</span>
+      </span>
+    </a>
+  ) : (
+    <div class="pdl pdl--off">
+      <Icon name="download" size="1.5rem" />
+      <span>
+        <strong>Download coming soon</strong>
+        <span class="pdl__meta">{meta}</span>
+      </span>
+    </div>
+  )
+}
+
+<style>
+  .pdl {
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 1.5rem;
+    border-radius: var(--radius);
+    background: var(--wg-accent);
+    color: var(--wg-on-accent);
+    text-decoration: none;
+    transition: background-color 0.18s ease;
+  }
+
+  .pdl:hover {
+    background: var(--wg-accent-strong);
+    color: var(--wg-on-accent);
+  }
+
+  .pdl strong {
+    display: block;
+    font-size: 0.9375rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .pdl__meta {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    opacity: 0.85;
+  }
+
+  .pdl--off {
+    background: var(--wg-surface);
+    border: 1px solid var(--wg-border);
+    color: var(--wg-muted);
+  }
+</style>

@@ -7,7 +7,7 @@ import '../styles/global.css';
 
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import { SITE_TITLE, SITE_DESCRIPTION, CF_ANALYTICS_TOKEN } from '../consts';
+import { SITE_TITLE, SITE_TAGLINE, SITE_DESCRIPTION, CF_ANALYTICS_TOKEN } from '../consts';
 
 interface Props {
   /** Page title without the site suffix. Omit on the home page. */
@@ -17,7 +17,7 @@ interface Props {
 
 const { title, description = SITE_DESCRIPTION } = Astro.props;
 
-const fullTitle = title ? `${title} · ${SITE_TITLE}` : `${SITE_TITLE} — Companions for computer wargames`;
+const fullTitle = title ? `${title} · ${SITE_TITLE}` : `${SITE_TITLE} — ${SITE_TAGLINE}`;
 const canonical = new URL(Astro.url.pathname, Astro.site ?? 'https://warbox.org');
 ---
 

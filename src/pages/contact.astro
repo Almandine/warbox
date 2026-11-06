@@ -9,17 +9,29 @@ import { FORMSPREE_ID, SITE_URL } from '../consts';
 // rendered disabled rather than hidden, so the page still shows what it will do.
 const action = FORMSPREE_ID ? `https://formspree.io/f/${FORMSPREE_ID}` : undefined;
 const live = Boolean(action);
+
+/**
+ * The "About" choices. `?about=<value>` preselects one — and
+ * https://warbox.org/contact/?about=picker is baked into the Picker's
+ * "Send feedback" link, so the value `picker` must never change (SPEC.md).
+ * The first option is the no-JS default.
+ */
+const topics = [
+  { value: 'picker', label: 'Scenario Picker', subject: 'Warbox: Scenario Picker feedback' },
+  { value: 'companions', label: 'Companions & material', subject: 'Warbox: companions' },
+  { value: 'other', label: 'Other', subject: 'Warbox contact form' },
+];
 ---
 
 <Base
   title="Contact"
-  description="Send a correction, request a companion for a game, or report something that looks wrong."
+  description="Feedback on the WDS Scenario Picker, a correction to a companion, or anything else."
 >
   <PageHeader
     eyebrow="Get in touch"
     title="Contact"
     icon="mail"
-    lead="Corrections, requests and anything that looks wrong in a companion."
+    lead="Feedback on the Scenario Picker, corrections to a companion, and anything that looks wrong."
   />
 
   <div class="wrap section layout">
@@ -36,7 +48,12 @@ const live = Boolean(action);
       <h2>What is worth writing about</h2>
       <ul>
         <li>
-          <strong>A value that does not match the game.</strong> The most useful message this site can
+          <strong>Anything about the Scenario Picker.</strong> A bug, a scenario whose details look
+          wrong, a game you would like scenario data for, or just how it works for you. If the Picker
+          showed a “Something went wrong” window, paste its <em>Copy details</em> text in.
+        </li>
+        <li>
+          <strong>A value in a companion that does not match the game.</strong> The most useful message this site can
           get. Say which game, which sheet and which row.
         </li>
         <li>
@@ -63,6 +80,13 @@ const live = Boolean(action);
       {!live && <p id="form-off" class="form__off">Form not connected yet</p>}
 
       <label>
+        <span class="form__label">About</span>
+        <select name="about" id="about" disabled={!live}>
+          {topics.map((t) => <option value={t.value} data-subject={t.subject}>{t.label}</option>)}
+        </select>
+      </label>
+
+      <label>
         <span class="form__label">Name <em>optional</em></span>
         <input type="text" name="name" autocomplete="name" disabled={!live} />
       </label>
@@ -79,7 +103,7 @@ const live = Boolean(action);
 
       {/* Formspree reads these: the subject of the notification mail Norbi receives,
           and the page to redirect to once the message is sent. */}
-      <input type="hidden" name="_subject" value="Warbox contact form" />
+      <input type="hidden" name="_subject" id="subject" value={topics[0].subject} />
       <input type="hidden" name="_next" value={`${SITE_URL}/contact/thanks/`} />
 
       {/* Honeypot: bots fill it in, people never see it. */}
@@ -92,6 +116,20 @@ const live = Boolean(action);
     </form>
   </div>
 </Base>
+
+<script>
+  // ?about=picker (etc.) preselects the topic; the mail subject follows it.
+  const select = document.querySelector<HTMLSelectElement>('#about');
+  const subject = document.querySelector<HTMLInputElement>('#subject');
+  const sync = () => {
+    const option = select?.selectedOptions[0];
+    if (subject && option?.dataset.subject) subject.value = option.dataset.subject;
+  };
+  const wanted = new URLSearchParams(location.search).get('about');
+  if (select && wanted && [...select.options].some((o) => o.value === wanted)) select.value = wanted;
+  select?.addEventListener('change', sync);
+  sync();
+</script>
 
 <style>
   .layout {
@@ -136,6 +174,7 @@ const live = Boolean(action);
   }
 
   .form input,
+  .form select,
   .form textarea {
     width: 100%;
     padding: 0.625rem 0.75rem;
@@ -152,6 +191,7 @@ const live = Boolean(action);
   }
 
   .form input:focus-visible,
+  .form select:focus-visible,
   .form textarea:focus-visible {
     border-color: var(--wg-accent);
   }

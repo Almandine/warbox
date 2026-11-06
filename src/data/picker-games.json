@@ -1,0 +1,374 @@
+{
+  "generated": "2026-11-06",
+  "games": [
+    {
+      "id": "Civil War Battles - Campaign Gettysburg",
+      "series": "Civil War Battles",
+      "title": "Campaign Gettysburg",
+      "is_demo": false,
+      "is_mod": false,
+      "cover": "civil-war-battles-campaign-gettysburg.png"
+    },
+    {
+      "id": "Civil War Battles - Civil War Battles Demo",
+      "series": "Civil War Battles",
+      "title": "Civil War Battles Demo",
+      "is_demo": true,
+      "is_mod": false,
+      "cover": "civil-war-battles-civil-war-battles-demo.png"
+    },
+    {
+      "id": "First World War Campaigns - France '14",
+      "series": "First World War Campaigns",
+      "title": "France '14",
+      "is_demo": false,
+      "is_mod": false,
+      "cover": "first-world-war-campaigns-france-14.png"
+    },
+    {
+      "id": "Modern Air Power - Modern Air Power Demo",
+      "series": "Modern Air Power",
+      "title": "Modern Air Power Demo",
+      "is_demo": true,
+      "is_mod": false,
+      "cover": "modern-air-power-modern-air-power-demo.png"
+    },
+    {
+      "id": "Modern Campaigns - Danube Front '85",
+      "series": "Modern Campaigns",
+      "title": "Danube Front '85",
+      "is_demo": false,
+      "is_mod": false,
+      "cover": "modern-campaigns-danube-front-85.png"
+    },
+    {
+      "id": "Modern Campaigns - Korea '85",
+      "series": "Modern Campaigns",
+      "title": "Korea '85",
+      "is_demo": false,
+      "is_mod": false,
+      "cover": "modern-campaigns-korea-85.png"
+    },
+    {
+      "id": "Modern Campaigns - Middle East '67",
+      "series": "Modern Campaigns",
+      "title": "Middle East '67",
+      "is_demo": false,
+      "is_mod": false,
+      "cover": "modern-campaigns-middle-east-67.png"
+    },
+    {
+      "id": "Modern Campaigns - Quang Tri '72",
+      "series": "Modern Campaigns",
+      "title": "Quang Tri '72",
+      "is_demo": true,
+      "is_mod": false,
+      "cover": "modern-campaigns-quang-tri-72.png"
+    },
+    {
+      "id": "Musket & Pike - American Revolutionary War",
+      "series": "Musket & Pike",
+      "title": "American Revolutionary War",
+      "is_demo": false,
+      "is_mod": false,
+      "cover": "musket-and-pike-american-revolutionary-war.png"
+    },
+    {
+      "id": "Musket & Pike - Renaissance",
+      "series": "Musket & Pike",
+      "title": "Renaissance",
+      "is_demo": false,
+      "is_mod": false,
+      "cover": "musket-and-pike-renaissance.png"
+    },
+    {
+      "id": "Musket & Pike - Thirty Years War",
+      "series": "Musket & Pike",
+      "title": "Thirty Years War",
+      "is_demo": false,
+      "is_mod": false,
+      "cover": "musket-and-pike-thirty-years-war.png"
+    },
+    {
+      "id": "Musket & Pike - Vienna 1683",
+      "series": "Musket & Pike",
+      "title": "Vienna 1683",
+      "is_demo": true,
+      "is_mod": false,
+      "cover": null
+    },
+    {
+      "id": "Musket & Pike - War of the Austrian Succession",
+      "series": "Musket & Pike",
+      "title": "War of the Austrian Succession",
+      "is_demo": false,
+      "is_mod": false,
+      "cover": "musket-and-pike-war-of-the-austrian-succession.png"
+    },
+    {
+      "id": "Napoleonic Battles - Campaign Austerlitz",
+      "series": "Napoleonic Battles",
+      "title": "Campaign Austerlitz",
+      "is_demo": false,
+      "is_mod": false,
+      "cover": "napoleonic-battles-campaign-austerlitz.png"
+    },
+    {
+      "id": "Napoleonic Battles - The Final Struggle",
+      "series": "Napoleonic Battles",
+      "title": "The Final Struggle",
+      "is_demo": true,
+      "is_mod": false,
+      "cover": null
+    },
+    {
+      "id": "Naval Campaigns - Spanish-American War Naval Battles",
+      "series": "Naval Campaigns",
+      "title": "Spanish-American War Naval Battles",
+      "is_demo": true,
+      "is_mod": false,
+      "cover": null
+    },
+    {
+      "id": "Panzer Battles - Battles of Normandy",
+      "series": "Panzer Battles",
+      "title": "Battles of Normandy",
+      "is_demo": false,
+      "is_mod": false,
+      "cover": "panzer-battles-battles-of-normandy.png"
+    },
+    {
+      "id": "Panzer Battles - Battles of North Africa 1941",
+      "series": "Panzer Battles",
+      "title": "Battles of North Africa 1941",
+      "is_demo": false,
+      "is_mod": false,
+      "cover": "panzer-battles-battles-of-north-africa-1941.png"
+    },
+    {
+      "id": "Panzer Battles - Panzer Battles Demo",
+      "series": "Panzer Battles",
+      "title": "Panzer Battles Demo",
+      "is_demo": true,
+      "is_mod": false,
+      "cover": "panzer-battles-panzer-battles-demo.png"
+    },
+    {
+      "id": "Panzer Campaigns - Budapest '45 Gold",
+      "series": "Panzer Campaigns",
+      "title": "Budapest '45 Gold",
+      "is_demo": false,
+      "is_mod": false,
+      "cover": "panzer-campaigns-budapest-45-gold.png"
+    },
+    {
+      "id": "Panzer Campaigns - Bulge '44 Gold",
+      "series": "Panzer Campaigns",
+      "title": "Bulge '44 Gold",
+      "is_demo": false,
+      "is_mod": false,
+      "cover": "panzer-campaigns-bulge-44-gold.png"
+    },
+    {
+      "id": "Panzer Campaigns - France '40 Gold",
+      "series": "Panzer Campaigns",
+      "title": "France '40 Gold",
+      "is_demo": false,
+      "is_mod": false,
+      "cover": "panzer-campaigns-france-40-gold.png"
+    },
+    {
+      "id": "Panzer Campaigns - Market-Garden '44 Gold",
+      "series": "Panzer Campaigns",
+      "title": "Market-Garden '44 Gold",
+      "is_demo": false,
+      "is_mod": false,
+      "cover": "panzer-campaigns-market-garden-44-gold.png"
+    },
+    {
+      "id": "Panzer Campaigns - Mius '43",
+      "series": "Panzer Campaigns",
+      "title": "Mius '43",
+      "is_demo": true,
+      "is_mod": false,
+      "cover": "panzer-campaigns-mius-43.png"
+    },
+    {
+      "id": "Panzer Campaigns - Normandy '44 Gold",
+      "series": "Panzer Campaigns",
+      "title": "Normandy '44 Gold",
+      "is_demo": false,
+      "is_mod": false,
+      "cover": "panzer-campaigns-normandy-44-gold.png"
+    },
+    {
+      "id": "Panzer Campaigns - Philippines '44",
+      "series": "Panzer Campaigns",
+      "title": "Philippines '44",
+      "is_demo": false,
+      "is_mod": false,
+      "cover": "panzer-campaigns-philippines-44.png"
+    },
+    {
+      "id": "Panzer Campaigns - Poland '39",
+      "series": "Panzer Campaigns",
+      "title": "Poland '39",
+      "is_demo": false,
+      "is_mod": false,
+      "cover": "panzer-campaigns-poland-39.png"
+    },
+    {
+      "id": "Panzer Campaigns - Salerno '43 Gold",
+      "series": "Panzer Campaigns",
+      "title": "Salerno '43 Gold",
+      "is_demo": false,
+      "is_mod": false,
+      "cover": "panzer-campaigns-salerno-43-gold.png"
+    },
+    {
+      "id": "Panzer Campaigns - Sicily '43 Gold",
+      "series": "Panzer Campaigns",
+      "title": "Sicily '43 Gold",
+      "is_demo": false,
+      "is_mod": false,
+      "cover": "panzer-campaigns-sicily-43-gold.png"
+    },
+    {
+      "id": "Panzer Campaigns - Spring Awakening '45",
+      "series": "Panzer Campaigns",
+      "title": "Spring Awakening '45",
+      "is_demo": false,
+      "is_mod": false,
+      "cover": "panzer-campaigns-spring-awakening-45.png"
+    },
+    {
+      "id": "Panzer Campaigns - Tobruk '41 Gold",
+      "series": "Panzer Campaigns",
+      "title": "Tobruk '41 Gold",
+      "is_demo": false,
+      "is_mod": false,
+      "cover": "panzer-campaigns-tobruk-41-gold.png"
+    },
+    {
+      "id": "Panzer Campaigns - Tunisia '43 Gold",
+      "series": "Panzer Campaigns",
+      "title": "Tunisia '43 Gold",
+      "is_demo": false,
+      "is_mod": false,
+      "cover": "panzer-campaigns-tunisia-43-gold.png"
+    },
+    {
+      "id": "Squad Battles - Advance of the Reich",
+      "series": "Squad Battles",
+      "title": "Advance of the Reich",
+      "is_demo": false,
+      "is_mod": false,
+      "cover": "squad-battles-advance-of-the-reich.png"
+    },
+    {
+      "id": "Squad Battles - Eagles Strike",
+      "series": "Squad Battles",
+      "title": "Eagles Strike",
+      "is_demo": false,
+      "is_mod": false,
+      "cover": "squad-battles-eagles-strike.png"
+    },
+    {
+      "id": "Squad Battles - First World War",
+      "series": "Squad Battles",
+      "title": "First World War",
+      "is_demo": false,
+      "is_mod": false,
+      "cover": "squad-battles-first-world-war.png"
+    },
+    {
+      "id": "Squad Battles - Grenada",
+      "series": "Squad Battles",
+      "title": "Grenada",
+      "is_demo": true,
+      "is_mod": false,
+      "cover": "squad-battles-grenada.png"
+    },
+    {
+      "id": "Squad Battles - Modern War",
+      "series": "Squad Battles",
+      "title": "Modern War",
+      "is_demo": false,
+      "is_mod": false,
+      "cover": "squad-battles-modern-war.png"
+    },
+    {
+      "id": "Squad Battles - Red Victory",
+      "series": "Squad Battles",
+      "title": "Red Victory",
+      "is_demo": false,
+      "is_mod": false,
+      "cover": "squad-battles-red-victory.png"
+    },
+    {
+      "id": "Squad Battles - SBWW2 West Front",
+      "series": "Squad Battles",
+      "title": "SBWW2 West Front",
+      "is_demo": false,
+      "is_mod": true,
+      "base_game": "Eagles Strike",
+      "cover": null
+    },
+    {
+      "id": "Squad Battles - The Proud and the Few",
+      "series": "Squad Battles",
+      "title": "The Proud and the Few",
+      "is_demo": false,
+      "is_mod": false,
+      "cover": "squad-battles-the-proud-and-the-few.png"
+    },
+    {
+      "id": "Squad Battles - Tour of Duty",
+      "series": "Squad Battles",
+      "title": "Tour of Duty",
+      "is_demo": false,
+      "is_mod": false,
+      "cover": "squad-battles-tour-of-duty.png"
+    },
+    {
+      "id": "Squad Battles - Winter War",
+      "series": "Squad Battles",
+      "title": "Winter War",
+      "is_demo": false,
+      "is_mod": false,
+      "cover": "squad-battles-winter-war.png"
+    },
+    {
+      "id": "Sword & Siege - Age of Longbow Volume I",
+      "series": "Sword & Siege",
+      "title": "Age of Longbow: Volume I",
+      "is_demo": false,
+      "is_mod": false,
+      "cover": "sword-and-siege-age-of-longbow-volume-i.png"
+    },
+    {
+      "id": "Sword & Siege - Crusades Book I",
+      "series": "Sword & Siege",
+      "title": "Crusades: Book I",
+      "is_demo": false,
+      "is_mod": false,
+      "cover": "sword-and-siege-crusades-book-i.png"
+    },
+    {
+      "id": "Sword & Siege - Crusades Book II",
+      "series": "Sword & Siege",
+      "title": "Crusades: Book II",
+      "is_demo": false,
+      "is_mod": false,
+      "cover": "sword-and-siege-crusades-book-ii.png"
+    },
+    {
+      "id": "Sword & Siege - Sword & Siege Demo",
+      "series": "Sword & Siege",
+      "title": "Sword & Siege Demo",
+      "is_demo": true,
+      "is_mod": false,
+      "cover": "sword-and-siege-sword-and-siege-demo.png"
+    }
+  ]
+}

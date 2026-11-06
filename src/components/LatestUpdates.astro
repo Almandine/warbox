@@ -2,6 +2,7 @@
 import Icon from './Icon.astro';
 import { getGamesByDate, formatDate, hrefOf, lastTouched } from '../lib/games';
 import { getArticles } from '../lib/articles';
+import { PICKER } from '../lib/picker';
 
 interface Props {
   limit?: number;
@@ -10,7 +11,7 @@ interface Props {
 const { limit = 6 } = Astro.props;
 
 type Entry = {
-  kind: 'added' | 'updated' | 'article';
+  kind: 'added' | 'updated' | 'article' | 'release';
   label: string;
   title: string;
   href: string;
@@ -22,6 +23,14 @@ const [games, articles] = await Promise.all([getGamesByDate(), getArticles()]);
 // Games and articles share one chronological feed, so the front page shows
 // activity of any kind rather than two half-empty lists.
 const entries: Entry[] = [
+  // The current Picker release, from latest.json — older ones are not offered.
+  {
+    kind: 'release' as const,
+    label: 'Picker release',
+    title: `${PICKER.name} ${PICKER.version}`,
+    href: '/picker/',
+    date: PICKER.released,
+  },
   ...games
     .filter((game) => game.data.status === 'available')
     .map((game) => ({
@@ -150,6 +159,10 @@ const entries: Entry[] = [
 
   .row__tag--article {
     color: var(--wg-alert);
+  }
+
+  .row__tag--release {
+    color: var(--wg-highlight);
   }
 
   .row__title {

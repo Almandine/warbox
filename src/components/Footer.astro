@@ -1,6 +1,6 @@
 ---
 import Icon from './Icon.astro';
-import { SITE_TITLE, WDS_URL } from '../consts';
+import { LEGAL_LINE, SITE_TAGLINE, SITE_TITLE, WDS_URL } from '../consts';
 import { getArticles } from '../lib/articles';
 import { getAllSeries, hrefOf } from '../lib/games';
 
@@ -15,13 +15,16 @@ const columns = [
     title: 'Navigation',
     links: [
       { label: 'Home', href: '/' },
-      { label: 'All series', href: '/series/' },
+      { label: 'Scenario Picker', href: '/picker/' },
+      { label: 'Companions', href: '/series/' },
       ...(hasArticles ? [{ label: 'Articles', href: '/articles/' }] : []),
     ],
   },
   {
     title: 'Getting started',
     links: [
+      { label: 'Install the Picker', href: '/picker/#install' },
+      { label: 'Picker feedback', href: '/contact/?about=picker' },
       { label: 'How to use the companions', href: '/how-to-use/' },
       { label: 'What is a Game Companion?', href: '/how-to-use/#what-is-it' },
     ],
@@ -64,8 +67,7 @@ const columns = [
     </div>
 
     <p class="foot__disclaimer">
-      Fan-made companions for Wargame Design Studio games. Not affiliated with, or endorsed by, WDS.
-      Official site: <a href={WDS_URL} target="_blank" rel="noopener">wargameds.com <Icon
+      {LEGAL_LINE} Official site: <a href={WDS_URL} target="_blank" rel="noopener">wargameds.com <Icon
           name="external"
           size="0.85em"
         /></a>
@@ -74,7 +76,7 @@ const columns = [
     <div class="foot__bar">
       <span class="foot__copy">
         <Icon name="hexagon" size="1.1rem" />
-        © {year} {SITE_TITLE}. Companions for computer wargames.
+        © {year} {SITE_TITLE}. {SITE_TAGLINE}.
       </span>
       <span class="meta">STATUS: OPERATIONAL</span>
     </div>
