@@ -123,8 +123,8 @@ Carried forward deliberately — do not quietly drop these.
 7. **The placeholder copy is not Norbi's.** The seven planned games and six placeholder resource
    pages carry descriptions written for this build. The campaign facts were checked against WDS and
    the usual references, but the wording is a stand-in — he should read it and make it his.
+8. **Optional:** archive the old `Almandine/Almandine.github.io` repo, now that it has released the
+   domain.
 9. **Picker screenshots** — six slots on `/picker/` (and the home Picker block) wait for Norbi's images.
 10. **Box art on the site** — Norbi is confirming the website use with WDS (expects no objection).
     Once confirmed, the legal line may add "shown with permission".
-8. **Optional:** archive the old `Almandine/Almandine.github.io` repo, now that it has released the
-   domain.
