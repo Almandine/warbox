@@ -80,6 +80,12 @@ game. Reference-shaped (tables, short sections), unlike the long-form articles c
 `/knowledge/` and `/knowledge/<slug>/`; the nav item is hidden until the first non-draft entry
 exists, same pattern as Articles. See the runbook in README.md.
 
+**Redesign agreed 2026-11-06, not built yet.** The site becomes the home of the WDS Scenario
+Picker (product page `/picker/`, download from GitHub Releases, `latest.json` as the single
+version source, feedback via `/contact/?about=picker`); the companions move to second place. Read
+the revised [SPEC.md](SPEC.md) before any site work — where it disagrees with BLUEPRINT.md, SPEC
+wins until BLUEPRINT is updated during the build.
+
 ## Open items
 
 Carried forward deliberately — do not quietly drop these.
