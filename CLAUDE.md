@@ -73,6 +73,13 @@ reorganisation (`/games/`, `/artwork/`, the two companion pages) to their new se
 No articles are published yet, so the Articles item is hidden from the nav automatically. The
 collection, reading layout, RSS feed and `_template.md` are all in place for the first one.
 
+**Knowledge base scaffolded (2026-08-01), no content yet.** A `knowledge` content collection
+(`src/content/knowledge/`) holds general wargaming reference material — unit counter symbols, NATO
+map symbols, order-of-battle structure across eras, terminology — independent of any series or
+game. Reference-shaped (tables, short sections), unlike the long-form articles collection. Routes
+`/knowledge/` and `/knowledge/<slug>/`; the nav item is hidden until the first non-draft entry
+exists, same pattern as Articles. See the runbook in README.md.
+
 ## Open items
 
 Carried forward deliberately — do not quietly drop these.

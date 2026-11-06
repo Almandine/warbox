@@ -1,0 +1,115 @@
+---
+import { getCollection, render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import Icon from '../../components/Icon.astro';
+import { CATEGORIES, type KnowledgeEntry } from '../../lib/knowledge';
+
+export async function getStaticPaths() {
+  const entries = await getCollection('knowledge', ({ data }) => !data.draft);
+
+  return entries.map((entry) => ({
+    params: { slug: entry.id },
+    props: { entry },
+  }));
+}
+
+interface Props {
+  entry: KnowledgeEntry;
+}
+
+const { entry } = Astro.props;
+const { title, summary, category } = entry.data;
+const { Content } = await render(entry);
+---
+
+<Base title={title} description={summary}>
+  <header class="head">
+    <div class="wrap">
+      <nav class="crumbs" aria-label="Breadcrumb">
+        <a href="/knowledge/">Knowledge</a>
+        <Icon name="caret-right" size="0.75em" />
+        <span>{CATEGORIES[category]}</span>
+      </nav>
+
+      <h1 class="head__title">{title}</h1>
+      <p class="lead head__lead">{summary}</p>
+    </div>
+  </header>
+
+  <div class="wrap section">
+    <article class="prose">
+      <Content />
+    </article>
+
+    <footer class="foot">
+      <a class="foot__link" href="/knowledge/">
+        <Icon name="arrow-right" size="1em" />
+        All knowledge
+      </a>
+    </footer>
+  </div>
+</Base>
+
+<style>
+  .head {
+    position: relative;
+    padding-block: 3rem;
+    border-bottom: 1px solid var(--wg-border);
+    background-color: var(--wg-surface);
+    background-image: var(--tex-hex);
+    background-size: var(--tex-hex-size);
+  }
+
+  .crumbs {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--wg-faint);
+  }
+
+  .crumbs a {
+    text-decoration: none;
+    color: var(--wg-muted);
+  }
+
+  .crumbs a:hover {
+    color: var(--wg-accent);
+  }
+
+  .head__title {
+    max-width: 30ch;
+    font-size: clamp(1.875rem, 1.2rem + 3vw, 3rem);
+    text-transform: uppercase;
+    text-wrap: balance;
+  }
+
+  .head__lead {
+    margin-top: 1.25rem;
+    max-width: 60ch;
+  }
+
+  .foot {
+    margin-top: 4rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--wg-border);
+  }
+
+  .foot__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    text-decoration: none;
+    color: var(--wg-accent);
+  }
+
+  .foot__link:hover {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+</style>

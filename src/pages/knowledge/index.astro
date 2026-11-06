@@ -1,0 +1,136 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import KnowledgeCard from '../../components/KnowledgeCard.astro';
+import Note from '../../components/Note.astro';
+import { getKnowledgeEntries, usedCategories, CATEGORIES } from '../../lib/knowledge';
+
+const entries = await getKnowledgeEntries();
+const categories = usedCategories(entries);
+---
+
+<Base
+  title="Knowledge"
+  description="General wargaming reference material: unit counter symbols, NATO map symbols, and order-of-battle structure across eras."
+>
+  <PageHeader
+    eyebrow={`${entries.length} entr${entries.length === 1 ? 'y' : 'ies'}`}
+    title="Knowledge"
+    icon="books"
+    lead="Reference material that isn't specific to any one series — unit symbols, NATO map markings, and how armies were organized in different eras."
+  />
+
+  <div class="wrap section">
+    {
+      entries.length === 0 ? (
+        <Note tone="info" label="Empty">
+          Nothing here yet. The section appears in the navigation as soon as the first entry goes
+          up.
+        </Note>
+      ) : (
+        <div data-filter>
+          {categories.length > 1 && (
+            <div class="chips" role="group" aria-label="Filter by category">
+              <button class="chip is-on" type="button" data-cat="all" aria-pressed="true">
+                All
+              </button>
+              {categories.map((cat) => (
+                <button class="chip" type="button" data-cat={cat} aria-pressed="false">
+                  {CATEGORIES[cat]}
+                </button>
+              ))}
+            </div>
+          )}
+
+          <div class="grid">
+            {entries.map((entry) => (
+              <KnowledgeCard entry={entry} />
+            ))}
+          </div>
+
+          <p class="empty" data-empty hidden>
+            Nothing in that category yet.
+          </p>
+        </div>
+      )
+    }
+  </div>
+</Base>
+
+<script>
+  // Progressive enhancement: without JS every entry is simply shown.
+  for (const root of document.querySelectorAll<HTMLElement>('[data-filter]')) {
+    const chips = [...root.querySelectorAll<HTMLButtonElement>('.chip')];
+    const cards = [...root.querySelectorAll<HTMLElement>('[data-category]')];
+    const empty = root.querySelector<HTMLElement>('[data-empty]');
+
+    for (const chip of chips) {
+      chip.addEventListener('click', () => {
+        const wanted = chip.dataset.cat;
+
+        for (const other of chips) {
+          const on = other === chip;
+          other.classList.toggle('is-on', on);
+          other.setAttribute('aria-pressed', String(on));
+        }
+
+        let shown = 0;
+        for (const card of cards) {
+          const match = wanted === 'all' || card.dataset.category === wanted;
+          card.hidden = !match;
+          if (match) shown++;
+        }
+
+        if (empty) empty.hidden = shown > 0;
+      });
+    }
+  }
+</script>
+
+<style>
+  .chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-block: 2.5rem 2rem;
+  }
+
+  .chip {
+    padding: 0.35rem 0.875rem;
+    border: 1px solid var(--wg-border);
+    border-radius: 999px;
+    background: var(--wg-surface);
+    color: var(--wg-muted);
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    transition:
+      color 0.18s ease,
+      border-color 0.18s ease,
+      background-color 0.18s ease;
+  }
+
+  .chip:hover {
+    color: var(--wg-ink);
+    border-color: var(--wg-accent);
+  }
+
+  .chip.is-on {
+    background: var(--wg-accent);
+    border-color: var(--wg-accent);
+    color: var(--wg-on-accent);
+  }
+
+  .grid {
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fill, minmax(min(20rem, 100%), 1fr));
+  }
+
+  .empty {
+    padding: 2rem 0;
+    color: var(--wg-muted);
+  }
+</style>

@@ -127,4 +127,26 @@ const resources = defineCollection({
   }),
 });
 
-export const collections = { games, series, articles, resources };
+/**
+ * General wargaming reference material, independent of any series or game:
+ * unit counter symbols, NATO map symbols, order-of-battle structure across
+ * eras, terminology. One markdown file per entry in src/content/knowledge/.
+ * Short and structured — tables and lists, not long-form writing (that's
+ * what the articles collection is for).
+ */
+const knowledge = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/knowledge' }),
+  schema: z.object({
+    title: z.string(),
+    category: z.enum(['symbols', 'organization', 'terms', 'misc']),
+    /** One sentence, shown on the card that links here. */
+    summary: z.string(),
+    /** Sort order within its category; lower first. */
+    order: z.number().default(50),
+    date_added: z.coerce.date().optional(),
+    /** Drafts are excluded from the build entirely, same as articles. */
+    draft: z.boolean().default(false),
+  }),
+});
+
+export const collections = { games, series, articles, resources, knowledge };

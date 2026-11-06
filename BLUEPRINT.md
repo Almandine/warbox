@@ -39,7 +39,7 @@ Execution plan written 2026-07-19 by Fable so a lower-tier model (Sonnet/Opus) c
 
 ## Prerequisites
 
-Verify `node --version` (need ≥ 20) and `git --version`. GitHub CLI (`gh`) needed only at deploy step. Scaffold **inside this folder** (`D:\AI_Projects\Personal\Website - warbox.org`) in a subfolder `site/` — keeps SPEC/BLUEPRINT/CLAUDE.md outside the repo? **No** — decision: the repo root IS this folder; SPEC.md, BLUEPRINT.md, CLAUDE.md get committed (they are the project's memory). Run `git init` here; scaffold Astro directly here (`npm create astro@latest .` refuses non-empty dirs → scaffold into `tmp/`, move contents up, delete `tmp/`).
+Verify `node --version` (need ≥ 20) and `git --version`. GitHub CLI (`gh`) needed only at deploy step. Scaffold **inside this folder** (`C:\Dev\Personal\Website - warbox.org`) in a subfolder `site/` — keeps SPEC/BLUEPRINT/CLAUDE.md outside the repo? **No** — decision: the repo root IS this folder; SPEC.md, BLUEPRINT.md, CLAUDE.md get committed (they are the project's memory). Run `git init` here; scaffold Astro directly here (`npm create astro@latest .` refuses non-empty dirs → scaffold into `tmp/`, move contents up, delete `tmp/`).
 
 ## File tree (current)
 
@@ -56,7 +56,7 @@ Verify `node --version` (need ≥ 20) and `git --version`. GitHub CLI (`gh`) nee
 │       └── resources/<series>/[<game>/]<slug>/<files>   # mirrors the resource's own content path
 └── src/
     ├── consts.ts             # SITE_TITLE, SITE_DESCRIPTION, NAV, FORMSPREE_ID / CF_ANALYTICS_TOKEN (nullable)
-    ├── content.config.ts     # games, series, resources, articles collections
+    ├── content.config.ts     # games, series, resources, articles, knowledge collections
     ├── icons.ts
     ├── styles/global.css
     ├── data/
@@ -65,7 +65,8 @@ Verify `node --version` (need ≥ 20) and `git --version`. GitHub CLI (`gh`) nee
     ├── content/
     │   ├── resources/<series>/<slug>.md              # series-level material
     │   ├── resources/<series>/<game-id>/<slug>.md    # game-level material
-    │   └── articles/<slug>.md, articles/_template.md
+    │   ├── articles/<slug>.md, articles/_template.md
+    │   └── knowledge/<slug>.md, knowledge/_template.md   # symbols, org structure, terms — no series/game link
     ├── assets/
     │   ├── cover/*                          # home page cover image, if any (Cover.astro picks it up)
     │   ├── series/<series-id>/*             # series card images
@@ -81,7 +82,7 @@ Verify `node --version` (need ≥ 20) and `git --version`. GitHub CLI (`gh`) nee
     │   ├── Header, Footer, Cover, PageHeader, Icon, Note
     │   ├── SeriesCard, GameCard, GameHub               # series overview card, game card, game hub body
     │   ├── ResourceCard, ResourceView                  # resource link card, resource page body
-    │   ├── ScreenshotGallery, ScreenshotStrip, DownloadButton, LatestUpdates, ArticleCard
+    │   ├── ScreenshotGallery, ScreenshotStrip, DownloadButton, LatestUpdates, ArticleCard, KnowledgeCard
     ├── layouts/Base.astro    # <head> w/ SEO meta, header, footer, Cloudflare analytics snippet
     └── pages/
         ├── index.astro                      # cover band + intro + series cards + Latest updates + screenshot strip
@@ -93,6 +94,8 @@ Verify `node --version` (need ≥ 20) and `git --version`. GitHub CLI (`gh`) nee
         ├── contact.astro         # Formspree form
         ├── articles/index.astro  # article list (hidden from nav while empty)
         ├── articles/[slug].astro # prose layout
+        ├── knowledge/index.astro   # knowledge entry list, category filter chips (hidden from nav while empty)
+        ├── knowledge/[slug].astro  # reference-page layout (tables, short sections)
         ├── rss.xml.js            # articles feed
         └── 404.astro
 ```
@@ -160,6 +163,21 @@ Verify `node --version` (need ≥ 20) and `git --version`. GitHub CLI (`gh`) nee
   draft: z.boolean().default(false),
   cover: image().optional(),
 }
+
+// knowledge collection — glob loader over src/content/knowledge/**/*.md
+{
+  title: z.string(),
+  category: z.enum(['symbols','organization','terms','misc']),
+  summary: z.string(),                    // one sentence, shown on the card
+  order: z.number().default(50),          // sort order within the category, lower first
+  date_added: z.coerce.date().optional(),
+  draft: z.boolean().default(false),
+}
+// General wargaming reference material, independent of series/game: unit counter symbols, NATO
+// map symbols, order-of-battle structure across eras, terminology. Short and reference-shaped
+// (tables, definition lists) — long-form writing belongs in the articles collection instead.
+// Routes: /knowledge/ (list, category filter chips) and /knowledge/<slug>/. Nav item hidden until
+// ≥1 non-draft entry exists, same pattern as Articles.
 ```
 
 `status: planned` lets all 30 owned games be listed as "companion coming soon" — build supports it from day one; whether to list planned games is Norbi's call per entry.

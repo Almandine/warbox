@@ -220,6 +220,30 @@ img {
   background: var(--wg-surface);
 }
 
+/* Reference tables — knowledge entries lean on these for symbol/rank lookups. */
+.prose table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9375rem;
+}
+
+.prose th,
+.prose td {
+  padding: 0.6rem 0.875rem;
+  border: 1px solid var(--wg-border);
+  text-align: left;
+  vertical-align: top;
+}
+
+.prose th {
+  background: var(--wg-surface);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--wg-muted);
+}
+
 /* Section heading: display title + short accent rule underneath. */
 .section-title {
   font-size: clamp(1.75rem, 1.2rem + 2vw, 2.25rem);

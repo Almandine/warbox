@@ -11,20 +11,21 @@ is, and [BLUEPRINT.md](BLUEPRINT.md) for how it is built.
 ├── astro.config.mjs
 ├── src/
 │   ├── consts.ts               # site title, nav, form/analytics ids
-│   ├── content.config.ts       # collection schemas: games, series, resources, articles
+│   ├── content.config.ts       # collection schemas: games, series, resources, articles, knowledge
 │   ├── data/
 │   │   ├── series.yaml         # the WDS series — name, order, accent colour, card image
 │   │   └── games/<id>.yaml     # one file per game
 │   ├── content/
 │   │   ├── resources/<series>/[<game>/]<slug>.md   # manual covers, timelines, maps, scenario lists
-│   │   └── articles/<slug>.md
+│   │   ├── articles/<slug>.md
+│   │   └── knowledge/<slug>.md  # general reference material — symbols, org structure, terms
 │   ├── assets/
 │   │   ├── cover/               # home page cover image, if any
 │   │   ├── series/<id>/         # series card images
 │   │   ├── screenshots/<game-id>/
 │   │   ├── resources/<series>/[<game>/]<slug>/   # resource preview images
 │   │   └── articles/<slug>/
-│   ├── lib/                     # urls.ts, games.ts, resources.ts, articles.ts, screenshots.ts
+│   ├── lib/                     # urls.ts, games.ts, resources.ts, articles.ts, knowledge.ts, screenshots.ts
 │   ├── components/, layouts/, styles/
 │   └── pages/
 └── public/
@@ -89,6 +90,21 @@ manual cover, a timeline, a map, a scenario list, a link collection.
 
 One markdown file in `src/content/articles/`, images next to it in `src/assets/articles/<slug>/`,
 push. The "Articles" nav item appears automatically once the first non-draft article exists.
+
+## Adding a knowledge entry
+
+General wargaming reference material that isn't specific to any series or game — unit counter
+symbols, NATO map symbols, order-of-battle structure across eras, terminology.
+
+1. Copy `src/content/knowledge/_template.md` to `src/content/knowledge/<slug>.md` and fill in
+   `title`, `category` (`symbols`, `organization`, `terms`, or `misc`), `summary`, and remove
+   `draft: true`. Keep the body short and reference-shaped — tables and lists, not long-form
+   writing; that's what `src/content/articles/` is for.
+2. The page appears at `/knowledge/<slug>/` — no route to register.
+3. `git add -A && git commit -m "Add <entry>" && git push` → live in ~2 min
+
+The "Knowledge" nav item appears automatically once the first non-draft entry exists, same as
+Articles.
 
 ## Want to learn more?
 

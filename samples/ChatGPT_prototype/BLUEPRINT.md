@@ -27,7 +27,7 @@ Execution plan written 2026-07-19 by Fable so a lower-tier model (Sonnet/Opus) c
 
 ## Prerequisites
 
-Verify `node --version` (need ≥ 20) and `git --version`. GitHub CLI (`gh`) needed only at deploy step. Scaffold **inside this folder** (`D:\AI_Projects\Personal\Website - warbox.org`) in a subfolder `site/` — keeps SPEC/BLUEPRINT/CLAUDE.md outside the repo? **No** — decision: the repo root IS this folder; SPEC.md, BLUEPRINT.md, CLAUDE.md get committed (they are the project's memory). Run `git init` here; scaffold Astro directly here (`npm create astro@latest .` refuses non-empty dirs → scaffold into `tmp/`, move contents up, delete `tmp/`).
+Verify `node --version` (need ≥ 20) and `git --version`. GitHub CLI (`gh`) needed only at deploy step. Scaffold **inside this folder** (`C:\Dev\Personal\Website - warbox.org`) in a subfolder `site/` — keeps SPEC/BLUEPRINT/CLAUDE.md outside the repo? **No** — decision: the repo root IS this folder; SPEC.md, BLUEPRINT.md, CLAUDE.md get committed (they are the project's memory). Run `git init` here; scaffold Astro directly here (`npm create astro@latest .` refuses non-empty dirs → scaffold into `tmp/`, move contents up, delete `tmp/`).
 
 ## File tree (target)
 

@@ -1,0 +1,74 @@
+---
+import { CATEGORIES, type KnowledgeEntry } from '../lib/knowledge';
+
+interface Props {
+  entry: KnowledgeEntry;
+}
+
+const { entry } = Astro.props;
+const { title, summary, category } = entry.data;
+---
+
+<article class="kc" data-category={category}>
+  <div class="kc__body">
+    <p class="kc__cat">{CATEGORIES[category]}</p>
+    <h3 class="kc__title">
+      <a href={`/knowledge/${entry.id}/`}>{title}</a>
+    </h3>
+    <p class="kc__summary">{summary}</p>
+  </div>
+</article>
+
+<style>
+  .kc {
+    position: relative;
+    padding: 1.125rem 1.25rem;
+    border: 1px solid var(--wg-border);
+    border-radius: var(--radius);
+    background: var(--wg-surface);
+    transition:
+      border-color 0.2s ease,
+      background-color 0.2s ease;
+  }
+
+  .kc:hover,
+  .kc:focus-within {
+    border-color: var(--wg-accent);
+    background: var(--wg-bg);
+  }
+
+  .kc__cat {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--wg-accent);
+  }
+
+  .kc__title {
+    margin-top: 0.5rem;
+    font-size: 1.0625rem;
+    text-transform: uppercase;
+  }
+
+  .kc__title a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .kc__title a::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+  }
+
+  .kc:hover .kc__title a {
+    color: var(--wg-emphasis);
+  }
+
+  .kc__summary {
+    margin-top: 0.5rem;
+    font-size: 0.875rem;
+    color: var(--wg-muted);
+  }
+</style>

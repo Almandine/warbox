@@ -2,14 +2,18 @@
 import Icon from './Icon.astro';
 import { NAV, SITE_OWNER, SITE_NAME, SITE_TITLE } from '../consts';
 import { getArticles } from '../lib/articles';
+import { getKnowledgeEntries } from '../lib/knowledge';
 
-// Articles only enters the nav once something is published there — an empty
-// section in the menu is worse than no section. It sits after Series, the other
-// item that leads to a body of content.
+// Knowledge and Articles only enter the nav once something is published in
+// them — an empty section in the menu is worse than no section. Both sit
+// after Series, the other item that leads to a body of content.
+const hasKnowledge = (await getKnowledgeEntries()).length > 0;
 const hasArticles = (await getArticles()).length > 0;
-const items = hasArticles
-  ? [...NAV.slice(0, 2), { label: 'Articles', href: '/articles/' }, ...NAV.slice(2)]
-  : NAV;
+const extra = [
+  ...(hasKnowledge ? [{ label: 'Knowledge', href: '/knowledge/' }] : []),
+  ...(hasArticles ? [{ label: 'Articles', href: '/articles/' }] : []),
+];
+const items = [...NAV.slice(0, 2), ...extra, ...NAV.slice(2)];
 
 const path = Astro.url.pathname;
 const isActive = (href: string) => (href === '/' ? path === '/' : path.startsWith(href));
