@@ -128,3 +128,28 @@ Carried forward deliberately — do not quietly drop these.
 9. **Picker screenshots** — six slots on `/picker/` (and the home Picker block) wait for Norbi's images.
 10. **Box art on the site** — Norbi is confirming the website use with WDS (expects no objection).
     Once confirmed, the legal line may add "shown with permission".
+
+From the review of 2026-11-14 (checked on the live site that day). Norbi's decision: do all three.
+
+11. **`/picker/` and the home hero are live as a draft.** The product page shows a DRAFT banner and
+    six "Screenshot to come" boxes, the home Picker block a seventh. This is where the in-app
+    update button and both 1.0 release posts send people. Needs Norbi's six screenshots (item 9)
+    and his read of the copy (item 5); then remove the DRAFT note. Until the images arrive, do not
+    render empty placeholder boxes on the live build: hide the gallery section and the home
+    picture slot when no image exists.
+12. **The rest of the site still describes the companion-only site.**
+    - About: "I make spreadsheets… That is the whole site" and "around thirty WDS titles". Rewrite
+      per SPEC "About" (what Warbox is, the Picker as its first tool). Biography stays Norbi's;
+      do not invent it.
+    - Home welcome block ("What you will find inside the Warbox") never mentions the Picker and
+      promises articles and YouTube briefings that do not exist. Rewrite to match SPEC "Home";
+      promise only what is published.
+    - Home stat "Last update 22 Jul 2026" sits beside the 8 Nov 2026 Picker release. Make it the
+      newest of companion dates and `public/picker/latest.json`'s `released`, or label it as
+      companions only.
+13. **Placeholders are published as if real.** Seven `status: planned` games show "Companion in
+    progress" and six draft resource pages (timeline, map, France '40 extras) are live. Keep the
+    files, but leave planned games and draft resources out of the production build (lists, counts,
+    routes, sitemap/RSS) until each has real content; `npm run dev` may still show them. Check that
+    the series counts ("3 titles · 7 extras") then count only what is shown, and that no redirect
+    in `astro.config.mjs` points at a hidden page.
