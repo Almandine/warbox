@@ -5,6 +5,7 @@ import '@fontsource/rajdhani/600.css';
 import '@fontsource/rajdhani/700.css';
 import '../styles/global.css';
 
+import { getImage } from 'astro:assets';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import { SITE_TITLE, SITE_TAGLINE, SITE_DESCRIPTION, CF_ANALYTICS_TOKEN } from '../consts';
@@ -19,6 +20,17 @@ const { title, description = SITE_DESCRIPTION } = Astro.props;
 
 const fullTitle = title ? `${title} · ${SITE_TITLE}` : `${SITE_TITLE} — ${SITE_TAGLINE}`;
 const canonical = new URL(Astro.url.pathname, Astro.site ?? 'https://warbox.org');
+
+// Social preview (Facebook, forums): the home cover artwork, flattened onto the
+// site's paper colour because many previews draw transparency as black.
+const coverFiles = import.meta.glob<{ default: ImageMetadata }>('../assets/cover/*.{png,jpg,jpeg,webp,avif}', {
+  eager: true,
+});
+const coverSrc = Object.keys(coverFiles).sort().map((key) => coverFiles[key]!.default)[0];
+const ogImage = coverSrc
+  ? await getImage({ src: coverSrc, width: 1200, format: 'jpeg', background: '#faf8f4' })
+  : undefined;
+const ogImageUrl = ogImage ? new URL(ogImage.src, Astro.site ?? 'https://warbox.org').href : undefined;
 ---
 
 <!doctype html>
@@ -40,6 +52,8 @@ const canonical = new URL(Astro.url.pathname, Astro.site ?? 'https://warbox.org'
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
     <meta name="twitter:card" content="summary_large_image" />
+    {ogImageUrl && <meta property="og:image" content={ogImageUrl} />}
+    {ogImageUrl && <meta name="twitter:image" content={ogImageUrl} />}
 
     {
       /* Cloudflare Web Analytics — cookie-less, no consent banner needed.

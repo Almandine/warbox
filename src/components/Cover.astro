@@ -20,7 +20,7 @@ const covers = import.meta.glob<{ default: ImageMetadata }>(
 const image = Object.keys(covers).sort().map((key) => covers[key]!.default)[0];
 ---
 
-<div class="cover">
+<div class:list={['cover', { 'cover--image': image }]}>
   {
     image ? (
       <Image
@@ -49,10 +49,27 @@ const image = Object.keys(covers).sort().map((key) => covers[key]!.default)[0];
     border-bottom: 1px solid var(--wg-border);
   }
 
+  /* The artwork (hexes of units across the eras, transparent PNG) is shown
+     whole, never cropped, on the same paper-and-hex ground as the stand-in. */
+  .cover--image {
+    padding-block: clamp(0.75rem, 2vw, 1.5rem);
+    background-image:
+      radial-gradient(
+        ellipse 70% 100% at 50% 120%,
+        rgb(from var(--wg-accent) r g b / 0.12),
+        transparent 70%
+      ),
+      var(--tex-hex);
+    background-size:
+      100% 100%,
+      var(--tex-hex-size);
+  }
+
   .cover :global(img) {
+    display: block;
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
     object-position: center;
   }
 

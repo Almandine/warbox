@@ -101,10 +101,10 @@ disagrees with BLUEPRINT.md, SPEC wins (BLUEPRINT still describes the companion-
 
 Carried forward deliberately — do not quietly drop these.
 
-1. **Cover image blocked on a name mismatch.** The home page's cover band is built and waiting: drop
-   one image into `src/assets/cover/` and it takes over. `inbox/main_image.png` cannot be that image
-   — it reads "Almandine's War Room", the site is "Almandine's Warbox". Norbi is redrawing it.
-   Nothing goes in until the wording matches — see the Name section above.
+1. **Cover image — done 2026-11-21.** `src/assets/cover/hexes-units-of-different-eras.png` (Norbi's
+   artwork, also his Facebook-group image; no "War Room" wording) fills the home cover band, shown
+   whole (`object-fit: contain`) on the paper-and-hex ground, and is every page's `og:image`
+   (flattened onto the paper colour in `Base.astro`). The old `inbox/main_image.png` is retired.
 2. **The manual cover carries WDS branding.** `/series/panzer-campaigns/manual-cover/` publishes a
    cover headed "Wargame Design Studio · Panzer Campaigns · User Manual", set in their own styling.
    It is fan art for a game Norbi owns, non-commercial, and the page states it is not official — but
@@ -125,7 +125,9 @@ Carried forward deliberately — do not quietly drop these.
    the usual references, but the wording is a stand-in — he should read it and make it his.
 8. **Optional:** archive the old `Almandine/Almandine.github.io` repo, now that it has released the
    domain.
-9. **Picker screenshots** — six slots on `/picker/` (and the home Picker block) wait for Norbi's images.
+9. **Picker screenshots — done 2026-11-21**, seven of them in `src/assets/picker/screenshots/`.
+   The `blitz-balance` slot still has no image; it is simply left out until one arrives. The
+   `my-files` shot shows Norbi's own folder path (`E:\OneDrive\Dokumentumok\...`) — his call.
 10. **Box art on the site** — Norbi is confirming the website use with WDS (expects no objection).
     Once confirmed, the legal line may add "shown with permission".
 

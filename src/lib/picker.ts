@@ -82,7 +82,8 @@ export function pickerGamesBySeries(): { series: string; games: PickerGame[] }[]
 /**
  * Screenshots: drop a file named after one of these slots into
  * src/assets/picker/screenshots/ (any of png/jpg/webp) and it replaces the
- * placeholder. No code change.
+ * placeholder. No code change. A slot with no file is simply left out of the
+ * gallery (nothing "to come" is shown on the live site).
  */
 export const SCREENSHOT_SLOTS = [
   { file: 'scenario-table', caption: 'The scenario table — sortable, filterable, colour-coded' },
@@ -90,6 +91,8 @@ export const SCREENSHOT_SLOTS = [
   { file: 'all-scenarios', caption: 'All Scenarios — every installed game in one list' },
   { file: 'saved-games', caption: 'Saved Games — every save and PBEM turn file in one place' },
   { file: 'play-log', caption: 'My Play Log — your results and notes per scenario' },
+  { file: 'game-files', caption: 'Game Files — the game’s programs, editors and manuals' },
+  { file: 'my-files', caption: 'My Files — your own books, maps and notes per game' },
   { file: 'blitz-balance', caption: 'Blitz Balance — TheBlitz.club ratings and win balance' },
 ] as const;
 
