@@ -127,7 +127,7 @@ Carried forward deliberately — do not quietly drop these.
    domain.
 9. **Picker screenshots — done 2026-11-21**, seven of them in `src/assets/picker/screenshots/`.
    The `blitz-balance` slot still has no image; it is simply left out until one arrives. The
-   `my-files` shot shows Norbi's own folder path (`E:\OneDrive\Dokumentumok\...`) — his call.
+   `my-files` shot's folder-path line is blurred (Norbi's request, 2026-11-21).
 10. **Box art on the site** — Norbi is confirming the website use with WDS (expects no objection).
     Once confirmed, the legal line may add "shown with permission".
 
