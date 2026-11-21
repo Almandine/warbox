@@ -20,7 +20,7 @@ const image = getSeriesImage(series);
 // Only counts that mean something get a slot — "0 companions" reads as a
 // complaint, and an empty series should simply say less.
 const counts = [
-  `${games} ${games === 1 ? 'title' : 'titles'}`,
+  games > 0 && `${games} ${games === 1 ? 'title' : 'titles'}`,
   companions > 0 && `${companions} ${companions === 1 ? 'companion' : 'companions'}`,
   resources > 0 && `${resources} ${resources === 1 ? 'extra' : 'extras'}`,
 ].filter((entry): entry is string => Boolean(entry));

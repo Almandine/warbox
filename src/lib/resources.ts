@@ -5,6 +5,19 @@ import { resourceUrl } from './urls';
 export type Resource = CollectionEntry<'resources'>;
 
 /**
+ * Unfinished content — `status: planned` games and `draft: true` resources —
+ * shows in `npm run dev` only. The production build leaves it out entirely:
+ * no page, no card, no count, no sitemap entry (CLAUDE.md open item 13).
+ * Flip a game to `available` or drop a resource's `draft` and it appears.
+ */
+export const SHOW_UNFINISHED = import.meta.env.DEV;
+
+/** Every resource the build should publish. Use this, not getCollection. */
+export async function getResources(): Promise<Resource[]> {
+  return getCollection('resources', ({ data }) => SHOW_UNFINISHED || !data.draft);
+}
+
+/**
  * Preview images, resolved the way screenshots are: the frontmatter names a
  * bare file, which must exist at src/assets/resources/<resource-id>/<file> —
  * the same path the markdown file itself sits at under src/content/resources/.
@@ -43,19 +56,19 @@ const byOrder = (a: Resource, b: Resource) =>
 
 /** Material belonging to the series itself, not to one of its games. */
 export async function getSeriesResources(seriesId: string): Promise<Resource[]> {
-  const all = await getCollection('resources');
+  const all = await getResources();
   return all.filter((r) => r.data.series === seriesId && !r.data.game).sort(byOrder);
 }
 
 /** Material belonging to one game. */
 export async function getGameResources(gameId: string): Promise<Resource[]> {
-  const all = await getCollection('resources');
+  const all = await getResources();
   return all.filter((r) => r.data.game === gameId).sort(byOrder);
 }
 
 /** How many resources each series carries, counting its games' as well. */
 export async function countResourcesBySeries(): Promise<Map<string, number>> {
-  const all = await getCollection('resources');
+  const all = await getResources();
   const counts = new Map<string, number>();
   for (const resource of all) {
     counts.set(resource.data.series, (counts.get(resource.data.series) ?? 0) + 1);

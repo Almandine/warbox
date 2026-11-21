@@ -4,12 +4,12 @@ import { Image } from 'astro:assets';
 import Base from '../../layouts/Base.astro';
 import Icon from '../../components/Icon.astro';
 import { CATEGORIES, readingTime, type Article } from '../../lib/articles';
-import { formatDate } from '../../lib/games';
+import { formatDate, getGames } from '../../lib/games';
 import { gameUrl } from '../../lib/urls';
 
 export async function getStaticPaths() {
   const articles = await getCollection('articles', ({ data }) => !data.draft);
-  const games = await getCollection('games');
+  const games = await getGames();
 
   return articles.map((article) => ({
     params: { slug: article.id },

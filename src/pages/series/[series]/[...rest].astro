@@ -7,13 +7,13 @@
  * /series/<series>/<slug>/ are the same shape, so two sibling routes would be
  * ambiguous; one route that knows which of the two it is building never can be.
  */
-import { getCollection } from 'astro:content';
 import Base from '../../../layouts/Base.astro';
 import GameHub from '../../../components/GameHub.astro';
 import ResourceView from '../../../components/ResourceView.astro';
-import { getAllSeries, assertSeriesReferencesResolve, type Game, type Series } from '../../../lib/games';
+import { getAllSeries, getGames, assertSeriesReferencesResolve, type Game, type Series } from '../../../lib/games';
 import {
   assertResourceReferencesResolve,
+  getResources,
   resourceSlug,
   type Resource,
 } from '../../../lib/resources';
@@ -23,8 +23,8 @@ export async function getStaticPaths() {
 
   const [allSeries, games, resources] = await Promise.all([
     getAllSeries(),
-    getCollection('games'),
-    getCollection('resources'),
+    getGames(),
+    getResources(),
   ]);
 
   const seriesById = new Map(allSeries.map((series) => [series.data.id, series]));

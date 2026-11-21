@@ -1,5 +1,5 @@
 import { getCollection, type CollectionEntry } from 'astro:content';
-import { countResourcesBySeries } from './resources';
+import { SHOW_UNFINISHED, countResourcesBySeries } from './resources';
 import { gameUrl, seriesUrl } from './urls';
 
 export type Game = CollectionEntry<'games'>;
@@ -29,10 +29,37 @@ export function seriesMonogram(series: Series): string {
   );
 }
 
-/** Every series, in the order set in series.yaml. */
+/**
+ * Every game the build should publish: planned ones only in `npm run dev`
+ * (see SHOW_UNFINISHED in resources.ts). Use this, not getCollection.
+ */
+export async function getGames(): Promise<Game[]> {
+  return getCollection('games', ({ data }) => SHOW_UNFINISHED || data.status === 'available');
+}
+
+/** Every series, in the order set in series.yaml — including empty ones. */
 export async function getAllSeries(): Promise<Series[]> {
   const all = await getCollection('series');
   return all.sort((a, b) => a.data.order - b.data.order);
+}
+
+/**
+ * The series the site shows: in production only those with at least one
+ * published game or resource, so a series with nothing finished under it
+ * gets no card, no hub page and no footer link. Every series in dev.
+ */
+export async function getVisibleSeries(): Promise<Series[]> {
+  const [all, games, resourceCounts] = await Promise.all([
+    getAllSeries(),
+    getGames(),
+    countResourcesBySeries(),
+  ]);
+  if (SHOW_UNFINISHED) return all;
+  return all.filter(
+    (series) =>
+      games.some((game) => game.data.series === series.data.id) ||
+      (resourceCounts.get(series.data.id) ?? 0) > 0,
+  );
 }
 
 export const hrefOf = {
@@ -58,13 +85,13 @@ const byStatusThenTitle = (a: Game, b: Game) => {
 
 /** The games of one series, in the order they should be listed. */
 export async function getSeriesGames(seriesId: string): Promise<Game[]> {
-  const games = await getCollection('games');
+  const games = await getGames();
   return games.filter((game) => game.data.series === seriesId).sort(byStatusThenTitle);
 }
 
 /** Games grouped into their series, in series.yaml order; empty series dropped. */
 export async function getGamesBySeries(): Promise<{ series: Series; games: Game[] }[]> {
-  const [allSeries, allGames] = await Promise.all([getAllSeries(), getCollection('games')]);
+  const [allSeries, allGames] = await Promise.all([getVisibleSeries(), getGames()]);
 
   return allSeries
     .map((series) => ({
@@ -84,14 +111,14 @@ export interface SeriesOverview {
 }
 
 /**
- * One row per series with the numbers the cards show. Every series appears,
- * including one that has nothing under it yet — a series is a place on the
- * site, not a by-product of its games.
+ * One row per visible series with the numbers the cards show. In dev every
+ * series appears, including one with nothing under it yet; in production a
+ * series with nothing published is left out (getVisibleSeries).
  */
 export async function getSeriesOverview(): Promise<SeriesOverview[]> {
   const [allSeries, allGames, resourceCounts] = await Promise.all([
-    getAllSeries(),
-    getCollection('games'),
+    getVisibleSeries(),
+    getGames(),
     countResourcesBySeries(),
   ]);
 
@@ -111,7 +138,7 @@ export async function getSeriesOverview(): Promise<SeriesOverview[]> {
 
 /** Newest first, for the home page. */
 export async function getGamesByDate(): Promise<Game[]> {
-  const games = await getCollection('games');
+  const games = await getGames();
   return games.sort((a, b) => lastTouched(b).getTime() - lastTouched(a).getTime());
 }
 

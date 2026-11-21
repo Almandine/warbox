@@ -145,9 +145,10 @@ From the review of 2026-11-14 (checked on the live site that day). Norbi's decis
     "Last update" stat takes the newest of the companion dates and latest.json's `released`.
     The Picker screenshot thumbnails are full colour (no greyscale-until-hover) at Norbi's request;
     the companion cards and screenshot strip keep the greyscale effect.
-13. **Placeholders are published as if real.** Seven `status: planned` games show "Companion in
-    progress" and six draft resource pages (timeline, map, France '40 extras) are live. Keep the
-    files, but leave planned games and draft resources out of the production build (lists, counts,
-    routes, sitemap/RSS) until each has real content; `npm run dev` may still show them. Check that
-    the series counts ("3 titles · 7 extras") then count only what is shown, and that no redirect
-    in `astro.config.mjs` points at a hidden page.
+13. **Placeholders — done 2026-11-21.** `npm run build` leaves out `status: planned` games and
+    `draft: true` resources entirely (pages, cards, counts, sitemap); `npm run dev` still shows
+    them. One switch, `SHOW_UNFINISHED` in `src/lib/resources.ts`; read games and resources via
+    `getGames()` / `getResources()`, never `getCollection`. A series with nothing published
+    (today Squad Battles, Sword & Siege) gets no card, hub page or footer link
+    (`getVisibleSeries()`); Panzer Campaigns shows only the manual cover. No redirect points at a
+    hidden page. To publish a placeholder: set the game `available` or drop the resource's `draft`.

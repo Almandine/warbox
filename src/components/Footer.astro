@@ -2,12 +2,12 @@
 import Icon from './Icon.astro';
 import { LEGAL_LINE, SITE_TAGLINE, SITE_TITLE, WDS_URL } from '../consts';
 import { getArticles } from '../lib/articles';
-import { getAllSeries, hrefOf } from '../lib/games';
+import { getVisibleSeries, hrefOf } from '../lib/games';
 
 const year = new Date().getFullYear();
 
 // The series column follows the catalog, so it can never drift out of date.
-const series = await getAllSeries();
+const series = await getVisibleSeries();
 const hasArticles = (await getArticles()).length > 0;
 
 const columns = [

@@ -6,7 +6,7 @@ import GameCard from '../../../components/GameCard.astro';
 import ResourceCard from '../../../components/ResourceCard.astro';
 import Note from '../../../components/Note.astro';
 import {
-  getAllSeries,
+  getVisibleSeries,
   getSeriesGames,
   getSeriesImage,
   seriesMonogram,
@@ -16,7 +16,7 @@ import {
 import { getSeriesResources, type Resource } from '../../../lib/resources';
 
 export async function getStaticPaths() {
-  const allSeries = await getAllSeries();
+  const allSeries = await getVisibleSeries();
 
   return Promise.all(
     allSeries.map(async (series) => ({
@@ -52,10 +52,14 @@ const available = games.filter((game) => game.data.status === 'available').lengt
         <h1 class="head__title">{series.data.name}</h1>
         {series.data.blurb && <p class="lead head__lead">{series.data.blurb}</p>}
 
-        <p class="head__counts">
-          {games.length}
-          {games.length === 1 ? ' title' : ' titles'} · {available} with a companion
-        </p>
+        {
+          games.length > 0 && (
+            <p class="head__counts">
+              {games.length}
+              {games.length === 1 ? ' title' : ' titles'} · {available} with a companion
+            </p>
+          )
+        }
 
         {
           series.data.wds_url && (
@@ -102,25 +106,21 @@ const available = games.filter((game) => game.data.status === 'available').lengt
       }
     </section>
 
+    {
+      games.length > 0 && (
     <section class="block">
       <h2 class="block-title">
         <Icon name="layers" size="1em" /> Titles in the series
       </h2>
 
-      {
-        games.length > 0 ? (
-          <div class="grid">
-            {games.map((game) => (
-              <GameCard game={game} series={series} />
-            ))}
-          </div>
-        ) : (
-          <Note tone="info" label="Nothing yet">
-            No titles from this series are listed yet.
-          </Note>
-        )
-      }
+      <div class="grid">
+        {games.map((game) => (
+          <GameCard game={game} series={series} />
+        ))}
+      </div>
     </section>
+      )
+    }
   </div>
 </Base>
 
