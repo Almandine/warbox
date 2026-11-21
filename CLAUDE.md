@@ -139,16 +139,12 @@ From the review of 2026-11-14 (checked on the live site that day). Norbi's decis
     and his read of the copy (item 5); then remove the DRAFT note. Until the images arrive, do not
     render empty placeholder boxes on the live build: hide the gallery section and the home
     picture slot when no image exists.
-12. **The rest of the site still describes the companion-only site.**
-    - About: "I make spreadsheets… That is the whole site" and "around thirty WDS titles". Rewrite
-      per SPEC "About" (what Warbox is, the Picker as its first tool). Biography stays Norbi's;
-      do not invent it.
-    - Home welcome block ("What you will find inside the Warbox") never mentions the Picker and
-      promises articles and YouTube briefings that do not exist. Rewrite to match SPEC "Home";
-      promise only what is published.
-    - Home stat "Last update 22 Jul 2026" sits beside the 8 Nov 2026 Picker release. Make it the
-      newest of companion dates and `public/picker/latest.json`'s `released`, or label it as
-      companions only.
+12. **Companion-only wording — done 2026-11-21.** About rewritten (what Warbox is, the Picker
+    first; the biography is still Norbi's to write, DRAFT note kept). Home "What you will find"
+    cards now list only what is published (Picker, companions, printable material), and the
+    "Last update" stat takes the newest of the companion dates and latest.json's `released`.
+    The Picker screenshot thumbnails are full colour (no greyscale-until-hover) at Norbi's request;
+    the companion cards and screenshot strip keep the greyscale effect.
 13. **Placeholders are published as if real.** Seven `status: planned` games show "Companion in
     progress" and six draft resource pages (timeline, map, France '40 extras) are live. Keep the
     files, but leave planned games and draft resources out of the production build (lists, counts,

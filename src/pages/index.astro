@@ -49,26 +49,32 @@ const stats = [
     icon: 'clock',
     tone: 'red',
     label: 'Last update',
-    value: newest ? formatDate(lastTouched(newest)) : '—',
+    // The newest of the companion dates and the current Picker release.
+    value: formatDate(
+      new Date(Math.max(PICKER.released.getTime(), newest ? lastTouched(newest).getTime() : 0)),
+    ),
   },
 ] as const;
 
 // The three kinds of material the site publishes — the "what you get" band.
 const offerings = [
   {
+    icon: 'target',
+    title: 'WDS Scenario Picker',
+    body: 'A free Windows app that turns every scenario of your WDS games into one sortable, colour-coded table with the full briefing beside it — and starts the one you pick.',
+    href: '/picker/',
+  },
+  {
     icon: 'file-text',
     title: 'Game Companions',
-    body: 'Custom-built Excel scenario track sheets designed to log your progress, record your outcomes, and analyze your campaigns scenario by scenario.',
+    body: 'Excel scenario trackers, one per game: log your progress, record your results and compare scenarios at a glance.',
+    href: '/series/',
   },
   {
     icon: 'image',
-    title: 'Visual Assets',
-    body: 'Downloadable materials like custom-designed printable user manual covers.',
-  },
-  {
-    icon: 'books',
-    title: 'Curated Intelligence',
-    body: 'Historical references, recommended books, insightful articles, and YouTube briefings to deepen your immersion and historical understanding.',
+    title: 'Printable material',
+    body: 'Things to print and keep beside the game, starting with a custom cover for the Panzer Campaigns user manual.',
+    href: '/series/panzer-campaigns/manual-cover/',
   },
 ] as const;
 ---
@@ -151,7 +157,7 @@ const offerings = [
         offerings.map((item) => (
           <li class="mission__card panel">
             <Icon name={item.icon} size="1.75rem" class="mission__card-icon" />
-            <h4 class="mission__card-title">{item.title}</h4>
+            <h4 class="mission__card-title"><a href={item.href}>{item.title}</a></h4>
             <p class="mission__card-body">{item.body}</p>
           </li>
         ))
@@ -459,6 +465,15 @@ const offerings = [
   .mission__card-title {
     font-size: 1.0625rem;
     margin-bottom: 0.5rem;
+  }
+
+  .mission__card-title a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .mission__card-title a:hover {
+    color: var(--wg-accent-strong);
   }
 
   .mission__card-body {

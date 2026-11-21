@@ -2,14 +2,14 @@
 import Base from '../layouts/Base.astro';
 import PageHeader from '../components/PageHeader.astro';
 import Note from '../components/Note.astro';
-import { WDS_URL } from '../consts';
+import { SITE_TITLE, WDS_URL } from '../consts';
 ---
 
 <Base
   title="About"
-  description="Who makes the Warbox Game Companions, and why they are free."
+  description="What Almandine's Warbox is: free tools and material for Wargame Design Studio games, starting with the WDS Scenario Picker."
 >
-  <PageHeader eyebrow="Site" title="About" icon="shield" lead="Who makes these companions, and why." />
+  <PageHeader eyebrow="Site" title="About" icon="shield" lead="What this site is, and why it exists." />
 
   <div class="wrap section">
     <Note tone="draft">
@@ -21,27 +21,39 @@ import { WDS_URL } from '../consts';
     <div class="prose">
       <h2>The short version</h2>
       <p>
-        I play Wargame Design Studio games, I make spreadsheets to help me read them, and I put the
-        spreadsheets here so other people can use them too. That is the whole site.
+        I play Wargame Design Studio games, and I build tools that make them easier to read, choose
+        and keep track of. {SITE_TITLE} is where those tools live, free for anyone who plays the same
+        games.
+      </p>
+      <p>
+        The first and biggest is the <a href="/picker/">WDS Scenario Picker</a>. Alongside it are the
+        Excel <a href="/series/">game companions</a> and printable material for the games.
       </p>
 
-      <h2>Why the companions exist</h2>
+      <h2>Why the Scenario Picker</h2>
+      <p>
+        A WDS game ships with dozens of scenarios, often hundreds, and a Scenario Selector that is, in effect, a list
+        of file names. Finding a short evening scenario, or the one you played last spring, means
+        clicking through them one by one. The Picker puts them all in one sortable table with the full
+        briefing beside it, keeps your results and notes, and starts the scenario you pick.
+      </p>
+
+      <h2>Why the companions</h2>
       <p>
         WDS games hold an enormous amount of detail, and most of it is genuinely useful once you can
         see it. The problem is never that the information is missing — it is that you are reading it
         through a small window, a few rows at a time, while trying to hold a plan in your head.
       </p>
       <p>
-        So I started pulling it out into spreadsheets: one scenario per row, orders of battle side by
-        side, victory points where you can compare them at a glance. They were for me first. It
-        turned out they were worth sharing.
+        So I started pulling it out into spreadsheets: one scenario per row, with room for your own
+        results and notes. They were for me first. It turned out they were worth sharing.
       </p>
 
-      <h2>What is here, and what is coming</h2>
+      <h2>What comes next</h2>
       <p>
-        I own around thirty WDS titles and I work through them steadily. New companions appear as
-        they are finished; games that are on the list but not done yet are marked as in progress, so
-        you can see what is coming rather than wonder.
+        The Picker grows with each release, one game’s scenario data at a time. New companions and
+        material appear here as they are finished. More tools for WDS games may follow; each will get
+        its own page next to the Picker.
       </p>
 
       <h2>Not official</h2>
@@ -54,7 +66,7 @@ import { WDS_URL } from '../consts';
       <h2>Free, and staying that way</h2>
       <p>
         No account, no email, no donation button. Download what is useful to you. If you find a
-        mistake, <a href="/contact/">tell me</a> — that is payment enough.
+        mistake or have an idea, <a href="/contact/">tell me</a> — that is payment enough.
       </p>
     </div>
   </div>

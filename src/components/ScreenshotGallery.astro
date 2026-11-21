@@ -147,15 +147,13 @@ const { shots, title } = Astro.props;
     width: 100%;
     aspect-ratio: 16 / 10;
     object-fit: cover;
-    filter: grayscale(1) contrast(0.92) brightness(1.04);
-    transition:
-      filter 0.45s ease,
-      transform 0.6s ease;
+    transition: transform 0.6s ease;
   }
 
+  /* Full colour from the start (Norbi, 2026-11-21): a screenshot has to be
+     readable as it is. The hover keeps only the slight zoom. */
   .shot__button:hover :global(img),
   .shot__button:focus-visible :global(img) {
-    filter: grayscale(0) contrast(1) brightness(1);
     transform: scale(1.03);
   }
 
